@@ -1,0 +1,28 @@
+{
+  "recitations": [
+    {
+      "id": "yasser_ad-dussary",
+      "name": "Yasser Ad-Dussary",
+      "surahs": [
+        {
+          "surah": 1,
+          "title": "Al-Fatiha",
+          "audioSrc": "https://download.quranicaudio.com/quran/yasser_ad-dussary/001.mp3",
+          "timingJson": "/data/yasser_ad-dussary_s001_full.json"
+        },
+        {
+          "surah": 90,
+          "title": "Al-Balad",
+          "audioSrc": "https://download.quranicaudio.com/quran/yasser_ad-dussary/090.mp3",
+          "timingJson": "/data/yasser_ad-dussary_s090_full.json"
+        },
+        {
+          "surah": 104,
+          "title": "Al-Humazah",
+          "audioSrc": "https://download.quranicaudio.com/quran/yasser_ad-dussary/104.mp3",
+          "timingJson": "/data/yasser_ad-dussary_s104_full.json"
+        }
+      ]
+    }
+  ]
+}

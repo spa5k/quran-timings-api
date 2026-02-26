@@ -99,6 +99,16 @@ class WhisperXFallbackAligner:
 
 def _import_whisperx() -> Any:
     try:
+        try:
+            import torchaudio  # type: ignore
+
+            if not hasattr(torchaudio, "AudioMetaData"):
+                backend_common = getattr(getattr(torchaudio, "backend", None), "common", None)
+                if backend_common is not None and hasattr(backend_common, "AudioMetaData"):
+                    torchaudio.AudioMetaData = backend_common.AudioMetaData  # type: ignore[attr-defined]
+        except Exception:
+            pass
+
         import whisperx  # type: ignore
 
         return whisperx

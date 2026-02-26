@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 import csv
@@ -16,16 +17,19 @@ import soundfile as sf
 
 from quran_audio_data.alignment import (
     AlignmentError,
+    AlignmentOutput,
     EngineUnavailable,
     NemoAligner,
     WhisperXFallbackAligner,
 )
 from quran_audio_data.schema import (
     AudioMetadata,
+    AyahTiming,
     EngineInfo,
     MetaInfo,
     QCThresholds,
     TimingResult,
+    WordTiming,
     compute_qc,
     qc_requires_fallback,
 )
@@ -381,16 +385,26 @@ def _process_row(
 
     wav_path = ensure_wav_16k_mono(row.audio_path)
     fallback_used = False
+    refinement_warnings: list[str] = []
 
     output = None
     if requested_engine == "nemo":
         try:
-            output = nemo.align(
-                audio_wav_path=str(wav_path),
-                canonical_words=canonical_words,
-                audio_duration_s=audio_info.duration_s,
-                device=device,
-            )
+            if row.ayah is None:
+                output, refinement_warnings = _align_full_surah_quality(
+                    wav_path=wav_path,
+                    canonical_words=canonical_words,
+                    nemo=nemo,
+                    audio_duration_s=audio_info.duration_s,
+                    device=device,
+                )
+            else:
+                output = nemo.align(
+                    audio_wav_path=str(wav_path),
+                    canonical_words=canonical_words,
+                    audio_duration_s=audio_info.duration_s,
+                    device=device,
+                )
         except (EngineUnavailable, AlignmentError):
             output = whisperx.align(
                 audio_wav_path=str(wav_path),
@@ -419,27 +433,31 @@ def _process_row(
         expected_word_count=len(canonical_words),
         thresholds=thresholds,
     )
+    result.qc.warnings.extend(refinement_warnings)
 
     if qc_requires_fallback(result.qc, thresholds) and output.engine_name != "whisperx":
-        fallback_output = whisperx.align(
-            audio_wav_path=str(wav_path),
-            canonical_words=canonical_words,
-            audio_duration_s=audio_info.duration_s,
-            device=device,
-        )
-        fallback_used = True
-        result = _build_result(
-            row=row,
-            audio_info=audio_info,
-            engine_name=fallback_output.engine_name,
-            engine_model=fallback_output.engine_model,
-            device=fallback_output.device,
-            fallback_used=fallback_used,
-            ayahs=fallback_output.ayahs,
-            words=fallback_output.words,
-            expected_word_count=len(canonical_words),
-            thresholds=thresholds,
-        )
+        try:
+            fallback_output = whisperx.align(
+                audio_wav_path=str(wav_path),
+                canonical_words=canonical_words,
+                audio_duration_s=audio_info.duration_s,
+                device=device,
+            )
+            fallback_used = True
+            result = _build_result(
+                row=row,
+                audio_info=audio_info,
+                engine_name=fallback_output.engine_name,
+                engine_model=fallback_output.engine_model,
+                device=fallback_output.device,
+                fallback_used=fallback_used,
+                ayahs=fallback_output.ayahs,
+                words=fallback_output.words,
+                expected_word_count=len(canonical_words),
+                thresholds=thresholds,
+            )
+        except (AlignmentError, EngineUnavailable) as exc:
+            result.qc.warnings.append(f"fallback_unavailable: {exc}")
 
     _write_cache_result(row=row, result=result, cache_root=cache_dir)
 
@@ -451,6 +469,255 @@ def _process_row(
         fallback_used=fallback_used,
         elapsed_s=time.time() - started,
     )
+
+
+def _align_full_surah_quality(
+    *,
+    wav_path: Path,
+    canonical_words: list[CanonicalWord],
+    nemo: NemoAligner,
+    audio_duration_s: float,
+    device: DeviceOption,
+    max_passes: int = 3,
+    base_overlap_s: float = 0.9,
+) -> tuple[AlignmentOutput, list[str]]:
+    """High-accuracy mode for full-surah files.
+
+    Strategy:
+    1. Full-surah forced alignment pass.
+    2. Detect weak ayahs (collapsed/invalid timings).
+    3. Re-align weak ayahs on overlapped chunks, iteratively.
+    """
+
+    warnings: list[str] = []
+
+    primary = nemo.align(
+        audio_wav_path=str(wav_path),
+        canonical_words=canonical_words,
+        audio_duration_s=audio_duration_s,
+        device=device,
+    )
+    refined_words = sorted(primary.words, key=lambda word: word.word_index_global)
+
+    expected_by_ayah: dict[int, list[CanonicalWord]] = defaultdict(list)
+    for canon in canonical_words:
+        expected_by_ayah[canon.ayah].append(canon)
+
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        warnings.append("quality_refine_skipped: ffmpeg_unavailable")
+        ayahs = _derive_ayahs_from_words(refined_words, source="aligned")
+        return (
+            AlignmentOutput(
+                ayahs=ayahs,
+                words=refined_words,
+                engine_name="nemo",
+                engine_model=nemo.model_name,
+                device=primary.device,
+                source="aligned",
+            ),
+            warnings,
+        )
+
+    with tempfile.TemporaryDirectory(prefix="qad_refine_") as temp_dir:
+        temp_root = Path(temp_dir)
+        for pass_index in range(max_passes):
+            weak_ayahs = _find_weak_ayahs(
+                words=refined_words,
+                expected_by_ayah=expected_by_ayah,
+            )
+            if not weak_ayahs:
+                break
+
+            overlap_s = base_overlap_s * (pass_index + 1)
+            warnings.append(
+                f"quality_refine_pass_{pass_index + 1}: weak_ayahs={','.join(str(v) for v in weak_ayahs)} overlap_s={overlap_s:.2f}"
+            )
+
+            any_updated = False
+            current_by_ayah = _words_by_ayah(refined_words)
+
+            for ayah in weak_ayahs:
+                expected_words = expected_by_ayah.get(ayah, [])
+                if not expected_words:
+                    continue
+
+                current_words = current_by_ayah.get(ayah, [])
+                if current_words:
+                    base_start = min(word.start_s for word in current_words)
+                    base_end = max(word.end_s for word in current_words)
+                else:
+                    ratio_start, ratio_end = _estimate_ayah_ratio_window(
+                        ayah=ayah,
+                        expected_by_ayah=expected_by_ayah,
+                    )
+                    base_start = ratio_start * audio_duration_s
+                    base_end = ratio_end * audio_duration_s
+
+                # Ensure we always provide a usable chunk.
+                if base_end <= base_start:
+                    base_end = min(audio_duration_s, base_start + 2.0)
+
+                chunk_start = max(0.0, base_start - overlap_s)
+                chunk_end = min(audio_duration_s, base_end + overlap_s)
+                if chunk_end <= chunk_start:
+                    continue
+
+                chunk_path = temp_root / f"ayah_{ayah:03d}_pass_{pass_index + 1}.wav"
+                _cut_audio_chunk(
+                    ffmpeg=ffmpeg,
+                    src_wav=wav_path,
+                    dst_wav=chunk_path,
+                    start_s=chunk_start,
+                    end_s=chunk_end,
+                )
+
+                chunk_output = nemo.align(
+                    audio_wav_path=str(chunk_path),
+                    canonical_words=expected_words,
+                    audio_duration_s=(chunk_end - chunk_start),
+                    device=device,
+                )
+
+                shifted = [
+                    word.model_copy(
+                        update={
+                            "start_s": word.start_s + chunk_start,
+                            "end_s": word.end_s + chunk_start,
+                        }
+                    )
+                    for word in chunk_output.words
+                ]
+
+                refined_words = [word for word in refined_words if word.ayah != ayah]
+                refined_words.extend(shifted)
+                refined_words.sort(key=lambda word: word.word_index_global)
+                any_updated = True
+
+            if not any_updated:
+                break
+
+    ayahs = _derive_ayahs_from_words(refined_words, source="aligned")
+    return (
+        AlignmentOutput(
+            ayahs=ayahs,
+            words=refined_words,
+            engine_name="nemo",
+            engine_model=nemo.model_name,
+            device=primary.device,
+            source="aligned",
+        ),
+        warnings,
+    )
+
+
+def _find_weak_ayahs(
+    *,
+    words: list[WordTiming],
+    expected_by_ayah: dict[int, list[CanonicalWord]],
+) -> list[int]:
+    by_ayah = _words_by_ayah(words)
+    weak: list[int] = []
+
+    for ayah in sorted(expected_by_ayah):
+        expected_count = len(expected_by_ayah[ayah])
+        actual_words = by_ayah.get(ayah, [])
+
+        if len(actual_words) != expected_count:
+            weak.append(ayah)
+            continue
+
+        if not actual_words:
+            weak.append(ayah)
+            continue
+
+        starts = [word.start_s for word in actual_words]
+        if starts != sorted(starts):
+            weak.append(ayah)
+            continue
+
+        non_positive = sum(1 for word in actual_words if word.end_s <= word.start_s)
+        if non_positive > 0:
+            weak.append(ayah)
+            continue
+
+        tiny = sum(1 for word in actual_words if (word.end_s - word.start_s) <= 0.03)
+        if tiny / len(actual_words) > 0.12:
+            weak.append(ayah)
+
+    return weak
+
+
+def _words_by_ayah(words: list[WordTiming]) -> dict[int, list[WordTiming]]:
+    out: dict[int, list[WordTiming]] = defaultdict(list)
+    for word in words:
+        out[word.ayah].append(word)
+    for ayah in out:
+        out[ayah].sort(key=lambda word: word.word_index_in_ayah)
+    return out
+
+
+def _estimate_ayah_ratio_window(
+    *,
+    ayah: int,
+    expected_by_ayah: dict[int, list[CanonicalWord]],
+) -> tuple[float, float]:
+    total = sum(len(group) for group in expected_by_ayah.values())
+    if total <= 0:
+        return 0.0, 1.0
+
+    before = sum(len(expected_by_ayah[key]) for key in sorted(expected_by_ayah) if key < ayah)
+    current = len(expected_by_ayah.get(ayah, []))
+    start_ratio = before / total
+    end_ratio = (before + current) / total
+    return start_ratio, end_ratio
+
+
+def _cut_audio_chunk(
+    *,
+    ffmpeg: str,
+    src_wav: Path,
+    dst_wav: Path,
+    start_s: float,
+    end_s: float,
+) -> None:
+    cmd = [
+        ffmpeg,
+        "-y",
+        "-ss",
+        f"{start_s:.3f}",
+        "-to",
+        f"{end_s:.3f}",
+        "-i",
+        str(src_wav),
+        "-ac",
+        "1",
+        "-ar",
+        "16000",
+        str(dst_wav),
+    ]
+    proc = subprocess.run(cmd, capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise PipelineError(f"ffmpeg chunk extraction failed: {proc.stderr.strip()}")
+
+
+def _derive_ayahs_from_words(words: list[WordTiming], *, source: str) -> list[AyahTiming]:
+    grouped: dict[tuple[int, int], list[WordTiming]] = defaultdict(list)
+    for word in words:
+        grouped[(word.surah, word.ayah)].append(word)
+
+    ayahs: list[AyahTiming] = []
+    for (surah, ayah), group in sorted(grouped.items(), key=lambda item: (item[0][0], item[0][1])):
+        ayahs.append(
+            AyahTiming(
+                surah=surah,
+                ayah=ayah,
+                start_s=min(item.start_s for item in group),
+                end_s=max(item.end_s for item in group),
+                source=source,
+            )
+        )
+    return ayahs
 
 
 def _load_canonical_words(*, text_store: QuranTextStore, row: ManifestRow) -> list[CanonicalWord]:

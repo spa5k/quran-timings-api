@@ -15,10 +15,11 @@ Pipeline policy:
 ## Current status
 
 This implementation is production-structured and test-covered, with a practical alignment adapter setup:
-- Primary engine wrapper: `NemoAligner` (command-template driven via `QAD_NEMO_ALIGN_CMD`)
+- Primary engine wrapper: `NemoAligner` (default: NeMo CTC forced alignment runner)
 - Fallback engine: `WhisperXFallbackAligner`
 - Existing-source resolver: cache + remote template adapters
 - Strict schema + QC gates + CSV exports
+- Full-surah quality mode: multi-pass ayah chunk re-alignment with overlap
 
 ## Install
 
@@ -131,6 +132,11 @@ uv run qad benchmark --manifest /path/manifest.csv --out /path/out --sample-size
 - `python -m quran_audio_data.alignment.nemo_runner`
 
 So no env var is required for the default path.
+
+Default alignment behavior is quality-first:
+- Uses NeMo CTC forced alignment (reference-text constrained)
+- For full-surah files, runs multi-pass ayah-level refinement on weak segments
+- Uses increasing overlap windows per pass before finalizing timestamps
 
 If you want to override the command, set `QAD_NEMO_ALIGN_CMD`:
 

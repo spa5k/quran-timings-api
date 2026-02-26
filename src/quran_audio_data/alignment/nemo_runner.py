@@ -23,7 +23,7 @@ class PredictedWord:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Run NeMo ASR timestamp extraction and map to reference transcript words."
+        description="Run NeMo CTC forced alignment and emit word timestamps."
     )
     parser.add_argument("--audio", required=True, help="Path to WAV audio (16k mono recommended)")
     parser.add_argument("--transcript", required=True, help="Path to reference transcript text file")
@@ -44,31 +44,90 @@ def main() -> int:
     if not transcript_words:
         raise RuntimeError("Transcript is empty; cannot perform alignment")
 
-    audio_duration_s = probe_audio_duration(audio_path)
-    model, resolved_device = load_nemo_model(model_name=args.model, device=args.device)
-    hypothesis = transcribe_hypothesis(model=model, audio_path=audio_path)
-
-    predicted_words = extract_predicted_words(
-        hypothesis=hypothesis,
+    words, resolved_device = forced_align(
+        audio_path=audio_path,
         transcript_words=transcript_words,
-        audio_duration_s=audio_duration_s,
+        model_name=args.model,
+        device=args.device,
     )
+
+    output = {
+        "engine": "nemo-forced-align",
+        "model": args.model,
+        "device": resolved_device,
+        "words": words,
+    }
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_bytes(orjson.dumps(output, option=orjson.OPT_INDENT_2))
+    return 0
+
+
+def forced_align(
+    *,
+    audio_path: Path,
+    transcript_words: list[str],
+    model_name: str,
+    device: str,
+) -> tuple[list[dict[str, Any]], str]:
+    audio_duration_s = probe_audio_duration(audio_path)
+
+    model, torch, resolved_device = load_nemo_model(model_name=model_name, device=device)
+
+    try:
+        from nemo.collections.asr.parts.utils.aligner_utils import (
+            add_t_start_end_to_utt_obj,
+            get_batch_variables,
+            viterbi_decoding,
+        )
+    except Exception as exc:
+        raise RuntimeError(
+            "NeMo forced-align utilities are unavailable. Install NeMo with ASR extras."
+        ) from exc
+
+    transcript_text = " ".join(transcript_words)
+    (
+        log_probs_batch,
+        y_batch,
+        t_batch,
+        u_batch,
+        utt_obj_batch,
+        output_timestep_duration,
+    ) = get_batch_variables(
+        audio=[str(audio_path)],
+        model=model,
+        segment_separators=None,
+        align_using_pred_text=False,
+        audio_filepath_parts_in_utt_id=1,
+        gt_text_batch=[transcript_text],
+        output_timestep_duration=None,
+        simulate_cache_aware_streaming=False,
+        use_buffered_chunked_streaming=False,
+        buffered_chunk_params={},
+    )
+
+    alignments = viterbi_decoding(
+        log_probs_batch,
+        y_batch,
+        t_batch,
+        u_batch,
+        torch.device(resolved_device),
+    )
+
+    utt = add_t_start_end_to_utt_obj(
+        utt_obj_batch[0],
+        alignments[0],
+        output_timestep_duration,
+    )
+
+    predicted_words = extract_predicted_words_from_utt(utt)
     mapped_words = map_reference_words(
         transcript_words=transcript_words,
         predicted_words=predicted_words,
         audio_duration_s=audio_duration_s,
     )
 
-    output = {
-        "engine": "nemo-runner",
-        "model": args.model,
-        "device": resolved_device,
-        "words": mapped_words,
-    }
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_bytes(orjson.dumps(output, option=orjson.OPT_INDENT_2))
-    return 0
+    return mapped_words, resolved_device
 
 
 def load_transcript_words(path: Path) -> list[str]:
@@ -106,207 +165,45 @@ def load_nemo_model(*, model_name: str, device: str):
         except Exception:
             pass
 
-    configure_timestamps_decoding(model)
-
     model = model.eval()
     try:
         model = model.to(map_location)
     except Exception:
         pass
 
-    return model, resolved_device
+    return model, torch, resolved_device
 
 
-def configure_timestamps_decoding(model: Any) -> None:
-    decoding_cfg = None
-
-    if hasattr(model, "cfg") and hasattr(model.cfg, "ctc_decoding"):
-        decoding_cfg = model.cfg.ctc_decoding
-    elif hasattr(model, "_cfg") and hasattr(model._cfg, "ctc_decoding"):
-        decoding_cfg = model._cfg.ctc_decoding
-
-    if decoding_cfg is None:
-        return
-
-    # Best-effort config mutation across Nemo/OmegaConf variants.
-    for key, value in {
-        "compute_timestamps": True,
-        "preserve_alignments": True,
-        "word_seperator": " ",
-        "segment_seperators": [".", "?", "!", "..."],
-        "ctc_timestamp_type": "word",
-    }.items():
-        try:
-            setattr(decoding_cfg, key, value)
-        except Exception:
-            pass
-
-    if hasattr(model, "change_decoding_strategy"):
-        try:
-            model.change_decoding_strategy(decoding_cfg, decoder_type="ctc")
-            return
-        except Exception:
-            pass
-        try:
-            model.change_decoding_strategy(decoding_cfg)
-        except Exception:
-            pass
-
-
-def transcribe_hypothesis(*, model: Any, audio_path: Path):
-    attempts = [
-        lambda: model.transcribe(
-            [str(audio_path)],
-            batch_size=1,
-            return_hypotheses=True,
-            timestamps=True,
-            verbose=False,
-        ),
-        lambda: model.transcribe(
-            paths2audio_files=[str(audio_path)],
-            batch_size=1,
-            return_hypotheses=True,
-            timestamps=True,
-            verbose=False,
-        ),
-        lambda: model.transcribe(
-            [str(audio_path)],
-            batch_size=1,
-            return_hypotheses=True,
-            verbose=False,
-        ),
-        lambda: model.transcribe(
-            paths2audio_files=[str(audio_path)],
-            batch_size=1,
-            return_hypotheses=True,
-            verbose=False,
-        ),
-    ]
-
-    last_exc: Exception | None = None
-    for attempt in attempts:
-        try:
-            result = attempt()
-            first = first_hypothesis(result)
-            if first is not None:
-                return first
-        except Exception as exc:
-            last_exc = exc
-
-    if last_exc is not None:
-        raise RuntimeError(f"NeMo transcription failed: {last_exc}") from last_exc
-    raise RuntimeError("NeMo transcription failed with no hypothesis output")
-
-
-def first_hypothesis(result: Any) -> Any | None:
-    if result is None:
-        return None
-
-    if isinstance(result, list):
-        if not result:
-            return None
-        first = result[0]
-        if isinstance(first, list):
-            return first[0] if first else None
-        return first
-
-    return result
-
-
-def extract_predicted_words(
-    *,
-    hypothesis: Any,
-    transcript_words: list[str],
-    audio_duration_s: float,
-) -> list[PredictedWord]:
-    timestamps = getattr(hypothesis, "timestamp", None)
-    entries: list[dict[str, Any]] = []
-
-    if isinstance(timestamps, dict):
-        for key in ("word", "words", "word_timestamps"):
-            value = timestamps.get(key)
-            if isinstance(value, list) and value:
-                entries = [item for item in value if isinstance(item, dict)]
-                break
-
-    # Fallback if model exposes direct words list.
-    if not entries:
-        words_obj = getattr(hypothesis, "words", None)
-        if isinstance(words_obj, list) and words_obj and isinstance(words_obj[0], dict):
-            entries = [item for item in words_obj if isinstance(item, dict)]
-
+def extract_predicted_words_from_utt(utt_obj: Any) -> list[PredictedWord]:
     predicted: list[PredictedWord] = []
-    for item in entries:
-        text = str(item.get("word") or item.get("text") or "").strip()
-        if not text:
+
+    # `segments_and_tokens` is a mixed list; words live under segment.words_and_tokens.
+    for segment_or_token in getattr(utt_obj, "segments_and_tokens", []):
+        words_and_tokens = getattr(segment_or_token, "words_and_tokens", None)
+        if not isinstance(words_and_tokens, list):
             continue
 
-        start = to_float(
-            item.get("start")
-            or item.get("start_time")
-            or item.get("start_s")
-            or item.get("timestamp_from")
-            or item.get("start_offset")
-        )
-        end = to_float(
-            item.get("end")
-            or item.get("end_time")
-            or item.get("end_s")
-            or item.get("timestamp_to")
-            or item.get("end_offset")
-        )
+        for maybe_word in words_and_tokens:
+            if not hasattr(maybe_word, "tokens"):
+                continue
 
-        duration = to_float(item.get("duration"))
-        if start is not None and end is None and duration is not None:
-            end = start + duration
+            text = str(getattr(maybe_word, "text", "") or "").strip()
+            start = to_float(getattr(maybe_word, "t_start", None))
+            end = to_float(getattr(maybe_word, "t_end", None))
+            if not text or start is None or end is None:
+                continue
 
-        if start is None or end is None:
-            continue
-
-        predicted.append(
-            PredictedWord(
-                text_norm=normalize_arabic(text),
-                start_s=start,
-                end_s=end,
-                confidence=to_float(item.get("confidence") or item.get("score") or item.get("probability")),
-            )
-        )
-
-    if not predicted:
-        # Keep pipeline alive by falling back to uniform timing over transcript.
-        return []
-
-    predicted.sort(key=lambda x: x.start_s)
-    predicted = maybe_convert_offsets_to_seconds(predicted, audio_duration_s)
-    return predicted
-
-
-def maybe_convert_offsets_to_seconds(
-    predicted_words: list[PredictedWord], audio_duration_s: float
-) -> list[PredictedWord]:
-    if not predicted_words or audio_duration_s <= 0:
-        return predicted_words
-
-    max_end = max(word.end_s for word in predicted_words)
-    if max_end <= 0:
-        return predicted_words
-
-    # If values are clearly frame/offset indices, scale to audio seconds.
-    if max_end > audio_duration_s * 2.0:
-        scale = audio_duration_s / max_end
-        scaled: list[PredictedWord] = []
-        for item in predicted_words:
-            scaled.append(
+            predicted.append(
                 PredictedWord(
-                    text_norm=item.text_norm,
-                    start_s=item.start_s * scale,
-                    end_s=item.end_s * scale,
-                    confidence=item.confidence,
+                    text_norm=normalize_arabic(text),
+                    start_s=start,
+                    end_s=end,
+                    confidence=None,
                 )
             )
-        return scaled
 
-    return predicted_words
+    predicted.sort(key=lambda item: item.start_s)
+    return predicted
 
 
 def map_reference_words(
@@ -327,17 +224,17 @@ def map_reference_words(
         best_j: int | None = None
         best_score = -1.0
 
-        search_end = min(len(predicted_words), cursor + 16)
+        search_end = min(len(predicted_words), cursor + 24)
         for j in range(cursor, search_end):
             pred = predicted_words[j]
             score = fuzz.ratio(ref, pred.text_norm)
             if score > best_score:
                 best_score = score
                 best_j = j
-            if score >= 98:
+            if score >= 99:
                 break
 
-        if best_j is not None and best_score >= 45:
+        if best_j is not None and best_score >= 55:
             matched[i] = best_j
             cursor = best_j + 1
 
