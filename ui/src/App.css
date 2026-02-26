@@ -4,37 +4,119 @@
 }
 
 .app-shell {
-  max-width: 1200px;
+  max-width: 1220px;
   margin: 0 auto;
-  padding: 1.25rem;
+  padding: 1.2rem;
   display: grid;
-  gap: 1rem;
+  gap: 0.95rem;
 }
 
 .hero {
-  background: linear-gradient(130deg, rgba(16, 66, 42, 0.9), rgba(209, 172, 93, 0.85));
+  background: linear-gradient(135deg, rgba(15, 63, 41, 0.94), rgba(192, 150, 69, 0.9));
   color: #fffef6;
-  border-radius: 18px;
-  padding: 1rem 1.25rem;
+  border-radius: 20px;
+  padding: 1.05rem 1.2rem;
   box-shadow: 0 16px 38px rgba(22, 55, 40, 0.24);
+  display: grid;
+  gap: 0.65rem;
 }
 
 .kicker {
   margin: 0;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  opacity: 0.95;
 }
 
 .hero h1 {
   margin: 0.2rem 0 0.15rem;
-  font-size: clamp(1.8rem, 4.5vw, 2.9rem);
+  font-size: clamp(1.75rem, 4.3vw, 2.85rem);
   line-height: 1.02;
 }
 
 .subtitle {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  opacity: 0.95;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.33rem 0.62rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 250, 236, 0.3);
+  background: rgba(255, 250, 236, 0.12);
+  backdrop-filter: blur(2px);
+}
+
+.pill.play-state-active {
+  background: rgba(215, 240, 223, 0.24);
+  border-color: rgba(215, 240, 223, 0.65);
+}
+
+.pill.arabic-pill {
+  font-family: 'Amiri Quran', 'Noto Naskh Arabic', 'IBM Plex Sans Arabic', 'Amiri', serif;
+  direction: rtl;
+  min-width: 3rem;
+  justify-content: center;
+}
+
+.active-ayah-panel {
+  border: 1px solid rgba(255, 251, 240, 0.28);
+  border-radius: 14px;
+  padding: 0.62rem 0.68rem;
+  background: rgba(255, 251, 240, 0.13);
+  display: grid;
+  gap: 0.38rem;
+}
+
+.active-ayah-panel-label {
+  margin: 0;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 251, 240, 0.86);
+}
+
+.active-ayah-text {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.34rem;
+  font-family: 'Amiri Quran', 'Noto Naskh Arabic', 'IBM Plex Sans Arabic', 'Amiri', serif;
+  font-size: clamp(1.28rem, 2.1vw, 1.78rem);
+  line-height: 1.95;
+  letter-spacing: 0;
+  text-align: right;
+  color: #fffdf3;
+  font-feature-settings: 'liga' 1, 'calt' 1, 'rlig' 1;
+}
+
+.active-ayah-word {
+  border-radius: 0.55rem;
+  padding: 0 0.2rem;
+}
+
+.active-ayah-word-current {
+  background: rgba(255, 225, 143, 0.95);
+  color: #3c2908;
+  box-shadow: 0 0 0 1px rgba(255, 225, 143, 0.5);
+}
+
+.active-ayah-empty {
+  margin: 0;
+  font-size: 0.84rem;
+  color: rgba(255, 251, 240, 0.86);
 }
 
 .controls,
@@ -50,7 +132,7 @@
 .controls {
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .controls label {
@@ -104,8 +186,56 @@ select {
   gap: 0.7rem;
 }
 
+.player-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.player-headline h2 {
+  margin: 0;
+  color: #154534;
+  font-size: 1rem;
+}
+
+.player-headline p {
+  margin: 0;
+  color: #345646;
+  font-size: 0.82rem;
+}
+
 audio {
   width: 100%;
+}
+
+.timeline {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.timeline-track {
+  position: relative;
+  width: 100%;
+  border-radius: 999px;
+  height: 0.62rem;
+  background: rgba(17, 57, 37, 0.15);
+  overflow: hidden;
+}
+
+.timeline-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1c7851, #2a9b6c);
+}
+
+.timeline-marks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: #3e5a4d;
 }
 
 .player-actions {
@@ -117,23 +247,37 @@ audio {
 button {
   border: none;
   border-radius: 999px;
-  padding: 0.5rem 0.9rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.95rem;
   font-size: 0.85rem;
   font-weight: 700;
   background: #154e36;
   color: #f9f7eb;
   cursor: pointer;
-  transition: transform 120ms ease, opacity 120ms ease;
+  transition: transform 120ms ease, opacity 120ms ease, box-shadow 120ms ease;
 }
 
 button:hover {
   transform: translateY(-1px);
   opacity: 0.96;
+  box-shadow: 0 7px 18px rgba(21, 78, 54, 0.26);
+}
+
+button:focus-visible {
+  outline: 2px solid #1f7f56;
+  outline-offset: 2px;
 }
 
 button.ghost {
   background: #d8c28d;
   color: #4b3916;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+  box-shadow: none;
+  transform: none;
 }
 
 .content-grid {
@@ -151,9 +295,10 @@ button.ghost {
 .list-scroll {
   display: grid;
   gap: 0.45rem;
-  max-height: 360px;
+  max-height: 370px;
   overflow: auto;
   padding-right: 0.2rem;
+  scroll-behavior: smooth;
 }
 
 .segment-row {
@@ -165,6 +310,7 @@ button.ghost {
   border: 1px solid rgba(16, 66, 42, 0.24);
   background: #fffef8;
   color: #14382a;
+  min-height: 2.95rem;
 }
 
 .segment-row:hover {
@@ -172,9 +318,9 @@ button.ghost {
   border-color: rgba(16, 66, 42, 0.48);
 }
 
-.segment-row:focus-visible {
-  outline: 2px solid #1f7f56;
-  outline-offset: 2px;
+.segment-row.selected {
+  border-color: rgba(29, 102, 70, 0.75);
+  box-shadow: inset 0 0 0 1px rgba(29, 102, 70, 0.25);
 }
 
 .segment-row.active {
@@ -193,9 +339,10 @@ button.ghost {
 }
 
 .segment-title.arabic {
-  font-family: 'IBM Plex Sans Arabic', 'Amiri', serif;
+  font-family: 'Amiri Quran', 'Noto Naskh Arabic', 'IBM Plex Sans Arabic', 'Amiri', serif;
   font-size: 1.2rem;
   direction: rtl;
+  font-feature-settings: 'liga' 1, 'calt' 1, 'rlig' 1;
 }
 
 .segment-time {
@@ -209,6 +356,16 @@ button.ghost {
 
 .segment-row.active-word .segment-time {
   color: #5a451f;
+}
+
+.empty-state {
+  margin: 0;
+  border: 1px dashed rgba(31, 77, 55, 0.2);
+  border-radius: 10px;
+  padding: 0.75rem;
+  font-size: 0.84rem;
+  color: #4f665a;
+  background: rgba(248, 250, 245, 0.9);
 }
 
 .error,
@@ -226,7 +383,34 @@ button.ghost {
     grid-template-columns: 1fr;
   }
 
+  .player-headline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
   .list-scroll {
     max-height: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 0.8rem;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
   }
 }

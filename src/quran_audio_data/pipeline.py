@@ -617,35 +617,44 @@ def _find_weak_ayahs(
     expected_by_ayah: dict[int, list[CanonicalWord]],
 ) -> list[int]:
     by_ayah = _words_by_ayah(words)
-    weak: list[int] = []
+    weak: list[tuple[float, int]] = []
 
     for ayah in sorted(expected_by_ayah):
         expected_count = len(expected_by_ayah[ayah])
         actual_words = by_ayah.get(ayah, [])
+        severity = 0.0
+        is_weak = False
 
         if len(actual_words) != expected_count:
-            weak.append(ayah)
-            continue
+            severity += 100.0 + abs(expected_count - len(actual_words)) * 5.0
+            is_weak = True
 
         if not actual_words:
-            weak.append(ayah)
+            severity += 150.0
+            is_weak = True
+            weak.append((severity, ayah))
             continue
 
         starts = [word.start_s for word in actual_words]
         if starts != sorted(starts):
-            weak.append(ayah)
-            continue
+            severity += 80.0
+            is_weak = True
 
         non_positive = sum(1 for word in actual_words if word.end_s <= word.start_s)
         if non_positive > 0:
-            weak.append(ayah)
-            continue
+            severity += (non_positive / len(actual_words)) * 120.0
+            is_weak = True
 
         tiny = sum(1 for word in actual_words if (word.end_s - word.start_s) <= 0.03)
         if tiny / len(actual_words) > 0.12:
-            weak.append(ayah)
+            severity += (tiny / len(actual_words)) * 60.0
+            is_weak = True
 
-    return weak
+        if is_weak:
+            weak.append((severity, ayah))
+
+    weak.sort(key=lambda item: (-item[0], item[1]))
+    return [ayah for _, ayah in weak]
 
 
 def _words_by_ayah(words: list[WordTiming]) -> dict[int, list[WordTiming]]:
