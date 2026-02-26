@@ -1,0 +1,5 @@
+audio_path,reciter_id,surah,ayah,source_url,sha256,language
+/Users/atlantic/Developer/quran-audio-data/samples/audio/yasser_ad-dussary_060.mp3,yasser_ad-dussary,60,,https://download.quranicaudio.com/quran/yasser_ad-dussary/060.mp3,,ar
+/Users/atlantic/Developer/quran-audio-data/samples/audio/sa3ood_al-shuraym_060.mp3,sa3ood_al-shuraym,60,,https://download.quranicaudio.com/quran/sa3ood_al-shuraym/060.mp3,,ar
+/Users/atlantic/Developer/quran-audio-data/samples/audio/abdurrahmaan_as-sudays_060.mp3,abdurrahmaan_as-sudays,60,,https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/060.mp3,,ar
+/Users/atlantic/Developer/quran-audio-data/samples/audio/abdulbaset_warsh_060.mp3,abdulbaset_warsh,60,,https://download.quranicaudio.com/quran/abdulbaset_warsh/060.mp3,,ar

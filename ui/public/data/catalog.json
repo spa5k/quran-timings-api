@@ -11,6 +11,18 @@
           "timingJson": "/data/abdulbaset_warsh_s001_full.json"
         },
         {
+          "surah": 55,
+          "title": "Ar-Rahman",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdulbaset_warsh/055.mp3",
+          "timingJson": "/data/abdulbaset_warsh_s055_full.json"
+        },
+        {
+          "surah": 60,
+          "title": "Al-Mumtahanah",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdulbaset_warsh/060.mp3",
+          "timingJson": "/data/abdulbaset_warsh_s060_full.json"
+        },
+        {
           "surah": 87,
           "title": "Al-A'la",
           "audioSrc": "https://download.quranicaudio.com/quran/abdulbaset_warsh/087.mp3",
@@ -191,6 +203,18 @@
           "timingJson": "/data/abdurrahmaan_as-sudays_s001_full.json"
         },
         {
+          "surah": 55,
+          "title": "Ar-Rahman",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/055.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s055_full.json"
+        },
+        {
+          "surah": 60,
+          "title": "Al-Mumtahanah",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/060.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s060_full.json"
+        },
+        {
           "surah": 87,
           "title": "Al-A'la",
           "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/087.mp3",
@@ -369,6 +393,18 @@
           "title": "Al-Fatiha",
           "audioSrc": "https://download.quranicaudio.com/quran/sa3ood_al-shuraym/001.mp3",
           "timingJson": "/data/sa3ood_al-shuraym_s001_full.json"
+        },
+        {
+          "surah": 55,
+          "title": "Ar-Rahman",
+          "audioSrc": "https://download.quranicaudio.com/quran/sa3ood_al-shuraym/055.mp3",
+          "timingJson": "/data/sa3ood_al-shuraym_s055_full.json"
+        },
+        {
+          "surah": 60,
+          "title": "Al-Mumtahanah",
+          "audioSrc": "https://download.quranicaudio.com/quran/sa3ood_al-shuraym/060.mp3",
+          "timingJson": "/data/sa3ood_al-shuraym_s060_full.json"
         },
         {
           "surah": 87,
@@ -555,6 +591,18 @@
           "title": "Maryam",
           "audioSrc": "https://download.quranicaudio.com/quran/yasser_ad-dussary/019.mp3",
           "timingJson": "/data/yasser_ad-dussary_s019_full.json"
+        },
+        {
+          "surah": 55,
+          "title": "Ar-Rahman",
+          "audioSrc": "https://download.quranicaudio.com/quran/yasser_ad-dussary/055.mp3",
+          "timingJson": "/data/yasser_ad-dussary_s055_full.json"
+        },
+        {
+          "surah": 60,
+          "title": "Al-Mumtahanah",
+          "audioSrc": "https://download.quranicaudio.com/quran/yasser_ad-dussary/060.mp3",
+          "timingJson": "/data/yasser_ad-dussary_s060_full.json"
         },
         {
           "surah": 87,
