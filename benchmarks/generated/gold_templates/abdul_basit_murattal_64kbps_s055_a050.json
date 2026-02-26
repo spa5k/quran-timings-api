@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 55,
+    "ayah": 50,
+    "verse_key": "55:50",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/55:50",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/055050.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 50,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فِيهِمَا",
+      "start_s": 0.0,
+      "end_s": 2.15
+    },
+    {
+      "ayah": 50,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "عَيْنَانِ",
+      "start_s": 2.15,
+      "end_s": 3.4
+    },
+    {
+      "ayah": 50,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "تَجْرِيَانِ",
+      "start_s": 3.4,
+      "end_s": 4.935
+    },
+    {
+      "ayah": 50,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "٥٠",
+      "start_s": 4.935,
+      "end_s": 5.6
+    }
+  ]
+}

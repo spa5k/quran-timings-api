@@ -1,0 +1,219 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 59,
+    "ayah": 11,
+    "verse_key": "59:11",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/59:11",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/059011.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "۞ أَلَمْ",
+      "start_s": 0.0,
+      "end_s": 0.92
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "تَرَ",
+      "start_s": 0.92,
+      "end_s": 1.44
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "إِلَى",
+      "start_s": 1.44,
+      "end_s": 1.84
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 1.84,
+      "end_s": 3.09
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "نَافَقُوا۟",
+      "start_s": 3.09,
+      "end_s": 4.29
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "يَقُولُونَ",
+      "start_s": 4.29,
+      "end_s": 5.74
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "لِإِخْوَٰنِهِمُ",
+      "start_s": 5.74,
+      "end_s": 7.61
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 7.61,
+      "end_s": 8.77
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "كَفَرُوا۟",
+      "start_s": 8.77,
+      "end_s": 9.72
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "مِنْ",
+      "start_s": 9.72,
+      "end_s": 10.23
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "أَهْلِ",
+      "start_s": 10.23,
+      "end_s": 10.92
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ٱلْكِتَـٰبِ",
+      "start_s": 10.92,
+      "end_s": 12.2
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "لَئِنْ",
+      "start_s": 22.4,
+      "end_s": 24.47
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "أُخْرِجْتُمْ",
+      "start_s": 24.47,
+      "end_s": 25.93
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "لَنَخْرُجَنَّ",
+      "start_s": 25.93,
+      "end_s": 28.34
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "مَعَكُمْ",
+      "start_s": 28.34,
+      "end_s": 29.39
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "وَلَا",
+      "start_s": 29.39,
+      "end_s": 30.04
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "نُطِيعُ",
+      "start_s": 30.04,
+      "end_s": 31.05
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "فِيكُمْ",
+      "start_s": 31.05,
+      "end_s": 32.07
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "أَحَدًا",
+      "start_s": 32.07,
+      "end_s": 33.06
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "أَبَدًۭا",
+      "start_s": 33.06,
+      "end_s": 34.697
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "وَإِن",
+      "start_s": 34.697,
+      "end_s": 35.974
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "قُوتِلْتُمْ",
+      "start_s": 35.974,
+      "end_s": 37.44
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 24,
+      "text_uthmani": "لَنَنصُرَنَّكُمْ",
+      "start_s": 37.44,
+      "end_s": 40.78
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 25,
+      "text_uthmani": "وَٱللَّهُ",
+      "start_s": 40.78,
+      "end_s": 41.96
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 26,
+      "text_uthmani": "يَشْهَدُ",
+      "start_s": 41.96,
+      "end_s": 42.99
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 27,
+      "text_uthmani": "إِنَّهُمْ",
+      "start_s": 42.99,
+      "end_s": 44.67
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 28,
+      "text_uthmani": "لَكَـٰذِبُونَ",
+      "start_s": 44.67,
+      "end_s": 46.305
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 29,
+      "text_uthmani": "١١",
+      "start_s": 46.305,
+      "end_s": 46.9
+    }
+  ]
+}

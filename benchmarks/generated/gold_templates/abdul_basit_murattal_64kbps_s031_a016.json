@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 31,
+    "ayah": 16,
+    "verse_key": "31:16",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/31:16",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/031016.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "يَـٰبُنَىَّ",
+      "start_s": 1.7,
+      "end_s": 2.74
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "إِنَّهَآ",
+      "start_s": 2.75,
+      "end_s": 5.53
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "إِن",
+      "start_s": 5.54,
+      "end_s": 6.4
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "تَكُ",
+      "start_s": 6.41,
+      "end_s": 6.92
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "مِثْقَالَ",
+      "start_s": 6.93,
+      "end_s": 7.78
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "حَبَّةٍۢ",
+      "start_s": 7.79,
+      "end_s": 9.48
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "مِّنْ",
+      "start_s": 9.49,
+      "end_s": 9.71
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "خَرْدَلٍۢ",
+      "start_s": 9.72,
+      "end_s": 11.27
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "فَتَكُن",
+      "start_s": 11.28,
+      "end_s": 12.79
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "فِى",
+      "start_s": 12.8,
+      "end_s": 13.04
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "صَخْرَةٍ",
+      "start_s": 13.05,
+      "end_s": 14.12
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "أَوْ",
+      "start_s": 14.13,
+      "end_s": 14.45
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "فِى",
+      "start_s": 14.46,
+      "end_s": 14.68
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "ٱلسَّمَـٰوَٰتِ",
+      "start_s": 14.69,
+      "end_s": 16.11
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "أَوْ",
+      "start_s": 16.12,
+      "end_s": 16.42
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "فِى",
+      "start_s": 16.43,
+      "end_s": 16.74
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "ٱلْأَرْضِ",
+      "start_s": 16.75,
+      "end_s": 17.39
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "يَأْتِ",
+      "start_s": 17.4,
+      "end_s": 18.04
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "بِهَا",
+      "start_s": 18.05,
+      "end_s": 18.42
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "ٱللَّهُ ۚ",
+      "start_s": 18.43,
+      "end_s": 20.25
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "إِنَّ",
+      "start_s": 20.45,
+      "end_s": 21.7
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "ٱللَّهَ",
+      "start_s": 21.71,
+      "end_s": 22.47
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "لَطِيفٌ",
+      "start_s": 22.48,
+      "end_s": 23.36
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 24,
+      "text_uthmani": "خَبِيرٌۭ",
+      "start_s": 23.37,
+      "end_s": 24.31
+    },
+    {
+      "ayah": 16,
+      "word_index_in_ayah": 25,
+      "text_uthmani": "١٦",
+      "start_s": 24.31,
+      "end_s": 24.77
+    }
+  ]
+}

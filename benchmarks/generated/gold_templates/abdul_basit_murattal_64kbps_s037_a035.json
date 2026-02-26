@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 37,
+    "ayah": 35,
+    "verse_key": "37:35",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/37:35",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/037035.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّهُمْ",
+      "start_s": 0.0,
+      "end_s": 2.39
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "كَانُوٓا۟",
+      "start_s": 2.39,
+      "end_s": 3.6
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "إِذَا",
+      "start_s": 3.6,
+      "end_s": 4.55
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "قِيلَ",
+      "start_s": 4.55,
+      "end_s": 5.17
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "لَهُمْ",
+      "start_s": 5.17,
+      "end_s": 5.79
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "لَآ",
+      "start_s": 5.79,
+      "end_s": 6.992
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "إِلَـٰهَ",
+      "start_s": 6.992,
+      "end_s": 7.55
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "إِلَّا",
+      "start_s": 7.55,
+      "end_s": 8.18
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 8.18,
+      "end_s": 8.98
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "يَسْتَكْبِرُونَ",
+      "start_s": 8.98,
+      "end_s": 10.575
+    },
+    {
+      "ayah": 35,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "٣٥",
+      "start_s": 10.575,
+      "end_s": 10.95
+    }
+  ]
+}

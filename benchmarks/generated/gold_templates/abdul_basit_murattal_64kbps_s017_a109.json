@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 17,
+    "ayah": 109,
+    "verse_key": "17:109",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/17:109",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/017109.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 109,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَيَخِرُّونَ",
+      "start_s": 0.0,
+      "end_s": 2.19
+    },
+    {
+      "ayah": 109,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لِلْأَذْقَانِ",
+      "start_s": 2.19,
+      "end_s": 3.81
+    },
+    {
+      "ayah": 109,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "يَبْكُونَ",
+      "start_s": 3.81,
+      "end_s": 4.93
+    },
+    {
+      "ayah": 109,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "وَيَزِيدُهُمْ",
+      "start_s": 4.93,
+      "end_s": 6.56
+    },
+    {
+      "ayah": 109,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "خُشُوعًۭا ۩",
+      "start_s": 6.56,
+      "end_s": 8.055
+    },
+    {
+      "ayah": 109,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "١٠٩",
+      "start_s": 8.055,
+      "end_s": 8.76
+    }
+  ]
+}

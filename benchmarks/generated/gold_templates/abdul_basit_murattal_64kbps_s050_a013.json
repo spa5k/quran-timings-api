@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 50,
+    "ayah": 13,
+    "verse_key": "50:13",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/50:13",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/050013.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 13,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَعَادٌۭ",
+      "start_s": 0.0,
+      "end_s": 1.16
+    },
+    {
+      "ayah": 13,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "وَفِرْعَوْنُ",
+      "start_s": 1.16,
+      "end_s": 3.554
+    },
+    {
+      "ayah": 13,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَإِخْوَٰنُ",
+      "start_s": 3.554,
+      "end_s": 5.08
+    },
+    {
+      "ayah": 13,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "لُوطٍۢ",
+      "start_s": 5.08,
+      "end_s": 5.865
+    },
+    {
+      "ayah": 13,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "١٣",
+      "start_s": 5.865,
+      "end_s": 6.09
+    }
+  ]
+}

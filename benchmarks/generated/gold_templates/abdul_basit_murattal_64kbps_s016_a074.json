@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 16,
+    "ayah": 74,
+    "verse_key": "16:74",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/16:74",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/016074.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَلَا",
+      "start_s": 0.0,
+      "end_s": 1.58
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "تَضْرِبُوا۟",
+      "start_s": 1.58,
+      "end_s": 2.7
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "لِلَّهِ",
+      "start_s": 2.7,
+      "end_s": 3.94
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلْأَمْثَالَ ۚ",
+      "start_s": 3.94,
+      "end_s": 5.17
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "إِنَّ",
+      "start_s": 5.19,
+      "end_s": 7.68
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "ٱللَّهَ",
+      "start_s": 7.68,
+      "end_s": 8.57
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "يَعْلَمُ",
+      "start_s": 8.57,
+      "end_s": 9.5
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "وَأَنتُمْ",
+      "start_s": 9.5,
+      "end_s": 11.31
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "لَا",
+      "start_s": 11.31,
+      "end_s": 11.65
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "تَعْلَمُونَ",
+      "start_s": 11.65,
+      "end_s": 13.025
+    },
+    {
+      "ayah": 74,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "٧٤",
+      "start_s": 13.025,
+      "end_s": 13.67
+    }
+  ]
+}

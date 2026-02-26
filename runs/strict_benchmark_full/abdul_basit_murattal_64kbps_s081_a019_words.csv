@@ -1,0 +1,5 @@
+surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
+81,19,1,إِنَّهُۥ,0.442,1.516,,native,100.0,nemo
+81,19,2,لَقَوۡلُ,1.917,2.594,,native,100.0,nemo
+81,19,3,رَسُولࣲ,3.142,3.832,,native,100.0,nemo
+81,19,4,كَرِیمࣲ,4.415,5.904,,native,100.0,nemo

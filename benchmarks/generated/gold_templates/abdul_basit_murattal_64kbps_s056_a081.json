@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 56,
+    "ayah": 81,
+    "verse_key": "56:81",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/56:81",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/056081.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 81,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَفَبِهَـٰذَا",
+      "start_s": 0.0,
+      "end_s": 2.46
+    },
+    {
+      "ayah": 81,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلْحَدِيثِ",
+      "start_s": 2.46,
+      "end_s": 3.66
+    },
+    {
+      "ayah": 81,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "أَنتُم",
+      "start_s": 3.66,
+      "end_s": 5.683
+    },
+    {
+      "ayah": 81,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مُّدْهِنُونَ",
+      "start_s": 5.683,
+      "end_s": 7.135
+    },
+    {
+      "ayah": 81,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "٨١",
+      "start_s": 7.135,
+      "end_s": 7.48
+    }
+  ]
+}

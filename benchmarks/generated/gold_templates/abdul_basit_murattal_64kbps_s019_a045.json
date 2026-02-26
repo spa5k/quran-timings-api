@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 19,
+    "ayah": 45,
+    "verse_key": "19:45",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/19:45",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/019045.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "يَـٰٓأَبَتِ",
+      "start_s": 0.0,
+      "end_s": 2.85
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "إِنِّىٓ",
+      "start_s": 2.85,
+      "end_s": 5.285
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "أَخَافُ",
+      "start_s": 5.285,
+      "end_s": 6.14
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "أَن",
+      "start_s": 6.14,
+      "end_s": 7.08
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "يَمَسَّكَ",
+      "start_s": 7.08,
+      "end_s": 8.25
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "عَذَابٌۭ",
+      "start_s": 8.25,
+      "end_s": 10.094
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "مِّنَ",
+      "start_s": 10.094,
+      "end_s": 10.56
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ٱلرَّحْمَـٰنِ",
+      "start_s": 10.56,
+      "end_s": 12.07
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "فَتَكُونَ",
+      "start_s": 12.07,
+      "end_s": 13.41
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "لِلشَّيْطَـٰنِ",
+      "start_s": 13.41,
+      "end_s": 15.18
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "وَلِيًّۭا",
+      "start_s": 15.18,
+      "end_s": 16.455
+    },
+    {
+      "ayah": 45,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "٤٥",
+      "start_s": 16.455,
+      "end_s": 17.12
+    }
+  ]
+}

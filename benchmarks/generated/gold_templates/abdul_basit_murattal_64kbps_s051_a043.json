@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 51,
+    "ayah": 43,
+    "verse_key": "51:43",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/51:43",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/051043.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَفِى",
+      "start_s": 0.0,
+      "end_s": 1.71
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ثَمُودَ",
+      "start_s": 1.71,
+      "end_s": 2.67
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "إِذْ",
+      "start_s": 2.67,
+      "end_s": 3.24
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "قِيلَ",
+      "start_s": 3.24,
+      "end_s": 3.93
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "لَهُمْ",
+      "start_s": 3.93,
+      "end_s": 4.57
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "تَمَتَّعُوا۟",
+      "start_s": 4.57,
+      "end_s": 6.11
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "حَتَّىٰ",
+      "start_s": 6.11,
+      "end_s": 7.27
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "حِينٍۢ",
+      "start_s": 7.27,
+      "end_s": 8.015
+    },
+    {
+      "ayah": 43,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "٤٣",
+      "start_s": 8.015,
+      "end_s": 8.5
+    }
+  ]
+}

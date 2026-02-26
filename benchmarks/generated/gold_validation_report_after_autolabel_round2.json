@@ -1,0 +1,16 @@
+{
+  "gold_files": 200,
+  "valid_files": 200,
+  "invalid_files": 0,
+  "parse_errors": 0,
+  "no_words_files": 0,
+  "total_words": 2814,
+  "unlabeled_words": 0,
+  "invalid_duration_words": 0,
+  "non_monotonic_words": 0,
+  "missing_word_index": 0,
+  "duplicate_word_index": 0,
+  "max_errors": 50,
+  "errors": [],
+  "passes": true
+}

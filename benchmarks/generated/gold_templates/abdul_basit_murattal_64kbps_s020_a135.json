@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 20,
+    "ayah": 135,
+    "verse_key": "20:135",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/20:135",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/020135.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلْ",
+      "start_s": 0.0,
+      "end_s": 1.44
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "كُلٌّۭ",
+      "start_s": 1.44,
+      "end_s": 2.26
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مُّتَرَبِّصٌۭ",
+      "start_s": 2.26,
+      "end_s": 5.894
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "فَتَرَبَّصُوا۟ ۖ",
+      "start_s": 5.894,
+      "end_s": 7.7
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "فَسَتَعْلَمُونَ",
+      "start_s": 7.7,
+      "end_s": 9.84
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "مَنْ",
+      "start_s": 9.84,
+      "end_s": 10.38
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "أَصْحَـٰبُ",
+      "start_s": 10.38,
+      "end_s": 11.74
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ٱلصِّرَٰطِ",
+      "start_s": 11.74,
+      "end_s": 13.08
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "ٱلسَّوِىِّ",
+      "start_s": 13.08,
+      "end_s": 14.65
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "وَمَنِ",
+      "start_s": 14.65,
+      "end_s": 15.3
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "ٱهْتَدَىٰ",
+      "start_s": 15.3,
+      "end_s": 16.405
+    },
+    {
+      "ayah": 135,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "١٣٥",
+      "start_s": 16.405,
+      "end_s": 16.83
+    }
+  ]
+}

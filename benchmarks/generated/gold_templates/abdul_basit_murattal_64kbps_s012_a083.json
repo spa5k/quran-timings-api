@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 12,
+    "ayah": 83,
+    "verse_key": "12:83",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/12:83",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/012083.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قَالَ",
+      "start_s": 0.0,
+      "end_s": 2.22
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "بَلْ",
+      "start_s": 2.22,
+      "end_s": 2.51
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "سَوَّلَتْ",
+      "start_s": 2.51,
+      "end_s": 3.58
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "لَكُمْ",
+      "start_s": 3.58,
+      "end_s": 4.09
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَنفُسُكُمْ",
+      "start_s": 4.09,
+      "end_s": 6.14
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "أَمْرًۭا ۖ",
+      "start_s": 6.14,
+      "end_s": 7.552
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "فَصَبْرٌۭ",
+      "start_s": 7.552,
+      "end_s": 9.35
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "جَمِيلٌ ۖ",
+      "start_s": 9.35,
+      "end_s": 10.42
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "عَسَى",
+      "start_s": 10.44,
+      "end_s": 11.94
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 11.94,
+      "end_s": 12.68
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "أَن",
+      "start_s": 12.68,
+      "end_s": 13.736
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "يَأْتِيَنِى",
+      "start_s": 13.736,
+      "end_s": 14.91
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "بِهِمْ",
+      "start_s": 14.91,
+      "end_s": 15.39
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "جَمِيعًا ۚ",
+      "start_s": 15.39,
+      "end_s": 16.65
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "إِنَّهُۥ",
+      "start_s": 16.67,
+      "end_s": 19.14
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "هُوَ",
+      "start_s": 19.14,
+      "end_s": 19.56
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "ٱلْعَلِيمُ",
+      "start_s": 19.56,
+      "end_s": 20.46
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "ٱلْحَكِيمُ",
+      "start_s": 20.46,
+      "end_s": 21.665
+    },
+    {
+      "ayah": 83,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "٨٣",
+      "start_s": 21.665,
+      "end_s": 22.1
+    }
+  ]
+}

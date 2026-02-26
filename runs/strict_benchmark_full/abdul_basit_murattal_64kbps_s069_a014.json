@@ -1,0 +1,146 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "benchmarks/generated/audio/Abdul_Basit_Murattal_64kbps_069014.mp3",
+    "duration_s": 9.95265306122449,
+    "sample_rate": 22050,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 69,
+    "input_mode": "ayah_file"
+  },
+  "engine": {
+    "name": "ensemble",
+    "model": "ayah-wise",
+    "device": "cpu",
+    "fallback_used": true
+  },
+  "ayahs": [
+    {
+      "surah": 69,
+      "ayah": 14,
+      "start_s": 0.534,
+      "end_s": 9.952625,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 69,
+      "ayah": 14,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَحُمِلَتِ",
+      "text_norm": "وحملت",
+      "start_s": 0.534,
+      "end_s": 1.6308125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 69,
+      "ayah": 14,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡأَرۡضُ",
+      "text_norm": "الارض",
+      "start_s": 2.1833125,
+      "end_s": 2.6716875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 69,
+      "ayah": 14,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَٱلۡجِبَالُ",
+      "text_norm": "والجبال",
+      "start_s": 2.843125,
+      "end_s": 4.18175,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 69,
+      "ayah": 14,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "فَدُكَّتَا",
+      "text_norm": "فدكتا",
+      "start_s": 4.5061875,
+      "end_s": 5.64,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 69,
+      "ayah": 14,
+      "word_index_global": 5,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "دَكَّةࣰ",
+      "text_norm": "دكةࣰ",
+      "start_s": 6.16975,
+      "end_s": 8.4703125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 69,
+      "ayah": 14,
+      "word_index_global": 6,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَ",
+      "text_norm": "و",
+      "start_s": 8.4703125,
+      "end_s": 8.7495625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 69,
+      "ayah": 14,
+      "word_index_global": 7,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "ٰحِدَةࣰ",
+      "text_norm": "حدةࣰ",
+      "start_s": 8.7495625,
+      "end_s": 9.952625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [
+      "boundary_refinement_applied"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 2.8194717848704996e-6,
+    "quantization_step_ms": 552.5,
+    "engine_candidate_scores": {
+      "nemo": 164.76213910761155
+    }
+  }
+}

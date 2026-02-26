@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 11,
+    "ayah": 54,
+    "verse_key": "11:54",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/11:54",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/011054.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِن",
+      "start_s": 0.0,
+      "end_s": 2.645
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "نَّقُولُ",
+      "start_s": 2.645,
+      "end_s": 3.47
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "إِلَّا",
+      "start_s": 3.47,
+      "end_s": 3.96
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱعْتَرَىٰكَ",
+      "start_s": 3.96,
+      "end_s": 4.92
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "بَعْضُ",
+      "start_s": 4.92,
+      "end_s": 5.56
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "ءَالِهَتِنَا",
+      "start_s": 5.56,
+      "end_s": 6.75
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "بِسُوٓءٍۢ ۗ",
+      "start_s": 6.75,
+      "end_s": 8.55
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "قَالَ",
+      "start_s": 8.57,
+      "end_s": 10.73
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "إِنِّىٓ",
+      "start_s": 10.73,
+      "end_s": 13.482
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "أُشْهِدُ",
+      "start_s": 13.482,
+      "end_s": 14.16
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "ٱللَّهَ",
+      "start_s": 14.16,
+      "end_s": 14.85
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "وَٱشْهَدُوٓا۟",
+      "start_s": 14.85,
+      "end_s": 17.2
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "أَنِّى",
+      "start_s": 17.2,
+      "end_s": 18.61
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "بَرِىٓءٌۭ",
+      "start_s": 18.61,
+      "end_s": 21.44
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "مِّمَّا",
+      "start_s": 21.44,
+      "end_s": 22.76
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "تُشْرِكُونَ",
+      "start_s": 22.76,
+      "end_s": 24.135
+    },
+    {
+      "ayah": 54,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "٥٤",
+      "start_s": 24.135,
+      "end_s": 24.85
+    }
+  ]
+}

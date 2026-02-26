@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 6,
+    "ayah": 78,
+    "verse_key": "6:78",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/6:78",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/006078.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَلَمَّا",
+      "start_s": 0.0,
+      "end_s": 2.93
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "رَءَا",
+      "start_s": 2.93,
+      "end_s": 3.42
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلشَّمْسَ",
+      "start_s": 3.42,
+      "end_s": 4.76
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "بَازِغَةًۭ",
+      "start_s": 4.76,
+      "end_s": 7.296
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "قَالَ",
+      "start_s": 7.296,
+      "end_s": 8.1
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "هَـٰذَا",
+      "start_s": 8.1,
+      "end_s": 9.24
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "رَبِّى",
+      "start_s": 9.24,
+      "end_s": 10.63
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "هَـٰذَآ",
+      "start_s": 10.63,
+      "end_s": 12.743
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "أَكْبَرُ ۖ",
+      "start_s": 12.743,
+      "end_s": 13.98
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "فَلَمَّآ",
+      "start_s": 14.0,
+      "end_s": 18.004
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "أَفَلَتْ",
+      "start_s": 18.004,
+      "end_s": 19.25
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "قَالَ",
+      "start_s": 19.25,
+      "end_s": 20.11
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "يَـٰقَوْمِ",
+      "start_s": 20.11,
+      "end_s": 21.57
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "إِنِّى",
+      "start_s": 21.57,
+      "end_s": 23.2
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "بَرِىٓءٌۭ",
+      "start_s": 23.2,
+      "end_s": 25.764
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "مِّمَّا",
+      "start_s": 25.764,
+      "end_s": 27.4
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "تُشْرِكُونَ",
+      "start_s": 27.4,
+      "end_s": 29.335
+    },
+    {
+      "ayah": 78,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "٧٨",
+      "start_s": 29.335,
+      "end_s": 30.02
+    }
+  ]
+}

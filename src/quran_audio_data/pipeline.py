@@ -12,6 +12,7 @@ import tempfile
 import time
 from typing import Any, Literal
 
+import numpy as np
 import orjson
 import soundfile as sf
 
@@ -19,6 +20,7 @@ from quran_audio_data.alignment import (
     AlignmentError,
     AlignmentOutput,
     EngineUnavailable,
+    MFAAligner,
     NemoAligner,
     WhisperXFallbackAligner,
 )
@@ -38,7 +40,8 @@ from quran_audio_data.text import CanonicalWord, QuranTextStore
 
 
 DeviceOption = Literal["auto", "cpu", "cuda"]
-EngineOption = Literal["nemo", "whisperx"]
+EngineOption = Literal["nemo", "whisperx", "mfa"]
+AccuracyMode = Literal["standard", "strict"]
 
 
 class PipelineError(RuntimeError):
@@ -54,6 +57,9 @@ class ManifestRow:
     source_url: str | None
     sha256: str | None
     language: str
+    riwaya: str | None
+    text_variant: str | None
+    gold_split: str | None
 
 
 @dataclass(slots=True)
@@ -118,6 +124,9 @@ def read_manifest(manifest_path: str | Path) -> list[ManifestRow]:
                 source_url=_none_if_blank(row.get("source_url")),
                 sha256=_none_if_blank(row.get("sha256")),
                 language=_none_if_blank(row.get("language")) or "ar",
+                riwaya=_none_if_blank(row.get("riwaya")),
+                text_variant=_none_if_blank(row.get("text_variant")),
+                gold_split=_none_if_blank(row.get("gold_split")),
             )
         )
 
@@ -129,6 +138,8 @@ def run_alignment_pipeline(
     manifest_path: str | Path,
     out_dir: str | Path,
     engine: EngineOption = "nemo",
+    multi_engine: list[EngineOption] | None = None,
+    accuracy_mode: AccuracyMode = "standard",
     device: DeviceOption = "auto",
     text_data: str | Path | None = None,
     cache_dir: str | Path = ".cache/timings",
@@ -137,7 +148,11 @@ def run_alignment_pipeline(
     thresholds: QCThresholds | None = None,
 ) -> ProcessingSummary:
     started = time.time()
-    thresholds = thresholds or QCThresholds()
+    if accuracy_mode not in {"standard", "strict"}:
+        raise PipelineError(f"Unsupported accuracy mode: {accuracy_mode}")
+    thresholds = thresholds or (
+        QCThresholds.strict() if accuracy_mode == "strict" else QCThresholds()
+    )
     rows = read_manifest(manifest_path)
     if sample_size is not None:
         rows = rows[:sample_size]
@@ -149,6 +164,10 @@ def run_alignment_pipeline(
     resolver = ExistingTimingResolver(cache_dir=cache_dir, enable_remote=enable_remote)
     nemo = NemoAligner()
     whisperx = WhisperXFallbackAligner()
+    mfa = MFAAligner()
+    selected_engines = multi_engine or ["nemo", "whisperx", "mfa"]
+    if not mfa.is_available():
+        raise PipelineError("MFA unavailable: " + mfa.availability_error())
 
     outputs: list[ProcessedFile] = []
     errors: list[str] = []
@@ -165,7 +184,10 @@ def run_alignment_pipeline(
                 resolver=resolver,
                 nemo=nemo,
                 whisperx=whisperx,
+                mfa=mfa,
                 requested_engine=engine,
+                multi_engine=selected_engines,
+                accuracy_mode=accuracy_mode,
                 device=device,
                 thresholds=thresholds,
                 cache_dir=cache_dir,
@@ -296,6 +318,8 @@ def benchmark_pipeline(
     out_dir: str | Path,
     sample_size: int,
     engine: EngineOption = "nemo",
+    multi_engine: list[EngineOption] | None = None,
+    accuracy_mode: AccuracyMode = "standard",
     device: DeviceOption = "auto",
     text_data: str | Path | None = None,
     cache_dir: str | Path = ".cache/timings",
@@ -306,6 +330,8 @@ def benchmark_pipeline(
         manifest_path=manifest_path,
         out_dir=out_dir,
         engine=engine,
+        multi_engine=multi_engine,
+        accuracy_mode=accuracy_mode,
         device=device,
         text_data=text_data,
         cache_dir=cache_dir,
@@ -342,7 +368,10 @@ def _process_row(
     resolver: ExistingTimingResolver,
     nemo: NemoAligner,
     whisperx: WhisperXFallbackAligner,
+    mfa: MFAAligner,
     requested_engine: EngineOption,
+    multi_engine: list[EngineOption],
+    accuracy_mode: AccuracyMode,
     device: DeviceOption,
     thresholds: QCThresholds,
     cache_dir: str | Path,
@@ -374,90 +403,208 @@ def _process_row(
             expected_word_count=len(canonical_words),
             thresholds=thresholds,
         )
-        return _write_result_artifacts(
-            result=result,
-            row=row,
-            out_dir=out_dir,
-            source="existing",
-            fallback_used=False,
-            elapsed_s=time.time() - started,
-        )
+        if accuracy_mode != "strict" or not qc_requires_fallback(result.qc, thresholds):
+            return _write_result_artifacts(
+                result=result,
+                row=row,
+                out_dir=out_dir,
+                source="existing",
+                fallback_used=False,
+                elapsed_s=time.time() - started,
+            )
 
     wav_path = ensure_wav_16k_mono(row.audio_path)
-    fallback_used = False
-    refinement_warnings: list[str] = []
-
-    output = None
-    if requested_engine == "nemo":
-        try:
-            if row.ayah is None:
-                output, refinement_warnings = _align_full_surah_quality(
-                    wav_path=wav_path,
-                    canonical_words=canonical_words,
-                    nemo=nemo,
-                    audio_duration_s=audio_info.duration_s,
-                    device=device,
-                )
-            else:
-                output = nemo.align(
-                    audio_wav_path=str(wav_path),
-                    canonical_words=canonical_words,
-                    audio_duration_s=audio_info.duration_s,
-                    device=device,
-                )
-        except (EngineUnavailable, AlignmentError):
-            output = whisperx.align(
-                audio_wav_path=str(wav_path),
-                canonical_words=canonical_words,
-                audio_duration_s=audio_info.duration_s,
-                device=device,
-            )
-            fallback_used = True
-    else:
-        output = whisperx.align(
-            audio_wav_path=str(wav_path),
-            canonical_words=canonical_words,
-            audio_duration_s=audio_info.duration_s,
-            device=device,
-        )
-
-    result = _build_result(
-        row=row,
-        audio_info=audio_info,
-        engine_name=output.engine_name,
-        engine_model=output.engine_model,
-        device=output.device,
-        fallback_used=fallback_used,
-        ayahs=output.ayahs,
-        words=output.words,
-        expected_word_count=len(canonical_words),
-        thresholds=thresholds,
+    speech_end_s = _estimate_speech_end_s(wav_path, fallback_duration_s=audio_info.duration_s)
+    engines_to_try = _normalize_engines(
+        requested_engine=requested_engine,
+        multi_engine=multi_engine,
+        accuracy_mode=accuracy_mode,
     )
-    result.qc.warnings.extend(refinement_warnings)
 
-    if qc_requires_fallback(result.qc, thresholds) and output.engine_name != "whisperx":
+    candidate_results: list[TimingResult] = []
+    candidate_failures: list[str] = []
+    fallback_used = False
+
+    for engine_name in engines_to_try:
         try:
-            fallback_output = whisperx.align(
-                audio_wav_path=str(wav_path),
+            output, refinement_warnings = _align_with_engine(
+                engine_name=engine_name,
+                row=row,
+                wav_path=wav_path,
                 canonical_words=canonical_words,
+                nemo=nemo,
+                whisperx=whisperx,
+                mfa=mfa,
                 audio_duration_s=audio_info.duration_s,
                 device=device,
             )
-            fallback_used = True
             result = _build_result(
                 row=row,
                 audio_info=audio_info,
-                engine_name=fallback_output.engine_name,
-                engine_model=fallback_output.engine_model,
-                device=fallback_output.device,
-                fallback_used=fallback_used,
-                ayahs=fallback_output.ayahs,
-                words=fallback_output.words,
+                engine_name=output.engine_name,
+                engine_model=output.engine_model,
+                device=output.device,
+                fallback_used=False,
+                ayahs=output.ayahs,
+                words=output.words,
                 expected_word_count=len(canonical_words),
+                speech_end_s=speech_end_s,
                 thresholds=thresholds,
             )
-        except (AlignmentError, EngineUnavailable) as exc:
-            result.qc.warnings.append(f"fallback_unavailable: {exc}")
+            if refinement_warnings:
+                result.qc.warnings.extend(refinement_warnings)
+            candidate_results.append(result)
+        except (AlignmentError, EngineUnavailable, PipelineError) as exc:
+            candidate_failures.append(f"{engine_name}: {exc}")
+
+    if not candidate_results:
+        if requested_engine == "nemo":
+            try:
+                fallback_output, _ = _align_with_engine(
+                    engine_name="whisperx",
+                    row=row,
+                    wav_path=wav_path,
+                    canonical_words=canonical_words,
+                    nemo=nemo,
+                    whisperx=whisperx,
+                    mfa=mfa,
+                    audio_duration_s=audio_info.duration_s,
+                    device=device,
+                )
+                fallback_result = _build_result(
+                    row=row,
+                    audio_info=audio_info,
+                    engine_name=fallback_output.engine_name,
+                    engine_model=fallback_output.engine_model,
+                    device=fallback_output.device,
+                    fallback_used=True,
+                    ayahs=fallback_output.ayahs,
+                    words=fallback_output.words,
+                    expected_word_count=len(canonical_words),
+                    speech_end_s=speech_end_s,
+                    thresholds=thresholds,
+                )
+                candidate_results.append(fallback_result)
+            except (AlignmentError, EngineUnavailable, PipelineError) as exc:
+                candidate_failures.append(f"whisperx: {exc}")
+
+    if not candidate_results:
+        raise PipelineError("no_alignment_candidates_succeeded: " + "; ".join(candidate_failures))
+
+    candidate_scores = {
+        candidate.engine.name: _score_timing_result(candidate)
+        for candidate in candidate_results
+    }
+
+    if accuracy_mode == "strict" or len(candidate_results) > 1:
+        result = _select_best_result_per_ayah(
+            row=row,
+            audio_info=audio_info,
+            canonical_words=canonical_words,
+            candidates=candidate_results,
+            thresholds=thresholds,
+            candidate_scores=candidate_scores,
+        )
+    else:
+        result = max(candidate_results, key=_score_timing_result)
+        result.qc.engine_candidate_scores = candidate_scores
+
+    if result.engine.name != requested_engine:
+        fallback_used = True
+
+    selected_before_refinement = result
+    if accuracy_mode == "strict":
+        refined_words = _refine_word_boundaries(
+            words=result.words,
+            wav_path=wav_path,
+            max_shift_s=0.12,
+            min_duration_s=0.02,
+        )
+        if refined_words:
+            source_by_ayah: dict[int, str] = {}
+            for ayah, ayah_words in _words_by_ayah(refined_words).items():
+                if any(word.engine_candidate == "whisperx" for word in ayah_words):
+                    source_by_ayah[ayah] = "fallback"
+                else:
+                    source_by_ayah[ayah] = "aligned"
+            refined_ayahs = _derive_ayahs_from_words_with_engine_sources(
+                words=refined_words,
+                source_by_ayah=source_by_ayah,
+                default_source="aligned",
+            )
+            refined_result = _build_result(
+                row=row,
+                audio_info=audio_info,
+                engine_name=result.engine.name,
+                engine_model=result.engine.model,
+                device=result.engine.device,
+                fallback_used=fallback_used,
+                ayahs=refined_ayahs,
+                words=refined_words,
+                expected_word_count=len(canonical_words),
+                speech_end_s=speech_end_s,
+                thresholds=thresholds,
+                candidate_scores=candidate_scores,
+            )
+            if _should_accept_refinement(
+                original=selected_before_refinement,
+                refined=refined_result,
+                thresholds=thresholds,
+            ):
+                result = refined_result
+                result.qc.warnings.append("boundary_refinement_applied")
+            else:
+                result = selected_before_refinement
+                result.qc.warnings.append("boundary_refinement_rejected")
+
+    if qc_requires_fallback(result.qc, thresholds):
+        if accuracy_mode == "strict":
+            rescue_candidates = [
+                result,
+                selected_before_refinement,
+                *candidate_results,
+            ]
+            rescue = _select_strict_rescue_candidate(
+                candidates=rescue_candidates,
+                thresholds=thresholds,
+            )
+            if rescue is not None:
+                result = rescue
+                result.qc.engine_candidate_scores = candidate_scores
+                result.qc.warnings.append("strict_rescue_selected")
+                fallback_used = result.engine.name != requested_engine
+            else:
+                raise PipelineError("strict_qc_failed: " + "; ".join(result.qc.warnings))
+        if requested_engine != "whisperx" and "whisperx" not in engines_to_try:
+            try:
+                fallback_output, _ = _align_with_engine(
+                    engine_name="whisperx",
+                    row=row,
+                    wav_path=wav_path,
+                    canonical_words=canonical_words,
+                    nemo=nemo,
+                    whisperx=whisperx,
+                    mfa=mfa,
+                    audio_duration_s=audio_info.duration_s,
+                    device=device,
+                )
+                fallback_used = True
+                result = _build_result(
+                    row=row,
+                    audio_info=audio_info,
+                    engine_name=fallback_output.engine_name,
+                    engine_model=fallback_output.engine_model,
+                    device=fallback_output.device,
+                    fallback_used=True,
+                    ayahs=fallback_output.ayahs,
+                    words=fallback_output.words,
+                    expected_word_count=len(canonical_words),
+                    speech_end_s=speech_end_s,
+                    thresholds=thresholds,
+                    candidate_scores=candidate_scores,
+                )
+            except (AlignmentError, EngineUnavailable) as exc:
+                result.qc.warnings.append(f"fallback_unavailable: {exc}")
 
     _write_cache_result(row=row, result=result, cache_root=cache_dir)
 
@@ -469,6 +616,363 @@ def _process_row(
         fallback_used=fallback_used,
         elapsed_s=time.time() - started,
     )
+
+
+def _normalize_engines(
+    *,
+    requested_engine: EngineOption,
+    multi_engine: list[EngineOption],
+    accuracy_mode: AccuracyMode,
+) -> list[EngineOption]:
+    ordered: list[EngineOption] = []
+    for item in multi_engine:
+        if item not in {"nemo", "whisperx", "mfa"}:
+            continue
+        if item not in ordered:
+            ordered.append(item)
+    for required in ("nemo", "whisperx", "mfa"):
+        if required not in ordered:
+            ordered.append(required)
+    if requested_engine not in ordered:
+        ordered.insert(0, requested_engine)
+
+    # Standard and strict both evaluate the full engine set now.
+    return ordered
+
+
+def _align_with_engine(
+    *,
+    engine_name: EngineOption,
+    row: ManifestRow,
+    wav_path: Path,
+    canonical_words: list[CanonicalWord],
+    nemo: NemoAligner,
+    whisperx: WhisperXFallbackAligner,
+    mfa: MFAAligner,
+    audio_duration_s: float,
+    device: DeviceOption,
+) -> tuple[AlignmentOutput, list[str]]:
+    if engine_name == "nemo":
+        if row.ayah is None:
+            return _align_full_surah_quality(
+                wav_path=wav_path,
+                canonical_words=canonical_words,
+                nemo=nemo,
+                audio_duration_s=audio_duration_s,
+                device=device,
+            )
+        return (
+            nemo.align(
+                audio_wav_path=str(wav_path),
+                canonical_words=canonical_words,
+                audio_duration_s=audio_duration_s,
+                device=device,
+            ),
+            [],
+        )
+
+    if engine_name == "whisperx":
+        return (
+            whisperx.align(
+                audio_wav_path=str(wav_path),
+                canonical_words=canonical_words,
+                audio_duration_s=audio_duration_s,
+                device=device,
+            ),
+            [],
+        )
+
+    return (
+        mfa.align(
+            audio_wav_path=str(wav_path),
+            canonical_words=canonical_words,
+            audio_duration_s=audio_duration_s,
+            device=device,
+        ),
+        [],
+    )
+
+
+def _score_words_slice(words: list[WordTiming], expected_count: int) -> float:
+    if not words:
+        return -10_000.0
+
+    starts = [word.start_s for word in words]
+    monotonic = starts == sorted(starts)
+    non_positive = sum(1 for word in words if word.end_s <= word.start_s)
+    interpolated = sum(
+        1 for word in words if word.alignment_origin in {"interpolated", "distributed"}
+    )
+    interpolated_ratio = interpolated / max(1, len(words))
+    count_ratio = min(len(words), expected_count) / max(1, expected_count)
+
+    lexical_scores = [word.match_score for word in words if word.match_score is not None]
+    lexical_component = (
+        (sum(lexical_scores) / len(lexical_scores)) / 100.0 if lexical_scores else 0.0
+    )
+    confidence_scores = [word.confidence for word in words if word.confidence is not None]
+    confidence_component = sum(confidence_scores) / len(confidence_scores) if confidence_scores else 0.0
+
+    score = 100.0
+    score += count_ratio * 25.0
+    score += lexical_component * 35.0
+    score += confidence_component * 10.0
+    score -= interpolated_ratio * 80.0
+    score -= non_positive * 25.0
+    if not monotonic:
+        score -= 100.0
+    return score
+
+
+def _score_timing_result(result: TimingResult) -> float:
+    qc = result.qc
+    score = 100.0
+    score += qc.coverage * 45.0
+    score -= qc.interpolated_ratio * 80.0
+    score -= qc.speech_end_delta_ratio * 50.0
+    if not qc.monotonic:
+        score -= 150.0
+    if not qc.duration_match:
+        score -= 100.0
+    if qc.zero_or_negative_ratio > 0:
+        score -= qc.zero_or_negative_ratio * 120.0
+    if qc.median_confidence is not None:
+        score += qc.median_confidence * 10.0
+    if qc.lexical_match_ratio is not None:
+        score += qc.lexical_match_ratio * 35.0
+    if qc.quantization_step_ms is not None:
+        score -= min(qc.quantization_step_ms, 300.0) * 0.05
+    score -= len(qc.warnings) * 2.5
+    return score
+
+
+def _qc_violation_count(qc_report, thresholds: QCThresholds) -> int:
+    violations = 0
+    if qc_report.coverage < thresholds.min_coverage:
+        violations += 1
+    if not qc_report.monotonic:
+        violations += 1
+    if qc_report.zero_or_negative_ratio > thresholds.max_zero_or_negative_ratio:
+        violations += 1
+    if not qc_report.duration_match:
+        violations += 1
+    if qc_report.interpolated_ratio > thresholds.max_interpolated_ratio:
+        violations += 1
+    if (
+        qc_report.lexical_match_ratio is not None
+        and qc_report.lexical_match_ratio < thresholds.min_lexical_match_ratio
+    ):
+        violations += 1
+    if (
+        qc_report.median_confidence is not None
+        and qc_report.median_confidence < thresholds.min_median_confidence
+    ):
+        violations += 1
+    return violations
+
+
+def _should_accept_refinement(
+    *,
+    original: TimingResult,
+    refined: TimingResult,
+    thresholds: QCThresholds,
+) -> bool:
+    original_violations = _qc_violation_count(original.qc, thresholds)
+    refined_violations = _qc_violation_count(refined.qc, thresholds)
+    if refined_violations < original_violations:
+        return True
+    if refined_violations > original_violations:
+        return False
+    return _score_timing_result(refined) >= _score_timing_result(original)
+
+
+def _select_strict_rescue_candidate(
+    *,
+    candidates: list[TimingResult],
+    thresholds: QCThresholds,
+) -> TimingResult | None:
+    unique: dict[str, TimingResult] = {}
+    for candidate in candidates:
+        key = f"{candidate.engine.name}:{candidate.engine.model}:{len(candidate.words)}"
+        best = unique.get(key)
+        if best is None or _score_timing_result(candidate) > _score_timing_result(best):
+            unique[key] = candidate
+
+    ordered = sorted(unique.values(), key=_score_timing_result, reverse=True)
+    for candidate in ordered:
+        if not qc_requires_fallback(candidate.qc, thresholds):
+            return candidate
+    return None
+
+
+def _select_best_result_per_ayah(
+    *,
+    row: ManifestRow,
+    audio_info: AudioMetadata,
+    canonical_words: list[CanonicalWord],
+    candidates: list[TimingResult],
+    thresholds: QCThresholds,
+    candidate_scores: dict[str, float],
+) -> TimingResult:
+    expected_by_ayah: dict[int, int] = defaultdict(int)
+    for word in canonical_words:
+        expected_by_ayah[word.ayah] += 1
+
+    candidate_words: dict[str, dict[int, list[WordTiming]]] = {}
+    for candidate in candidates:
+        candidate_words[candidate.engine.name] = _words_by_ayah(candidate.words)
+
+    selected_words: list[WordTiming] = []
+    selected_sources: dict[int, str] = {}
+
+    for ayah in sorted(expected_by_ayah):
+        expected_count = expected_by_ayah[ayah]
+        best_engine: str | None = None
+        best_slice: list[WordTiming] = []
+        best_score = -10_000.0
+
+        for engine_name, words_by_ayah in candidate_words.items():
+            group = words_by_ayah.get(ayah, [])
+            score = _score_words_slice(group, expected_count)
+            if score > best_score:
+                best_score = score
+                best_engine = engine_name
+                best_slice = group
+
+        if best_engine is None or not best_slice:
+            raise PipelineError(f"unable to choose candidate for ayah {ayah}")
+
+        selected_sources[ayah] = "fallback" if best_engine == "whisperx" else "aligned"
+        selected_words.extend(
+            [
+                word.model_copy(update={"engine_candidate": best_engine})
+                for word in best_slice
+            ]
+        )
+
+    selected_words.sort(key=lambda word: word.word_index_global)
+    ayahs = _derive_ayahs_from_words_with_engine_sources(
+        words=selected_words,
+        source_by_ayah=selected_sources,
+        default_source="aligned",
+    )
+
+    return _build_result(
+        row=row,
+        audio_info=audio_info,
+        engine_name="ensemble",
+        engine_model="ayah-wise",
+        device=candidates[0].engine.device,
+        fallback_used=False,
+        ayahs=ayahs,
+        words=selected_words,
+        expected_word_count=len(canonical_words),
+        thresholds=thresholds,
+        candidate_scores=candidate_scores,
+    )
+
+
+def _refine_word_boundaries(
+    *,
+    words: list[WordTiming],
+    wav_path: Path,
+    max_shift_s: float,
+    min_duration_s: float,
+) -> list[WordTiming]:
+    if not words:
+        return words
+
+    try:
+        audio, sample_rate = sf.read(str(wav_path))
+    except Exception:
+        return words
+
+    if isinstance(audio, np.ndarray) and audio.ndim > 1:
+        audio = audio.mean(axis=1)
+    if not isinstance(audio, np.ndarray):
+        return words
+    if audio.size <= 1 or sample_rate <= 0:
+        return words
+
+    envelope = np.abs(audio.astype(np.float32, copy=False))
+    if float(np.max(envelope)) < 1e-6:
+        return words
+    window = max(1, int(sample_rate * 0.005))
+    kernel = np.ones(window, dtype=np.float32) / float(window)
+    smoothed = np.convolve(envelope, kernel, mode="same")
+
+    max_shift = max(1, int(sample_rate * max_shift_s))
+
+    def snap(ts: float) -> float:
+        center = int(max(0, min(len(smoothed) - 1, round(ts * sample_rate))))
+        left = max(0, center - max_shift)
+        right = min(len(smoothed), center + max_shift + 1)
+        region = smoothed[left:right]
+        if region.size == 0:
+            return ts
+        offset = int(np.argmin(region))
+        return (left + offset) / sample_rate
+
+    refined: list[WordTiming] = []
+    min_duration = max(0.001, min_duration_s)
+    previous_start = 0.0
+    previous_end = 0.0
+    for word in words:
+        start_s = snap(word.start_s)
+        end_s = snap(word.end_s)
+        start_s = max(previous_start, start_s)
+        if end_s < start_s + min_duration:
+            end_s = start_s + min_duration
+        if start_s < previous_end:
+            start_s = previous_end
+            if end_s < start_s + min_duration:
+                end_s = start_s + min_duration
+        previous_start = start_s
+        previous_end = end_s
+        refined.append(
+            word.model_copy(update={"start_s": start_s, "end_s": end_s})
+        )
+
+    return refined
+
+
+def _estimate_speech_end_s(
+    wav_path: Path,
+    *,
+    fallback_duration_s: float,
+) -> float:
+    try:
+        audio, sample_rate = sf.read(str(wav_path))
+    except Exception:
+        return fallback_duration_s
+
+    if isinstance(audio, np.ndarray) and audio.ndim > 1:
+        audio = audio.mean(axis=1)
+    if not isinstance(audio, np.ndarray):
+        return fallback_duration_s
+    if audio.size <= 1 or sample_rate <= 0:
+        return fallback_duration_s
+
+    envelope = np.abs(audio.astype(np.float32, copy=False))
+    peak = float(np.max(envelope))
+    if peak <= 1e-6:
+        return fallback_duration_s
+
+    window = max(1, int(sample_rate * 0.02))
+    kernel = np.ones(window, dtype=np.float32) / float(window)
+    smoothed = np.convolve(envelope, kernel, mode="same")
+
+    percentile = float(np.percentile(smoothed, 70))
+    threshold = max(peak * 0.035, percentile * 0.5, 1e-4)
+    active = np.where(smoothed >= threshold)[0]
+    if active.size == 0:
+        return fallback_duration_s
+
+    end_index = int(active[-1])
+    speech_end_s = end_index / float(sample_rate)
+    if speech_end_s <= 0:
+        return fallback_duration_s
+    return min(max(speech_end_s, 0.01), fallback_duration_s)
 
 
 def _align_full_surah_quality(
@@ -729,8 +1233,41 @@ def _derive_ayahs_from_words(words: list[WordTiming], *, source: str) -> list[Ay
     return ayahs
 
 
+def _derive_ayahs_from_words_with_engine_sources(
+    *,
+    words: list[WordTiming],
+    source_by_ayah: dict[int, str] | None = None,
+    default_source: str = "aligned",
+) -> list[AyahTiming]:
+    grouped: dict[tuple[int, int], list[WordTiming]] = defaultdict(list)
+    for word in words:
+        grouped[(word.surah, word.ayah)].append(word)
+
+    ayahs: list[AyahTiming] = []
+    for (surah, ayah), group in sorted(grouped.items(), key=lambda item: (item[0][0], item[0][1])):
+        if source_by_ayah is not None:
+            source = source_by_ayah.get(ayah, default_source)
+        else:
+            source = default_source
+        ayahs.append(
+            AyahTiming(
+                surah=surah,
+                ayah=ayah,
+                start_s=min(item.start_s for item in group),
+                end_s=max(item.end_s for item in group),
+                source=source,
+            )
+        )
+    return ayahs
+
+
 def _load_canonical_words(*, text_store: QuranTextStore, row: ManifestRow) -> list[CanonicalWord]:
-    words = text_store.build_words(surah=row.surah, ayah=row.ayah)
+    words = text_store.build_words(
+        surah=row.surah,
+        ayah=row.ayah,
+        text_variant=row.text_variant,
+        riwaya=row.riwaya,
+    )
     if not words:
         raise PipelineError(f"No canonical words found for surah={row.surah} ayah={row.ayah}")
     return words
@@ -747,14 +1284,18 @@ def _build_result(
     ayahs,
     words,
     expected_word_count: int,
+    speech_end_s: float | None = None,
     thresholds: QCThresholds,
+    candidate_scores: dict[str, float] | None = None,
 ) -> TimingResult:
     input_mode = "ayah_file" if row.ayah is not None else "full_surah"
     qc = compute_qc(
         words=words,
         expected_word_count=expected_word_count,
         audio_duration_s=audio_info.duration_s,
+        speech_end_s=speech_end_s,
         thresholds=thresholds,
+        candidate_scores=candidate_scores,
     )
 
     return TimingResult(

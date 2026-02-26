@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 3,
+    "ayah": 91,
+    "verse_key": "3:91",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/3:91",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/003091.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّ",
+      "start_s": 0.0,
+      "end_s": 3.14
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 3.14,
+      "end_s": 4.45
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "كَفَرُوا۟",
+      "start_s": 4.45,
+      "end_s": 5.72
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "وَمَاتُوا۟",
+      "start_s": 5.72,
+      "end_s": 7.22
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "وَهُمْ",
+      "start_s": 7.22,
+      "end_s": 7.99
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "كُفَّارٌۭ",
+      "start_s": 7.99,
+      "end_s": 10.174
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "فَلَن",
+      "start_s": 10.174,
+      "end_s": 11.448
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "يُقْبَلَ",
+      "start_s": 11.448,
+      "end_s": 12.56
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "مِنْ",
+      "start_s": 12.56,
+      "end_s": 13.21
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "أَحَدِهِم",
+      "start_s": 13.21,
+      "end_s": 15.177
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "مِّلْءُ",
+      "start_s": 15.177,
+      "end_s": 15.99
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ٱلْأَرْضِ",
+      "start_s": 15.99,
+      "end_s": 17.18
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "ذَهَبًۭا",
+      "start_s": 17.18,
+      "end_s": 18.07
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "وَلَوِ",
+      "start_s": 18.07,
+      "end_s": 19.72
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "ٱفْتَدَىٰ",
+      "start_s": 19.72,
+      "end_s": 21.0
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "بِهِۦٓ ۗ",
+      "start_s": 21.0,
+      "end_s": 21.37
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "أُو۟لَـٰٓئِكَ",
+      "start_s": 21.39,
+      "end_s": 26.24
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "لَهُمْ",
+      "start_s": 26.24,
+      "end_s": 27.06
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "عَذَابٌ",
+      "start_s": 27.06,
+      "end_s": 28.63
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "أَلِيمٌۭ",
+      "start_s": 28.63,
+      "end_s": 30.518
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "وَمَا",
+      "start_s": 30.518,
+      "end_s": 31.33
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "لَهُم",
+      "start_s": 31.33,
+      "end_s": 32.631
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "مِّن",
+      "start_s": 32.631,
+      "end_s": 33.675
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 24,
+      "text_uthmani": "نَّـٰصِرِينَ",
+      "start_s": 33.675,
+      "end_s": 36.315
+    },
+    {
+      "ayah": 91,
+      "word_index_in_ayah": 25,
+      "text_uthmani": "٩١",
+      "start_s": 36.315,
+      "end_s": 36.52
+    }
+  ]
+}

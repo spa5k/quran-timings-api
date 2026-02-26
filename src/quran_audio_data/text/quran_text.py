@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import re
+import unicodedata
 from typing import Any
 
 import orjson
@@ -35,13 +36,42 @@ class QuranTextStore:
             )
         self._raw = orjson.loads(self.data_path.read_bytes())
         self._surahs: dict[str, Any] = self._raw.get("surahs", {})
+        self._variants: dict[str, dict[str, Any]] = self._raw.get("variants", {})
 
     @property
     def metadata(self) -> dict[str, Any]:
         return self._raw.get("metadata", {})
 
-    def get_ayah_text(self, surah: int, ayah: int) -> str:
-        surah_obj = self._surahs.get(str(surah))
+    def _resolve_surah_map(
+        self,
+        *,
+        text_variant: str | None = None,
+        riwaya: str | None = None,
+    ) -> dict[str, Any]:
+        if text_variant and text_variant in self._variants:
+            variant = self._variants[text_variant]
+            if isinstance(variant, dict):
+                surahs = variant.get("surahs")
+                if isinstance(surahs, dict):
+                    return surahs
+        if riwaya and riwaya in self._variants:
+            variant = self._variants[riwaya]
+            if isinstance(variant, dict):
+                surahs = variant.get("surahs")
+                if isinstance(surahs, dict):
+                    return surahs
+        return self._surahs
+
+    def get_ayah_text(
+        self,
+        surah: int,
+        ayah: int,
+        *,
+        text_variant: str | None = None,
+        riwaya: str | None = None,
+    ) -> str:
+        surah_map = self._resolve_surah_map(text_variant=text_variant, riwaya=riwaya)
+        surah_obj = surah_map.get(str(surah))
         if not isinstance(surah_obj, dict):
             raise KeyError(f"Surah {surah} not found in canonical text snapshot")
         value = surah_obj.get(str(ayah))
@@ -49,8 +79,15 @@ class QuranTextStore:
             raise KeyError(f"Ayah {surah}:{ayah} not found in canonical text snapshot")
         return value
 
-    def get_surah_ayahs(self, surah: int) -> list[tuple[int, str]]:
-        surah_obj = self._surahs.get(str(surah))
+    def get_surah_ayahs(
+        self,
+        surah: int,
+        *,
+        text_variant: str | None = None,
+        riwaya: str | None = None,
+    ) -> list[tuple[int, str]]:
+        surah_map = self._resolve_surah_map(text_variant=text_variant, riwaya=riwaya)
+        surah_obj = surah_map.get(str(surah))
         if not isinstance(surah_obj, dict):
             raise KeyError(f"Surah {surah} not found in canonical text snapshot")
         ayah_pairs: list[tuple[int, str]] = []
@@ -60,12 +97,35 @@ class QuranTextStore:
             ayah_pairs.append((int(ayah_str), text))
         return sorted(ayah_pairs, key=lambda x: x[0])
 
-    def build_words(self, *, surah: int, ayah: int | None = None) -> list[CanonicalWord]:
+    def build_words(
+        self,
+        *,
+        surah: int,
+        ayah: int | None = None,
+        text_variant: str | None = None,
+        riwaya: str | None = None,
+    ) -> list[CanonicalWord]:
         words: list[CanonicalWord] = []
         global_idx = 0
 
         ayah_rows = (
-            [(ayah, self.get_ayah_text(surah, ayah))] if ayah is not None else self.get_surah_ayahs(surah)
+            [
+                (
+                    ayah,
+                    self.get_ayah_text(
+                        surah,
+                        ayah,
+                        text_variant=text_variant,
+                        riwaya=riwaya,
+                    ),
+                )
+            ]
+            if ayah is not None
+            else self.get_surah_ayahs(
+                surah,
+                text_variant=text_variant,
+                riwaya=riwaya,
+            )
         )
 
         for ayah_number, ayah_text in ayah_rows:
@@ -88,7 +148,8 @@ class QuranTextStore:
 def normalize_arabic(text: str) -> str:
     """Normalize Arabic text for alignment scoring while preserving token boundaries."""
 
-    value = _AR_DIACRITICS.sub("", text)
+    value = unicodedata.normalize("NFKC", text)
+    value = _AR_DIACRITICS.sub("", value)
     value = value.replace("ـ", "")
     value = _AR_PUNCT.sub(" ", value)
 
@@ -100,6 +161,10 @@ def normalize_arabic(text: str) -> str:
         "ى": "ي",
         "ؤ": "و",
         "ئ": "ي",
+        "ی": "ي",
+        "ې": "ي",
+        "ك": "ك",
+        "ک": "ك",
     }
     for src, dst in replacements.items():
         value = value.replace(src, dst)

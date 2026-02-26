@@ -26,3 +26,8 @@ def test_word_index_mapping_is_deterministic() -> None:
     assert [w.word_index_global for w in first] == [w.word_index_global for w in second]
     assert [w.ayah for w in first] == [w.ayah for w in second]
     assert [w.word_index_in_ayah for w in first] == [w.word_index_in_ayah for w in second]
+
+
+def test_normalization_handles_persian_yeh_variants() -> None:
+    assert normalize_arabic("یولد") == normalize_arabic("يولد")
+    assert normalize_arabic("یكن") == normalize_arabic("يكن")

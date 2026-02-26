@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 17,
+    "ayah": 94,
+    "verse_key": "17:94",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/17:94",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/017094.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمَا",
+      "start_s": 0.0,
+      "end_s": 1.96
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "مَنَعَ",
+      "start_s": 1.96,
+      "end_s": 2.77
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلنَّاسَ",
+      "start_s": 2.77,
+      "end_s": 4.54
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "أَن",
+      "start_s": 4.54,
+      "end_s": 5.517
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "يُؤْمِنُوٓا۟",
+      "start_s": 5.517,
+      "end_s": 7.53
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "إِذْ",
+      "start_s": 7.53,
+      "end_s": 7.87
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "جَآءَهُمُ",
+      "start_s": 7.89,
+      "end_s": 10.28
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ٱلْهُدَىٰٓ",
+      "start_s": 10.28,
+      "end_s": 12.4
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "إِلَّآ",
+      "start_s": 12.4,
+      "end_s": 14.493
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "أَن",
+      "start_s": 14.493,
+      "end_s": 15.41
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "قَالُوٓا۟",
+      "start_s": 15.41,
+      "end_s": 17.404
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "أَبَعَثَ",
+      "start_s": 17.404,
+      "end_s": 18.2
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 18.2,
+      "end_s": 19.19
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "بَشَرًۭا",
+      "start_s": 19.19,
+      "end_s": 19.88
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "رَّسُولًۭا",
+      "start_s": 19.88,
+      "end_s": 21.225
+    },
+    {
+      "ayah": 94,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "٩٤",
+      "start_s": 21.225,
+      "end_s": 22.08
+    }
+  ]
+}

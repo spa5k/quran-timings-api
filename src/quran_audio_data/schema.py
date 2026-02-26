@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field, model_validator
 
 InputMode = Literal["full_surah", "ayah_file"]
 TimingSource = Literal["existing", "aligned", "fallback"]
+AlignmentOrigin = Literal["native", "interpolated", "distributed"]
 
 
 class AudioMetadata(BaseModel):
@@ -58,6 +59,9 @@ class WordTiming(BaseModel):
     start_s: float
     end_s: float
     confidence: float | None = None
+    alignment_origin: AlignmentOrigin = "native"
+    match_score: float | None = None
+    engine_candidate: str | None = None
 
     @model_validator(mode="after")
     def _validate_timing(self) -> "WordTiming":
@@ -73,6 +77,11 @@ class QCReport(BaseModel):
     warnings: list[str] = Field(default_factory=list)
     zero_or_negative_ratio: float = 0.0
     median_confidence: float | None = None
+    interpolated_ratio: float = 0.0
+    lexical_match_ratio: float | None = None
+    speech_end_delta_ratio: float = 1.0
+    quantization_step_ms: float | None = None
+    engine_candidate_scores: dict[str, float] = Field(default_factory=dict)
 
 
 class TimingResult(BaseModel):
@@ -130,6 +139,9 @@ class TimingResult(BaseModel):
                     "start_s",
                     "end_s",
                     "confidence",
+                    "alignment_origin",
+                    "match_score",
+                    "engine_candidate",
                 ],
             )
             writer.writeheader()
@@ -145,6 +157,11 @@ class TimingResult(BaseModel):
                         "confidence": None
                         if word.confidence is None
                         else round(word.confidence, 4),
+                        "alignment_origin": word.alignment_origin,
+                        "match_score": None
+                        if word.match_score is None
+                        else round(word.match_score, 2),
+                        "engine_candidate": word.engine_candidate,
                     }
                 )
 
@@ -161,6 +178,38 @@ class QCThresholds:
     max_zero_or_negative_ratio: float = 0.02
     min_median_confidence: float = 0.55
     max_duration_delta_ratio: float = 0.03
+    max_interpolated_ratio: float = 0.25
+    min_lexical_match_ratio: float = 0.0
+
+    @classmethod
+    def strict(cls) -> "QCThresholds":
+        return cls(
+            min_coverage=1.0,
+            max_zero_or_negative_ratio=0.0,
+            min_median_confidence=0.55,
+            max_duration_delta_ratio=0.04,
+            max_interpolated_ratio=0.03,
+            min_lexical_match_ratio=0.97,
+        )
+
+
+def _estimate_quantization_step_ms(words: list[WordTiming]) -> float | None:
+    boundaries: list[float] = []
+    for word in words:
+        boundaries.append(float(word.start_s))
+        boundaries.append(float(word.end_s))
+    if len(boundaries) < 3:
+        return None
+
+    boundaries = sorted(set(boundaries))
+    deltas = [
+        boundaries[idx + 1] - boundaries[idx]
+        for idx in range(len(boundaries) - 1)
+        if (boundaries[idx + 1] - boundaries[idx]) > 1e-6
+    ]
+    if not deltas:
+        return None
+    return median(deltas) * 1000.0
 
 
 def compute_qc(
@@ -168,7 +217,9 @@ def compute_qc(
     words: list[WordTiming],
     expected_word_count: int,
     audio_duration_s: float,
+    speech_end_s: float | None = None,
     thresholds: QCThresholds,
+    candidate_scores: dict[str, float] | None = None,
 ) -> QCReport:
     warnings: list[str] = []
 
@@ -181,6 +232,8 @@ def compute_qc(
     previous = -1.0
     zero_or_negative = 0
     confidences: list[float] = []
+    interpolated_count = 0
+    lexical_matches = 0
 
     for word in words:
         if word.start_s < previous:
@@ -190,22 +243,38 @@ def compute_qc(
             zero_or_negative += 1
         if word.confidence is not None:
             confidences.append(word.confidence)
+        if word.alignment_origin in {"interpolated", "distributed"}:
+            interpolated_count += 1
+        if word.match_score is not None and word.match_score >= 70.0:
+            lexical_matches += 1
 
     zero_or_negative_ratio = 0.0
+    interpolated_ratio = 0.0
+    lexical_match_ratio: float | None = None
+
     if words:
         zero_or_negative_ratio = zero_or_negative / len(words)
+        interpolated_ratio = interpolated_count / len(words)
+        if any(word.match_score is not None for word in words):
+            lexical_match_ratio = lexical_matches / len(words)
+
+    duration_reference_s = audio_duration_s
+    if speech_end_s is not None and speech_end_s > 0:
+        duration_reference_s = speech_end_s
 
     if words:
         end_time = max(word.end_s for word in words)
         duration_delta_ratio = (
-            abs(end_time - audio_duration_s) / audio_duration_s if audio_duration_s > 0 else 0.0
+            abs(end_time - duration_reference_s) / duration_reference_s
+            if duration_reference_s > 0
+            else 0.0
         )
     else:
         duration_delta_ratio = 1.0
 
     duration_match = duration_delta_ratio <= thresholds.max_duration_delta_ratio
-
     median_confidence = median(confidences) if confidences else None
+    quantization_step_ms = _estimate_quantization_step_ms(words)
 
     if coverage < thresholds.min_coverage:
         warnings.append(
@@ -218,9 +287,14 @@ def compute_qc(
             "Zero/negative duration ratio "
             f"{zero_or_negative_ratio:.3f} above {thresholds.max_zero_or_negative_ratio:.3f}"
         )
+    if interpolated_ratio > thresholds.max_interpolated_ratio:
+        warnings.append(
+            "Interpolated/distributed ratio "
+            f"{interpolated_ratio:.3f} above {thresholds.max_interpolated_ratio:.3f}"
+        )
     if not duration_match:
         warnings.append(
-            f"Audio duration mismatch ratio {duration_delta_ratio:.3f} exceeds "
+            f"Speech/audio end mismatch ratio {duration_delta_ratio:.3f} exceeds "
             f"{thresholds.max_duration_delta_ratio:.3f}"
         )
     if (
@@ -230,6 +304,13 @@ def compute_qc(
         warnings.append(
             f"Median confidence {median_confidence:.3f} below {thresholds.min_median_confidence:.3f}"
         )
+    if (
+        lexical_match_ratio is not None
+        and lexical_match_ratio < thresholds.min_lexical_match_ratio
+    ):
+        warnings.append(
+            f"Lexical match ratio {lexical_match_ratio:.3f} below {thresholds.min_lexical_match_ratio:.3f}"
+        )
 
     return QCReport(
         coverage=coverage,
@@ -238,6 +319,11 @@ def compute_qc(
         warnings=warnings,
         zero_or_negative_ratio=zero_or_negative_ratio,
         median_confidence=median_confidence,
+        interpolated_ratio=interpolated_ratio,
+        lexical_match_ratio=lexical_match_ratio,
+        speech_end_delta_ratio=duration_delta_ratio,
+        quantization_step_ms=quantization_step_ms,
+        engine_candidate_scores=candidate_scores or {},
     )
 
 
@@ -248,6 +334,15 @@ def qc_requires_fallback(qc: QCReport, thresholds: QCThresholds) -> bool:
         return True
     if qc.zero_or_negative_ratio > thresholds.max_zero_or_negative_ratio:
         return True
+    if not qc.duration_match:
+        return True
+    if qc.interpolated_ratio > thresholds.max_interpolated_ratio:
+        return True
     if qc.median_confidence is not None and qc.median_confidence < thresholds.min_median_confidence:
+        return True
+    if (
+        qc.lexical_match_ratio is not None
+        and qc.lexical_match_ratio < thresholds.min_lexical_match_ratio
+    ):
         return True
     return False

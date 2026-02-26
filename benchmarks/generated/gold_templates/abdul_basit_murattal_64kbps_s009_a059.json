@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 9,
+    "ayah": 59,
+    "verse_key": "9:59",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/9:59",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/009059.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَوْ",
+      "start_s": 0.0,
+      "end_s": 1.25
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنَّهُمْ",
+      "start_s": 1.25,
+      "end_s": 3.03
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "رَضُوا۟",
+      "start_s": 3.03,
+      "end_s": 3.74
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَآ",
+      "start_s": 3.74,
+      "end_s": 5.165
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ءَاتَىٰهُمُ",
+      "start_s": 5.165,
+      "end_s": 6.62
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 6.62,
+      "end_s": 7.52
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "وَرَسُولُهُۥ",
+      "start_s": 7.52,
+      "end_s": 9.01
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "وَقَالُوا۟",
+      "start_s": 17.31,
+      "end_s": 20.3
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "حَسْبُنَا",
+      "start_s": 20.3,
+      "end_s": 21.15
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 21.15,
+      "end_s": 21.97
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "سَيُؤْتِينَا",
+      "start_s": 21.97,
+      "end_s": 23.23
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 23.23,
+      "end_s": 24.1
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "مِن",
+      "start_s": 24.1,
+      "end_s": 25.25
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "فَضْلِهِۦ",
+      "start_s": 25.25,
+      "end_s": 26.46
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "وَرَسُولُهُۥٓ",
+      "start_s": 26.46,
+      "end_s": 28.95
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "إِنَّآ",
+      "start_s": 28.95,
+      "end_s": 31.515
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "إِلَى",
+      "start_s": 31.515,
+      "end_s": 31.82
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "ٱللَّهِ",
+      "start_s": 31.82,
+      "end_s": 32.66
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "رَٰغِبُونَ",
+      "start_s": 32.66,
+      "end_s": 33.865
+    },
+    {
+      "ayah": 59,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "٥٩",
+      "start_s": 33.865,
+      "end_s": 34.46
+    }
+  ]
+}

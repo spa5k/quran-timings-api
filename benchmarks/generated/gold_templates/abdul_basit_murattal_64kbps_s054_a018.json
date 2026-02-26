@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 54,
+    "ayah": 18,
+    "verse_key": "54:18",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/54:18",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/054018.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 18,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "كَذَّبَتْ",
+      "start_s": 0.0,
+      "end_s": 1.85
+    },
+    {
+      "ayah": 18,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "عَادٌۭ",
+      "start_s": 1.85,
+      "end_s": 3.776
+    },
+    {
+      "ayah": 18,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فَكَيْفَ",
+      "start_s": 3.776,
+      "end_s": 4.81
+    },
+    {
+      "ayah": 18,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "كَانَ",
+      "start_s": 4.81,
+      "end_s": 5.55
+    },
+    {
+      "ayah": 18,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "عَذَابِى",
+      "start_s": 5.55,
+      "end_s": 7.04
+    },
+    {
+      "ayah": 18,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَنُذُرِ",
+      "start_s": 7.04,
+      "end_s": 8.455
+    },
+    {
+      "ayah": 18,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "١٨",
+      "start_s": 8.455,
+      "end_s": 8.47
+    }
+  ]
+}

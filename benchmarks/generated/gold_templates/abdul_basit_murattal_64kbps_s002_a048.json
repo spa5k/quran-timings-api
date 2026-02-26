@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 2,
+    "ayah": 48,
+    "verse_key": "2:48",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/2:48",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/002048.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَٱتَّقُوا۟",
+      "start_s": 0.0,
+      "end_s": 1.65
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "يَوْمًۭا",
+      "start_s": 1.65,
+      "end_s": 2.276
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "لَّا",
+      "start_s": 2.276,
+      "end_s": 2.74
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "تَجْزِى",
+      "start_s": 2.74,
+      "end_s": 3.64
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "نَفْسٌ",
+      "start_s": 3.64,
+      "end_s": 4.31
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "عَن",
+      "start_s": 4.31,
+      "end_s": 5.468
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "نَّفْسٍۢ",
+      "start_s": 5.468,
+      "end_s": 6.936
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "شَيْـًۭٔا",
+      "start_s": 6.936,
+      "end_s": 7.63
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "وَلَا",
+      "start_s": 7.63,
+      "end_s": 9.06
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "يُقْبَلُ",
+      "start_s": 9.06,
+      "end_s": 9.85
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "مِنْهَا",
+      "start_s": 9.85,
+      "end_s": 10.52
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "شَفَـٰعَةٌۭ",
+      "start_s": 10.52,
+      "end_s": 12.66
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "وَلَا",
+      "start_s": 12.66,
+      "end_s": 13.18
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "يُؤْخَذُ",
+      "start_s": 13.18,
+      "end_s": 14.1
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "مِنْهَا",
+      "start_s": 14.1,
+      "end_s": 14.9
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "عَدْلٌۭ",
+      "start_s": 14.9,
+      "end_s": 16.599
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "وَلَا",
+      "start_s": 16.599,
+      "end_s": 17.03
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "هُمْ",
+      "start_s": 17.03,
+      "end_s": 17.53
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "يُنصَرُونَ",
+      "start_s": 17.53,
+      "end_s": 20.215
+    },
+    {
+      "ayah": 48,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "٤٨",
+      "start_s": 20.215,
+      "end_s": 21.22
+    }
+  ]
+}

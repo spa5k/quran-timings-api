@@ -1,0 +1,12 @@
+surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
+54,24,1,فَقَالُوۤا۟,0.911,1.905,,native,100.0,nemo
+54,24,2,أَبَشَرࣰا,2.898,3.985,,native,100.0,nemo
+54,24,3,مِّنَّا,4.695,5.769,,native,100.0,nemo
+54,24,4,وَ,6.218,6.301,,native,100.0,nemo
+54,24,5,ٰحِدࣰا,6.301,7.302,,native,100.0,nemo
+54,24,6,نَّتَّبِعُهُۥۤ,7.851,9.347,,native,100.0,nemo
+54,24,7,إِنَّاۤ,10.92,11.96,,native,100.0,nemo
+54,24,8,إِذࣰا,13.416,13.907,,native,100.0,nemo
+54,24,9,لَّفِی,14.138,14.422,,native,100.0,nemo
+54,24,10,ضَلَـٰلࣲ,14.884,15.676,,native,100.0,nemo
+54,24,11,وَسُعُرٍ,16.515,17.639,,native,100.0,nemo

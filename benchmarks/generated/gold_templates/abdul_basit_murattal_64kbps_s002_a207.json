@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 2,
+    "ayah": 207,
+    "verse_key": "2:207",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/2:207",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/002207.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمِنَ",
+      "start_s": 0.0,
+      "end_s": 1.89
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلنَّاسِ",
+      "start_s": 1.89,
+      "end_s": 3.61
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مَن",
+      "start_s": 3.61,
+      "end_s": 4.55
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "يَشْرِى",
+      "start_s": 4.55,
+      "end_s": 5.84
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "نَفْسَهُ",
+      "start_s": 5.84,
+      "end_s": 6.96
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "ٱبْتِغَآءَ",
+      "start_s": 6.96,
+      "end_s": 9.59
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "مَرْضَاتِ",
+      "start_s": 9.59,
+      "end_s": 11.17
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ٱللَّهِ ۗ",
+      "start_s": 11.17,
+      "end_s": 12.28
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "وَٱللَّهُ",
+      "start_s": 12.3,
+      "end_s": 15.18
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "رَءُوفٌۢ",
+      "start_s": 15.18,
+      "end_s": 17.036
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "بِٱلْعِبَادِ",
+      "start_s": 17.036,
+      "end_s": 19.025
+    },
+    {
+      "ayah": 207,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "٢٠٧",
+      "start_s": 19.025,
+      "end_s": 19.86
+    }
+  ]
+}

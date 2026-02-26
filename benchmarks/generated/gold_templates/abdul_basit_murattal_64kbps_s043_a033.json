@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 43,
+    "ayah": 33,
+    "verse_key": "43:33",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/43:33",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/043033.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَوْلَآ",
+      "start_s": 0.0,
+      "end_s": 3.968
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَن",
+      "start_s": 3.968,
+      "end_s": 4.888
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "يَكُونَ",
+      "start_s": 4.888,
+      "end_s": 5.96
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلنَّاسُ",
+      "start_s": 5.96,
+      "end_s": 7.47
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أُمَّةًۭ",
+      "start_s": 7.47,
+      "end_s": 9.767
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَٰحِدَةًۭ",
+      "start_s": 9.767,
+      "end_s": 11.11
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "لَّجَعَلْنَا",
+      "start_s": 12.95,
+      "end_s": 15.68
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "لِمَن",
+      "start_s": 15.68,
+      "end_s": 17.036
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "يَكْفُرُ",
+      "start_s": 17.036,
+      "end_s": 18.09
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "بِٱلرَّحْمَـٰنِ",
+      "start_s": 18.09,
+      "end_s": 19.96
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "لِبُيُوتِهِمْ",
+      "start_s": 19.96,
+      "end_s": 21.77
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "سُقُفًۭا",
+      "start_s": 21.77,
+      "end_s": 23.489
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "مِّن",
+      "start_s": 23.489,
+      "end_s": 24.488
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "فِضَّةٍۢ",
+      "start_s": 24.488,
+      "end_s": 26.6
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "وَمَعَارِجَ",
+      "start_s": 26.6,
+      "end_s": 28.08
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "عَلَيْهَا",
+      "start_s": 28.08,
+      "end_s": 29.46
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "يَظْهَرُونَ",
+      "start_s": 29.46,
+      "end_s": 30.995
+    },
+    {
+      "ayah": 33,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "٣٣",
+      "start_s": 30.995,
+      "end_s": 31.69
+    }
+  ]
+}

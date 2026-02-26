@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 47,
+    "ayah": 2,
+    "verse_key": "47:2",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/47:2",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/047002.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَٱلَّذِينَ",
+      "start_s": 0.0,
+      "end_s": 2.21
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ءَامَنُوا۟",
+      "start_s": 2.21,
+      "end_s": 3.53
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَعَمِلُوا۟",
+      "start_s": 3.53,
+      "end_s": 4.55
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلصَّـٰلِحَـٰتِ",
+      "start_s": 4.55,
+      "end_s": 6.44
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "وَءَامَنُوا۟",
+      "start_s": 6.44,
+      "end_s": 7.94
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "بِمَا",
+      "start_s": 7.94,
+      "end_s": 8.76
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "نُزِّلَ",
+      "start_s": 8.76,
+      "end_s": 9.81
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "عَلَىٰ",
+      "start_s": 9.81,
+      "end_s": 10.5
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "مُحَمَّدٍۢ",
+      "start_s": 10.5,
+      "end_s": 13.341
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "وَهُوَ",
+      "start_s": 13.341,
+      "end_s": 14.1
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "ٱلْحَقُّ",
+      "start_s": 14.1,
+      "end_s": 15.2
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "مِن",
+      "start_s": 15.2,
+      "end_s": 15.512
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "رَّبِّهِمْ ۙ",
+      "start_s": 15.512,
+      "end_s": 17.02
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "كَفَّرَ",
+      "start_s": 17.02,
+      "end_s": 18.28
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "عَنْهُمْ",
+      "start_s": 18.28,
+      "end_s": 19.27
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "سَيِّـَٔاتِهِمْ",
+      "start_s": 19.27,
+      "end_s": 21.56
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "وَأَصْلَحَ",
+      "start_s": 21.56,
+      "end_s": 22.86
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "بَالَهُمْ",
+      "start_s": 22.86,
+      "end_s": 24.025
+    },
+    {
+      "ayah": 2,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "٢",
+      "start_s": 24.025,
+      "end_s": 24.48
+    }
+  ]
+}

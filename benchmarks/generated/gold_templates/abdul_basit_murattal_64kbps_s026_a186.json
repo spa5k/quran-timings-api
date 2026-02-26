@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 26,
+    "ayah": 186,
+    "verse_key": "26:186",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/26:186",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/026186.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمَآ",
+      "start_s": 0.0,
+      "end_s": 2.717
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنتَ",
+      "start_s": 2.717,
+      "end_s": 3.86
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "إِلَّا",
+      "start_s": 3.86,
+      "end_s": 4.89
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "بَشَرٌۭ",
+      "start_s": 4.89,
+      "end_s": 6.456
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "مِّثْلُنَا",
+      "start_s": 6.456,
+      "end_s": 7.67
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَإِن",
+      "start_s": 7.67,
+      "end_s": 9.093
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "نَّظُنُّكَ",
+      "start_s": 9.093,
+      "end_s": 10.97
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "لَمِنَ",
+      "start_s": 10.97,
+      "end_s": 11.7
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "ٱلْكَـٰذِبِينَ",
+      "start_s": 11.7,
+      "end_s": 13.685
+    },
+    {
+      "ayah": 186,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "١٨٦",
+      "start_s": 13.685,
+      "end_s": 13.72
+    }
+  ]
+}

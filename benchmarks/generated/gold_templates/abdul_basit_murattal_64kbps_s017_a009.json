@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 17,
+    "ayah": 9,
+    "verse_key": "17:9",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/17:9",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/017009.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّ",
+      "start_s": 0.0,
+      "end_s": 2.63
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "هَـٰذَا",
+      "start_s": 2.63,
+      "end_s": 3.35
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلْقُرْءَانَ",
+      "start_s": 3.35,
+      "end_s": 4.69
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "يَهْدِى",
+      "start_s": 4.69,
+      "end_s": 5.68
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "لِلَّتِى",
+      "start_s": 5.68,
+      "end_s": 6.84
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "هِىَ",
+      "start_s": 6.84,
+      "end_s": 7.463
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "أَقْوَمُ",
+      "start_s": 7.463,
+      "end_s": 8.22
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "وَيُبَشِّرُ",
+      "start_s": 8.22,
+      "end_s": 9.63
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "ٱلْمُؤْمِنِينَ",
+      "start_s": 9.63,
+      "end_s": 11.17
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 11.17,
+      "end_s": 12.31
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "يَعْمَلُونَ",
+      "start_s": 12.31,
+      "end_s": 13.65
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ٱلصَّـٰلِحَـٰتِ",
+      "start_s": 13.65,
+      "end_s": 15.39
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "أَنَّ",
+      "start_s": 15.39,
+      "end_s": 16.87
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "لَهُمْ",
+      "start_s": 16.87,
+      "end_s": 17.49
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "أَجْرًۭا",
+      "start_s": 17.49,
+      "end_s": 19.034
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "كَبِيرًۭا",
+      "start_s": 19.034,
+      "end_s": 20.505
+    },
+    {
+      "ayah": 9,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "٩",
+      "start_s": 20.505,
+      "end_s": 21.35
+    }
+  ]
+}

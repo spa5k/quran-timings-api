@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 36,
+    "ayah": 71,
+    "verse_key": "36:71",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/36:71",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/036071.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَوَلَمْ",
+      "start_s": 0.02,
+      "end_s": 0.24
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "يَرَوْا۟",
+      "start_s": 0.24,
+      "end_s": 0.39
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "أَنَّا",
+      "start_s": 0.39,
+      "end_s": 0.57
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "خَلَقْنَا",
+      "start_s": 0.57,
+      "end_s": 0.78
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "لَهُم",
+      "start_s": 0.78,
+      "end_s": 0.991
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "مِّمَّا",
+      "start_s": 0.991,
+      "end_s": 1.12
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "عَمِلَتْ",
+      "start_s": 1.12,
+      "end_s": 1.34
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "أَيْدِينَآ",
+      "start_s": 1.34,
+      "end_s": 3.693
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "أَنْعَـٰمًۭا",
+      "start_s": 3.693,
+      "end_s": 4.22
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "فَهُمْ",
+      "start_s": 4.22,
+      "end_s": 6.34
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "لَهَا",
+      "start_s": 6.34,
+      "end_s": 8.58
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "مَـٰلِكُونَ",
+      "start_s": 8.58,
+      "end_s": 13.745
+    },
+    {
+      "ayah": 71,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "٧١",
+      "start_s": 13.745,
+      "end_s": 13.95
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 11,
+    "ayah": 63,
+    "verse_key": "11:63",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/11:63",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/011063.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قَالَ",
+      "start_s": 0.0,
+      "end_s": 2.18
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "يَـٰقَوْمِ",
+      "start_s": 2.18,
+      "end_s": 3.08
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "أَرَءَيْتُمْ",
+      "start_s": 3.08,
+      "end_s": 4.16
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "إِن",
+      "start_s": 4.16,
+      "end_s": 5.32
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "كُنتُ",
+      "start_s": 5.32,
+      "end_s": 6.8
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "عَلَىٰ",
+      "start_s": 6.8,
+      "end_s": 7.36
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "بَيِّنَةٍۢ",
+      "start_s": 7.36,
+      "end_s": 9.218
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "مِّن",
+      "start_s": 9.218,
+      "end_s": 9.442
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "رَّبِّى",
+      "start_s": 9.442,
+      "end_s": 10.38
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "وَءَاتَىٰنِى",
+      "start_s": 12.74,
+      "end_s": 15.33
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "مِنْهُ",
+      "start_s": 15.33,
+      "end_s": 15.81
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "رَحْمَةًۭ",
+      "start_s": 15.81,
+      "end_s": 17.366
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "فَمَن",
+      "start_s": 17.366,
+      "end_s": 18.754
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "يَنصُرُنِى",
+      "start_s": 18.754,
+      "end_s": 20.65
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "مِنَ",
+      "start_s": 20.65,
+      "end_s": 20.93
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "ٱللَّهِ",
+      "start_s": 20.93,
+      "end_s": 21.71
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "إِنْ",
+      "start_s": 21.71,
+      "end_s": 21.96
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "عَصَيْتُهُۥ ۖ",
+      "start_s": 21.96,
+      "end_s": 23.21
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "فَمَا",
+      "start_s": 23.21,
+      "end_s": 23.73
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "تَزِيدُونَنِى",
+      "start_s": 23.73,
+      "end_s": 25.29
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "غَيْرَ",
+      "start_s": 25.29,
+      "end_s": 25.84
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "تَخْسِيرٍۢ",
+      "start_s": 25.84,
+      "end_s": 27.575
+    },
+    {
+      "ayah": 63,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "٦٣",
+      "start_s": 27.575,
+      "end_s": 27.7
+    }
+  ]
+}

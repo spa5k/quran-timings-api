@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 2,
+    "ayah": 145,
+    "verse_key": "2:145",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/2:145",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/002145.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَئِنْ",
+      "start_s": 0.0,
+      "end_s": 2.81
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَتَيْتَ",
+      "start_s": 2.81,
+      "end_s": 4.01
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 4.01,
+      "end_s": 5.54
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "أُوتُوا۟",
+      "start_s": 5.54,
+      "end_s": 6.51
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلْكِتَـٰبَ",
+      "start_s": 6.51,
+      "end_s": 8.08
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "بِكُلِّ",
+      "start_s": 8.08,
+      "end_s": 9.4
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "ءَايَةٍۢ",
+      "start_s": 9.4,
+      "end_s": 11.495
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "مَّا",
+      "start_s": 11.495,
+      "end_s": 12.03
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "تَبِعُوا۟",
+      "start_s": 12.03,
+      "end_s": 13.36
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "قِبْلَتَكَ ۚ",
+      "start_s": 13.36,
+      "end_s": 14.99
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "وَمَآ",
+      "start_s": 15.01,
+      "end_s": 18.272
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "أَنتَ",
+      "start_s": 18.272,
+      "end_s": 19.52
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "بِتَابِعٍۢ",
+      "start_s": 19.52,
+      "end_s": 21.782
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "قِبْلَتَهُمْ ۚ",
+      "start_s": 21.782,
+      "end_s": 23.68
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "وَمَا",
+      "start_s": 23.7,
+      "end_s": 26.07
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "بَعْضُهُم",
+      "start_s": 26.07,
+      "end_s": 28.34
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "بِتَابِعٍۢ",
+      "start_s": 28.34,
+      "end_s": 30.72
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "قِبْلَةَ",
+      "start_s": 30.72,
+      "end_s": 32.02
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "بَعْضٍۢ ۚ",
+      "start_s": 32.02,
+      "end_s": 32.74
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "وَلَئِنِ",
+      "start_s": 32.76,
+      "end_s": 35.9
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "ٱتَّبَعْتَ",
+      "start_s": 35.9,
+      "end_s": 37.53
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "أَهْوَآءَهُم",
+      "start_s": 37.53,
+      "end_s": 41.191
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "مِّنۢ",
+      "start_s": 41.191,
+      "end_s": 42.202
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 24,
+      "text_uthmani": "بَعْدِ",
+      "start_s": 42.202,
+      "end_s": 43.18
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 25,
+      "text_uthmani": "مَا",
+      "start_s": 43.18,
+      "end_s": 43.79
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 26,
+      "text_uthmani": "جَآءَكَ",
+      "start_s": 43.79,
+      "end_s": 45.91
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 27,
+      "text_uthmani": "مِنَ",
+      "start_s": 45.91,
+      "end_s": 46.54
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 28,
+      "text_uthmani": "ٱلْعِلْمِ ۙ",
+      "start_s": 46.54,
+      "end_s": 47.85
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 29,
+      "text_uthmani": "إِنَّكَ",
+      "start_s": 47.85,
+      "end_s": 49.56
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 30,
+      "text_uthmani": "إِذًۭا",
+      "start_s": 49.56,
+      "end_s": 50.18
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 31,
+      "text_uthmani": "لَّمِنَ",
+      "start_s": 50.18,
+      "end_s": 51.38
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 32,
+      "text_uthmani": "ٱلظَّـٰلِمِينَ",
+      "start_s": 51.38,
+      "end_s": 53.445
+    },
+    {
+      "ayah": 145,
+      "word_index_in_ayah": 33,
+      "text_uthmani": "١٤٥",
+      "start_s": 53.445,
+      "end_s": 54.39
+    }
+  ]
+}

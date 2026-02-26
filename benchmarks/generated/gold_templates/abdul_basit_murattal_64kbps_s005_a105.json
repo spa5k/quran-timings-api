@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 5,
+    "ayah": 105,
+    "verse_key": "5:105",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/5:105",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/005105.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "يَـٰٓأَيُّهَا",
+      "start_s": 0.0,
+      "end_s": 3.75
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 3.75,
+      "end_s": 4.81
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ءَامَنُوا۟",
+      "start_s": 4.81,
+      "end_s": 5.8
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "عَلَيْكُمْ",
+      "start_s": 5.8,
+      "end_s": 7.0
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَنفُسَكُمْ ۖ",
+      "start_s": 7.0,
+      "end_s": 9.16
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "لَا",
+      "start_s": 9.16,
+      "end_s": 9.55
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "يَضُرُّكُم",
+      "start_s": 9.55,
+      "end_s": 12.493
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "مَّن",
+      "start_s": 12.493,
+      "end_s": 12.884
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "ضَلَّ",
+      "start_s": 12.884,
+      "end_s": 13.36
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "إِذَا",
+      "start_s": 13.36,
+      "end_s": 13.81
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "ٱهْتَدَيْتُمْ ۚ",
+      "start_s": 13.81,
+      "end_s": 15.03
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "إِلَى",
+      "start_s": 15.05,
+      "end_s": 16.66
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "ٱللَّهِ",
+      "start_s": 16.66,
+      "end_s": 17.54
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "مَرْجِعُكُمْ",
+      "start_s": 17.54,
+      "end_s": 18.91
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "جَمِيعًۭا",
+      "start_s": 18.91,
+      "end_s": 20.658
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "فَيُنَبِّئُكُم",
+      "start_s": 20.658,
+      "end_s": 23.17
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "بِمَا",
+      "start_s": 23.17,
+      "end_s": 23.81
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "كُنتُمْ",
+      "start_s": 23.81,
+      "end_s": 25.45
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "تَعْمَلُونَ",
+      "start_s": 25.45,
+      "end_s": 26.705
+    },
+    {
+      "ayah": 105,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "١٠٥",
+      "start_s": 26.705,
+      "end_s": 27.51
+    }
+  ]
+}

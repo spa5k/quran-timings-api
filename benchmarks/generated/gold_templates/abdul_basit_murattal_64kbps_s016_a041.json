@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 16,
+    "ayah": 41,
+    "verse_key": "16:41",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/16:41",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/016041.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَٱلَّذِينَ",
+      "start_s": 0.0,
+      "end_s": 2.47
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "هَاجَرُوا۟",
+      "start_s": 2.47,
+      "end_s": 3.4
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فِى",
+      "start_s": 3.4,
+      "end_s": 3.73
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱللَّهِ",
+      "start_s": 3.73,
+      "end_s": 4.41
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "مِنۢ",
+      "start_s": 4.41,
+      "end_s": 5.448
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "بَعْدِ",
+      "start_s": 5.448,
+      "end_s": 6.11
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "مَا",
+      "start_s": 6.11,
+      "end_s": 6.38
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ظُلِمُوا۟",
+      "start_s": 6.38,
+      "end_s": 7.24
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "لَنُبَوِّئَنَّهُمْ",
+      "start_s": 7.24,
+      "end_s": 9.69
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "فِى",
+      "start_s": 9.69,
+      "end_s": 9.99
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "ٱلدُّنْيَا",
+      "start_s": 9.99,
+      "end_s": 10.91
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "حَسَنَةًۭ ۖ",
+      "start_s": 10.91,
+      "end_s": 11.73
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "وَلَأَجْرُ",
+      "start_s": 11.75,
+      "end_s": 13.9
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "ٱلْـَٔاخِرَةِ",
+      "start_s": 13.9,
+      "end_s": 15.04
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "أَكْبَرُ ۚ",
+      "start_s": 15.04,
+      "end_s": 16.34
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "لَوْ",
+      "start_s": 16.36,
+      "end_s": 17.29
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "كَانُوا۟",
+      "start_s": 17.29,
+      "end_s": 18.13
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "يَعْلَمُونَ",
+      "start_s": 18.13,
+      "end_s": 19.545
+    },
+    {
+      "ayah": 41,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "٤١",
+      "start_s": 19.545,
+      "end_s": 20.15
+    }
+  ]
+}

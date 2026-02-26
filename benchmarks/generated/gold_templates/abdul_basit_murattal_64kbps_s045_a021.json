@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 45,
+    "ayah": 21,
+    "verse_key": "45:21",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/45:21",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/045021.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَمْ",
+      "start_s": 0.0,
+      "end_s": 1.87
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "حَسِبَ",
+      "start_s": 1.87,
+      "end_s": 2.69
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 2.69,
+      "end_s": 4.01
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱجْتَرَحُوا۟",
+      "start_s": 4.01,
+      "end_s": 5.07
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلسَّيِّـَٔاتِ",
+      "start_s": 5.07,
+      "end_s": 6.97
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "أَن",
+      "start_s": 6.97,
+      "end_s": 8.04
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "نَّجْعَلَهُمْ",
+      "start_s": 8.04,
+      "end_s": 9.58
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "كَٱلَّذِينَ",
+      "start_s": 9.58,
+      "end_s": 11.2
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "ءَامَنُوا۟",
+      "start_s": 11.2,
+      "end_s": 12.55
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "وَعَمِلُوا۟",
+      "start_s": 12.55,
+      "end_s": 13.59
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "ٱلصَّـٰلِحَـٰتِ",
+      "start_s": 13.59,
+      "end_s": 15.53
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "سَوَآءًۭ",
+      "start_s": 15.53,
+      "end_s": 18.63
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "مَّحْيَاهُمْ",
+      "start_s": 18.63,
+      "end_s": 20.25
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "وَمَمَاتُهُمْ ۚ",
+      "start_s": 20.25,
+      "end_s": 21.93
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "سَآءَ",
+      "start_s": 21.95,
+      "end_s": 24.96
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "مَا",
+      "start_s": 24.96,
+      "end_s": 25.48
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "يَحْكُمُونَ",
+      "start_s": 25.48,
+      "end_s": 26.965
+    },
+    {
+      "ayah": 21,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "٢١",
+      "start_s": 26.965,
+      "end_s": 27.43
+    }
+  ]
+}

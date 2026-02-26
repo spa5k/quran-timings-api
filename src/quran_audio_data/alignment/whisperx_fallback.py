@@ -172,6 +172,7 @@ def _map_words(
     mapped: list[WordTiming] = []
     cursor = 0
     matched_idx: dict[int, int] = {}
+    matched_scores: dict[int, float] = {}
 
     for i, canon in enumerate(canonical_words):
         best_j: int | None = None
@@ -189,6 +190,7 @@ def _map_words(
 
         if best_j is not None and best_score >= 45:
             matched_idx[i] = best_j
+            matched_scores[i] = float(best_score)
             cursor = best_j + 1
 
     for i, canon in enumerate(canonical_words):
@@ -197,6 +199,8 @@ def _map_words(
             pred = predicted_words[pred_index]
             start_s, end_s = pred.start_s, pred.end_s
             confidence = pred.confidence
+            alignment_origin = "native"
+            match_score = matched_scores.get(i)
         else:
             start_s, end_s = _interpolate_slot(
                 index=i,
@@ -206,6 +210,8 @@ def _map_words(
                 audio_duration_s=audio_duration_s,
             )
             confidence = None
+            alignment_origin = "interpolated"
+            match_score = None
 
         mapped.append(
             WordTiming(
@@ -218,6 +224,9 @@ def _map_words(
                 start_s=start_s,
                 end_s=end_s,
                 confidence=confidence,
+                alignment_origin=alignment_origin,
+                match_score=match_score,
+                engine_candidate="whisperx",
             )
         )
 

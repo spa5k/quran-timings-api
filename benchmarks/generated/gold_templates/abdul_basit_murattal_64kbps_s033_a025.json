@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 33,
+    "ayah": 25,
+    "verse_key": "33:25",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/33:25",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/033025.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَرَدَّ",
+      "start_s": 0.0,
+      "end_s": 0.01
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 0.01,
+      "end_s": 7.49
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 7.49,
+      "end_s": 8.199
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "كَفَرُوا۟",
+      "start_s": 8.199,
+      "end_s": 8.907
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "بِغَيْظِهِمْ",
+      "start_s": 8.907,
+      "end_s": 9.616
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "لَمْ",
+      "start_s": 9.616,
+      "end_s": 10.324
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "يَنَالُوا۟",
+      "start_s": 10.324,
+      "end_s": 11.033
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "خَيْرًۭا ۚ",
+      "start_s": 11.033,
+      "end_s": 11.741
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "وَكَفَى",
+      "start_s": 11.741,
+      "end_s": 12.45
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 12.45,
+      "end_s": 14.09
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "ٱلْمُؤْمِنِينَ",
+      "start_s": 14.09,
+      "end_s": 16.195
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ٱلْقِتَالَ ۚ",
+      "start_s": 16.195,
+      "end_s": 16.309
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "وَكَانَ",
+      "start_s": 16.309,
+      "end_s": 16.423
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 16.423,
+      "end_s": 16.538
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "قَوِيًّا",
+      "start_s": 16.538,
+      "end_s": 16.652
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "عَزِيزًۭا",
+      "start_s": 16.652,
+      "end_s": 16.766
+    },
+    {
+      "ayah": 25,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "٢٥",
+      "start_s": 16.766,
+      "end_s": 16.88
+    }
+  ]
+}

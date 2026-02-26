@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 24,
+    "ayah": 55,
+    "verse_key": "24:55",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/24:55",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/024055.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَعَدَ",
+      "start_s": 0.0,
+      "end_s": 0.86
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱللَّهُ",
+      "start_s": 0.86,
+      "end_s": 1.58
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 1.58,
+      "end_s": 2.45
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ءَامَنُوا۟",
+      "start_s": 2.45,
+      "end_s": 3.23
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "مِنكُمْ",
+      "start_s": 3.23,
+      "end_s": 4.81
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَعَمِلُوا۟",
+      "start_s": 4.81,
+      "end_s": 5.49
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "ٱلصَّـٰلِحَـٰتِ",
+      "start_s": 5.49,
+      "end_s": 6.67
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "لَيَسْتَخْلِفَنَّهُمْ",
+      "start_s": 6.67,
+      "end_s": 9.27
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "فِى",
+      "start_s": 9.27,
+      "end_s": 9.6
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "ٱلْأَرْضِ",
+      "start_s": 9.6,
+      "end_s": 10.15
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "كَمَا",
+      "start_s": 10.15,
+      "end_s": 10.51
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ٱسْتَخْلَفَ",
+      "start_s": 10.51,
+      "end_s": 11.39
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 11.39,
+      "end_s": 12.24
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "مِن",
+      "start_s": 12.24,
+      "end_s": 13.35
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "قَبْلِهِمْ",
+      "start_s": 13.35,
+      "end_s": 14.3
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "وَلَيُمَكِّنَنَّ",
+      "start_s": 14.3,
+      "end_s": 16.35
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "لَهُمْ",
+      "start_s": 16.35,
+      "end_s": 16.79
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "دِينَهُمُ",
+      "start_s": 16.79,
+      "end_s": 17.65
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "ٱلَّذِى",
+      "start_s": 17.65,
+      "end_s": 18.19
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "ٱرْتَضَىٰ",
+      "start_s": 18.19,
+      "end_s": 18.97
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "لَهُمْ",
+      "start_s": 18.97,
+      "end_s": 19.51
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "وَلَيُبَدِّلَنَّهُم",
+      "start_s": 19.51,
+      "end_s": 22.62
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "مِّنۢ",
+      "start_s": 22.62,
+      "end_s": 23.698
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 24,
+      "text_uthmani": "بَعْدِ",
+      "start_s": 23.698,
+      "end_s": 24.33
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 25,
+      "text_uthmani": "خَوْفِهِمْ",
+      "start_s": 24.33,
+      "end_s": 25.23
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 26,
+      "text_uthmani": "أَمْنًۭا ۚ",
+      "start_s": 25.23,
+      "end_s": 26.03
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 27,
+      "text_uthmani": "يَعْبُدُونَنِى",
+      "start_s": 26.05,
+      "end_s": 28.34
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 28,
+      "text_uthmani": "لَا",
+      "start_s": 28.34,
+      "end_s": 28.58
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 29,
+      "text_uthmani": "يُشْرِكُونَ",
+      "start_s": 28.58,
+      "end_s": 29.66
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 30,
+      "text_uthmani": "بِى",
+      "start_s": 29.66,
+      "end_s": 30.02
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 31,
+      "text_uthmani": "شَيْـًۭٔا ۚ",
+      "start_s": 30.02,
+      "end_s": 30.85
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 32,
+      "text_uthmani": "وَمَن",
+      "start_s": 30.87,
+      "end_s": 32.988
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 33,
+      "text_uthmani": "كَفَرَ",
+      "start_s": 32.988,
+      "end_s": 33.64
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 34,
+      "text_uthmani": "بَعْدَ",
+      "start_s": 33.64,
+      "end_s": 34.16
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 35,
+      "text_uthmani": "ذَٰلِكَ",
+      "start_s": 34.16,
+      "end_s": 34.88
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 36,
+      "text_uthmani": "فَأُو۟لَـٰٓئِكَ",
+      "start_s": 34.88,
+      "end_s": 37.0
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 37,
+      "text_uthmani": "هُمُ",
+      "start_s": 37.0,
+      "end_s": 37.34
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 38,
+      "text_uthmani": "ٱلْفَـٰسِقُونَ",
+      "start_s": 37.34,
+      "end_s": 38.655
+    },
+    {
+      "ayah": 55,
+      "word_index_in_ayah": 39,
+      "text_uthmani": "٥٥",
+      "start_s": 38.655,
+      "end_s": 39.11
+    }
+  ]
+}

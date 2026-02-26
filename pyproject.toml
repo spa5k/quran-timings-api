@@ -28,6 +28,9 @@ gpu = [
   "nemo_toolkit[asr]>=2.0.0",
   "whisperx>=3.3.1",
 ]
+mfa = [
+  "montreal-forced-aligner>=3.2.0",
+]
 audio = [
   "librosa>=0.10.2.post1",
   "webrtcvad>=2.0.10",

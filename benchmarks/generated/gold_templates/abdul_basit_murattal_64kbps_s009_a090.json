@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 9,
+    "ayah": 90,
+    "verse_key": "9:90",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/9:90",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/009090.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَجَآءَ",
+      "start_s": 0.0,
+      "end_s": 3.66
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلْمُعَذِّرُونَ",
+      "start_s": 3.66,
+      "end_s": 5.17
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مِنَ",
+      "start_s": 5.17,
+      "end_s": 5.57
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلْأَعْرَابِ",
+      "start_s": 5.57,
+      "end_s": 6.76
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "لِيُؤْذَنَ",
+      "start_s": 6.76,
+      "end_s": 7.81
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "لَهُمْ",
+      "start_s": 7.81,
+      "end_s": 8.45
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "وَقَعَدَ",
+      "start_s": 8.45,
+      "end_s": 9.29
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 9.29,
+      "end_s": 10.25
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "كَذَبُوا۟",
+      "start_s": 10.25,
+      "end_s": 10.93
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "ٱللَّهَ",
+      "start_s": 10.93,
+      "end_s": 11.73
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "وَرَسُولَهُۥ ۚ",
+      "start_s": 11.73,
+      "end_s": 12.97
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "سَيُصِيبُ",
+      "start_s": 12.99,
+      "end_s": 15.18
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "ٱلَّذِينَ",
+      "start_s": 15.18,
+      "end_s": 16.19
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "كَفَرُوا۟",
+      "start_s": 16.19,
+      "end_s": 17.04
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "مِنْهُمْ",
+      "start_s": 17.04,
+      "end_s": 17.8
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "عَذَابٌ",
+      "start_s": 17.8,
+      "end_s": 18.9
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "أَلِيمٌۭ",
+      "start_s": 18.9,
+      "end_s": 19.865
+    },
+    {
+      "ayah": 90,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "٩٠",
+      "start_s": 19.865,
+      "end_s": 20.38
+    }
+  ]
+}

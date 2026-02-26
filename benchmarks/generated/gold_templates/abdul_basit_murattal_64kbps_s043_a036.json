@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 43,
+    "ayah": 36,
+    "verse_key": "43:36",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/43:36",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/043036.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمَن",
+      "start_s": 0.0,
+      "end_s": 2.01
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "يَعْشُ",
+      "start_s": 2.01,
+      "end_s": 2.8
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَن",
+      "start_s": 2.8,
+      "end_s": 3.942
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ذِكْرِ",
+      "start_s": 3.942,
+      "end_s": 4.76
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلرَّحْمَـٰنِ",
+      "start_s": 4.76,
+      "end_s": 6.33
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "نُقَيِّضْ",
+      "start_s": 6.33,
+      "end_s": 7.66
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "لَهُۥ",
+      "start_s": 7.66,
+      "end_s": 8.45
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "شَيْطَـٰنًۭا",
+      "start_s": 8.45,
+      "end_s": 10.59
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "فَهُوَ",
+      "start_s": 10.59,
+      "end_s": 11.46
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "لَهُۥ",
+      "start_s": 11.46,
+      "end_s": 12.21
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "قَرِينٌۭ",
+      "start_s": 12.21,
+      "end_s": 13.395
+    },
+    {
+      "ayah": 36,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "٣٦",
+      "start_s": 13.395,
+      "end_s": 13.77
+    }
+  ]
+}

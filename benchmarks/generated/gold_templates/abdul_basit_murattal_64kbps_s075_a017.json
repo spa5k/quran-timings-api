@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 75,
+    "ayah": 17,
+    "verse_key": "75:17",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/75:17",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/075017.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 17,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّ",
+      "start_s": 0.0,
+      "end_s": 1.71
+    },
+    {
+      "ayah": 17,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "عَلَيْنَا",
+      "start_s": 1.71,
+      "end_s": 3.01
+    },
+    {
+      "ayah": 17,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "جَمْعَهُۥ",
+      "start_s": 3.01,
+      "end_s": 4.43
+    },
+    {
+      "ayah": 17,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "وَقُرْءَانَهُۥ",
+      "start_s": 4.43,
+      "end_s": 6.215
+    },
+    {
+      "ayah": 17,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "١٧",
+      "start_s": 6.215,
+      "end_s": 6.54
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "benchmarks/generated/audio/Abdul_Basit_Murattal_64kbps_053042.mp3",
+    "duration_s": 6.452244897959184,
+    "sample_rate": 22050,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 53,
+    "input_mode": "ayah_file"
+  },
+  "engine": {
+    "name": "ensemble",
+    "model": "ayah-wise",
+    "device": "cpu",
+    "fallback_used": true
+  },
+  "ayahs": [
+    {
+      "surah": 53,
+      "ayah": 42,
+      "start_s": 0.6810625,
+      "end_s": 6.4521875,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 53,
+      "ayah": 42,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَأَنَّ",
+      "text_norm": "وان",
+      "start_s": 0.6810625,
+      "end_s": 1.2685625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 53,
+      "ayah": 42,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "إِلَىٰ",
+      "text_norm": "الي",
+      "start_s": 2.0858125,
+      "end_s": 2.4833125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 53,
+      "ayah": 42,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "رَبِّكَ",
+      "text_norm": "ربك",
+      "start_s": 2.7744375,
+      "end_s": 3.4974375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 53,
+      "ayah": 42,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡمُنتَهَىٰ",
+      "text_norm": "المنتهي",
+      "start_s": 3.95075,
+      "end_s": 6.4521875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [
+      "boundary_refinement_applied"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 8.895812246983564e-6,
+    "quantization_step_ms": 587.5,
+    "engine_candidate_scores": {
+      "nemo": 164.78491902834008
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 7,
+    "ayah": 37,
+    "verse_key": "7:37",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/7:37",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/007037.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَمَنْ",
+      "start_s": 0.0,
+      "end_s": 0.92
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَظْلَمُ",
+      "start_s": 0.92,
+      "end_s": 2.01
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مِمَّنِ",
+      "start_s": 2.01,
+      "end_s": 3.51
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱفْتَرَىٰ",
+      "start_s": 3.51,
+      "end_s": 4.72
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "عَلَى",
+      "start_s": 4.72,
+      "end_s": 5.17
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "ٱللَّهِ",
+      "start_s": 5.17,
+      "end_s": 6.46
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "كَذِبًا",
+      "start_s": 6.46,
+      "end_s": 7.7
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "أَوْ",
+      "start_s": 7.7,
+      "end_s": 8.29
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "كَذَّبَ",
+      "start_s": 8.29,
+      "end_s": 9.45
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "بِـَٔايَـٰتِهِۦٓ ۚ",
+      "start_s": 9.45,
+      "end_s": 11.4
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "أُو۟لَـٰٓئِكَ",
+      "start_s": 11.42,
+      "end_s": 14.7
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "يَنَالُهُمْ",
+      "start_s": 14.7,
+      "end_s": 16.51
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "نَصِيبُهُم",
+      "start_s": 16.51,
+      "end_s": 18.773
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "مِّنَ",
+      "start_s": 18.773,
+      "end_s": 19.33
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "ٱلْكِتَـٰبِ ۖ",
+      "start_s": 19.33,
+      "end_s": 21.64
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "حَتَّىٰٓ",
+      "start_s": 21.66,
+      "end_s": 24.258
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "إِذَا",
+      "start_s": 24.258,
+      "end_s": 25.01
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "جَآءَتْهُمْ",
+      "start_s": 25.01,
+      "end_s": 27.55
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "رُسُلُنَا",
+      "start_s": 27.55,
+      "end_s": 28.96
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "يَتَوَفَّوْنَهُمْ",
+      "start_s": 28.96,
+      "end_s": 31.65
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "قَالُوٓا۟",
+      "start_s": 31.65,
+      "end_s": 33.734
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "أَيْنَ",
+      "start_s": 33.734,
+      "end_s": 34.54
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "مَا",
+      "start_s": 34.54,
+      "end_s": 35.03
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 24,
+      "text_uthmani": "كُنتُمْ",
+      "start_s": 35.03,
+      "end_s": 36.97
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 25,
+      "text_uthmani": "تَدْعُونَ",
+      "start_s": 36.97,
+      "end_s": 38.47
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 26,
+      "text_uthmani": "مِن",
+      "start_s": 38.47,
+      "end_s": 39.528
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 27,
+      "text_uthmani": "دُونِ",
+      "start_s": 39.528,
+      "end_s": 40.41
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 28,
+      "text_uthmani": "ٱللَّهِ ۖ",
+      "start_s": 40.41,
+      "end_s": 41.56
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 29,
+      "text_uthmani": "قَالُوا۟",
+      "start_s": 41.58,
+      "end_s": 43.56
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 30,
+      "text_uthmani": "ضَلُّوا۟",
+      "start_s": 43.56,
+      "end_s": 44.7
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 31,
+      "text_uthmani": "عَنَّا",
+      "start_s": 44.7,
+      "end_s": 46.42
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 32,
+      "text_uthmani": "وَشَهِدُوا۟",
+      "start_s": 46.42,
+      "end_s": 47.93
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 33,
+      "text_uthmani": "عَلَىٰٓ",
+      "start_s": 47.93,
+      "end_s": 49.771
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 34,
+      "text_uthmani": "أَنفُسِهِمْ",
+      "start_s": 49.771,
+      "end_s": 52.02
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 35,
+      "text_uthmani": "أَنَّهُمْ",
+      "start_s": 52.02,
+      "end_s": 53.96
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 36,
+      "text_uthmani": "كَانُوا۟",
+      "start_s": 53.96,
+      "end_s": 55.27
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 37,
+      "text_uthmani": "كَـٰفِرِينَ",
+      "start_s": 55.27,
+      "end_s": 56.955
+    },
+    {
+      "ayah": 37,
+      "word_index_in_ayah": 38,
+      "text_uthmani": "٣٧",
+      "start_s": 56.955,
+      "end_s": 57.47
+    }
+  ]
+}

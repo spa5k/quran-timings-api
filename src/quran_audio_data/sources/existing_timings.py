@@ -6,9 +6,10 @@ from typing import Any
 
 import orjson
 import requests
+from rapidfuzz import fuzz
 
 from quran_audio_data.schema import AyahTiming, WordTiming
-from quran_audio_data.text.quran_text import CanonicalWord
+from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic
 
 
 @dataclass(slots=True)
@@ -199,8 +200,18 @@ def _normalize_payload_to_schema(
     # Pass-through for already-normalized schema payload.
     if isinstance(payload, dict) and isinstance(payload.get("ayahs"), list) and isinstance(payload.get("words"), list):
         try:
-            ayahs = [AyahTiming.model_validate(item) for item in payload["ayahs"]]
-            words = [WordTiming.model_validate(item) for item in payload["words"]]
+            ayahs = [
+                AyahTiming.model_validate(item).model_copy(update={"source": source_default})
+                for item in payload["ayahs"]
+            ]
+            words = [
+                WordTiming.model_validate(item).model_copy(
+                    update={
+                        "engine_candidate": "existing",
+                    }
+                )
+                for item in payload["words"]
+            ]
             return ayahs, words
         except Exception:
             return None
@@ -246,6 +257,22 @@ def _normalize_payload_to_schema(
                         if start is None or end is None:
                             continue
                         w_start, w_end = _distribute_slot(start, end, len(ayah_words), idx)
+                        origin = "distributed"
+                    else:
+                        origin = "native"
+
+                    sample_text_raw = _safe_get(sample, "text", "word", "token")
+                    sample_text_norm = normalize_arabic(str(sample_text_raw)) if sample_text_raw else None
+                    raw_match_score = _to_float(_safe_get(sample, "match_score"))
+                    match_score = (
+                        raw_match_score
+                        if raw_match_score is not None
+                        else (
+                            float(fuzz.ratio(canon.text_norm, sample_text_norm))
+                            if sample_text_norm
+                            else None
+                        )
+                    )
 
                     parsed_words.append(
                         WordTiming(
@@ -258,6 +285,9 @@ def _normalize_payload_to_schema(
                             start_s=w_start,
                             end_s=w_end,
                             confidence=_to_float(_safe_get(sample, "confidence", "score")),
+                            alignment_origin=origin,
+                            match_score=match_score,
+                            engine_candidate="existing",
                         )
                     )
 
@@ -281,6 +311,9 @@ def _normalize_payload_to_schema(
                             start_s=w_start,
                             end_s=w_end,
                             confidence=None,
+                            alignment_origin="distributed",
+                            match_score=None,
+                            engine_candidate="existing",
                         )
                     )
 
@@ -330,6 +363,9 @@ def _normalize_payload_to_schema(
                         start_s=w_start,
                         end_s=w_end,
                         confidence=None,
+                        alignment_origin="distributed",
+                        match_score=None,
+                        engine_candidate="existing",
                     )
                 )
             parsed_ayahs.append(

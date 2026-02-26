@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 39,
+    "ayah": 52,
+    "verse_key": "39:52",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/39:52",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/039052.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَوَلَمْ",
+      "start_s": 0.0,
+      "end_s": 1.35
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "يَعْلَمُوٓا۟",
+      "start_s": 1.35,
+      "end_s": 3.959
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "أَنَّ",
+      "start_s": 3.959,
+      "end_s": 5.08
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱللَّهَ",
+      "start_s": 5.08,
+      "end_s": 6.24
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "يَبْسُطُ",
+      "start_s": 6.24,
+      "end_s": 7.37
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "ٱلرِّزْقَ",
+      "start_s": 7.37,
+      "end_s": 8.56
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "لِمَن",
+      "start_s": 8.56,
+      "end_s": 9.827
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "يَشَآءُ",
+      "start_s": 9.827,
+      "end_s": 12.08
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "وَيَقْدِرُ ۚ",
+      "start_s": 12.08,
+      "end_s": 13.35
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "إِنَّ",
+      "start_s": 13.37,
+      "end_s": 14.96
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "فِى",
+      "start_s": 14.96,
+      "end_s": 15.5
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ذَٰلِكَ",
+      "start_s": 15.5,
+      "end_s": 16.61
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "لَـَٔايَـٰتٍۢ",
+      "start_s": 16.61,
+      "end_s": 18.344
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "لِّقَوْمٍۢ",
+      "start_s": 18.344,
+      "end_s": 20.228
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "يُؤْمِنُونَ",
+      "start_s": 20.228,
+      "end_s": 21.695
+    },
+    {
+      "ayah": 52,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "٥٢",
+      "start_s": 21.695,
+      "end_s": 22.18
+    }
+  ]
+}

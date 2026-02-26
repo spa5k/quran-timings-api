@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 39,
+    "ayah": 47,
+    "verse_key": "39:47",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/39:47",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/039047.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَوْ",
+      "start_s": 0.0,
+      "end_s": 1.34
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنَّ",
+      "start_s": 1.34,
+      "end_s": 2.6
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "لِلَّذِينَ",
+      "start_s": 2.6,
+      "end_s": 4.16
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ظَلَمُوا۟",
+      "start_s": 4.16,
+      "end_s": 5.2
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "مَا",
+      "start_s": 5.2,
+      "end_s": 5.69
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "فِى",
+      "start_s": 5.69,
+      "end_s": 6.1
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "ٱلْأَرْضِ",
+      "start_s": 6.1,
+      "end_s": 7.02
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "جَمِيعًۭا",
+      "start_s": 7.02,
+      "end_s": 8.18
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "وَمِثْلَهُۥ",
+      "start_s": 8.18,
+      "end_s": 10.51
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "مَعَهُۥ",
+      "start_s": 10.51,
+      "end_s": 11.6
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "لَٱفْتَدَوْا۟",
+      "start_s": 11.6,
+      "end_s": 12.98
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "بِهِۦ",
+      "start_s": 12.98,
+      "end_s": 13.76
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "مِن",
+      "start_s": 13.76,
+      "end_s": 14.74
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "سُوٓءِ",
+      "start_s": 14.74,
+      "end_s": 16.25
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "ٱلْعَذَابِ",
+      "start_s": 16.25,
+      "end_s": 17.68
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "يَوْمَ",
+      "start_s": 17.68,
+      "end_s": 18.46
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 17,
+      "text_uthmani": "ٱلْقِيَـٰمَةِ ۚ",
+      "start_s": 18.46,
+      "end_s": 19.87
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 18,
+      "text_uthmani": "وَبَدَا",
+      "start_s": 19.89,
+      "end_s": 21.76
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 19,
+      "text_uthmani": "لَهُم",
+      "start_s": 21.76,
+      "end_s": 23.114
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 20,
+      "text_uthmani": "مِّنَ",
+      "start_s": 23.114,
+      "end_s": 23.53
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 21,
+      "text_uthmani": "ٱللَّهِ",
+      "start_s": 23.53,
+      "end_s": 24.68
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 22,
+      "text_uthmani": "مَا",
+      "start_s": 24.68,
+      "end_s": 25.27
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 23,
+      "text_uthmani": "لَمْ",
+      "start_s": 25.27,
+      "end_s": 25.75
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 24,
+      "text_uthmani": "يَكُونُوا۟",
+      "start_s": 25.75,
+      "end_s": 27.09
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 25,
+      "text_uthmani": "يَحْتَسِبُونَ",
+      "start_s": 27.09,
+      "end_s": 28.785
+    },
+    {
+      "ayah": 47,
+      "word_index_in_ayah": 26,
+      "text_uthmani": "٤٧",
+      "start_s": 28.785,
+      "end_s": 29.26
+    }
+  ]
+}

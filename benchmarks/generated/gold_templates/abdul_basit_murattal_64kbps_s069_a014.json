@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 69,
+    "ayah": 14,
+    "verse_key": "69:14",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/69:14",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/069014.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 14,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَحُمِلَتِ",
+      "start_s": 0.0,
+      "end_s": 1.89
+    },
+    {
+      "ayah": 14,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلْأَرْضُ",
+      "start_s": 1.89,
+      "end_s": 2.83
+    },
+    {
+      "ayah": 14,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَٱلْجِبَالُ",
+      "start_s": 2.83,
+      "end_s": 4.43
+    },
+    {
+      "ayah": 14,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "فَدُكَّتَا",
+      "start_s": 4.43,
+      "end_s": 6.11
+    },
+    {
+      "ayah": 14,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "دَكَّةًۭ",
+      "start_s": 6.11,
+      "end_s": 8.24
+    },
+    {
+      "ayah": 14,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَٰحِدَةًۭ",
+      "start_s": 8.24,
+      "end_s": 9.455
+    },
+    {
+      "ayah": 14,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "١٤",
+      "start_s": 9.455,
+      "end_s": 9.98
+    }
+  ]
+}

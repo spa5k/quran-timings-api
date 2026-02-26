@@ -10,10 +10,11 @@ import tempfile
 from typing import Any
 
 import orjson
+from rapidfuzz import fuzz
 
 from quran_audio_data.alignment.base import AlignmentOutput, AlignmentError
 from quran_audio_data.schema import AyahTiming, WordTiming
-from quran_audio_data.text.quran_text import CanonicalWord
+from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic
 
 
 class NemoAligner:
@@ -142,9 +143,29 @@ def _normalize_nemo_output(
         sample = raw_words[idx] if idx < len(raw_words) else None
         start = _to_float(_safe_get(sample, "start", "start_s", "timestamp_from"))
         end = _to_float(_safe_get(sample, "end", "end_s", "timestamp_to"))
+        sample_text_raw = _safe_get(sample, "text", "word", "token")
+        sample_text_norm = normalize_arabic(str(sample_text_raw)) if sample_text_raw else None
+        raw_match_score = _to_float(_safe_get(sample, "match_score"))
+        match_score = (
+            raw_match_score
+            if raw_match_score is not None
+            else (
+                float(fuzz.ratio(canon.text_norm, sample_text_norm))
+                if sample_text_norm
+                else None
+            )
+        )
+        sample_origin = _safe_get(sample, "alignment_origin")
 
         if start is None or end is None:
             start, end = _distributed_slot(audio_duration_s, count, idx)
+            origin = "distributed"
+        else:
+            origin = (
+                str(sample_origin)
+                if sample_origin in {"native", "interpolated", "distributed"}
+                else "native"
+            )
 
         mapped.append(
             WordTiming(
@@ -157,6 +178,9 @@ def _normalize_nemo_output(
                 start_s=start,
                 end_s=end,
                 confidence=_to_float(_safe_get(sample, "confidence", "score")),
+                alignment_origin=origin,
+                match_score=match_score,
+                engine_candidate="nemo",
             )
         )
 

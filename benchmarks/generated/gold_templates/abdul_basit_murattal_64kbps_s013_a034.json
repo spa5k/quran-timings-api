@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 13,
+    "ayah": 34,
+    "verse_key": "13:34",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/13:34",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/013034.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لَّهُمْ",
+      "start_s": 0.0,
+      "end_s": 1.25
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "عَذَابٌۭ",
+      "start_s": 1.25,
+      "end_s": 3.05
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فِى",
+      "start_s": 3.05,
+      "end_s": 3.23
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلْحَيَوٰةِ",
+      "start_s": 3.23,
+      "end_s": 4.1
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلدُّنْيَا ۖ",
+      "start_s": 4.1,
+      "end_s": 4.99
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَلَعَذَابُ",
+      "start_s": 4.99,
+      "end_s": 6.17
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "ٱلْـَٔاخِرَةِ",
+      "start_s": 6.17,
+      "end_s": 7.28
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "أَشَقُّ ۖ",
+      "start_s": 7.28,
+      "end_s": 8.14
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "وَمَا",
+      "start_s": 8.14,
+      "end_s": 8.64
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "لَهُم",
+      "start_s": 8.64,
+      "end_s": 9.91
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "مِّنَ",
+      "start_s": 9.91,
+      "end_s": 10.25
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "ٱللَّهِ",
+      "start_s": 10.25,
+      "end_s": 11.04
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "مِن",
+      "start_s": 11.04,
+      "end_s": 12.358
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "وَاقٍۢ",
+      "start_s": 12.358,
+      "end_s": 12.995
+    },
+    {
+      "ayah": 34,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "٣٤",
+      "start_s": 12.995,
+      "end_s": 13.62
+    }
+  ]
+}

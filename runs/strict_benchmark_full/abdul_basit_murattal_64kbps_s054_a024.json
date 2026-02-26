@@ -1,0 +1,202 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "benchmarks/generated/audio/Abdul_Basit_Murattal_64kbps_054024.mp3",
+    "duration_s": 18.07673469387755,
+    "sample_rate": 22050,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 54,
+    "input_mode": "ayah_file"
+  },
+  "engine": {
+    "name": "ensemble",
+    "model": "ayah-wise",
+    "device": "cpu",
+    "fallback_used": true
+  },
+  "ayahs": [
+    {
+      "surah": 54,
+      "ayah": 24,
+      "start_s": 0.911,
+      "end_s": 17.638625,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَقَالُوۤا۟",
+      "text_norm": "فقالوا",
+      "start_s": 0.911,
+      "end_s": 1.90475,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَبَشَرࣰا",
+      "text_norm": "ابشرࣰا",
+      "start_s": 2.89825,
+      "end_s": 3.9850625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مِّنَّا",
+      "text_norm": "منا",
+      "start_s": 4.695,
+      "end_s": 5.7688125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "وَ",
+      "text_norm": "و",
+      "start_s": 6.2175,
+      "end_s": 6.3013125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 5,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٰحِدࣰا",
+      "text_norm": "حدࣰا",
+      "start_s": 6.3013125,
+      "end_s": 7.3015625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 6,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "نَّتَّبِعُهُۥۤ",
+      "text_norm": "نتبعه",
+      "start_s": 7.8506875,
+      "end_s": 9.3473125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 7,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "إِنَّاۤ",
+      "text_norm": "انا",
+      "start_s": 10.920125,
+      "end_s": 11.9601875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 8,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "إِذࣰا",
+      "text_norm": "اذࣰا",
+      "start_s": 13.4155625,
+      "end_s": 13.9070625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 9,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "لَّفِی",
+      "text_norm": "لفي",
+      "start_s": 14.13775,
+      "end_s": 14.421625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 10,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "ضَلَـٰلࣲ",
+      "text_norm": "ضللࣲ",
+      "start_s": 14.8845,
+      "end_s": 15.6764375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    },
+    {
+      "surah": 54,
+      "ayah": 24,
+      "word_index_global": 11,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "وَسُعُرٍ",
+      "text_norm": "وسعر",
+      "start_s": 16.514625,
+      "end_s": 17.638625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [
+      "boundary_refinement_applied"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.024236107975072196,
+    "quantization_step_ms": 915.8437499999992,
+    "engine_candidate_scores": {
+      "nemo": 163.46007947976878
+    }
+  }
+}

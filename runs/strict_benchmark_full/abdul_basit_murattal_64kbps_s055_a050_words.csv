@@ -1,0 +1,4 @@
+surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
+55,50,1,فِیهِمَا,0.909,1.431,,native,100.0,nemo
+55,50,2,عَیۡنَانِ,2.048,3.225,,native,100.0,nemo
+55,50,3,تَجۡرِیَانِ,3.461,5.564,,native,100.0,nemo

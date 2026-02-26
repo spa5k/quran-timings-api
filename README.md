@@ -47,6 +47,18 @@ GPU extras (package deps only):
 uv sync --extra gpu
 ```
 
+MFA extras:
+
+```bash
+uv sync --extra mfa
+```
+
+If local `mfa` is not runnable in your Python environment, install Docker and pre-pull the MFA image used by the automatic fallback:
+
+```bash
+docker pull mmcauliffe/montreal-forced-aligner:latest
+```
+
 For NVIDIA CUDA, install the exact PyTorch wheel for your CUDA runtime from official docs, then re-sync as needed.
 
 ## Canonical text data
@@ -79,6 +91,9 @@ Optional columns:
 - `source_url`
 - `sha256`
 - `language` (defaults to `ar`)
+- `riwaya` (optional text-variant hint)
+- `text_variant` (optional canonical variant key)
+- `gold_split` (optional benchmark split tag)
 
 Example:
 
@@ -97,15 +112,18 @@ uv run qad --help
 ### Align
 
 ```bash
-uv run qad align --manifest /path/manifest.csv --out /path/out --engine nemo --device auto
+uv run qad align --manifest /path/manifest.csv --out /path/out --device auto
 ```
 
 Options:
-- `--engine nemo|whisperx`
+- `--engine nemo|whisperx|mfa`
+- `--accuracy-mode standard|strict`
 - `--device auto|cpu|cuda`
 - `--text-data /path/to/quran_text_uthmani_v1.json`
 - `--cache-dir .cache/timings`
 - `--no-remote`
+
+Default behavior now runs all three engines (`nemo`, `whisperx`, `mfa`) and selects the best result.
 
 ### Resolve existing only
 
@@ -123,6 +141,68 @@ uv run qad validate --input /path/out
 
 ```bash
 uv run qad benchmark --manifest /path/manifest.csv --out /path/out --sample-size 10
+```
+
+### Build Benchmark Data (Quran.com + EveryAyah)
+
+```bash
+uv run qad benchmark-data \
+  --out-dir benchmarks/generated \
+  --count 200 \
+  --reciter-subfolder Abdul_Basit_Murattal_64kbps \
+  --download-audio \
+  --timeout-s 30 \
+  --request-retries 8 \
+  --retry-backoff-s 1 \
+  --resume
+```
+
+This command:
+- Pulls ayah/word metadata from Quran.com API v4 (`/verses/by_key/{surah}:{ayah}`)
+- Pulls reciter catalog + ayah MP3s from EveryAyah (`recitations.js` + ayah MP3 URLs)
+- Retries transient 429/5xx/timeout failures with exponential backoff
+- Supports resume mode to reuse existing `gold_templates` and downloaded MP3s
+- Writes:
+  - `benchmark_manifest.csv`
+  - `gold_templates/*.json` (manual labeling templates)
+  - `benchmark_metadata.json`
+
+Script equivalent:
+
+```bash
+python3 scripts/build_benchmark_data.py --out-dir benchmarks/generated --count 200 --download-audio
+```
+
+### Evaluate against gold
+
+```bash
+uv run qad eval --pred-dir /path/predictions --gold-dir /path/gold --report /path/report.json
+```
+
+### Validate gold labels
+
+```bash
+uv run qad validate-gold --gold-dir /path/gold --report /path/gold_validation_report.json
+```
+
+### Auto-label gold (no manual labeling)
+
+```bash
+uv run qad auto-label-gold \
+  --gold-dir /path/gold_templates \
+  --chapter-reciter-id 2 \
+  --report /path/auto_label_report.json
+```
+
+Notes:
+- Uses Quran.com `chapter_recitations/{id}/{surah}?segments=true` word segments.
+- For `Abdul_Basit_Murattal_64kbps`, use `--chapter-reciter-id 2`.
+- If Quran.com omits a word position in `segments`, boundaries are auto-imputed from neighboring anchors.
+
+### GPU doctor
+
+```bash
+uv run qad doctor-gpu
 ```
 
 ## NeMo aligner wiring
@@ -154,6 +234,39 @@ Template placeholders supported:
 The command must write a JSON containing word timestamps (or `words` list compatible with this project).
 
 If NeMo is unavailable or fails, pipeline can fall back to WhisperX.
+
+## MFA aligner wiring
+
+MFA is enabled by default in the alignment engine set.
+
+Runtime mode:
+- If local `mfa` works, it is used directly.
+- If local `mfa` is broken/unavailable, Docker fallback is used automatically (`mmcauliffe/montreal-forced-aligner:latest`), so Docker must be installed.
+- Default MFA profile uses `english_mfa` with an auto-generated per-file `spn` dictionary (`__auto_spn__`) to keep MFA runnable without extra dictionary setup.
+- MFA cache/models are stored under `.cache/mfa`.
+
+Optional one-time model pre-warm:
+
+```bash
+docker run --rm -e MFA_ROOT_DIR=/mfa-root -v "$PWD/.cache/mfa:/mfa-root" \
+  mmcauliffe/montreal-forced-aligner:latest mfa model download acoustic english_mfa
+docker run --rm -e MFA_ROOT_DIR=/mfa-root -v "$PWD/.cache/mfa:/mfa-root" \
+  mmcauliffe/montreal-forced-aligner:latest mfa model download dictionary english_us_arpa
+```
+
+If your local MFA invocation differs from defaults, set `QAD_MFA_ALIGN_CMD`:
+
+```bash
+export QAD_MFA_ALIGN_CMD='mfa align --clean --single_speaker --output_format json {corpus_dir} {dictionary} {acoustic_model} {output_dir}'
+```
+
+Template placeholders:
+- `{corpus_dir}`
+- `{output_dir}`
+- `{dictionary}`
+- `{acoustic_model}`
+- `{audio_wav}`
+- `{transcript_txt}`
 
 ## Output files
 

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 101,
+    "ayah": 11,
+    "verse_key": "101:11",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/101:11",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/101011.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "نَارٌ",
+      "start_s": 0.0,
+      "end_s": 1.29
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "حَامِيَةٌۢ",
+      "start_s": 1.29,
+      "end_s": 2.545
+    },
+    {
+      "ayah": 11,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "١١",
+      "start_s": 2.545,
+      "end_s": 2.75
+    }
+  ]
+}

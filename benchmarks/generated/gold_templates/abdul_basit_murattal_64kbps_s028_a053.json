@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "reciter_id": "abdul_basit_murattal_64kbps",
+    "surah": 28,
+    "ayah": 53,
+    "verse_key": "28:53",
+    "everyayah_subfolder": "Abdul_Basit_Murattal_64kbps",
+    "everyayah_name": "Abdul Basit Murattal",
+    "source": {
+      "quran_com": "https://api.quran.com/api/v4/verses/by_key/28:53",
+      "everyayah": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/028053.mp3"
+    }
+  },
+  "words": [
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَإِذَا",
+      "start_s": 0.0,
+      "end_s": 2.57
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "يُتْلَىٰ",
+      "start_s": 2.57,
+      "end_s": 3.72
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَلَيْهِمْ",
+      "start_s": 3.72,
+      "end_s": 5.21
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "قَالُوٓا۟",
+      "start_s": 5.21,
+      "end_s": 7.376
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ءَامَنَّا",
+      "start_s": 7.376,
+      "end_s": 9.53
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "بِهِۦٓ",
+      "start_s": 9.53,
+      "end_s": 11.44
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "إِنَّهُ",
+      "start_s": 15.99,
+      "end_s": 19.26
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "ٱلْحَقُّ",
+      "start_s": 19.26,
+      "end_s": 20.33
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "مِن",
+      "start_s": 20.33,
+      "end_s": 20.642
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 10,
+      "text_uthmani": "رَّبِّنَآ",
+      "start_s": 20.642,
+      "end_s": 23.434
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 11,
+      "text_uthmani": "إِنَّا",
+      "start_s": 23.434,
+      "end_s": 24.91
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 12,
+      "text_uthmani": "كُنَّا",
+      "start_s": 24.91,
+      "end_s": 26.48
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 13,
+      "text_uthmani": "مِن",
+      "start_s": 26.48,
+      "end_s": 27.496
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 14,
+      "text_uthmani": "قَبْلِهِۦ",
+      "start_s": 27.496,
+      "end_s": 28.79
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 15,
+      "text_uthmani": "مُسْلِمِينَ",
+      "start_s": 28.79,
+      "end_s": 30.285
+    },
+    {
+      "ayah": 53,
+      "word_index_in_ayah": 16,
+      "text_uthmani": "٥٣",
+      "start_s": 30.285,
+      "end_s": 30.8
+    }
+  ]
+}

@@ -218,6 +218,7 @@ def map_reference_words(
         return build_uniform_words(transcript_words=transcript_words, audio_duration_s=audio_duration_s)
 
     matched: dict[int, int] = {}
+    matched_scores: dict[int, float] = {}
     cursor = 0
 
     for i, ref in enumerate(transcript_norm):
@@ -236,6 +237,7 @@ def map_reference_words(
 
         if best_j is not None and best_score >= 55:
             matched[i] = best_j
+            matched_scores[i] = float(best_score)
             cursor = best_j + 1
 
     output: list[dict[str, Any]] = []
@@ -246,6 +248,8 @@ def map_reference_words(
             start_s = pred.start_s
             end_s = pred.end_s
             confidence = pred.confidence
+            origin = "native"
+            match_score = matched_scores.get(i)
         else:
             start_s, end_s = interpolate_slot(
                 index=i,
@@ -255,6 +259,8 @@ def map_reference_words(
                 audio_duration_s=audio_duration_s,
             )
             confidence = None
+            origin = "interpolated"
+            match_score = None
 
         output.append(
             {
@@ -262,6 +268,8 @@ def map_reference_words(
                 "start": max(0.0, float(start_s)),
                 "end": max(0.0, float(end_s)),
                 "confidence": confidence,
+                "alignment_origin": origin,
+                "match_score": match_score,
             }
         )
 
@@ -279,6 +287,8 @@ def build_uniform_words(*, transcript_words: list[str], audio_duration_s: float)
                 "start": idx * slot,
                 "end": (idx + 1) * slot,
                 "confidence": None,
+                "alignment_origin": "distributed",
+                "match_score": None,
             }
         )
     return rows
