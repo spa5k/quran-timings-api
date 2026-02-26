@@ -1,0 +1,8 @@
+{
+  "coverage": 1.0,
+  "monotonic": true,
+  "duration_match": true,
+  "warnings": [],
+  "zero_or_negative_ratio": 0.0,
+  "median_confidence": null
+}
