@@ -1,6 +1,186 @@
 {
   "recitations": [
     {
+      "id": "abdurrahmaan_as-sudays",
+      "name": "Abdur-Rahman As-Sudais",
+      "surahs": [
+        {
+          "surah": 1,
+          "title": "Al-Fatiha",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/001.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s001_full.json"
+        },
+        {
+          "surah": 87,
+          "title": "Al-A'la",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/087.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s087_full.json"
+        },
+        {
+          "surah": 88,
+          "title": "Al-Ghashiyah",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/088.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s088_full.json"
+        },
+        {
+          "surah": 89,
+          "title": "Al-Fajr",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/089.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s089_full.json"
+        },
+        {
+          "surah": 90,
+          "title": "Al-Balad",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/090.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s090_full.json"
+        },
+        {
+          "surah": 91,
+          "title": "Ash-Shams",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/091.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s091_full.json"
+        },
+        {
+          "surah": 92,
+          "title": "Al-Layl",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/092.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s092_full.json"
+        },
+        {
+          "surah": 93,
+          "title": "Ad-Duhaa",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/093.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s093_full.json"
+        },
+        {
+          "surah": 94,
+          "title": "Ash-Sharh",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/094.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s094_full.json"
+        },
+        {
+          "surah": 95,
+          "title": "At-Tin",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/095.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s095_full.json"
+        },
+        {
+          "surah": 96,
+          "title": "Al-'Alaq",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/096.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s096_full.json"
+        },
+        {
+          "surah": 97,
+          "title": "Al-Qadr",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/097.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s097_full.json"
+        },
+        {
+          "surah": 98,
+          "title": "Al-Bayyinah",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/098.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s098_full.json"
+        },
+        {
+          "surah": 99,
+          "title": "Az-Zalzalah",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/099.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s099_full.json"
+        },
+        {
+          "surah": 100,
+          "title": "Al-'Adiyat",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/100.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s100_full.json"
+        },
+        {
+          "surah": 101,
+          "title": "Al-Qari'ah",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/101.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s101_full.json"
+        },
+        {
+          "surah": 102,
+          "title": "At-Takathur",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/102.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s102_full.json"
+        },
+        {
+          "surah": 103,
+          "title": "Al-'Asr",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/103.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s103_full.json"
+        },
+        {
+          "surah": 104,
+          "title": "Al-Humazah",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/104.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s104_full.json"
+        },
+        {
+          "surah": 105,
+          "title": "Al-Fil",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/105.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s105_full.json"
+        },
+        {
+          "surah": 106,
+          "title": "Quraysh",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/106.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s106_full.json"
+        },
+        {
+          "surah": 107,
+          "title": "Al-Ma'un",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/107.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s107_full.json"
+        },
+        {
+          "surah": 108,
+          "title": "Al-Kawthar",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/108.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s108_full.json"
+        },
+        {
+          "surah": 109,
+          "title": "Al-Kafirun",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/109.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s109_full.json"
+        },
+        {
+          "surah": 110,
+          "title": "An-Nasr",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/110.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s110_full.json"
+        },
+        {
+          "surah": 111,
+          "title": "Al-Masad",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/111.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s111_full.json"
+        },
+        {
+          "surah": 112,
+          "title": "Al-Ikhlas",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/112.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s112_full.json"
+        },
+        {
+          "surah": 113,
+          "title": "Al-Falaq",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/113.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s113_full.json"
+        },
+        {
+          "surah": 114,
+          "title": "An-Nas",
+          "audioSrc": "https://download.quranicaudio.com/quran/abdurrahmaan_as-sudays/114.mp3",
+          "timingJson": "/data/abdurrahmaan_as-sudays_s114_full.json"
+        }
+      ]
+    },
+    {
       "id": "sa3ood_al-shuraym",
       "name": "Sa`ud Ash-Shuraym",
       "surahs": [

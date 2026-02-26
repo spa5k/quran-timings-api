@@ -1,0 +1,165 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "/Users/atlantic/Developer/quran-audio-data/samples/audio/abdurrahmaan_as-sudays_108.mp3",
+    "duration_s": 17.348639455782312,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdurrahmaan_as-sudays",
+    "surah": 108,
+    "input_mode": "full_surah"
+  },
+  "engine": {
+    "name": "nemo",
+    "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+    "device": "cpu",
+    "fallback_used": false
+  },
+  "ayahs": [
+    {
+      "surah": 108,
+      "ayah": 1,
+      "start_s": 4.16,
+      "end_s": 7.92,
+      "source": "aligned"
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "start_s": 8.64,
+      "end_s": 11.120000000000001,
+      "source": "aligned"
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "start_s": 12.0,
+      "end_s": 16.0,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 108,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّاۤ",
+      "text_norm": "انا",
+      "start_s": 4.16,
+      "end_s": 4.96,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعۡطَیۡنَـٰكَ",
+      "text_norm": "اعطینك",
+      "start_s": 5.68,
+      "end_s": 7.04,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡكَوۡثَرَ",
+      "text_norm": "الكوثر",
+      "start_s": 7.36,
+      "end_s": 7.92,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَصَلِّ",
+      "text_norm": "فصل",
+      "start_s": 8.64,
+      "end_s": 9.120000000000001,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لِرَبِّكَ",
+      "text_norm": "لربك",
+      "start_s": 9.52,
+      "end_s": 10.4,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَٱنۡحَرۡ",
+      "text_norm": "وانحر",
+      "start_s": 10.56,
+      "end_s": 11.120000000000001,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّ",
+      "text_norm": "ان",
+      "start_s": 12.0,
+      "end_s": 12.08,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَانِئَكَ",
+      "text_norm": "شانيك",
+      "start_s": 12.88,
+      "end_s": 14.0,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "هُوَ",
+      "text_norm": "هو",
+      "start_s": 14.32,
+      "end_s": 14.4,
+      "confidence": null
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡأَبۡتَرُ",
+      "text_norm": "الابتر",
+      "start_s": 15.200000000000001,
+      "end_s": 16.0,
+      "confidence": null
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": false,
+    "warnings": [
+      "Audio duration mismatch ratio 0.078 exceeds 0.030"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null
+  }
+}

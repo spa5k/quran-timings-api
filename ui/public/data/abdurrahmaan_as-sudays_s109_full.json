@@ -1,0 +1,362 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "/Users/atlantic/Developer/quran-audio-data/samples/audio/abdurrahmaan_as-sudays_109.mp3",
+    "duration_s": 31.022448979591836,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdurrahmaan_as-sudays",
+    "surah": 109,
+    "input_mode": "full_surah"
+  },
+  "engine": {
+    "name": "nemo",
+    "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+    "device": "cpu",
+    "fallback_used": false
+  },
+  "ayahs": [
+    {
+      "surah": 109,
+      "ayah": 1,
+      "start_s": 0.24,
+      "end_s": 7.12,
+      "source": "aligned"
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "start_s": 7.44,
+      "end_s": 10.0,
+      "source": "aligned"
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "start_s": 11.36,
+      "end_s": 15.44,
+      "source": "aligned"
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "start_s": 16.16,
+      "end_s": 20.0,
+      "source": "aligned"
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "start_s": 20.8,
+      "end_s": 25.12,
+      "source": "aligned"
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "start_s": 25.36,
+      "end_s": 28.88,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 109,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلۡ",
+      "text_norm": "قل",
+      "start_s": 0.24,
+      "end_s": 0.32,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَـٰۤأَیُّهَا",
+      "text_norm": "یایها",
+      "start_s": 0.8,
+      "end_s": 5.84,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡكَـٰفِرُونَ",
+      "text_norm": "الكفرون",
+      "start_s": 6.16,
+      "end_s": 7.12,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لَاۤ",
+      "text_norm": "لا",
+      "start_s": 7.44,
+      "end_s": 7.5200000000000005,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعۡبُدُ",
+      "text_norm": "اعبد",
+      "start_s": 7.84,
+      "end_s": 8.56,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مَا",
+      "text_norm": "ما",
+      "start_s": 8.72,
+      "end_s": 8.8,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 7,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "تَعۡبُدُونَ",
+      "text_norm": "تعبدون",
+      "start_s": 9.120000000000001,
+      "end_s": 10.0,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَاۤ",
+      "text_norm": "ولا",
+      "start_s": 11.36,
+      "end_s": 11.44,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنتُمۡ",
+      "text_norm": "انتم",
+      "start_s": 11.92,
+      "end_s": 12.88,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَـٰبِدُونَ",
+      "text_norm": "عبدون",
+      "start_s": 13.120000000000001,
+      "end_s": 14.08,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 11,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَاۤ",
+      "text_norm": "ما",
+      "start_s": 14.4,
+      "end_s": 14.48,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 12,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَعۡبُدُ",
+      "text_norm": "اعبد",
+      "start_s": 14.8,
+      "end_s": 15.44,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 13,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَاۤ",
+      "text_norm": "ولا",
+      "start_s": 16.16,
+      "end_s": 16.240000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 14,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنَا۠",
+      "text_norm": "انا",
+      "start_s": 16.64,
+      "end_s": 16.96,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 15,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَابِدࣱ",
+      "text_norm": "عابدࣱ",
+      "start_s": 17.2,
+      "end_s": 18.080000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 16,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَّا",
+      "text_norm": "ما",
+      "start_s": 18.48,
+      "end_s": 18.64,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 17,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "عَبَدتُّمۡ",
+      "text_norm": "عبدتم",
+      "start_s": 18.96,
+      "end_s": 20.0,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 18,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَاۤ",
+      "text_norm": "ولا",
+      "start_s": 20.8,
+      "end_s": 20.88,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 19,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنتُمۡ",
+      "text_norm": "انتم",
+      "start_s": 21.44,
+      "end_s": 22.400000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 20,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَـٰبِدُونَ",
+      "text_norm": "عبدون",
+      "start_s": 22.64,
+      "end_s": 23.68,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 21,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَاۤ",
+      "text_norm": "ما",
+      "start_s": 23.92,
+      "end_s": 24.0,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 22,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَعۡبُدُ",
+      "text_norm": "اعبد",
+      "start_s": 24.400000000000002,
+      "end_s": 25.12,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 23,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لَكُمۡ",
+      "text_norm": "لكم",
+      "start_s": 25.36,
+      "end_s": 25.44,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 24,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "دِینُكُمۡ",
+      "text_norm": "دینكم",
+      "start_s": 26.080000000000002,
+      "end_s": 26.96,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 25,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَلِیَ",
+      "text_norm": "ولی",
+      "start_s": 27.6,
+      "end_s": 28.16,
+      "confidence": null
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 26,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "دِینِ",
+      "text_norm": "دین",
+      "start_s": 28.48,
+      "end_s": 28.88,
+      "confidence": null
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": false,
+    "warnings": [
+      "Audio duration mismatch ratio 0.069 exceeds 0.030"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null
+  }
+}

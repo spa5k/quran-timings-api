@@ -1,0 +1,227 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "/Users/atlantic/Developer/quran-audio-data/samples/audio/abdurrahmaan_as-sudays_112.mp3",
+    "duration_s": 17.69047619047619,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdurrahmaan_as-sudays",
+    "surah": 112,
+    "input_mode": "full_surah"
+  },
+  "engine": {
+    "name": "nemo",
+    "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+    "device": "cpu",
+    "fallback_used": false
+  },
+  "ayahs": [
+    {
+      "surah": 112,
+      "ayah": 1,
+      "start_s": 4.4,
+      "end_s": 6.5600000000000005,
+      "source": "aligned"
+    },
+    {
+      "surah": 112,
+      "ayah": 2,
+      "start_s": 7.84,
+      "end_s": 9.36,
+      "source": "aligned"
+    },
+    {
+      "surah": 112,
+      "ayah": 3,
+      "start_s": 10.0,
+      "end_s": 12.32,
+      "source": "aligned"
+    },
+    {
+      "surah": 112,
+      "ayah": 4,
+      "start_s": 12.56,
+      "end_s": 16.080000000000002,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 112,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلۡ",
+      "text_norm": "قل",
+      "start_s": 4.4,
+      "end_s": 4.48,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "هُوَ",
+      "text_norm": "هو",
+      "start_s": 4.88,
+      "end_s": 4.96,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱللَّهُ",
+      "text_norm": "الله",
+      "start_s": 5.44,
+      "end_s": 5.5200000000000005,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "أَحَدٌ",
+      "text_norm": "احد",
+      "start_s": 6.24,
+      "end_s": 6.5600000000000005,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ٱللَّهُ",
+      "text_norm": "الله",
+      "start_s": 7.84,
+      "end_s": 7.92,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلصَّمَدُ",
+      "text_norm": "الصمد",
+      "start_s": 8.64,
+      "end_s": 9.36,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لَمۡ",
+      "text_norm": "لم",
+      "start_s": 10.0,
+      "end_s": 10.08,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَلِدۡ",
+      "text_norm": "یلد",
+      "start_s": 10.32,
+      "end_s": 10.8,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَلَمۡ",
+      "text_norm": "ولم",
+      "start_s": 11.040000000000001,
+      "end_s": 11.120000000000001,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "یُولَدۡ",
+      "text_norm": "یولد",
+      "start_s": 11.68,
+      "end_s": 12.32,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 4,
+      "word_index_global": 11,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَمۡ",
+      "text_norm": "ولم",
+      "start_s": 12.56,
+      "end_s": 12.64,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 4,
+      "word_index_global": 12,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَكُن",
+      "text_norm": "یكن",
+      "start_s": 13.200000000000001,
+      "end_s": 13.84,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 4,
+      "word_index_global": 13,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "لَّهُۥ",
+      "text_norm": "له",
+      "start_s": 14.0,
+      "end_s": 14.08,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 4,
+      "word_index_global": 14,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "كُفُوًا",
+      "text_norm": "كفوا",
+      "start_s": 14.64,
+      "end_s": 15.36,
+      "confidence": null
+    },
+    {
+      "surah": 112,
+      "ayah": 4,
+      "word_index_global": 15,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَحَدُۢ",
+      "text_norm": "احد",
+      "start_s": 15.84,
+      "end_s": 16.080000000000002,
+      "confidence": null
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": false,
+    "warnings": [
+      "Audio duration mismatch ratio 0.091 exceeds 0.030"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null
+  }
+}

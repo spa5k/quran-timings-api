@@ -1,0 +1,296 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "/Users/atlantic/Developer/quran-audio-data/samples/audio/abdurrahmaan_as-sudays_114.mp3",
+    "duration_s": 30.766054421768708,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdurrahmaan_as-sudays",
+    "surah": 114,
+    "input_mode": "full_surah"
+  },
+  "engine": {
+    "name": "nemo",
+    "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+    "device": "cpu",
+    "fallback_used": false
+  },
+  "ayahs": [
+    {
+      "surah": 114,
+      "ayah": 1,
+      "start_s": 4.24,
+      "end_s": 6.8,
+      "source": "aligned"
+    },
+    {
+      "surah": 114,
+      "ayah": 2,
+      "start_s": 7.6000000000000005,
+      "end_s": 8.88,
+      "source": "aligned"
+    },
+    {
+      "surah": 114,
+      "ayah": 3,
+      "start_s": 9.76,
+      "end_s": 11.120000000000001,
+      "source": "aligned"
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "start_s": 13.52,
+      "end_s": 18.0,
+      "source": "aligned"
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "start_s": 19.52,
+      "end_s": 23.2,
+      "source": "aligned"
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "start_s": 24.32,
+      "end_s": 28.64,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلۡ",
+      "text_norm": "قل",
+      "start_s": 4.24,
+      "end_s": 4.32,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعُوذُ",
+      "text_norm": "اعوذ",
+      "start_s": 4.64,
+      "end_s": 5.28,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "بِرَبِّ",
+      "text_norm": "برب",
+      "start_s": 5.44,
+      "end_s": 5.92,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 6.72,
+      "end_s": 6.8,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مَلِكِ",
+      "text_norm": "ملك",
+      "start_s": 7.6000000000000005,
+      "end_s": 8.08,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 8.8,
+      "end_s": 8.88,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِلَـٰهِ",
+      "text_norm": "اله",
+      "start_s": 9.76,
+      "end_s": 10.4,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 11.040000000000001,
+      "end_s": 11.120000000000001,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 9,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مِن",
+      "text_norm": "من",
+      "start_s": 13.52,
+      "end_s": 13.6,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 10,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَرِّ",
+      "text_norm": "شر",
+      "start_s": 14.16,
+      "end_s": 14.24,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 11,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡوَسۡوَاسِ",
+      "text_norm": "الوسواس",
+      "start_s": 14.96,
+      "end_s": 16.0,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 12,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡخَنَّاسِ",
+      "text_norm": "الخناس",
+      "start_s": 16.4,
+      "end_s": 18.0,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 13,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ٱلَّذِی",
+      "text_norm": "الذی",
+      "start_s": 19.52,
+      "end_s": 20.0,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 14,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یُوَسۡوِسُ",
+      "text_norm": "یوسوس",
+      "start_s": 20.16,
+      "end_s": 21.04,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 15,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فِی",
+      "text_norm": "فی",
+      "start_s": 21.36,
+      "end_s": 21.52,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 16,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "صُدُورِ",
+      "text_norm": "صدور",
+      "start_s": 21.76,
+      "end_s": 22.400000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 17,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 23.12,
+      "end_s": 23.2,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "word_index_global": 18,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مِنَ",
+      "text_norm": "من",
+      "start_s": 24.32,
+      "end_s": 24.400000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "word_index_global": 19,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡجِنَّةِ",
+      "text_norm": "الجنة",
+      "start_s": 24.96,
+      "end_s": 26.16,
+      "confidence": null
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "word_index_global": 20,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَٱلنَّاسِ",
+      "text_norm": "والناس",
+      "start_s": 26.560000000000002,
+      "end_s": 28.64,
+      "confidence": null
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": false,
+    "warnings": [
+      "Audio duration mismatch ratio 0.069 exceeds 0.030"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null
+  }
+}
