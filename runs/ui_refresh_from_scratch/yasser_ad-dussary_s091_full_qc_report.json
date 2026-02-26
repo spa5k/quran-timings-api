@@ -1,0 +1,18 @@
+{
+  "coverage": 1.0,
+  "monotonic": true,
+  "duration_match": true,
+  "warnings": [
+    "boundary_refinement_applied"
+  ],
+  "zero_or_negative_ratio": 0.0,
+  "median_confidence": null,
+  "interpolated_ratio": 0.0,
+  "lexical_match_ratio": 1.0,
+  "speech_end_delta_ratio": 0.008035082186837577,
+  "quantization_step_ms": 548.4375000000019,
+  "engine_candidate_scores": {
+    "nemo": 164.57559993269706,
+    "mfa": 164.07612002417244
+  }
+}

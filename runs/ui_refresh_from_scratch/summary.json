@@ -1,0 +1,9 @@
+{
+  "total": 125,
+  "succeeded": 124,
+  "failed": 1,
+  "elapsed_s": 6090.89,
+  "out_dir": "/Users/atlantic/Developer/quran-audio-data/runs/ui_refresh_from_scratch",
+  "log_path": "/Users/atlantic/Developer/quran-audio-data/runs/ui_refresh_from_scratch/run.log",
+  "failed_rows_path": "/Users/atlantic/Developer/quran-audio-data/runs/ui_refresh_from_scratch/failed_rows.csv"
+}

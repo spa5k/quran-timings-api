@@ -1,0 +1,13 @@
+{
+  "coverage": 1.0,
+  "monotonic": true,
+  "duration_match": true,
+  "warnings": [],
+  "zero_or_negative_ratio": 0.0,
+  "median_confidence": null,
+  "interpolated_ratio": 0.0,
+  "lexical_match_ratio": null,
+  "speech_end_delta_ratio": 0.010897047409936213,
+  "quantization_step_ms": 399.9999999999986,
+  "engine_candidate_scores": {}
+}

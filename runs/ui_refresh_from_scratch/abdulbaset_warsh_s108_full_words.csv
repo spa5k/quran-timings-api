@@ -1,0 +1,11 @@
+surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
+108,1,1,إِنَّاۤ,7.117,8.531,,native,100.0,nemo
+108,1,2,أَعۡطَیۡنَـٰكَ,10.386,11.608,,native,100.0,nemo
+108,1,3,ٱلۡكَوۡثَرَ,12.019,12.467,,native,100.0,nemo
+108,2,1,فَصَلِّ,13.795,14.147,,native,100.0,nemo
+108,2,2,لِرَبِّكَ,14.667,15.518,,native,100.0,nemo
+108,2,3,وَٱنۡحَرۡ,15.879,16.403,,native,100.0,nemo
+108,3,1,إِنَّ,17.964,18.279,,native,100.0,nemo
+108,3,2,شَانِئَكَ,19.097,19.934,,native,100.0,nemo
+108,3,3,هُوَ,20.166,20.186,,native,100.0,nemo
+108,3,4,ٱلۡأَبۡتَرُ,20.59,21.465,,native,100.0,nemo
