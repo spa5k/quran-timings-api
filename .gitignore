@@ -11,3 +11,4 @@ wheels/
 
 # Runtime artifacts
 .cache/
+samples/audio/

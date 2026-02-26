@@ -1,0 +1,264 @@
+{
+  "schema_version": "v1",
+  "audio": {
+    "path": "/Users/atlantic/Developer/quran-audio-data/samples/audio/abdulbaset_warsh_110.mp3",
+    "duration_s": 32.636802721088436,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "meta": {
+    "reciter_id": "abdulbaset_warsh",
+    "surah": 110,
+    "input_mode": "full_surah"
+  },
+  "engine": {
+    "name": "nemo",
+    "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+    "device": "cpu",
+    "fallback_used": false
+  },
+  "ayahs": [
+    {
+      "surah": 110,
+      "ayah": 1,
+      "start_s": 6.24,
+      "end_s": 11.28,
+      "source": "aligned"
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "start_s": 13.200000000000001,
+      "end_s": 20.0,
+      "source": "aligned"
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "start_s": 21.44,
+      "end_s": 29.76,
+      "source": "aligned"
+    }
+  ],
+  "words": [
+    {
+      "surah": 110,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِذَا",
+      "text_norm": "اذا",
+      "start_s": 6.24,
+      "end_s": 6.640000000000001,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "جَاۤءَ",
+      "text_norm": "جاء",
+      "start_s": 6.88,
+      "end_s": 9.040000000000001,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "نَصۡرُ",
+      "text_norm": "نصر",
+      "start_s": 9.36,
+      "end_s": 9.76,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱللَّهِ",
+      "text_norm": "الله",
+      "start_s": 10.16,
+      "end_s": 10.24,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 1,
+      "word_index_global": 5,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "وَٱلۡفَتۡحُ",
+      "text_norm": "والفتح",
+      "start_s": 10.8,
+      "end_s": 11.28,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَرَأَیۡتَ",
+      "text_norm": "ورایت",
+      "start_s": 13.200000000000001,
+      "end_s": 14.08,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "word_index_global": 7,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلنَّاسَ",
+      "text_norm": "الناس",
+      "start_s": 14.88,
+      "end_s": 14.96,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "word_index_global": 8,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "یَدۡخُلُونَ",
+      "text_norm": "یدخلون",
+      "start_s": 15.76,
+      "end_s": 16.8,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "word_index_global": 9,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "فِی",
+      "text_norm": "فی",
+      "start_s": 17.04,
+      "end_s": 17.2,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "word_index_global": 10,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "دِینِ",
+      "text_norm": "دین",
+      "start_s": 17.44,
+      "end_s": 17.92,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "word_index_global": 11,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "ٱللَّهِ",
+      "text_norm": "الله",
+      "start_s": 18.16,
+      "end_s": 18.240000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 2,
+      "word_index_global": 12,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "أَفۡوَاجࣰا",
+      "text_norm": "افواجࣰا",
+      "start_s": 18.8,
+      "end_s": 20.0,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "word_index_global": 13,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَسَبِّحۡ",
+      "text_norm": "فسبح",
+      "start_s": 21.44,
+      "end_s": 22.400000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "word_index_global": 14,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "بِحَمۡدِ",
+      "text_norm": "بحمد",
+      "start_s": 22.56,
+      "end_s": 23.04,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "word_index_global": 15,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "رَبِّكَ",
+      "text_norm": "ربك",
+      "start_s": 23.44,
+      "end_s": 24.080000000000002,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "word_index_global": 16,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "وَٱسۡتَغۡفِرۡهُۚ",
+      "text_norm": "واستغفره",
+      "start_s": 24.240000000000002,
+      "end_s": 25.52,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "word_index_global": 17,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "إِنَّهُۥ",
+      "text_norm": "انه",
+      "start_s": 26.64,
+      "end_s": 27.92,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "word_index_global": 18,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "كَانَ",
+      "text_norm": "كان",
+      "start_s": 28.240000000000002,
+      "end_s": 28.32,
+      "confidence": null
+    },
+    {
+      "surah": 110,
+      "ayah": 3,
+      "word_index_global": 19,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "تَوَّابَۢا",
+      "text_norm": "توابا",
+      "start_s": 28.88,
+      "end_s": 29.76,
+      "confidence": null
+    }
+  ],
+  "qc": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": false,
+    "warnings": [
+      "Audio duration mismatch ratio 0.088 exceeds 0.030"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null
+  }
+}
