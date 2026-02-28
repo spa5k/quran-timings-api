@@ -169,6 +169,8 @@ def normalize_arabic(text: str) -> str:
     for src, dst in replacements.items():
         value = value.replace(src, dst)
 
+    # Normalize Quranic combining marks that are outside the explicit regex ranges.
+    value = "".join(ch for ch in value if not unicodedata.combining(ch))
     value = _MULTISPACE.sub(" ", value).strip()
     return value
 

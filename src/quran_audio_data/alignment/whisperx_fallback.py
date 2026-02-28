@@ -256,20 +256,22 @@ def _interpolate_slot(
     else:
         right = max(audio_duration_s, predicted_words[-1].end_s)
 
-    gap_count = (next_i - prev_i - 1) if prev_i is not None and next_i is not None else total
-    gap_count = max(gap_count, 1)
-
     if prev_i is not None and next_i is not None:
+        gap_count = max(1, next_i - prev_i - 1)
         rank = index - prev_i - 1
     elif prev_i is None and next_i is not None:
+        gap_count = max(1, next_i)
         rank = index
     else:
-        rank = max(0, index - (prev_i if prev_i is not None else 0))
+        gap_count = max(1, total - (prev_i + 1 if prev_i is not None else 0))
+        rank = index - (prev_i + 1 if prev_i is not None else 0)
 
     width = max(0.0, right - left)
     slot = width / gap_count
     start_s = left + (rank * slot)
     end_s = left + ((rank + 1) * slot)
+    if end_s < start_s:
+        end_s = start_s
     return start_s, end_s
 
 

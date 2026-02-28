@@ -148,6 +148,9 @@ def validate_external_timing(
     expected_word_count: int,
     audio_duration_s: float,
     max_duration_delta_ratio: float = 0.03,
+    max_interpolated_ratio: float = 0.25,
+    min_lexical_match_ratio: float = 0.85,
+    require_lexical_scores: bool = True,
 ) -> ExternalValidationResult:
     warnings: list[str] = []
 
@@ -179,6 +182,26 @@ def validate_external_timing(
         delta = abs(max_end - audio_duration_s) / audio_duration_s
         if delta > max_duration_delta_ratio:
             warnings.append(f"duration_mismatch_ratio:{delta:.4f}")
+
+    if words:
+        interpolated_count = sum(
+            1 for word in words if word.alignment_origin in {"interpolated", "distributed"}
+        )
+        interpolated_ratio = interpolated_count / len(words)
+        if interpolated_ratio > max_interpolated_ratio:
+            warnings.append(
+                f"interpolated_ratio:{interpolated_ratio:.4f}>{max_interpolated_ratio:.4f}"
+            )
+
+        lexical_scores = [word.match_score for word in words if word.match_score is not None]
+        if lexical_scores:
+            lexical_match_ratio = sum(1 for score in lexical_scores if score >= 70.0) / len(words)
+            if lexical_match_ratio < min_lexical_match_ratio:
+                warnings.append(
+                    f"lexical_match_ratio:{lexical_match_ratio:.4f}<{min_lexical_match_ratio:.4f}"
+                )
+        elif require_lexical_scores:
+            warnings.append("missing_lexical_scores")
 
     ok = (
         len(warnings) == 0

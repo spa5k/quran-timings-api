@@ -1,4 +1,5 @@
 from pathlib import Path
+import unicodedata
 
 from quran_audio_data.text.quran_text import QuranTextStore, normalize_arabic, tokenize_words
 
@@ -31,3 +32,9 @@ def test_word_index_mapping_is_deterministic() -> None:
 def test_normalization_handles_persian_yeh_variants() -> None:
     assert normalize_arabic("یولد") == normalize_arabic("يولد")
     assert normalize_arabic("یكن") == normalize_arabic("يكن")
+
+
+def test_normalization_removes_quranic_combining_marks() -> None:
+    normalized = normalize_arabic("هُدࣰى")
+    assert normalized == "هدي"
+    assert all(not unicodedata.combining(ch) for ch in normalized)

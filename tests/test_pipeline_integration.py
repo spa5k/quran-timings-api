@@ -9,7 +9,15 @@ import soundfile as sf
 
 import quran_audio_data.pipeline as pipeline
 from quran_audio_data.alignment.base import AlignmentOutput
-from quran_audio_data.schema import AyahTiming, WordTiming
+from quran_audio_data.schema import (
+    AudioMetadata,
+    AyahTiming,
+    EngineInfo,
+    MetaInfo,
+    QCReport,
+    TimingResult,
+    WordTiming,
+)
 from quran_audio_data.text import QuranTextStore
 
 
@@ -94,6 +102,8 @@ def _build_existing_payload(store: QuranTextStore, *, surah: int, ayah: int | No
                 "start_s": start,
                 "end_s": end,
                 "confidence": 0.99,
+                "alignment_origin": "native",
+                "match_score": 100.0,
             }
         )
 
@@ -453,6 +463,115 @@ def test_normalize_engines_always_includes_all_tracks() -> None:
     assert engines == ["nemo", "whisperx", "mfa"]
 
 
+def test_standard_mode_fails_when_all_candidates_fail_qc(tmp_path, monkeypatch) -> None:
+    monkeypatch.chdir(tmp_path)
+
+    audio = tmp_path / "all_bad.wav"
+    manifest = tmp_path / "manifest.csv"
+    out_dir = tmp_path / "out"
+
+    _write_silence_wav(audio)
+    _write_manifest(
+        manifest,
+        [
+            {
+                "audio_path": str(audio),
+                "reciter_id": "all_bad_reciter",
+                "surah": "1",
+                "ayah": "1",
+                "source_url": "",
+                "sha256": "",
+                "language": "ar",
+            }
+        ],
+    )
+
+    def _build_bad_words(canonical_words):
+        words = []
+        for idx, word in enumerate(canonical_words):
+            start = 0.6 - (idx * 0.1)
+            end = start + 0.05
+            words.append(
+                WordTiming(
+                    surah=word.surah,
+                    ayah=word.ayah,
+                    word_index_global=word.word_index_global,
+                    word_index_in_ayah=word.word_index_in_ayah,
+                    text_uthmani=word.text_uthmani,
+                    text_norm=word.text_norm,
+                    start_s=start,
+                    end_s=end,
+                    confidence=0.4,
+                    alignment_origin="native",
+                    match_score=40.0,
+                )
+            )
+        return words
+
+    class FakeNemo:
+        model_name = "fake-nemo"
+
+        def align(self, *, audio_wav_path, canonical_words, audio_duration_s, device):
+            words = _build_bad_words(canonical_words)
+            return AlignmentOutput(
+                ayahs=[AyahTiming(surah=1, ayah=1, start_s=0.0, end_s=1.0, source="aligned")],
+                words=words,
+                engine_name="nemo",
+                engine_model="fake-nemo",
+                device="cpu",
+                source="aligned",
+            )
+
+    class FakeWhisperX:
+        def align(self, *, audio_wav_path, canonical_words, audio_duration_s, device):
+            words = _build_bad_words(canonical_words)
+            return AlignmentOutput(
+                ayahs=[AyahTiming(surah=1, ayah=1, start_s=0.0, end_s=1.0, source="fallback")],
+                words=words,
+                engine_name="whisperx",
+                engine_model="fake-whisperx",
+                device="cpu",
+                source="fallback",
+            )
+
+    class FakeMFA:
+        def is_available(self) -> bool:
+            return True
+
+        def availability_error(self) -> str:
+            return ""
+
+        def align(self, *, audio_wav_path, canonical_words, audio_duration_s, device):
+            words = _build_bad_words(canonical_words)
+            return AlignmentOutput(
+                ayahs=[AyahTiming(surah=1, ayah=1, start_s=0.0, end_s=1.0, source="aligned")],
+                words=words,
+                engine_name="mfa",
+                engine_model="fake-mfa",
+                device="cpu",
+                source="aligned",
+            )
+
+    monkeypatch.setattr(pipeline, "NemoAligner", FakeNemo)
+    monkeypatch.setattr(pipeline, "WhisperXFallbackAligner", FakeWhisperX)
+    monkeypatch.setattr(pipeline, "MFAAligner", FakeMFA)
+
+    summary = pipeline.run_alignment_pipeline(
+        manifest_path=manifest,
+        out_dir=out_dir,
+        text_data=TEXT_DATA,
+        cache_dir=tmp_path / ".cache" / "timings",
+        enable_remote=False,
+        accuracy_mode="standard",
+        engine="nemo",
+        device="cpu",
+    )
+
+    assert summary.succeeded == 0
+    assert summary.failed == 1
+    assert not (out_dir / "all_bad_reciter_s001_a001.json").exists()
+
+
 def test_strict_mode_rejects_bad_refinement_and_keeps_original(tmp_path, monkeypatch) -> None:
     monkeypatch.chdir(tmp_path)
 
@@ -550,3 +669,47 @@ def test_strict_mode_rejects_bad_refinement_and_keeps_original(tmp_path, monkeyp
     payload = orjson.loads((out_dir / "strict_refine_reciter_s001_a001.json").read_bytes())
     assert payload["qc"]["zero_or_negative_ratio"] == 0.0
     assert "boundary_refinement_rejected" in payload["qc"]["warnings"]
+
+
+def test_ayah_cache_write_does_not_overwrite_surah_cache(tmp_path) -> None:
+    row = pipeline.ManifestRow(
+        audio_path=tmp_path / "sample.wav",
+        reciter_id="cache_test",
+        surah=1,
+        ayah=1,
+        source_url=None,
+        sha256=None,
+        language="ar",
+        riwaya=None,
+        text_variant=None,
+        gold_split=None,
+    )
+    result = TimingResult(
+        audio=AudioMetadata(path="sample.wav", duration_s=1.0, sample_rate=16000, channels=1),
+        meta=MetaInfo(reciter_id="cache_test", surah=1, input_mode="ayah_file"),
+        engine=EngineInfo(name="nemo", model="fake", device="cpu", fallback_used=False),
+        ayahs=[AyahTiming(surah=1, ayah=1, start_s=0.0, end_s=1.0, source="aligned")],
+        words=[
+            WordTiming(
+                surah=1,
+                ayah=1,
+                word_index_global=1,
+                word_index_in_ayah=1,
+                text_uthmani="بِسْمِ",
+                text_norm="بسم",
+                start_s=0.0,
+                end_s=0.5,
+                confidence=0.95,
+                alignment_origin="native",
+                match_score=100.0,
+                engine_candidate="nemo",
+            )
+        ],
+        qc=QCReport(coverage=1.0, monotonic=True, duration_match=True, warnings=[]),
+    )
+
+    pipeline._write_cache_result(row=row, result=result, cache_root=tmp_path / ".cache")
+
+    reciter_cache = tmp_path / ".cache" / "cache_test"
+    assert (reciter_cache / "001_001.json").exists()
+    assert not (reciter_cache / "001.json").exists()

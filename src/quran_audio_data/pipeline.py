@@ -558,53 +558,23 @@ def _process_row(
                 result.qc.warnings.append("boundary_refinement_rejected")
 
     if qc_requires_fallback(result.qc, thresholds):
-        if accuracy_mode == "strict":
-            rescue_candidates = [
-                result,
-                selected_before_refinement,
-                *candidate_results,
-            ]
-            rescue = _select_strict_rescue_candidate(
-                candidates=rescue_candidates,
-                thresholds=thresholds,
+        rescue_candidates = [
+            result,
+            selected_before_refinement,
+            *candidate_results,
+        ]
+        rescue = _select_strict_rescue_candidate(
+            candidates=rescue_candidates,
+            thresholds=thresholds,
+        )
+        if rescue is None:
+            raise PipelineError(
+                "qc_failed_after_all_candidates: " + "; ".join(result.qc.warnings)
             )
-            if rescue is not None:
-                result = rescue
-                result.qc.engine_candidate_scores = candidate_scores
-                result.qc.warnings.append("strict_rescue_selected")
-                fallback_used = result.engine.name != requested_engine
-            else:
-                raise PipelineError("strict_qc_failed: " + "; ".join(result.qc.warnings))
-        if requested_engine != "whisperx" and "whisperx" not in engines_to_try:
-            try:
-                fallback_output, _ = _align_with_engine(
-                    engine_name="whisperx",
-                    row=row,
-                    wav_path=wav_path,
-                    canonical_words=canonical_words,
-                    nemo=nemo,
-                    whisperx=whisperx,
-                    mfa=mfa,
-                    audio_duration_s=audio_info.duration_s,
-                    device=device,
-                )
-                fallback_used = True
-                result = _build_result(
-                    row=row,
-                    audio_info=audio_info,
-                    engine_name=fallback_output.engine_name,
-                    engine_model=fallback_output.engine_model,
-                    device=fallback_output.device,
-                    fallback_used=True,
-                    ayahs=fallback_output.ayahs,
-                    words=fallback_output.words,
-                    expected_word_count=len(canonical_words),
-                    speech_end_s=speech_end_s,
-                    thresholds=thresholds,
-                    candidate_scores=candidate_scores,
-                )
-            except (AlignmentError, EngineUnavailable) as exc:
-                result.qc.warnings.append(f"fallback_unavailable: {exc}")
+        result = rescue
+        result.qc.engine_candidate_scores = candidate_scores
+        result.qc.warnings.append("qc_rescue_selected")
+        fallback_used = result.engine.name != requested_engine
 
     _write_cache_result(row=row, result=result, cache_root=cache_dir)
 
@@ -1351,12 +1321,13 @@ def _write_cache_result(
     cache_dir = Path(cache_root) / row.reciter_id
     cache_dir.mkdir(parents=True, exist_ok=True)
 
-    path = cache_dir / f"{row.surah:03d}.json"
-    path.write_bytes(result.to_json_bytes())
+    if row.ayah is None:
+        surah_path = cache_dir / f"{row.surah:03d}.json"
+        surah_path.write_bytes(result.to_json_bytes())
+        return
 
-    if row.ayah is not None:
-        ayah_path = cache_dir / f"{row.surah:03d}_{row.ayah:03d}.json"
-        ayah_path.write_bytes(result.to_json_bytes())
+    ayah_path = cache_dir / f"{row.surah:03d}_{row.ayah:03d}.json"
+    ayah_path.write_bytes(result.to_json_bytes())
 
 
 def _output_stem(row: ManifestRow) -> str:
