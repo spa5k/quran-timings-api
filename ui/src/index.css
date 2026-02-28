@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Changa:wght@400;500;700&family=Amiri+Quran&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Changa:wght@400;500;700;800&family=Amiri+Quran&display=swap");
 
 :root {
-  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
   line-height: 1.4;
   font-weight: 400;
   font-synthesis: none;
@@ -9,9 +9,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --page-top: #f7f2e8;
-  --page-mid: #d9ebf0;
-  --page-bottom: #eaf4f8;
+  --page-top: #020911;
+  --page-mid: #05141e;
+  --page-bottom: #091a26;
+  color-scheme: dark;
 }
 
 * {
@@ -26,22 +27,32 @@ body {
 }
 
 body {
-  color: #10384f;
+  color: #e5edf3;
   background:
-    radial-gradient(circle at 12% 8%, rgba(255, 193, 116, 0.3), transparent 28%),
-    radial-gradient(circle at 92% 9%, rgba(95, 212, 216, 0.3), transparent 34%),
-    linear-gradient(180deg, var(--page-top) 0%, var(--page-mid) 48%, var(--page-bottom) 100%);
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(26, 115, 232, 0.15),
+      transparent 30%
+    ),
+    radial-gradient(circle at 92% 9%, rgba(0, 255, 170, 0.1), transparent 35%),
+    linear-gradient(
+      180deg,
+      var(--page-top) 0%,
+      var(--page-mid) 48%,
+      var(--page-bottom) 100%
+    );
   background-attachment: fixed;
 }
 
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 34px 34px;
-  mask-image: radial-gradient(circle at center, black 20%, transparent 100%);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
 }
