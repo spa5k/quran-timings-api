@@ -2,16 +2,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-import time
 from typing import Any
 
 import orjson
-import requests
-from requests.exceptions import RequestException
+
+from quran_audio_data.core.http import get_json_with_retry
 
 
 QURAN_COM_CHAPTER_RECITATION_URL = "https://api.quran.com/api/v4/chapter_recitations/{reciter_id}/{surah}"
-RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
 
 
 @dataclass(slots=True)
@@ -46,35 +44,6 @@ class VerseSegments:
     word_map: dict[int, tuple[float, float]]
     verse_start_s: float | None
     verse_end_s: float | None
-
-
-def _sleep_for_retry(*, attempt: int, base_seconds: float) -> None:
-    sleep_s = min(base_seconds * (2**attempt), 30.0)
-    if sleep_s > 0:
-        time.sleep(sleep_s)
-
-
-def _http_get_with_retry(
-    *,
-    url: str,
-    timeout_s: float,
-    params: dict[str, str] | None = None,
-    retries: int = 5,
-    retry_backoff_s: float = 1.0,
-) -> requests.Response:
-    for attempt in range(retries + 1):
-        try:
-            response = requests.get(url, params=params, timeout=timeout_s)
-            if response.status_code in RETRYABLE_STATUS_CODES and attempt < retries:
-                _sleep_for_retry(attempt=attempt, base_seconds=retry_backoff_s)
-                continue
-            response.raise_for_status()
-            return response
-        except RequestException:
-            if attempt >= retries:
-                raise
-            _sleep_for_retry(attempt=attempt, base_seconds=retry_backoff_s)
-    raise RuntimeError("HTTP retries exhausted")
 
 
 def _as_int(value: Any) -> int | None:
@@ -210,14 +179,13 @@ def _fetch_surah_segments(
     retry_backoff_s: float,
 ) -> dict[int, VerseSegments]:
     url = QURAN_COM_CHAPTER_RECITATION_URL.format(reciter_id=chapter_reciter_id, surah=surah)
-    response = _http_get_with_retry(
+    payload = get_json_with_retry(
         url=url,
         params={"segments": "true"},
         timeout_s=timeout_s,
         retries=request_retries,
         retry_backoff_s=retry_backoff_s,
     )
-    payload = response.json()
     if not isinstance(payload, dict):
         return {}
     audio_file = payload.get("audio_file")

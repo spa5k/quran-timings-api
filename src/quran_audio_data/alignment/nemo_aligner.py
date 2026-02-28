@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections import defaultdict
 from pathlib import Path
 import os
 import shlex
@@ -13,7 +12,9 @@ import orjson
 from rapidfuzz import fuzz
 
 from quran_audio_data.alignment.base import AlignmentOutput, AlignmentError
-from quran_audio_data.schema import AyahTiming, WordTiming
+from quran_audio_data.alignment.mapping import MappingConfig, derive_ayahs_from_words
+from quran_audio_data.core.parsing import safe_get, to_float
+from quran_audio_data.schema import WordTiming
 from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic
 
 
@@ -106,7 +107,7 @@ class NemoAligner:
                 audio_duration_s=audio_duration_s,
             )
 
-        ayahs = _derive_ayahs(words, source="aligned")
+        ayahs = derive_ayahs_from_words(words=words, source="aligned")
         return AlignmentOutput(
             ayahs=ayahs,
             words=words,
@@ -141,11 +142,11 @@ def _normalize_nemo_output(
 
     for idx, canon in enumerate(canonical_words):
         sample = raw_words[idx] if idx < len(raw_words) else None
-        start = _to_float(_safe_get(sample, "start", "start_s", "timestamp_from"))
-        end = _to_float(_safe_get(sample, "end", "end_s", "timestamp_to"))
-        sample_text_raw = _safe_get(sample, "text", "word", "token")
+        start = to_float(safe_get(sample, "start", "start_s", "timestamp_from"))
+        end = to_float(safe_get(sample, "end", "end_s", "timestamp_to"))
+        sample_text_raw = safe_get(sample, "text", "word", "token")
         sample_text_norm = normalize_arabic(str(sample_text_raw)) if sample_text_raw else None
-        raw_match_score = _to_float(_safe_get(sample, "match_score"))
+        raw_match_score = to_float(safe_get(sample, "match_score"))
         match_score = (
             raw_match_score
             if raw_match_score is not None
@@ -155,7 +156,7 @@ def _normalize_nemo_output(
                 else None
             )
         )
-        sample_origin = _safe_get(sample, "alignment_origin")
+        sample_origin = safe_get(sample, "alignment_origin")
 
         if start is None or end is None:
             start, end = _distributed_slot(audio_duration_s, count, idx)
@@ -177,7 +178,7 @@ def _normalize_nemo_output(
                 text_norm=canon.text_norm,
                 start_s=start,
                 end_s=end,
-                confidence=_to_float(_safe_get(sample, "confidence", "score")),
+                confidence=to_float(safe_get(sample, "confidence", "score")),
                 alignment_origin=origin,
                 match_score=match_score,
                 engine_candidate="nemo",
@@ -185,28 +186,6 @@ def _normalize_nemo_output(
         )
 
     return mapped
-
-
-def _derive_ayahs(words: list[WordTiming], *, source: str) -> list[AyahTiming]:
-    by_ayah: dict[tuple[int, int], list[WordTiming]] = defaultdict(list)
-    for word in words:
-        by_ayah[(word.surah, word.ayah)].append(word)
-
-    ayahs: list[AyahTiming] = []
-    for (surah, ayah), group in sorted(by_ayah.items(), key=lambda item: (item[0][0], item[0][1])):
-        start_s = min(item.start_s for item in group)
-        end_s = max(item.end_s for item in group)
-        ayahs.append(
-            AyahTiming(
-                surah=surah,
-                ayah=ayah,
-                start_s=start_s,
-                end_s=end_s,
-                source=source,
-            )
-        )
-    return ayahs
-
 
 def _resolve_device(device: str) -> str:
     if device in {"cpu", "cuda"}:
@@ -217,25 +196,6 @@ def _resolve_device(device: str) -> str:
         return "cuda" if torch.cuda.is_available() else "cpu"
     except Exception:
         return "cpu"
-
-
-def _safe_get(obj: Any, *keys: str) -> Any:
-    if not isinstance(obj, dict):
-        return None
-    for key in keys:
-        if key in obj:
-            return obj[key]
-    return None
-
-
-def _to_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        return float(value)
-    except (TypeError, ValueError):
-        return None
-
 
 def _distributed_slot(duration_s: float, count: int, idx: int) -> tuple[float, float]:
     if count <= 0:

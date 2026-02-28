@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections import defaultdict
 from pathlib import Path
 import os
 import shlex
@@ -10,10 +9,18 @@ import tempfile
 from typing import Any
 
 import orjson
-from rapidfuzz import fuzz
 
 from quran_audio_data.alignment.base import AlignmentOutput, AlignmentError, EngineUnavailable
-from quran_audio_data.schema import AyahTiming, WordTiming
+from quran_audio_data.alignment.mapping import (
+    MappingConfig,
+    PredictionSpan,
+    derive_ayahs_from_words,
+    interpolate_slot,
+    map_canonical_words,
+    to_prediction_spans,
+)
+from quran_audio_data.core.parsing import to_float
+from quran_audio_data.schema import WordTiming
 from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic
 
 
@@ -197,7 +204,7 @@ class MFAAligner:
                 audio_duration_s=audio_duration_s,
             )
 
-        ayahs = _derive_ayahs(words, source="aligned")
+        ayahs = derive_ayahs_from_words(words=words, source="aligned")
         return AlignmentOutput(
             ayahs=ayahs,
             words=words,
@@ -271,8 +278,8 @@ def _extract_mfa_words(payload: Any) -> list[tuple[str, float, float]]:
                         for entry in entries:
                             if not isinstance(entry, list) or len(entry) < 3:
                                 continue
-                            begin_f = _to_float(entry[0])
-                            end_f = _to_float(entry[1])
+                            begin_f = to_float(entry[0])
+                            end_f = to_float(entry[1])
                             label = str(entry[2]).strip() if entry[2] is not None else ""
                             if label and label != "<eps>" and begin_f is not None and end_f is not None:
                                 words.append((label, begin_f, end_f))
@@ -282,8 +289,8 @@ def _extract_mfa_words(payload: Any) -> list[tuple[str, float, float]]:
             end = node.get("end") or node.get("stop") or node.get("xmax")
 
             if isinstance(label, str) and label.strip() and label.strip() != "<eps>":
-                begin_f = _to_float(begin)
-                end_f = _to_float(end)
+                begin_f = to_float(begin)
+                end_f = to_float(end)
                 if begin_f is not None and end_f is not None:
                     words.append((label.strip(), begin_f, end_f))
 
@@ -306,71 +313,26 @@ def _map_words(
     predicted_words: list[tuple[str, float, float]],
     audio_duration_s: float,
 ) -> list[WordTiming]:
-    matched_idx: dict[int, int] = {}
-    matched_scores: dict[int, float] = {}
-    cursor = 0
-
-    norm_predicted = [
-        (normalize_arabic(text), start_s, end_s)
-        for text, start_s, end_s in predicted_words
-    ]
-
-    for index, canon in enumerate(canonical_words):
-        best_j: int | None = None
-        best_score = -1.0
-
-        search_end = min(len(norm_predicted), cursor + 24)
-        for predicted_index in range(cursor, search_end):
-            text_norm, _, _ = norm_predicted[predicted_index]
-            score = fuzz.ratio(canon.text_norm, text_norm)
-            if score > best_score:
-                best_score = score
-                best_j = predicted_index
-            if score >= 99:
-                break
-
-        if best_j is not None and best_score >= 55:
-            matched_idx[index] = best_j
-            matched_scores[index] = float(best_score)
-            cursor = best_j + 1
-
-    mapped: list[WordTiming] = []
-    total = len(canonical_words)
-    for index, canon in enumerate(canonical_words):
-        pred_index = matched_idx.get(index)
-        if pred_index is not None:
-            _, start_s, end_s = norm_predicted[pred_index]
-            alignment_origin = "native"
-            match_score = matched_scores.get(index)
-        else:
-            start_s, end_s = _interpolate_slot(
-                index=index,
-                total=total,
-                matched_idx=matched_idx,
-                predicted_words=norm_predicted,
-                audio_duration_s=audio_duration_s,
-            )
-            alignment_origin = "interpolated"
-            match_score = None
-
-        mapped.append(
-            WordTiming(
-                surah=canon.surah,
-                ayah=canon.ayah,
-                word_index_global=canon.word_index_global,
-                word_index_in_ayah=canon.word_index_in_ayah,
-                text_uthmani=canon.text_uthmani,
-                text_norm=canon.text_norm,
-                start_s=start_s,
-                end_s=end_s,
-                confidence=None,
-                alignment_origin=alignment_origin,
-                match_score=match_score,
-                engine_candidate="mfa",
-            )
-        )
-
-    return mapped
+    spans = to_prediction_spans(
+        predicted_words=predicted_words,
+        text_getter=lambda item: normalize_arabic(item[0]),
+        start_getter=lambda item: item[1],
+        end_getter=lambda item: item[2],
+        confidence_getter=lambda _item: None,
+    )
+    return map_canonical_words(
+        canonical_words=canonical_words,
+        predicted_words=spans,
+        audio_duration_s=audio_duration_s,
+        config=MappingConfig(
+            engine_candidate="mfa",
+            search_window=24,
+            exact_break_score=99.0,
+            min_match_score=55.0,
+            matched_origin="native",
+            unmatched_origin="interpolated",
+        ),
+    )
 
 
 def _interpolate_slot(
@@ -381,63 +343,20 @@ def _interpolate_slot(
     predicted_words: list[tuple[str, float, float]],
     audio_duration_s: float,
 ) -> tuple[float, float]:
-    prev_i = max((i for i in matched_idx if i < index), default=None)
-    next_i = min((i for i in matched_idx if i > index), default=None)
-
-    if prev_i is not None:
-        left = predicted_words[matched_idx[prev_i]][2]
-    else:
-        left = 0.0
-
-    if next_i is not None:
-        right = predicted_words[matched_idx[next_i]][1]
-    else:
-        right = max(audio_duration_s, predicted_words[-1][2])
-
-    if prev_i is not None and next_i is not None:
-        gap_count = max(1, next_i - prev_i - 1)
-        rank = index - prev_i - 1
-    elif prev_i is None and next_i is not None:
-        gap_count = max(1, next_i)
-        rank = index
-    else:
-        gap_count = max(1, total - (prev_i + 1 if prev_i is not None else 0))
-        rank = index - (prev_i + 1 if prev_i is not None else 0)
-
-    width = max(0.0, right - left)
-    slot = width / gap_count
-    start_s = left + (rank * slot)
-    end_s = left + ((rank + 1) * slot)
-    if end_s < start_s:
-        end_s = start_s
-    return start_s, end_s
-
-
-def _derive_ayahs(words: list[WordTiming], *, source: str) -> list[AyahTiming]:
-    by_ayah: dict[tuple[int, int], list[WordTiming]] = defaultdict(list)
-    for word in words:
-        by_ayah[(word.surah, word.ayah)].append(word)
-
-    ayahs: list[AyahTiming] = []
-    for (surah, ayah), group in sorted(by_ayah.items(), key=lambda item: (item[0][0], item[0][1])):
-        start_s = min(item.start_s for item in group)
-        end_s = max(item.end_s for item in group)
-        ayahs.append(
-            AyahTiming(
-                surah=surah,
-                ayah=ayah,
-                start_s=start_s,
-                end_s=end_s,
-                source=source,
-            )
+    spans = [
+        PredictionSpan(
+            prediction=item,
+            text_norm=item[0],
+            start_s=item[1],
+            end_s=item[2],
+            confidence=None,
         )
-    return ayahs
-
-
-def _to_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        return float(value)
-    except (TypeError, ValueError):
-        return None
+        for item in predicted_words
+    ]
+    return interpolate_slot(
+        index=index,
+        total=total,
+        matched_idx=matched_idx,
+        predicted_words=spans,
+        audio_duration_s=audio_duration_s,
+    )

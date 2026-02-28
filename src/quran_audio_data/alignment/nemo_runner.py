@@ -3,13 +3,20 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import argparse
-import math
 from typing import Any
 
 import orjson
 import soundfile as sf
-from rapidfuzz import fuzz
 
+from quran_audio_data.alignment.mapping import (
+    MappingConfig,
+    PredictionSpan,
+    interpolate_slot as shared_interpolate_slot,
+    map_canonical_words,
+    to_prediction_spans,
+)
+from quran_audio_data.core.parsing import to_float
+from quran_audio_data.text import CanonicalWord
 from quran_audio_data.text import normalize_arabic
 
 
@@ -212,68 +219,51 @@ def map_reference_words(
     predicted_words: list[PredictedWord],
     audio_duration_s: float,
 ) -> list[dict[str, Any]]:
-    transcript_norm = [normalize_arabic(word) for word in transcript_words]
-
     if not predicted_words:
         return build_uniform_words(transcript_words=transcript_words, audio_duration_s=audio_duration_s)
 
-    matched: dict[int, int] = {}
-    matched_scores: dict[int, float] = {}
-    cursor = 0
-
-    for i, ref in enumerate(transcript_norm):
-        best_j: int | None = None
-        best_score = -1.0
-
-        search_end = min(len(predicted_words), cursor + 24)
-        for j in range(cursor, search_end):
-            pred = predicted_words[j]
-            score = fuzz.ratio(ref, pred.text_norm)
-            if score > best_score:
-                best_score = score
-                best_j = j
-            if score >= 99:
-                break
-
-        if best_j is not None and best_score >= 55:
-            matched[i] = best_j
-            matched_scores[i] = float(best_score)
-            cursor = best_j + 1
-
-    output: list[dict[str, Any]] = []
-    for i, word in enumerate(transcript_words):
-        j = matched.get(i)
-        if j is not None:
-            pred = predicted_words[j]
-            start_s = pred.start_s
-            end_s = pred.end_s
-            confidence = pred.confidence
-            origin = "native"
-            match_score = matched_scores.get(i)
-        else:
-            start_s, end_s = interpolate_slot(
-                index=i,
-                total=len(transcript_words),
-                matched_idx=matched,
-                predicted_words=predicted_words,
-                audio_duration_s=audio_duration_s,
-            )
-            confidence = None
-            origin = "interpolated"
-            match_score = None
-
-        output.append(
-            {
-                "text": word,
-                "start": max(0.0, float(start_s)),
-                "end": max(0.0, float(end_s)),
-                "confidence": confidence,
-                "alignment_origin": origin,
-                "match_score": match_score,
-            }
+    canonical_words = [
+        CanonicalWord(
+            surah=1,
+            ayah=1,
+            word_index_global=index,
+            word_index_in_ayah=index,
+            text_uthmani=word,
+            text_norm=normalize_arabic(word),
         )
-
-    return output
+        for index, word in enumerate(transcript_words, start=1)
+    ]
+    prediction_spans = to_prediction_spans(
+        predicted_words=predicted_words,
+        text_getter=lambda item: item.text_norm,
+        start_getter=lambda item: item.start_s,
+        end_getter=lambda item: item.end_s,
+        confidence_getter=lambda item: item.confidence,
+    )
+    mapped = map_canonical_words(
+        canonical_words=canonical_words,
+        predicted_words=prediction_spans,
+        audio_duration_s=audio_duration_s,
+        config=MappingConfig(
+            engine_candidate="nemo",
+            search_window=24,
+            exact_break_score=99.0,
+            min_match_score=55.0,
+            matched_origin="native",
+            unmatched_origin="interpolated",
+        ),
+    )
+    return [
+        {
+            "text": item.text_uthmani,
+            "start": max(0.0, float(item.start_s)),
+            "end": max(0.0, float(item.end_s)),
+            "confidence": item.confidence,
+            "alignment_origin": item.alignment_origin,
+            "match_score": item.match_score,
+        }
+        for item in mapped
+    ]
 
 
 def build_uniform_words(*, transcript_words: list[str], audio_duration_s: float) -> list[dict[str, Any]]:
@@ -302,48 +292,23 @@ def interpolate_slot(
     predicted_words: list[PredictedWord],
     audio_duration_s: float,
 ) -> tuple[float, float]:
-    prev_i = max((i for i in matched_idx if i < index), default=None)
-    next_i = min((i for i in matched_idx if i > index), default=None)
-
-    if prev_i is not None:
-        left = predicted_words[matched_idx[prev_i]].end_s
-    else:
-        left = 0.0
-
-    if next_i is not None:
-        right = predicted_words[matched_idx[next_i]].start_s
-    else:
-        right = max(audio_duration_s, predicted_words[-1].end_s)
-
-    if prev_i is not None and next_i is not None:
-        gap_count = max(1, next_i - prev_i - 1)
-        rank = index - prev_i - 1
-    elif prev_i is None and next_i is not None:
-        gap_count = max(1, next_i)
-        rank = index
-    else:
-        gap_count = max(1, total - (prev_i + 1 if prev_i is not None else 0))
-        rank = index - (prev_i + 1 if prev_i is not None else 0)
-
-    width = max(0.0, right - left)
-    slot = width / gap_count
-    start_s = left + (rank * slot)
-    end_s = left + ((rank + 1) * slot)
-    if end_s < start_s:
-        end_s = start_s
-    return start_s, end_s
-
-
-def to_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        out = float(value)
-        if not math.isfinite(out):
-            return None
-        return out
-    except (TypeError, ValueError):
-        return None
+    spans = [
+        PredictionSpan(
+            prediction=item,
+            text_norm=item.text_norm,
+            start_s=item.start_s,
+            end_s=item.end_s,
+            confidence=item.confidence,
+        )
+        for item in predicted_words
+    ]
+    return shared_interpolate_slot(
+        index=index,
+        total=total,
+        matched_idx=matched_idx,
+        predicted_words=spans,
+        audio_duration_s=audio_duration_s,
+    )
 
 
 if __name__ == "__main__":

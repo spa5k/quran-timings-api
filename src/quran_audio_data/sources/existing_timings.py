@@ -5,11 +5,11 @@ from pathlib import Path
 from typing import Any
 
 import orjson
-import requests
-from rapidfuzz import fuzz
 
+from quran_audio_data.core.http import get_json_or_none
+from quran_audio_data.sources.adapters import normalize_payload_with_adapters
 from quran_audio_data.schema import AyahTiming, WordTiming
-from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic
+from quran_audio_data.text.quran_text import CanonicalWord
 
 
 @dataclass(slots=True)
@@ -73,20 +73,22 @@ class ExistingTimingResolver:
         for source_name, payload in candidates:
             if payload is None:
                 continue
-            normalized = _normalize_payload_to_schema(
+            normalized = normalize_payload_with_adapters(
                 payload=payload,
                 canonical_words=canonical_words,
+                source_name=source_name,
                 source_default="existing",
             )
             if normalized is None:
                 continue
 
-            ayahs, words = normalized
+            ayahs, words = normalized.ayahs, normalized.words
             validation = validate_external_timing(
                 ayahs=ayahs,
                 words=words,
                 expected_word_count=expected_word_count,
                 audio_duration_s=audio_duration_s,
+                require_lexical_scores=not source_name.startswith("qf:"),
             )
             if validation.ok:
                 return ResolvedTiming(
@@ -114,16 +116,25 @@ class ExistingTimingResolver:
                 candidates.append((f"cache:{file_path}", payload))
 
         if source_url and self.enable_remote:
-            candidates.append((f"source_url:{source_url}", _http_get_json(source_url, timeout_s=self.timeout_s)))
+            candidates.append(
+                (
+                    f"source_url:{source_url}",
+                    get_json_or_none(url=source_url, timeout_s=self.timeout_s),
+                )
+            )
 
         if self.enable_remote:
             for template in self.QURAN_AUDIO_URL_TEMPLATES:
                 url = template.format(reciter_id=reciter_id, surah=surah, ayah=ayah or "")
-                candidates.append((f"quranaudio:{url}", _http_get_json(url, timeout_s=self.timeout_s)))
+                candidates.append(
+                    (f"quranaudio:{url}", get_json_or_none(url=url, timeout_s=self.timeout_s))
+                )
 
             for template in self.QURAN_FOUNDATION_URL_TEMPLATES:
                 url = template.format(reciter_id=reciter_id, surah=surah, ayah=ayah or "")
-                candidates.append((f"qf:{url}", _http_get_json(url, timeout_s=self.timeout_s)))
+                candidates.append(
+                    (f"qf:{url}", get_json_or_none(url=url, timeout_s=self.timeout_s))
+                )
 
         return candidates
 
@@ -210,254 +221,10 @@ def validate_external_timing(
     )
     return ExternalValidationResult(ok=ok, warnings=warnings)
 
-
-def _normalize_payload_to_schema(
-    *,
-    payload: Any,
-    canonical_words: list[CanonicalWord],
-    source_default: str,
-) -> tuple[list[AyahTiming], list[WordTiming]] | None:
-    if not isinstance(payload, (dict, list)):
-        return None
-
-    # Pass-through for already-normalized schema payload.
-    if isinstance(payload, dict) and isinstance(payload.get("ayahs"), list) and isinstance(payload.get("words"), list):
-        try:
-            ayahs = [
-                AyahTiming.model_validate(item).model_copy(update={"source": source_default})
-                for item in payload["ayahs"]
-            ]
-            words = [
-                WordTiming.model_validate(item).model_copy(
-                    update={
-                        "engine_candidate": "existing",
-                    }
-                )
-                for item in payload["words"]
-            ]
-            return ayahs, words
-        except Exception:
-            return None
-
-    # Some APIs wrap output under data/verses keys.
-    if isinstance(payload, dict) and isinstance(payload.get("verses"), list):
-        ayah_entries = payload["verses"]
-    elif isinstance(payload, dict) and isinstance(payload.get("data"), dict) and isinstance(payload["data"].get("verses"), list):
-        ayah_entries = payload["data"]["verses"]
-    elif isinstance(payload, list):
-        ayah_entries = payload
-    else:
-        ayah_entries = None
-
-    canonical_by_ayah: dict[int, list[CanonicalWord]] = {}
-    for word in canonical_words:
-        canonical_by_ayah.setdefault(word.ayah, []).append(word)
-
-    if ayah_entries is not None:
-        parsed_ayahs: list[AyahTiming] = []
-        parsed_words: list[WordTiming] = []
-
-        for entry in ayah_entries:
-            ayah_number = _to_int(
-                entry.get("ayah")
-                or entry.get("verse_number")
-                or entry.get("verse_key", "0:0").split(":")[-1]
-            )
-            if ayah_number is None or ayah_number not in canonical_by_ayah:
-                continue
-
-            ayah_words = canonical_by_ayah[ayah_number]
-            start = _to_float(entry.get("start") or entry.get("start_s") or entry.get("timestamp_from"))
-            end = _to_float(entry.get("end") or entry.get("end_s") or entry.get("timestamp_to"))
-
-            words_raw = entry.get("words") if isinstance(entry.get("words"), list) else None
-            if words_raw:
-                for idx, canon in enumerate(ayah_words):
-                    sample = words_raw[idx] if idx < len(words_raw) else None
-                    w_start = _to_float(_safe_get(sample, "start", "start_s", "timestamp_from"))
-                    w_end = _to_float(_safe_get(sample, "end", "end_s", "timestamp_to"))
-                    if w_start is None or w_end is None:
-                        if start is None or end is None:
-                            continue
-                        w_start, w_end = _distribute_slot(start, end, len(ayah_words), idx)
-                        origin = "distributed"
-                    else:
-                        origin = "native"
-
-                    sample_text_raw = _safe_get(sample, "text", "word", "token")
-                    sample_text_norm = normalize_arabic(str(sample_text_raw)) if sample_text_raw else None
-                    raw_match_score = _to_float(_safe_get(sample, "match_score"))
-                    match_score = (
-                        raw_match_score
-                        if raw_match_score is not None
-                        else (
-                            float(fuzz.ratio(canon.text_norm, sample_text_norm))
-                            if sample_text_norm
-                            else None
-                        )
-                    )
-
-                    parsed_words.append(
-                        WordTiming(
-                            surah=canon.surah,
-                            ayah=canon.ayah,
-                            word_index_global=canon.word_index_global,
-                            word_index_in_ayah=canon.word_index_in_ayah,
-                            text_uthmani=canon.text_uthmani,
-                            text_norm=canon.text_norm,
-                            start_s=w_start,
-                            end_s=w_end,
-                            confidence=_to_float(_safe_get(sample, "confidence", "score")),
-                            alignment_origin=origin,
-                            match_score=match_score,
-                            engine_candidate="existing",
-                        )
-                    )
-
-                if start is None:
-                    start = parsed_words[-len(ayah_words)].start_s
-                if end is None:
-                    end = parsed_words[-1].end_s
-            else:
-                if start is None or end is None:
-                    continue
-                for idx, canon in enumerate(ayah_words):
-                    w_start, w_end = _distribute_slot(start, end, len(ayah_words), idx)
-                    parsed_words.append(
-                        WordTiming(
-                            surah=canon.surah,
-                            ayah=canon.ayah,
-                            word_index_global=canon.word_index_global,
-                            word_index_in_ayah=canon.word_index_in_ayah,
-                            text_uthmani=canon.text_uthmani,
-                            text_norm=canon.text_norm,
-                            start_s=w_start,
-                            end_s=w_end,
-                            confidence=None,
-                            alignment_origin="distributed",
-                            match_score=None,
-                            engine_candidate="existing",
-                        )
-                    )
-
-            if start is not None and end is not None:
-                parsed_ayahs.append(
-                    AyahTiming(
-                        surah=ayah_words[0].surah,
-                        ayah=ayah_number,
-                        start_s=start,
-                        end_s=end,
-                        source=source_default,
-                    )
-                )
-
-        if parsed_words and parsed_ayahs:
-            parsed_words.sort(key=lambda x: (x.ayah, x.word_index_in_ayah))
-            return parsed_ayahs, parsed_words
-
-    # Fallback for compact map format: {"1": {"start":..., "end":...}}
-    numeric_keys = [k for k in payload.keys() if isinstance(k, str) and k.isdigit()] if isinstance(payload, dict) else []
-    if numeric_keys and isinstance(payload, dict):
-        parsed_ayahs = []
-        parsed_words = []
-        for ayah_str in sorted(numeric_keys, key=int):
-            ayah_number = int(ayah_str)
-            if ayah_number not in canonical_by_ayah:
-                continue
-            row = payload[ayah_str]
-            if not isinstance(row, dict):
-                continue
-            start = _to_float(row.get("start") or row.get("start_s"))
-            end = _to_float(row.get("end") or row.get("end_s"))
-            if start is None or end is None:
-                continue
-
-            ayah_words = canonical_by_ayah[ayah_number]
-            for idx, canon in enumerate(ayah_words):
-                w_start, w_end = _distribute_slot(start, end, len(ayah_words), idx)
-                parsed_words.append(
-                    WordTiming(
-                        surah=canon.surah,
-                        ayah=canon.ayah,
-                        word_index_global=canon.word_index_global,
-                        word_index_in_ayah=canon.word_index_in_ayah,
-                        text_uthmani=canon.text_uthmani,
-                        text_norm=canon.text_norm,
-                        start_s=w_start,
-                        end_s=w_end,
-                        confidence=None,
-                        alignment_origin="distributed",
-                        match_score=None,
-                        engine_candidate="existing",
-                    )
-                )
-            parsed_ayahs.append(
-                AyahTiming(
-                    surah=ayah_words[0].surah,
-                    ayah=ayah_number,
-                    start_s=start,
-                    end_s=end,
-                    source=source_default,
-                )
-            )
-
-        if parsed_words and parsed_ayahs:
-            return parsed_ayahs, parsed_words
-
-    return None
-
-
-def _safe_get(obj: Any, *keys: str) -> Any:
-    if not isinstance(obj, dict):
-        return None
-    for key in keys:
-        if key in obj:
-            return obj[key]
-    return None
-
-
-def _to_int(value: Any) -> int | None:
-    try:
-        if value is None:
-            return None
-        return int(value)
-    except (TypeError, ValueError):
-        return None
-
-
-def _to_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        return float(value)
-    except (TypeError, ValueError):
-        return None
-
-
-def _distribute_slot(start: float, end: float, count: int, idx: int) -> tuple[float, float]:
-    if count <= 0:
-        return start, end
-    duration = max(0.0, end - start)
-    slot = duration / count
-    s = start + (idx * slot)
-    e = start + ((idx + 1) * slot)
-    return s, e
-
-
 def _read_json_file(path: Path) -> Any | None:
     if not path.exists() or not path.is_file():
         return None
     try:
         return orjson.loads(path.read_bytes())
-    except Exception:
-        return None
-
-
-def _http_get_json(url: str, *, timeout_s: float) -> Any | None:
-    try:
-        response = requests.get(url, timeout=timeout_s)
-        if response.status_code >= 400:
-            return None
-        return response.json()
     except Exception:
         return None

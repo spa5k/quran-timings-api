@@ -1,13 +1,19 @@
 from __future__ import annotations
 
-from collections import defaultdict
 from dataclasses import dataclass
 from typing import Any
 
-from rapidfuzz import fuzz
-
 from quran_audio_data.alignment.base import AlignmentOutput, AlignmentError, EngineUnavailable
-from quran_audio_data.schema import AyahTiming, WordTiming
+from quran_audio_data.alignment.mapping import (
+    MappingConfig,
+    PredictionSpan,
+    derive_ayahs_from_words,
+    interpolate_slot,
+    map_canonical_words,
+    to_prediction_spans,
+)
+from quran_audio_data.core.parsing import to_float
+from quran_audio_data.schema import WordTiming
 from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic
 
 
@@ -85,7 +91,7 @@ class WhisperXFallbackAligner:
             predicted_words=predicted_words,
             audio_duration_s=audio_duration_s,
         )
-        ayahs = _derive_ayahs(mapped_words, source="fallback")
+        ayahs = derive_ayahs_from_words(words=mapped_words, source="fallback")
 
         return AlignmentOutput(
             ayahs=ayahs,
@@ -146,8 +152,8 @@ def _extract_predicted_words(aligned_payload: dict[str, Any]) -> list[WhisperWor
             if not isinstance(word, dict):
                 continue
             text = str(word.get("word", "")).strip()
-            start = _to_float(word.get("start"))
-            end = _to_float(word.get("end"))
+            start = to_float(word.get("start"))
+            end = to_float(word.get("end"))
             if not text or start is None or end is None:
                 continue
 
@@ -156,7 +162,7 @@ def _extract_predicted_words(aligned_payload: dict[str, Any]) -> list[WhisperWor
                     text_norm=normalize_arabic(text),
                     start_s=start,
                     end_s=end,
-                    confidence=_to_float(word.get("score")),
+                    confidence=to_float(word.get("score")),
                 )
             )
 
@@ -169,68 +175,26 @@ def _map_words(
     predicted_words: list[WhisperWord],
     audio_duration_s: float,
 ) -> list[WordTiming]:
-    mapped: list[WordTiming] = []
-    cursor = 0
-    matched_idx: dict[int, int] = {}
-    matched_scores: dict[int, float] = {}
-
-    for i, canon in enumerate(canonical_words):
-        best_j: int | None = None
-        best_score = -1.0
-
-        search_end = min(len(predicted_words), cursor + 16)
-        for j in range(cursor, search_end):
-            candidate = predicted_words[j]
-            score = fuzz.ratio(canon.text_norm, candidate.text_norm)
-            if score > best_score:
-                best_score = score
-                best_j = j
-            if score >= 98:
-                break
-
-        if best_j is not None and best_score >= 45:
-            matched_idx[i] = best_j
-            matched_scores[i] = float(best_score)
-            cursor = best_j + 1
-
-    for i, canon in enumerate(canonical_words):
-        pred_index = matched_idx.get(i)
-        if pred_index is not None:
-            pred = predicted_words[pred_index]
-            start_s, end_s = pred.start_s, pred.end_s
-            confidence = pred.confidence
-            alignment_origin = "native"
-            match_score = matched_scores.get(i)
-        else:
-            start_s, end_s = _interpolate_slot(
-                index=i,
-                total=len(canonical_words),
-                matched_idx=matched_idx,
-                predicted_words=predicted_words,
-                audio_duration_s=audio_duration_s,
-            )
-            confidence = None
-            alignment_origin = "interpolated"
-            match_score = None
-
-        mapped.append(
-            WordTiming(
-                surah=canon.surah,
-                ayah=canon.ayah,
-                word_index_global=canon.word_index_global,
-                word_index_in_ayah=canon.word_index_in_ayah,
-                text_uthmani=canon.text_uthmani,
-                text_norm=canon.text_norm,
-                start_s=start_s,
-                end_s=end_s,
-                confidence=confidence,
-                alignment_origin=alignment_origin,
-                match_score=match_score,
-                engine_candidate="whisperx",
-            )
-        )
-
-    return mapped
+    spans = to_prediction_spans(
+        predicted_words=predicted_words,
+        text_getter=lambda item: item.text_norm,
+        start_getter=lambda item: item.start_s,
+        end_getter=lambda item: item.end_s,
+        confidence_getter=lambda item: item.confidence,
+    )
+    return map_canonical_words(
+        canonical_words=canonical_words,
+        predicted_words=spans,
+        audio_duration_s=audio_duration_s,
+        config=MappingConfig(
+            engine_candidate="whisperx",
+            search_window=16,
+            exact_break_score=98.0,
+            min_match_score=45.0,
+            matched_origin="native",
+            unmatched_origin="interpolated",
+        ),
+    )
 
 
 def _interpolate_slot(
@@ -241,65 +205,20 @@ def _interpolate_slot(
     predicted_words: list[WhisperWord],
     audio_duration_s: float,
 ) -> tuple[float, float]:
-    prev_i = max((i for i in matched_idx if i < index), default=None)
-    next_i = min((i for i in matched_idx if i > index), default=None)
-
-    if prev_i is not None:
-        prev_word = predicted_words[matched_idx[prev_i]]
-        left = prev_word.end_s
-    else:
-        left = 0.0
-
-    if next_i is not None:
-        next_word = predicted_words[matched_idx[next_i]]
-        right = next_word.start_s
-    else:
-        right = max(audio_duration_s, predicted_words[-1].end_s)
-
-    if prev_i is not None and next_i is not None:
-        gap_count = max(1, next_i - prev_i - 1)
-        rank = index - prev_i - 1
-    elif prev_i is None and next_i is not None:
-        gap_count = max(1, next_i)
-        rank = index
-    else:
-        gap_count = max(1, total - (prev_i + 1 if prev_i is not None else 0))
-        rank = index - (prev_i + 1 if prev_i is not None else 0)
-
-    width = max(0.0, right - left)
-    slot = width / gap_count
-    start_s = left + (rank * slot)
-    end_s = left + ((rank + 1) * slot)
-    if end_s < start_s:
-        end_s = start_s
-    return start_s, end_s
-
-
-def _derive_ayahs(words: list[WordTiming], *, source: str) -> list[AyahTiming]:
-    by_ayah: dict[tuple[int, int], list[WordTiming]] = defaultdict(list)
-    for word in words:
-        by_ayah[(word.surah, word.ayah)].append(word)
-
-    ayahs: list[AyahTiming] = []
-    for (surah, ayah), group in sorted(by_ayah.items(), key=lambda item: (item[0][0], item[0][1])):
-        start_s = min(item.start_s for item in group)
-        end_s = max(item.end_s for item in group)
-        ayahs.append(
-            AyahTiming(
-                surah=surah,
-                ayah=ayah,
-                start_s=start_s,
-                end_s=end_s,
-                source=source,
-            )
+    spans = [
+        PredictionSpan(
+            prediction=item,
+            text_norm=item.text_norm,
+            start_s=item.start_s,
+            end_s=item.end_s,
+            confidence=item.confidence,
         )
-    return ayahs
-
-
-def _to_float(value: Any) -> float | None:
-    try:
-        if value is None:
-            return None
-        return float(value)
-    except (TypeError, ValueError):
-        return None
+        for item in predicted_words
+    ]
+    return interpolate_slot(
+        index=index,
+        total=total,
+        matched_idx=matched_idx,
+        predicted_words=spans,
+        audio_duration_s=audio_duration_s,
+    )

@@ -6,19 +6,6 @@ from quran_audio_data.gold_labeling import auto_label_gold_from_quran_com
 import quran_audio_data.gold_labeling as gold_labeling
 
 
-class _FakeResponse:
-    def __init__(self, payload, status_code: int = 200):
-        self._payload = payload
-        self.status_code = status_code
-
-    def raise_for_status(self) -> None:
-        if self.status_code >= 400:
-            raise RuntimeError(f"HTTP {self.status_code}")
-
-    def json(self):
-        return self._payload
-
-
 def test_auto_label_gold_from_quran_com_fills_word_boundaries(tmp_path, monkeypatch) -> None:
     gold_file = tmp_path / "gold.json"
     payload = {
@@ -41,11 +28,11 @@ def test_auto_label_gold_from_quran_com_fills_word_boundaries(tmp_path, monkeypa
         }
     }
 
-    def fake_get(url, *args, **kwargs):
+    def fake_get(*, url: str, **kwargs):
         assert "chapter_recitations/2/1" in url
-        return _FakeResponse(api_payload)
+        return api_payload
 
-    monkeypatch.setattr(gold_labeling.requests, "get", fake_get)
+    monkeypatch.setattr(gold_labeling, "get_json_with_retry", fake_get)
 
     summary = auto_label_gold_from_quran_com(
         gold_dir=tmp_path,
@@ -82,7 +69,7 @@ def test_auto_label_gold_from_quran_com_skips_already_labeled(tmp_path, monkeypa
         called["count"] += 1
         raise AssertionError("Should not fetch segments for already-labeled file")
 
-    monkeypatch.setattr(gold_labeling.requests, "get", fake_get)
+    monkeypatch.setattr(gold_labeling, "get_json_with_retry", fake_get)
 
     summary = auto_label_gold_from_quran_com(
         gold_dir=tmp_path,
@@ -123,10 +110,10 @@ def test_auto_label_gold_from_quran_com_interpolates_unmapped_words(tmp_path, mo
         }
     }
 
-    def fake_get(url, *args, **kwargs):
-        return _FakeResponse(api_payload)
+    def fake_get(*, url: str, **kwargs):
+        return api_payload
 
-    monkeypatch.setattr(gold_labeling.requests, "get", fake_get)
+    monkeypatch.setattr(gold_labeling, "get_json_with_retry", fake_get)
 
     summary = auto_label_gold_from_quran_com(
         gold_dir=tmp_path,
@@ -171,10 +158,10 @@ def test_auto_label_gold_from_quran_com_normalizes_chapter_absolute_ms(tmp_path,
         }
     }
 
-    def fake_get(url, *args, **kwargs):
-        return _FakeResponse(api_payload)
+    def fake_get(*, url: str, **kwargs):
+        return api_payload
 
-    monkeypatch.setattr(gold_labeling.requests, "get", fake_get)
+    monkeypatch.setattr(gold_labeling, "get_json_with_retry", fake_get)
 
     summary = auto_label_gold_from_quran_com(
         gold_dir=tmp_path,

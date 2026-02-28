@@ -1,0 +1,21 @@
+{
+  "coverage": 1.0,
+  "monotonic": true,
+  "duration_match": true,
+  "warnings": [
+    "qc_rescue_selected"
+  ],
+  "reason_codes": [],
+  "zero_or_negative_ratio": 0.0,
+  "median_confidence": null,
+  "interpolated_ratio": 0.00516795865633075,
+  "lexical_match_ratio": 0.9948320413436692,
+  "speech_end_delta_ratio": 0.004091893117655367,
+  "quantization_step_ms": 400.0000000000057,
+  "engine_candidate_scores": {
+    "nemo": 164.2010900986392,
+    "mfa": 164.0826532327905
+  },
+  "speech_end_method": "numpy",
+  "boundary_refine_method": "none"
+}

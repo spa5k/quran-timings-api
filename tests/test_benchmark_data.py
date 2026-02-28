@@ -3,23 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 
 import orjson
-import requests
 
 import quran_audio_data.benchmark_data as benchmark_data
-
-
-class _FakeResponse:
-    def __init__(self, payload=None, content: bytes = b"", status_code: int = 200):
-        self._payload = payload
-        self.content = content
-        self.status_code = status_code
-
-    def raise_for_status(self) -> None:
-        if self.status_code >= 400:
-            raise RuntimeError(f"HTTP {self.status_code}")
-
-    def json(self):
-        return self._payload
 
 
 def test_parse_everyayah_reciters() -> None:
@@ -56,12 +41,12 @@ def test_prepare_benchmark_data_without_audio_download(tmp_path, monkeypatch) ->
 
     def fake_get(url, *args, **kwargs):
         if url == benchmark_data.EVERYAYAH_RECITATIONS_URL:
-            return _FakeResponse(payload=catalog)
+            return catalog
         if url.startswith("https://api.quran.com/api/v4/verses/by_key/"):
-            return _FakeResponse(payload=verse_payload)
+            return verse_payload
         raise AssertionError(f"Unexpected URL: {url}")
 
-    monkeypatch.setattr(benchmark_data.requests, "get", fake_get)
+    monkeypatch.setattr(benchmark_data, "get_json_with_retry", fake_get)
 
     output = benchmark_data.prepare_benchmark_data(
         out_dir=tmp_path,
@@ -87,7 +72,7 @@ def test_prepare_benchmark_data_without_audio_download(tmp_path, monkeypatch) ->
 
 
 def test_fetch_quran_com_verse_retries_transient_timeout(monkeypatch) -> None:
-    calls = {"count": 0}
+    captured: dict[str, object] = {}
     verse_payload = {
         "verse": {
             "verse_key": "1:1",
@@ -95,14 +80,12 @@ def test_fetch_quran_com_verse_retries_transient_timeout(monkeypatch) -> None:
         }
     }
 
-    def fake_get(url, *args, **kwargs):
-        calls["count"] += 1
-        if calls["count"] < 3:
-            raise requests.exceptions.ReadTimeout(f"timeout {url}")
-        return _FakeResponse(payload=verse_payload)
+    def fake_get(*, url: str, **kwargs):
+        captured["url"] = url
+        captured.update(kwargs)
+        return verse_payload
 
-    monkeypatch.setattr(benchmark_data.requests, "get", fake_get)
-    monkeypatch.setattr(benchmark_data.time, "sleep", lambda *_args, **_kwargs: None)
+    monkeypatch.setattr(benchmark_data, "get_json_with_retry", fake_get)
 
     verse = benchmark_data.fetch_quran_com_verse(
         surah=1,
@@ -111,7 +94,10 @@ def test_fetch_quran_com_verse_retries_transient_timeout(monkeypatch) -> None:
         retries=2,
         retry_backoff_s=0.0,
     )
-    assert calls["count"] == 3
+    assert captured["retries"] == 2
+    assert captured["retry_backoff_s"] == 0.0
+    assert captured["timeout_s"] == 0.01
+    assert str(captured["url"]).endswith("/1:1")
     assert verse["verse_key"] == "1:1"
 
 
@@ -150,12 +136,12 @@ def test_prepare_benchmark_data_resume_uses_existing_gold(tmp_path, monkeypatch)
 
     def fake_get(url, *args, **kwargs):
         if url == benchmark_data.EVERYAYAH_RECITATIONS_URL:
-            return _FakeResponse(payload=catalog)
+            return catalog
         if url.startswith("https://api.quran.com/api/v4/verses/by_key/"):
             raise AssertionError("Quran.com should not be called when resuming with existing gold")
         raise AssertionError(f"Unexpected URL: {url}")
 
-    monkeypatch.setattr(benchmark_data.requests, "get", fake_get)
+    monkeypatch.setattr(benchmark_data, "get_json_with_retry", fake_get)
 
     output = benchmark_data.prepare_benchmark_data(
         out_dir=tmp_path,

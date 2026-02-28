@@ -7,18 +7,7 @@ from pathlib import Path
 import orjson
 
 from quran_audio_data.benchmark_data import prepare_benchmark_data
-
-
-def _parse_csv_ints(value: str | None) -> list[int] | None:
-    if not value:
-        return None
-    return [int(item.strip()) for item in value.split(",") if item.strip()]
-
-
-def _parse_csv_strings(value: str | None) -> list[str] | None:
-    if not value:
-        return None
-    return [item.strip() for item in value.split(",") if item.strip()]
+from quran_audio_data.core.parsing import parse_csv_ints, parse_csv_strings
 
 
 def main() -> None:
@@ -41,8 +30,8 @@ def main() -> None:
     metadata = prepare_benchmark_data(
         out_dir=Path(args.out_dir),
         count=args.count,
-        surahs=_parse_csv_ints(args.surahs),
-        ayah_keys=_parse_csv_strings(args.ayah_keys),
+        surahs=parse_csv_ints(args.surahs),
+        ayah_keys=parse_csv_strings(args.ayah_keys),
         reciter_key=args.reciter_key,
         reciter_subfolder=args.reciter_subfolder,
         seed=args.seed,

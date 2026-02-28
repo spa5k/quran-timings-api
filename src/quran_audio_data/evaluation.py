@@ -1,27 +1,34 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from dataclasses import dataclass
 import math
 from pathlib import Path
 from statistics import median
 from typing import Any
 
+import numpy as np
 import orjson
 
 
-def _percentile(values: list[float], p: float) -> float:
-    if not values:
-        return 0.0
-    if p <= 0:
-        return min(values)
-    if p >= 100:
-        return max(values)
-    ordered = sorted(values)
-    rank = (len(ordered) - 1) * (p / 100.0)
-    lower = int(rank)
-    upper = min(lower + 1, len(ordered) - 1)
-    frac = rank - lower
-    return ordered[lower] * (1.0 - frac) + ordered[upper] * frac
+@dataclass(slots=True)
+class ErrorMetrics:
+    median_abs_error_ms: float
+    p90_abs_error_ms: float
+    p95_abs_error_ms: float
+    hit_rate_20ms: float
+    hit_rate_50ms: float
+    hit_rate_80ms: float
+
+    def to_dict(self) -> dict[str, float]:
+        return {
+            "median_abs_error_ms": self.median_abs_error_ms,
+            "p90_abs_error_ms": self.p90_abs_error_ms,
+            "p95_abs_error_ms": self.p95_abs_error_ms,
+            "hit_rate_20ms": self.hit_rate_20ms,
+            "hit_rate_50ms": self.hit_rate_50ms,
+            "hit_rate_80ms": self.hit_rate_80ms,
+        }
 
 
 def _as_int(value: Any) -> int | None:
@@ -114,26 +121,27 @@ def _word_lookup(words: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
     return out
 
 
-def _metrics_from_errors(boundary_errors_ms: list[float]) -> dict[str, float]:
+def _metrics_from_errors(boundary_errors_ms: list[float]) -> ErrorMetrics:
     if not boundary_errors_ms:
-        return {
-            "median_abs_error_ms": 0.0,
-            "p90_abs_error_ms": 0.0,
-            "p95_abs_error_ms": 0.0,
-            "hit_rate_20ms": 0.0,
-            "hit_rate_50ms": 0.0,
-            "hit_rate_80ms": 0.0,
-        }
+        return ErrorMetrics(
+            median_abs_error_ms=0.0,
+            p90_abs_error_ms=0.0,
+            p95_abs_error_ms=0.0,
+            hit_rate_20ms=0.0,
+            hit_rate_50ms=0.0,
+            hit_rate_80ms=0.0,
+        )
 
     total = len(boundary_errors_ms)
-    return {
-        "median_abs_error_ms": float(median(boundary_errors_ms)),
-        "p90_abs_error_ms": float(_percentile(boundary_errors_ms, 90)),
-        "p95_abs_error_ms": float(_percentile(boundary_errors_ms, 95)),
-        "hit_rate_20ms": sum(1 for value in boundary_errors_ms if value <= 20.0) / total,
-        "hit_rate_50ms": sum(1 for value in boundary_errors_ms if value <= 50.0) / total,
-        "hit_rate_80ms": sum(1 for value in boundary_errors_ms if value <= 80.0) / total,
-    }
+    values = np.asarray(boundary_errors_ms, dtype=np.float64)
+    return ErrorMetrics(
+        median_abs_error_ms=float(median(boundary_errors_ms)),
+        p90_abs_error_ms=float(np.percentile(values, 90)),
+        p95_abs_error_ms=float(np.percentile(values, 95)),
+        hit_rate_20ms=sum(1 for value in boundary_errors_ms if value <= 20.0) / total,
+        hit_rate_50ms=sum(1 for value in boundary_errors_ms if value <= 50.0) / total,
+        hit_rate_80ms=sum(1 for value in boundary_errors_ms if value <= 80.0) / total,
+    )
 
 
 def evaluate_predictions(
@@ -180,7 +188,7 @@ def evaluate_predictions(
 
     summary_metrics = _metrics_from_errors(boundary_errors_ms)
     per_reciter = {
-        reciter_id: _metrics_from_errors(values)
+        reciter_id: _metrics_from_errors(values).to_dict()
         for reciter_id, values in sorted(per_reciter_errors.items())
     }
 
@@ -189,7 +197,7 @@ def evaluate_predictions(
         "pred_ayahs": len(predictions),
         "matched_ayahs": matched_ayahs,
         "missing_predictions": missing_predictions,
-        "summary": summary_metrics,
+        "summary": summary_metrics.to_dict(),
         "per_reciter": per_reciter,
         "targets_ms": {
             "median": 50.0,
@@ -197,8 +205,8 @@ def evaluate_predictions(
             "per_reciter_median": 65.0,
         },
         "passes_targets": (
-            summary_metrics["median_abs_error_ms"] <= 50.0
-            and summary_metrics["p95_abs_error_ms"] <= 120.0
+            summary_metrics.median_abs_error_ms <= 50.0
+            and summary_metrics.p95_abs_error_ms <= 120.0
             and all(
                 metrics["median_abs_error_ms"] <= 65.0
                 for metrics in per_reciter.values()

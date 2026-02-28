@@ -173,6 +173,25 @@ Script equivalent:
 python3 scripts/build_benchmark_data.py --out-dir benchmarks/generated --count 200 --download-audio
 ```
 
+### Sync UI data from latest runs
+
+Use this to refresh UI timing JSON files from the newest run artifact for each `reciter_id + surah` pair:
+
+```bash
+uv run qad sync-ui-data
+```
+
+Useful flags:
+- `--dry-run` prints changes without writing files
+- `--no-sync-dist` updates `ui/public/data` only
+- `--prune-ui` removes stale `*_full.json` files not present in latest run selection
+
+Script equivalent:
+
+```bash
+python3 scripts/sync_ui_from_latest_runs.py
+```
+
 ### Evaluate against gold
 
 ```bash

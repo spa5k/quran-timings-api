@@ -6,18 +6,16 @@ import csv
 import hashlib
 import random
 import re
-import time
 from typing import Any
 
 import orjson
-import requests
-from requests.exceptions import RequestException
+
+from quran_audio_data.core.http import get_bytes_with_retry, get_json_with_retry
 
 
 EVERYAYAH_RECITATIONS_URL = "https://everyayah.com/data/recitations.js"
 QURAN_COM_VERSE_BY_KEY_URL = "https://api.quran.com/api/v4/verses/by_key/{surah}:{ayah}"
 EVERYAYAH_AUDIO_URL_TEMPLATE = "https://everyayah.com/data/{subfolder}/{surah:03d}{ayah:03d}.mp3"
-RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
 
 
 @dataclass(slots=True)
@@ -45,51 +43,18 @@ def _sha256_file(file_path: Path) -> str:
     return _sha256_bytes(file_path.read_bytes())
 
 
-def _sleep_for_retry(*, attempt: int, base_seconds: float) -> None:
-    sleep_s = min(base_seconds * (2**attempt), 30.0)
-    if sleep_s > 0:
-        time.sleep(sleep_s)
-
-
-def _http_get_with_retry(
-    *,
-    url: str,
-    timeout_s: float,
-    params: dict[str, str] | None = None,
-    retries: int = 5,
-    retry_backoff_s: float = 1.0,
-) -> requests.Response:
-    last_error: Exception | None = None
-    for attempt in range(retries + 1):
-        try:
-            response = requests.get(url, params=params, timeout=timeout_s)
-            if response.status_code in RETRYABLE_STATUS_CODES and attempt < retries:
-                _sleep_for_retry(attempt=attempt, base_seconds=retry_backoff_s)
-                continue
-            response.raise_for_status()
-            return response
-        except RequestException as exc:
-            last_error = exc
-            if attempt >= retries:
-                raise
-            _sleep_for_retry(attempt=attempt, base_seconds=retry_backoff_s)
-    raise RuntimeError("HTTP request retries exhausted") from last_error
-
-
 def fetch_everyayah_catalog(
     *,
     timeout_s: float = 20.0,
     retries: int = 5,
     retry_backoff_s: float = 1.0,
 ) -> dict[str, Any]:
-    response = _http_get_with_retry(
+    payload = get_json_with_retry(
         url=EVERYAYAH_RECITATIONS_URL,
         timeout_s=timeout_s,
         retries=retries,
         retry_backoff_s=retry_backoff_s,
     )
-    response.raise_for_status()
-    payload = response.json()
     if not isinstance(payload, dict):
         raise ValueError("EveryAyah catalog payload is not a JSON object")
     return payload
@@ -161,7 +126,7 @@ def fetch_quran_com_verse(
     retry_backoff_s: float = 1.0,
 ) -> dict[str, Any]:
     url = QURAN_COM_VERSE_BY_KEY_URL.format(surah=surah, ayah=ayah)
-    response = _http_get_with_retry(
+    payload = get_json_with_retry(
         url=url,
         timeout_s=timeout_s,
         params={
@@ -172,8 +137,6 @@ def fetch_quran_com_verse(
         retries=retries,
         retry_backoff_s=retry_backoff_s,
     )
-    response.raise_for_status()
-    payload = response.json()
     if not isinstance(payload, dict) or not isinstance(payload.get("verse"), dict):
         raise ValueError(f"Quran.com verse payload malformed for {surah}:{ayah}")
     return payload["verse"]
@@ -244,14 +207,12 @@ def _download_everyayah_audio(
     if reuse_existing and file_path.exists():
         return file_path, url, _sha256_file(file_path)
 
-    response = _http_get_with_retry(
+    content = get_bytes_with_retry(
         url=url,
         timeout_s=timeout_s,
         retries=retries,
         retry_backoff_s=retry_backoff_s,
     )
-    response.raise_for_status()
-    content = response.content
 
     file_path.write_bytes(content)
     return file_path, url, _sha256_bytes(content)

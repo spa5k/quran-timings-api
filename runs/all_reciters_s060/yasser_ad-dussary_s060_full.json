@@ -12,101 +12,101 @@
     "input_mode": "full_surah"
   },
   "engine": {
-    "name": "nemo",
-    "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+    "name": "ensemble",
+    "model": "ayah-wise",
     "device": "cpu",
-    "fallback_used": false
+    "fallback_used": true
   },
   "ayahs": [
     {
       "surah": 60,
       "ayah": 1,
-      "start_s": 0.88,
-      "end_s": 66.56,
+      "start_s": 3.4730625,
+      "end_s": 66.524875,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 2,
-      "start_s": 67.28,
-      "end_s": 83.84,
+      "start_s": 67.166125,
+      "end_s": 83.808875,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 3,
-      "start_s": 85.28,
-      "end_s": 99.2,
+      "start_s": 85.179625,
+      "end_s": 98.978625,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 4,
-      "start_s": 99.76,
-      "end_s": 156.88,
+      "start_s": 99.772,
+      "end_s": 156.7660625,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 5,
-      "start_s": 158.64000000000001,
-      "end_s": 170.48,
+      "start_s": 158.5341875,
+      "end_s": 170.518625,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 6,
-      "start_s": 171.12,
-      "end_s": 186.56,
+      "start_s": 171.0214375,
+      "end_s": 186.6789375,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 7,
-      "start_s": 188.4,
-      "end_s": 203.92000000000002,
+      "start_s": 188.3186875,
+      "end_s": 203.8056875,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 8,
-      "start_s": 204.0,
-      "end_s": 228.88,
+      "start_s": 204.2793125,
+      "end_s": 228.762375,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 9,
-      "start_s": 228.96,
-      "end_s": 258.8,
+      "start_s": 229.0746875,
+      "end_s": 258.888875,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 10,
-      "start_s": 259.04,
-      "end_s": 334.64,
+      "start_s": 259.091125,
+      "end_s": 334.53775,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 11,
-      "start_s": 335.28000000000003,
-      "end_s": 363.68,
+      "start_s": 335.4,
+      "end_s": 363.7131875,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 12,
-      "start_s": 364.0,
-      "end_s": 413.04,
+      "start_s": 364.034375,
+      "end_s": 413.067375,
       "source": "aligned"
     },
     {
       "surah": 60,
       "ayah": 13,
-      "start_s": 413.2,
-      "end_s": 433.4577777777778,
+      "start_s": 413.067375,
+      "end_s": 432.3555625,
       "source": "aligned"
     }
   ],
@@ -117,10 +117,13 @@
       "word_index_global": 1,
       "word_index_in_ayah": 1,
       "text_uthmani": "یَـٰۤأَیُّهَا",
-      "text_norm": "یایها",
-      "start_s": 0.88,
-      "end_s": 7.36,
-      "confidence": null
+      "text_norm": "يايها",
+      "start_s": 3.4730625,
+      "end_s": 7.4028125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -128,10 +131,13 @@
       "word_index_global": 2,
       "word_index_in_ayah": 2,
       "text_uthmani": "ٱلَّذِینَ",
-      "text_norm": "الذین",
-      "start_s": 7.5200000000000005,
-      "end_s": 8.08,
-      "confidence": null
+      "text_norm": "الذين",
+      "start_s": 7.4028125,
+      "end_s": 7.7075625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -140,9 +146,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "ءَامَنُوا۟",
       "text_norm": "ءامنوا",
-      "start_s": 8.24,
-      "end_s": 9.040000000000001,
-      "confidence": null
+      "start_s": 8.317,
+      "end_s": 9.1085625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -151,9 +160,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "لَا",
       "text_norm": "لا",
-      "start_s": 9.200000000000001,
-      "end_s": 9.28,
-      "confidence": null
+      "start_s": 9.22,
+      "end_s": 9.24,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -162,9 +174,12 @@
       "word_index_in_ayah": 5,
       "text_uthmani": "تَتَّخِذُوا۟",
       "text_norm": "تتخذوا",
-      "start_s": 9.52,
-      "end_s": 10.56,
-      "confidence": null
+      "start_s": 9.5765,
+      "end_s": 10.6518125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -172,10 +187,13 @@
       "word_index_global": 6,
       "word_index_in_ayah": 6,
       "text_uthmani": "عَدُوِّی",
-      "text_norm": "عدوی",
-      "start_s": 10.64,
-      "end_s": 11.44,
-      "confidence": null
+      "text_norm": "عدوي",
+      "start_s": 10.6518125,
+      "end_s": 11.225125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -184,9 +202,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "وَعَدُوَّكُمۡ",
       "text_norm": "وعدوكم",
-      "start_s": 11.6,
-      "end_s": 12.56,
-      "confidence": null
+      "start_s": 11.7189375,
+      "end_s": 12.480125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -194,10 +215,13 @@
       "word_index_global": 8,
       "word_index_in_ayah": 8,
       "text_uthmani": "أَوۡلِیَاۤءَ",
-      "text_norm": "اولیاء",
-      "start_s": 12.88,
-      "end_s": 14.72,
-      "confidence": null
+      "text_norm": "اولياء",
+      "start_s": 12.81675,
+      "end_s": 14.8098125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -206,9 +230,12 @@
       "word_index_in_ayah": 9,
       "text_uthmani": "تُلۡقُونَ",
       "text_norm": "تلقون",
-      "start_s": 14.96,
-      "end_s": 15.76,
-      "confidence": null
+      "start_s": 14.996,
+      "end_s": 15.8730625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -216,10 +243,13 @@
       "word_index_global": 10,
       "word_index_in_ayah": 10,
       "text_uthmani": "إِلَیۡهِم",
-      "text_norm": "الیهم",
-      "start_s": 15.92,
-      "end_s": 16.56,
-      "confidence": null
+      "text_norm": "اليهم",
+      "start_s": 15.9025,
+      "end_s": 16.6635625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -228,9 +258,12 @@
       "word_index_in_ayah": 11,
       "text_uthmani": "بِٱلۡمَوَدَّةِ",
       "text_norm": "بالمودة",
-      "start_s": 17.2,
-      "end_s": 18.400000000000002,
-      "confidence": null
+      "start_s": 17.32,
+      "end_s": 18.36525,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -239,9 +272,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "وَقَدۡ",
       "text_norm": "وقد",
-      "start_s": 20.64,
-      "end_s": 20.72,
-      "confidence": null
+      "start_s": 20.5209375,
+      "end_s": 20.7988125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -250,9 +286,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "كَفَرُوا۟",
       "text_norm": "كفروا",
-      "start_s": 21.12,
-      "end_s": 21.76,
-      "confidence": null
+      "start_s": 21.165875,
+      "end_s": 21.643375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -261,9 +300,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "بِمَا",
       "text_norm": "بما",
-      "start_s": 22.0,
-      "end_s": 22.080000000000002,
-      "confidence": null
+      "start_s": 21.980125,
+      "end_s": 22.000125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -272,9 +314,12 @@
       "word_index_in_ayah": 15,
       "text_uthmani": "جَاۤءَكُم",
       "text_norm": "جاءكم",
-      "start_s": 22.48,
-      "end_s": 24.32,
-      "confidence": null
+      "start_s": 22.471625,
+      "end_s": 24.205875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -283,9 +328,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "مِّنَ",
       "text_norm": "من",
-      "start_s": 25.04,
-      "end_s": 25.12,
-      "confidence": null
+      "start_s": 25.1258125,
+      "end_s": 25.145812499999998,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -294,9 +342,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "ٱلۡحَقِّ",
       "text_norm": "الحق",
-      "start_s": 25.52,
-      "end_s": 25.92,
-      "confidence": null
+      "start_s": 25.6006875,
+      "end_s": 26.019375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -304,10 +355,13 @@
       "word_index_global": 18,
       "word_index_in_ayah": 18,
       "text_uthmani": "یُخۡرِجُونَ",
-      "text_norm": "یخرجون",
-      "start_s": 26.0,
-      "end_s": 27.12,
-      "confidence": null
+      "text_norm": "يخرجون",
+      "start_s": 26.3579375,
+      "end_s": 27.1690625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -316,9 +370,12 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "ٱلرَّسُولَ",
       "text_norm": "الرسول",
-      "start_s": 27.36,
-      "end_s": 27.76,
-      "confidence": null
+      "start_s": 27.274,
+      "end_s": 27.6935,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -326,10 +383,13 @@
       "word_index_global": 20,
       "word_index_in_ayah": 20,
       "text_uthmani": "وَإِیَّاكُمۡ",
-      "text_norm": "وایاكم",
-      "start_s": 28.240000000000002,
-      "end_s": 29.2,
-      "confidence": null
+      "text_norm": "واياكم",
+      "start_s": 28.36,
+      "end_s": 29.117,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -338,9 +398,12 @@
       "word_index_in_ayah": 21,
       "text_uthmani": "أَن",
       "text_norm": "ان",
-      "start_s": 29.6,
-      "end_s": 29.68,
-      "confidence": null
+      "start_s": 29.4896875,
+      "end_s": 29.5860625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -349,9 +412,12 @@
       "word_index_in_ayah": 22,
       "text_uthmani": "تُؤۡمِنُوا۟",
       "text_norm": "تومنوا",
-      "start_s": 30.16,
-      "end_s": 31.04,
-      "confidence": null
+      "start_s": 30.2309375,
+      "end_s": 31.15975,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -360,9 +426,12 @@
       "word_index_in_ayah": 23,
       "text_uthmani": "بِٱللَّهِ",
       "text_norm": "بالله",
-      "start_s": 31.2,
-      "end_s": 31.28,
-      "confidence": null
+      "start_s": 31.15975,
+      "end_s": 31.17975,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -371,9 +440,12 @@
       "word_index_in_ayah": 24,
       "text_uthmani": "رَبِّكُمۡ",
       "text_norm": "ربكم",
-      "start_s": 32.08,
-      "end_s": 32.72,
-      "confidence": null
+      "start_s": 32.199125,
+      "end_s": 32.629375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -382,9 +454,12 @@
       "word_index_in_ayah": 25,
       "text_uthmani": "إِن",
       "text_norm": "ان",
-      "start_s": 33.04,
-      "end_s": 33.12,
-      "confidence": null
+      "start_s": 32.96625,
+      "end_s": 33.2083125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -393,9 +468,12 @@
       "word_index_in_ayah": 26,
       "text_uthmani": "كُنتُمۡ",
       "text_norm": "كنتم",
-      "start_s": 38.32,
-      "end_s": 39.28,
-      "confidence": null
+      "start_s": 38.350625,
+      "end_s": 39.164375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -404,9 +482,12 @@
       "word_index_in_ayah": 27,
       "text_uthmani": "خَرَجۡتُمۡ",
       "text_norm": "خرجتم",
-      "start_s": 39.44,
-      "end_s": 40.32,
-      "confidence": null
+      "start_s": 39.4459375,
+      "end_s": 40.3796875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -414,10 +495,13 @@
       "word_index_global": 28,
       "word_index_in_ayah": 28,
       "text_uthmani": "جِهَـٰدࣰا",
-      "text_norm": "جهدࣰا",
-      "start_s": 40.4,
-      "end_s": 41.2,
-      "confidence": null
+      "text_norm": "جهدا",
+      "start_s": 40.3796875,
+      "end_s": 40.945,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -425,10 +509,13 @@
       "word_index_global": 29,
       "word_index_in_ayah": 29,
       "text_uthmani": "فِی",
-      "text_norm": "فی",
-      "start_s": 41.6,
-      "end_s": 41.84,
-      "confidence": null
+      "text_norm": "في",
+      "start_s": 41.5801875,
+      "end_s": 41.600187500000004,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -436,10 +523,13 @@
       "word_index_global": 30,
       "word_index_in_ayah": 30,
       "text_uthmani": "سَبِیلِی",
-      "text_norm": "سبیلی",
-      "start_s": 41.92,
-      "end_s": 42.800000000000004,
-      "confidence": null
+      "text_norm": "سبيلي",
+      "start_s": 41.9930625,
+      "end_s": 42.8354375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -448,9 +538,12 @@
       "word_index_in_ayah": 31,
       "text_uthmani": "وَٱبۡتِغَاۤءَ",
       "text_norm": "وابتغاء",
-      "start_s": 42.96,
-      "end_s": 45.36,
-      "confidence": null
+      "start_s": 43.068875,
+      "end_s": 45.4751875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -458,10 +551,13 @@
       "word_index_global": 32,
       "word_index_in_ayah": 32,
       "text_uthmani": "مَرۡضَاتِیۚ",
-      "text_norm": "مرضاتی",
-      "start_s": 45.68,
-      "end_s": 46.64,
-      "confidence": null
+      "text_norm": "مرضاتي",
+      "start_s": 45.628125,
+      "end_s": 46.607625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -470,9 +566,12 @@
       "word_index_in_ayah": 33,
       "text_uthmani": "تُسِرُّونَ",
       "text_norm": "تسرون",
-      "start_s": 47.28,
-      "end_s": 48.24,
-      "confidence": null
+      "start_s": 47.2255,
+      "end_s": 48.2124375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -480,10 +579,13 @@
       "word_index_global": 34,
       "word_index_in_ayah": 34,
       "text_uthmani": "إِلَیۡهِم",
-      "text_norm": "الیهم",
-      "start_s": 48.480000000000004,
-      "end_s": 49.120000000000005,
-      "confidence": null
+      "text_norm": "اليهم",
+      "start_s": 48.4066875,
+      "end_s": 49.18175,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -492,9 +594,12 @@
       "word_index_in_ayah": 35,
       "text_uthmani": "بِٱلۡمَوَدَّةِ",
       "text_norm": "بالمودة",
-      "start_s": 49.68,
-      "end_s": 50.88,
-      "confidence": null
+      "start_s": 49.77725,
+      "end_s": 50.87825,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -503,9 +608,12 @@
       "word_index_in_ayah": 36,
       "text_uthmani": "وَأَنَا۠",
       "text_norm": "وانا",
-      "start_s": 51.120000000000005,
-      "end_s": 51.52,
-      "confidence": null
+      "start_s": 51.23925,
+      "end_s": 51.6141875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -514,9 +622,12 @@
       "word_index_in_ayah": 37,
       "text_uthmani": "أَعۡلَمُ",
       "text_norm": "اعلم",
-      "start_s": 51.68,
-      "end_s": 51.92,
-      "confidence": null
+      "start_s": 51.6141875,
+      "end_s": 51.8409375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -525,9 +636,12 @@
       "word_index_in_ayah": 38,
       "text_uthmani": "بِمَاۤ",
       "text_norm": "بما",
-      "start_s": 52.4,
-      "end_s": 52.480000000000004,
-      "confidence": null
+      "start_s": 52.340375,
+      "end_s": 52.36875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -535,10 +649,13 @@
       "word_index_global": 39,
       "word_index_in_ayah": 39,
       "text_uthmani": "أَخۡفَیۡتُمۡ",
-      "text_norm": "اخفیتم",
-      "start_s": 53.68,
-      "end_s": 54.800000000000004,
-      "confidence": null
+      "text_norm": "اخفيتم",
+      "start_s": 53.799875,
+      "end_s": 54.742375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -547,9 +664,12 @@
       "word_index_in_ayah": 40,
       "text_uthmani": "وَمَاۤ",
       "text_norm": "وما",
-      "start_s": 54.96,
-      "end_s": 55.04,
-      "confidence": null
+      "start_s": 55.0038125,
+      "end_s": 55.023812500000005,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -558,9 +678,12 @@
       "word_index_in_ayah": 41,
       "text_uthmani": "أَعۡلَنتُمۡۚ",
       "text_norm": "اعلنتم",
-      "start_s": 56.4,
-      "end_s": 58.32,
-      "confidence": null
+      "start_s": 56.4073125,
+      "end_s": 58.203125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -569,9 +692,12 @@
       "word_index_in_ayah": 42,
       "text_uthmani": "وَمَن",
       "text_norm": "ومن",
-      "start_s": 58.88,
-      "end_s": 58.96,
-      "confidence": null
+      "start_s": 58.912875,
+      "end_s": 58.932875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -579,10 +705,13 @@
       "word_index_global": 43,
       "word_index_in_ayah": 43,
       "text_uthmani": "یَفۡعَلۡهُ",
-      "text_norm": "یفعله",
-      "start_s": 59.28,
-      "end_s": 60.160000000000004,
-      "confidence": null
+      "text_norm": "يفعله",
+      "start_s": 59.771,
+      "end_s": 60.0533125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -591,9 +720,12 @@
       "word_index_in_ayah": 44,
       "text_uthmani": "مِنكُمۡ",
       "text_norm": "منكم",
-      "start_s": 60.64,
-      "end_s": 61.44,
-      "confidence": null
+      "start_s": 60.594625,
+      "end_s": 61.47875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -602,9 +734,12 @@
       "word_index_in_ayah": 45,
       "text_uthmani": "فَقَدۡ",
       "text_norm": "فقد",
-      "start_s": 61.84,
-      "end_s": 61.92,
-      "confidence": null
+      "start_s": 61.8141875,
+      "end_s": 62.0386875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -613,9 +748,12 @@
       "word_index_in_ayah": 46,
       "text_uthmani": "ضَلَّ",
       "text_norm": "ضل",
-      "start_s": 62.480000000000004,
-      "end_s": 62.88,
-      "confidence": null
+      "start_s": 62.5006875,
+      "end_s": 62.99875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -624,9 +762,12 @@
       "word_index_in_ayah": 47,
       "text_uthmani": "سَوَاۤءَ",
       "text_norm": "سواء",
-      "start_s": 63.120000000000005,
-      "end_s": 65.44,
-      "confidence": null
+      "start_s": 63.0705,
+      "end_s": 65.543125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -634,10 +775,13 @@
       "word_index_global": 48,
       "word_index_in_ayah": 48,
       "text_uthmani": "ٱلسَّبِیلِ",
-      "text_norm": "السبیل",
-      "start_s": 65.84,
-      "end_s": 66.56,
-      "confidence": null
+      "text_norm": "السبيل",
+      "start_s": 65.8995625,
+      "end_s": 66.524875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -646,9 +790,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "إِن",
       "text_norm": "ان",
-      "start_s": 67.28,
-      "end_s": 67.36,
-      "confidence": null
+      "start_s": 67.166125,
+      "end_s": 67.3038125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -656,10 +803,13 @@
       "word_index_global": 50,
       "word_index_in_ayah": 2,
       "text_uthmani": "یَثۡقَفُوكُمۡ",
-      "text_norm": "یثقفوكم",
-      "start_s": 67.6,
-      "end_s": 69.36,
-      "confidence": null
+      "text_norm": "يثقفوكم",
+      "start_s": 68.197625,
+      "end_s": 69.261625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -667,10 +817,13 @@
       "word_index_global": 51,
       "word_index_in_ayah": 3,
       "text_uthmani": "یَكُونُوا۟",
-      "text_norm": "یكونوا",
-      "start_s": 69.60000000000001,
-      "end_s": 70.4,
-      "confidence": null
+      "text_norm": "يكونوا",
+      "start_s": 69.751,
+      "end_s": 70.4973125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -679,9 +832,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "لَكُمۡ",
       "text_norm": "لكم",
-      "start_s": 70.48,
-      "end_s": 70.56,
-      "confidence": null
+      "start_s": 70.5970625,
+      "end_s": 70.67925,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -689,10 +845,13 @@
       "word_index_global": 53,
       "word_index_in_ayah": 5,
       "text_uthmani": "أَعۡدَاۤءࣰ",
-      "text_norm": "اعداءࣰ",
-      "start_s": 71.12,
-      "end_s": 72.88,
-      "confidence": null
+      "text_norm": "اعداء",
+      "start_s": 71.0500625,
+      "end_s": 72.786625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -700,10 +859,13 @@
       "word_index_global": 54,
       "word_index_in_ayah": 6,
       "text_uthmani": "وَیَبۡسُطُوۤا۟",
-      "text_norm": "ویبسطوا",
-      "start_s": 73.44,
-      "end_s": 74.64,
-      "confidence": null
+      "text_norm": "ويبسطوا",
+      "start_s": 73.500625,
+      "end_s": 74.562625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -711,10 +873,13 @@
       "word_index_global": 55,
       "word_index_in_ayah": 7,
       "text_uthmani": "إِلَیۡكُمۡ",
-      "text_norm": "الیكم",
-      "start_s": 74.64,
-      "end_s": 75.60000000000001,
-      "confidence": null
+      "text_norm": "اليكم",
+      "start_s": 74.985,
+      "end_s": 75.4898125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -722,10 +887,13 @@
       "word_index_global": 56,
       "word_index_in_ayah": 8,
       "text_uthmani": "أَیۡدِیَهُمۡ",
-      "text_norm": "ایدیهم",
-      "start_s": 75.84,
-      "end_s": 76.72,
-      "confidence": null
+      "text_norm": "ايديهم",
+      "start_s": 75.8895,
+      "end_s": 76.838875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -734,9 +902,12 @@
       "word_index_in_ayah": 9,
       "text_uthmani": "وَأَلۡسِنَتَهُم",
       "text_norm": "والسنتهم",
-      "start_s": 77.04,
-      "end_s": 78.32000000000001,
-      "confidence": null
+      "start_s": 77.16,
+      "end_s": 78.37225,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -745,9 +916,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "بِٱلسُّوۤءِ",
       "text_norm": "بالسوء",
-      "start_s": 78.8,
-      "end_s": 80.88,
-      "confidence": null
+      "start_s": 78.834,
+      "end_s": 80.7643125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -756,9 +930,12 @@
       "word_index_in_ayah": 11,
       "text_uthmani": "وَوَدُّوا۟",
       "text_norm": "وودوا",
-      "start_s": 81.52,
-      "end_s": 82.4,
-      "confidence": null
+      "start_s": 81.535,
+      "end_s": 82.498375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -767,9 +944,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "لَوۡ",
       "text_norm": "لو",
-      "start_s": 82.48,
-      "end_s": 82.56,
-      "confidence": null
+      "start_s": 82.498375,
+      "end_s": 82.51837499999999,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -778,9 +958,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "تَكۡفُرُونَ",
       "text_norm": "تكفرون",
-      "start_s": 82.88,
-      "end_s": 83.84,
-      "confidence": null
+      "start_s": 82.8355625,
+      "end_s": 83.808875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -789,9 +972,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "لَن",
       "text_norm": "لن",
-      "start_s": 85.28,
-      "end_s": 85.36,
-      "confidence": null
+      "start_s": 85.179625,
+      "end_s": 85.2454375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -800,9 +986,12 @@
       "word_index_in_ayah": 2,
       "text_uthmani": "تَنفَعَكُمۡ",
       "text_norm": "تنفعكم",
-      "start_s": 86.16,
-      "end_s": 87.44,
-      "confidence": null
+      "start_s": 86.2541875,
+      "end_s": 87.4048125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -811,9 +1000,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "أَرۡحَامُكُمۡ",
       "text_norm": "ارحامكم",
-      "start_s": 87.76,
-      "end_s": 88.88,
-      "confidence": null
+      "start_s": 87.7440625,
+      "end_s": 88.762125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -822,9 +1014,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "وَلَاۤ",
       "text_norm": "ولا",
-      "start_s": 89.2,
-      "end_s": 89.28,
-      "confidence": null
+      "start_s": 89.25275,
+      "end_s": 89.27275,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -833,9 +1028,12 @@
       "word_index_in_ayah": 5,
       "text_uthmani": "أَوۡلَـٰدُكُمۡۚ",
       "text_norm": "اولدكم",
-      "start_s": 90.72,
-      "end_s": 91.76,
-      "confidence": null
+      "start_s": 90.7310625,
+      "end_s": 91.641,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -843,10 +1041,13 @@
       "word_index_global": 67,
       "word_index_in_ayah": 6,
       "text_uthmani": "یَوۡمَ",
-      "text_norm": "یوم",
-      "start_s": 91.76,
-      "end_s": 92.32000000000001,
-      "confidence": null
+      "text_norm": "يوم",
+      "start_s": 92.075125,
+      "end_s": 92.095125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -854,10 +1055,13 @@
       "word_index_global": 68,
       "word_index_in_ayah": 7,
       "text_uthmani": "ٱلۡقِیَـٰمَةِ",
-      "text_norm": "القیمة",
-      "start_s": 92.72,
-      "end_s": 93.44,
-      "confidence": null
+      "text_norm": "القيمة",
+      "start_s": 92.7610625,
+      "end_s": 93.46875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -865,10 +1069,13 @@
       "word_index_global": 69,
       "word_index_in_ayah": 8,
       "text_uthmani": "یَفۡصِلُ",
-      "text_norm": "یفصل",
-      "start_s": 93.44,
-      "end_s": 94.08,
-      "confidence": null
+      "text_norm": "يفصل",
+      "start_s": 93.4803125,
+      "end_s": 94.0538125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -876,10 +1083,13 @@
       "word_index_global": 70,
       "word_index_in_ayah": 9,
       "text_uthmani": "بَیۡنَكُمۡۚ",
-      "text_norm": "بینكم",
-      "start_s": 94.48,
-      "end_s": 95.12,
-      "confidence": null
+      "text_norm": "بينكم",
+      "start_s": 94.4215,
+      "end_s": 95.016625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -888,9 +1098,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "وَٱللَّهُ",
       "text_norm": "والله",
-      "start_s": 95.76,
-      "end_s": 95.84,
-      "confidence": null
+      "start_s": 95.640375,
+      "end_s": 95.81075,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -899,9 +1112,12 @@
       "word_index_in_ayah": 11,
       "text_uthmani": "بِمَا",
       "text_norm": "بما",
-      "start_s": 96.56,
-      "end_s": 96.64,
-      "confidence": null
+      "start_s": 96.6065,
+      "end_s": 96.6265,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -910,9 +1126,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "تَعۡمَلُونَ",
       "text_norm": "تعملون",
-      "start_s": 97.12,
-      "end_s": 98.08,
-      "confidence": null
+      "start_s": 97.187,
+      "end_s": 98.1698125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -920,10 +1139,13 @@
       "word_index_global": 74,
       "word_index_in_ayah": 13,
       "text_uthmani": "بَصِیرࣱ",
-      "text_norm": "بصیرࣱ",
-      "start_s": 98.32000000000001,
-      "end_s": 99.2,
-      "confidence": null
+      "text_norm": "بصير",
+      "start_s": 98.3063125,
+      "end_s": 98.978625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -932,9 +1154,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "قَدۡ",
       "text_norm": "قد",
-      "start_s": 99.76,
-      "end_s": 99.84,
-      "confidence": null
+      "start_s": 99.772,
+      "end_s": 99.792,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -943,9 +1168,12 @@
       "word_index_in_ayah": 2,
       "text_uthmani": "كَانَتۡ",
       "text_norm": "كانت",
-      "start_s": 100.24000000000001,
-      "end_s": 100.32000000000001,
-      "confidence": null
+      "start_s": 100.223375,
+      "end_s": 100.243375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -954,9 +1182,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "لَكُمۡ",
       "text_norm": "لكم",
-      "start_s": 100.96000000000001,
-      "end_s": 101.04,
-      "confidence": null
+      "start_s": 100.848375,
+      "end_s": 101.136625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -965,9 +1196,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "أُسۡوَةٌ",
       "text_norm": "اسوة",
-      "start_s": 101.52,
-      "end_s": 102.0,
-      "confidence": null
+      "start_s": 101.5246875,
+      "end_s": 102.09775,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -975,10 +1209,13 @@
       "word_index_global": 79,
       "word_index_in_ayah": 5,
       "text_uthmani": "حَسَنَةࣱ",
-      "text_norm": "حسنةࣱ",
-      "start_s": 102.48,
-      "end_s": 103.36,
-      "confidence": null
+      "text_norm": "حسنة",
+      "start_s": 102.4905,
+      "end_s": 103.102125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -986,10 +1223,13 @@
       "word_index_global": 80,
       "word_index_in_ayah": 6,
       "text_uthmani": "فِیۤ",
-      "text_norm": "فی",
-      "start_s": 103.68,
-      "end_s": 103.92,
-      "confidence": null
+      "text_norm": "في",
+      "start_s": 103.834,
+      "end_s": 103.854,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -998,9 +1238,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "إِبۡرَ",
       "text_norm": "ابر",
-      "start_s": 105.12,
-      "end_s": 105.52,
-      "confidence": null
+      "start_s": 105.191125,
+      "end_s": 105.4099375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1008,10 +1251,13 @@
       "word_index_global": 82,
       "word_index_in_ayah": 8,
       "text_uthmani": "ٰهِیمَ",
-      "text_norm": "هیم",
-      "start_s": 106.0,
-      "end_s": 106.4,
-      "confidence": null
+      "text_norm": "هيم",
+      "start_s": 105.8863125,
+      "end_s": 106.2333125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1019,10 +1265,13 @@
       "word_index_global": 83,
       "word_index_in_ayah": 9,
       "text_uthmani": "وَٱلَّذِینَ",
-      "text_norm": "والذین",
-      "start_s": 106.56,
-      "end_s": 107.36,
-      "confidence": null
+      "text_norm": "والذين",
+      "start_s": 106.4955,
+      "end_s": 107.3518125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1031,9 +1280,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "مَعَهُۥۤ",
       "text_norm": "معه",
-      "start_s": 107.60000000000001,
-      "end_s": 108.08,
-      "confidence": null
+      "start_s": 107.5839375,
+      "end_s": 108.1805625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1042,9 +1294,12 @@
       "word_index_in_ayah": 11,
       "text_uthmani": "إِذۡ",
       "text_norm": "اذ",
-      "start_s": 109.52,
-      "end_s": 109.84,
-      "confidence": null
+      "start_s": 109.64,
+      "end_s": 109.8361875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1053,9 +1308,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "قَالُوا۟",
       "text_norm": "قالوا",
-      "start_s": 110.0,
-      "end_s": 113.2,
-      "confidence": null
+      "start_s": 110.0190625,
+      "end_s": 113.32,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1064,9 +1322,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "لِقَوۡمِهِمۡ",
       "text_norm": "لقومهم",
-      "start_s": 113.36,
-      "end_s": 114.24000000000001,
-      "confidence": null
+      "start_s": 113.3739375,
+      "end_s": 114.3481875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1075,9 +1336,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "إِنَّا",
       "text_norm": "انا",
-      "start_s": 114.48,
-      "end_s": 115.2,
-      "confidence": null
+      "start_s": 114.4475,
+      "end_s": 115.265875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1086,9 +1350,12 @@
       "word_index_in_ayah": 15,
       "text_uthmani": "بُرَءَ",
       "text_norm": "برء",
-      "start_s": 115.44,
-      "end_s": 116.96000000000001,
-      "confidence": null
+      "start_s": 115.46125,
+      "end_s": 116.9869375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1097,9 +1364,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "ٰۤؤُا۟",
       "text_norm": "وا",
-      "start_s": 117.04,
-      "end_s": 117.12,
-      "confidence": null
+      "start_s": 116.9869375,
+      "end_s": 117.00693749999999,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1108,9 +1378,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "مِنكُمۡ",
       "text_norm": "منكم",
-      "start_s": 117.28,
-      "end_s": 118.24000000000001,
-      "confidence": null
+      "start_s": 117.1620625,
+      "end_s": 118.3328125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1119,9 +1392,12 @@
       "word_index_in_ayah": 18,
       "text_uthmani": "وَمِمَّا",
       "text_norm": "ومما",
-      "start_s": 118.72,
-      "end_s": 119.2,
-      "confidence": null
+      "start_s": 118.833,
+      "end_s": 119.224375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1130,9 +1406,12 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "تَعۡبُدُونَ",
       "text_norm": "تعبدون",
-      "start_s": 119.76,
-      "end_s": 120.72,
-      "confidence": null
+      "start_s": 119.807,
+      "end_s": 120.66875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1141,9 +1420,12 @@
       "word_index_in_ayah": 20,
       "text_uthmani": "مِن",
       "text_norm": "من",
-      "start_s": 120.96000000000001,
-      "end_s": 121.04,
-      "confidence": null
+      "start_s": 121.0648125,
+      "end_s": 121.0848125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1152,9 +1434,12 @@
       "word_index_in_ayah": 21,
       "text_uthmani": "دُونِ",
       "text_norm": "دون",
-      "start_s": 121.52,
-      "end_s": 121.60000000000001,
-      "confidence": null
+      "start_s": 121.620875,
+      "end_s": 121.640875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1163,9 +1448,12 @@
       "word_index_in_ayah": 22,
       "text_uthmani": "ٱللَّهِ",
       "text_norm": "الله",
-      "start_s": 122.24000000000001,
-      "end_s": 122.32000000000001,
-      "confidence": null
+      "start_s": 122.13375,
+      "end_s": 122.354125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1174,9 +1462,12 @@
       "word_index_in_ayah": 23,
       "text_uthmani": "كَفَرۡنَا",
       "text_norm": "كفرنا",
-      "start_s": 124.8,
-      "end_s": 125.52,
-      "confidence": null
+      "start_s": 124.7745,
+      "end_s": 125.635,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1185,9 +1476,12 @@
       "word_index_in_ayah": 24,
       "text_uthmani": "بِكُمۡ",
       "text_norm": "بكم",
-      "start_s": 125.68,
-      "end_s": 126.0,
-      "confidence": null
+      "start_s": 125.7285625,
+      "end_s": 125.8910625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1196,9 +1490,12 @@
       "word_index_in_ayah": 25,
       "text_uthmani": "وَبَدَا",
       "text_norm": "وبدا",
-      "start_s": 126.24000000000001,
-      "end_s": 126.8,
-      "confidence": null
+      "start_s": 126.139875,
+      "end_s": 126.68575,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1206,10 +1503,13 @@
       "word_index_global": 100,
       "word_index_in_ayah": 26,
       "text_uthmani": "بَیۡنَنَا",
-      "text_norm": "بیننا",
-      "start_s": 127.04,
-      "end_s": 127.76,
-      "confidence": null
+      "text_norm": "بيننا",
+      "start_s": 127.05725,
+      "end_s": 127.8341875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1217,10 +1517,13 @@
       "word_index_global": 101,
       "word_index_in_ayah": 27,
       "text_uthmani": "وَبَیۡنَكُمُ",
-      "text_norm": "وبینكم",
-      "start_s": 127.92,
-      "end_s": 128.72,
-      "confidence": null
+      "text_norm": "وبينكم",
+      "start_s": 127.92325,
+      "end_s": 128.701125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1229,9 +1532,12 @@
       "word_index_in_ayah": 28,
       "text_uthmani": "ٱلۡعَدَ",
       "text_norm": "العد",
-      "start_s": 129.2,
-      "end_s": 129.52,
-      "confidence": null
+      "start_s": 129.183,
+      "end_s": 129.4568125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1240,9 +1546,12 @@
       "word_index_in_ayah": 29,
       "text_uthmani": "ٰوَةُ",
       "text_norm": "وة",
-      "start_s": 129.76,
-      "end_s": 130.08,
-      "confidence": null
+      "start_s": 129.8585,
+      "end_s": 130.015,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1251,9 +1560,12 @@
       "word_index_in_ayah": 30,
       "text_uthmani": "وَٱلۡبَغۡضَاۤءُ",
       "text_norm": "والبغضاء",
-      "start_s": 130.32,
-      "end_s": 132.32,
-      "confidence": null
+      "start_s": 130.33375,
+      "end_s": 132.3959375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1262,9 +1574,12 @@
       "word_index_in_ayah": 31,
       "text_uthmani": "أَبَدًا",
       "text_norm": "ابدا",
-      "start_s": 132.56,
-      "end_s": 133.12,
-      "confidence": null
+      "start_s": 132.6126875,
+      "end_s": 133.0,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1273,9 +1588,12 @@
       "word_index_in_ayah": 32,
       "text_uthmani": "حَتَّىٰ",
       "text_norm": "حتي",
-      "start_s": 133.36,
-      "end_s": 133.68,
-      "confidence": null
+      "start_s": 133.3925625,
+      "end_s": 133.68675,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1284,9 +1602,12 @@
       "word_index_in_ayah": 33,
       "text_uthmani": "تُؤۡمِنُوا۟",
       "text_norm": "تومنوا",
-      "start_s": 134.0,
-      "end_s": 134.88,
-      "confidence": null
+      "start_s": 134.0755,
+      "end_s": 135.0,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1295,9 +1616,12 @@
       "word_index_in_ayah": 34,
       "text_uthmani": "بِٱللَّهِ",
       "text_norm": "بالله",
-      "start_s": 134.96,
-      "end_s": 135.04,
-      "confidence": null
+      "start_s": 135.0038125,
+      "end_s": 135.02381250000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1306,9 +1630,12 @@
       "word_index_in_ayah": 35,
       "text_uthmani": "وَحۡدَهُۥۤ",
       "text_norm": "وحده",
-      "start_s": 135.84,
-      "end_s": 136.56,
-      "confidence": null
+      "start_s": 135.943625,
+      "end_s": 136.55775,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1317,9 +1644,12 @@
       "word_index_in_ayah": 36,
       "text_uthmani": "إِلَّا",
       "text_norm": "الا",
-      "start_s": 137.04,
-      "end_s": 137.12,
-      "confidence": null
+      "start_s": 136.9624375,
+      "end_s": 137.016375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1328,9 +1658,12 @@
       "word_index_in_ayah": 37,
       "text_uthmani": "قَوۡلَ",
       "text_norm": "قول",
-      "start_s": 137.68,
-      "end_s": 138.0,
-      "confidence": null
+      "start_s": 137.773875,
+      "end_s": 137.935625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1339,9 +1672,12 @@
       "word_index_in_ayah": 38,
       "text_uthmani": "إِبۡرَ",
       "text_norm": "ابر",
-      "start_s": 138.32,
-      "end_s": 138.64000000000001,
-      "confidence": null
+      "start_s": 138.2884375,
+      "end_s": 138.687625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1349,10 +1685,13 @@
       "word_index_global": 113,
       "word_index_in_ayah": 39,
       "text_uthmani": "ٰهِیمَ",
-      "text_norm": "هیم",
-      "start_s": 139.04,
-      "end_s": 139.36,
-      "confidence": null
+      "text_norm": "هيم",
+      "start_s": 139.0,
+      "end_s": 139.4146875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1360,10 +1699,13 @@
       "word_index_global": 114,
       "word_index_in_ayah": 40,
       "text_uthmani": "لِأَبِیهِ",
-      "text_norm": "لابیه",
-      "start_s": 139.6,
-      "end_s": 140.4,
-      "confidence": null
+      "text_norm": "لابيه",
+      "start_s": 139.7198125,
+      "end_s": 140.4821875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1372,9 +1714,12 @@
       "word_index_in_ayah": 41,
       "text_uthmani": "لَأَسۡتَغۡفِرَنَّ",
       "text_norm": "لاستغفرن",
-      "start_s": 140.48,
-      "end_s": 142.16,
-      "confidence": null
+      "start_s": 140.4821875,
+      "end_s": 142.196875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1383,9 +1728,12 @@
       "word_index_in_ayah": 42,
       "text_uthmani": "لَكَ",
       "text_norm": "لك",
-      "start_s": 142.72,
-      "end_s": 142.8,
-      "confidence": null
+      "start_s": 142.724625,
+      "end_s": 142.9170625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1394,9 +1742,12 @@
       "word_index_in_ayah": 43,
       "text_uthmani": "وَمَاۤ",
       "text_norm": "وما",
-      "start_s": 143.28,
-      "end_s": 143.36,
-      "confidence": null
+      "start_s": 143.3281875,
+      "end_s": 143.34818750000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1405,9 +1756,12 @@
       "word_index_in_ayah": 44,
       "text_uthmani": "أَمۡلِكُ",
       "text_norm": "املك",
-      "start_s": 145.20000000000002,
-      "end_s": 145.6,
-      "confidence": null
+      "start_s": 145.122875,
+      "end_s": 145.7169375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1416,9 +1770,12 @@
       "word_index_in_ayah": 45,
       "text_uthmani": "لَكَ",
       "text_norm": "لك",
-      "start_s": 146.16,
-      "end_s": 146.24,
-      "confidence": null
+      "start_s": 146.2551875,
+      "end_s": 146.27518750000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1427,9 +1784,12 @@
       "word_index_in_ayah": 46,
       "text_uthmani": "مِنَ",
       "text_norm": "من",
-      "start_s": 146.56,
-      "end_s": 146.64000000000001,
-      "confidence": null
+      "start_s": 146.45525,
+      "end_s": 146.6995625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1438,9 +1798,12 @@
       "word_index_in_ayah": 47,
       "text_uthmani": "ٱللَّهِ",
       "text_norm": "الله",
-      "start_s": 146.96,
-      "end_s": 147.04,
-      "confidence": null
+      "start_s": 147.0401875,
+      "end_s": 147.1310625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1449,9 +1812,12 @@
       "word_index_in_ayah": 48,
       "text_uthmani": "مِن",
       "text_norm": "من",
-      "start_s": 147.6,
-      "end_s": 147.68,
-      "confidence": null
+      "start_s": 147.7080625,
+      "end_s": 147.72806250000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1459,10 +1825,13 @@
       "word_index_global": 123,
       "word_index_in_ayah": 49,
       "text_uthmani": "شَیۡءࣲۖ",
-      "text_norm": "شیءࣲ",
-      "start_s": 148.8,
-      "end_s": 149.52,
-      "confidence": null
+      "text_norm": "شيء",
+      "start_s": 148.9069375,
+      "end_s": 148.9269375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1471,9 +1840,12 @@
       "word_index_in_ayah": 50,
       "text_uthmani": "رَّبَّنَا",
       "text_norm": "ربنا",
-      "start_s": 150.16,
-      "end_s": 150.8,
-      "confidence": null
+      "start_s": 150.076,
+      "end_s": 150.8036875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1481,10 +1853,13 @@
       "word_index_global": 125,
       "word_index_in_ayah": 51,
       "text_uthmani": "عَلَیۡكَ",
-      "text_norm": "علیك",
-      "start_s": 151.04,
-      "end_s": 151.6,
-      "confidence": null
+      "text_norm": "عليك",
+      "start_s": 151.147125,
+      "end_s": 151.1928125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1493,9 +1868,12 @@
       "word_index_in_ayah": 52,
       "text_uthmani": "تَوَكَّلۡنَا",
       "text_norm": "توكلنا",
-      "start_s": 151.76,
-      "end_s": 152.8,
-      "confidence": null
+      "start_s": 151.773875,
+      "end_s": 152.721625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1503,10 +1881,13 @@
       "word_index_global": 127,
       "word_index_in_ayah": 53,
       "text_uthmani": "وَإِلَیۡكَ",
-      "text_norm": "والیك",
-      "start_s": 153.12,
-      "end_s": 153.84,
-      "confidence": null
+      "text_norm": "واليك",
+      "start_s": 153.238,
+      "end_s": 153.7618125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1515,9 +1896,12 @@
       "word_index_in_ayah": 54,
       "text_uthmani": "أَنَبۡنَا",
       "text_norm": "انبنا",
-      "start_s": 153.92000000000002,
-      "end_s": 154.72,
-      "confidence": null
+      "start_s": 153.8015,
+      "end_s": 154.6158125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1525,10 +1909,13 @@
       "word_index_global": 129,
       "word_index_in_ayah": 55,
       "text_uthmani": "وَإِلَیۡكَ",
-      "text_norm": "والیك",
-      "start_s": 154.96,
-      "end_s": 155.76,
-      "confidence": null
+      "text_norm": "واليك",
+      "start_s": 155.076625,
+      "end_s": 155.6473125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1536,10 +1923,13 @@
       "word_index_global": 130,
       "word_index_in_ayah": 56,
       "text_uthmani": "ٱلۡمَصِیرُ",
-      "text_norm": "المصیر",
-      "start_s": 156.0,
-      "end_s": 156.88,
-      "confidence": null
+      "text_norm": "المصير",
+      "start_s": 156.053875,
+      "end_s": 156.7660625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1548,9 +1938,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "رَبَّنَا",
       "text_norm": "ربنا",
-      "start_s": 158.64000000000001,
-      "end_s": 159.20000000000002,
-      "confidence": null
+      "start_s": 158.5341875,
+      "end_s": 159.08625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1559,9 +1952,12 @@
       "word_index_in_ayah": 2,
       "text_uthmani": "لَا",
       "text_norm": "لا",
-      "start_s": 159.36,
-      "end_s": 159.44,
-      "confidence": null
+      "start_s": 159.4128125,
+      "end_s": 159.4328125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1570,9 +1966,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "تَجۡعَلۡنَا",
       "text_norm": "تجعلنا",
-      "start_s": 159.76,
-      "end_s": 160.72,
-      "confidence": null
+      "start_s": 159.8415,
+      "end_s": 160.6405625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1580,10 +1979,13 @@
       "word_index_global": 134,
       "word_index_in_ayah": 4,
       "text_uthmani": "فِتۡنَةࣰ",
-      "text_norm": "فتنةࣰ",
-      "start_s": 160.88,
-      "end_s": 161.92000000000002,
-      "confidence": null
+      "text_norm": "فتنة",
+      "start_s": 160.916875,
+      "end_s": 161.5873125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1591,10 +1993,13 @@
       "word_index_global": 135,
       "word_index_in_ayah": 5,
       "text_uthmani": "لِّلَّذِینَ",
-      "text_norm": "للذین",
-      "start_s": 162.0,
-      "end_s": 162.72,
-      "confidence": null
+      "text_norm": "للذين",
+      "start_s": 161.7233125,
+      "end_s": 162.706,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1603,9 +2008,12 @@
       "word_index_in_ayah": 6,
       "text_uthmani": "كَفَرُوا۟",
       "text_norm": "كفروا",
-      "start_s": 162.88,
-      "end_s": 163.52,
-      "confidence": null
+      "start_s": 162.963125,
+      "end_s": 163.6153125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1614,9 +2022,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "وَٱغۡفِرۡ",
       "text_norm": "واغفر",
-      "start_s": 163.68,
-      "end_s": 164.24,
-      "confidence": null
+      "start_s": 163.7824375,
+      "end_s": 164.1209375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1625,9 +2036,12 @@
       "word_index_in_ayah": 8,
       "text_uthmani": "لَنَا",
       "text_norm": "لنا",
-      "start_s": 164.56,
-      "end_s": 164.64000000000001,
-      "confidence": null
+      "start_s": 164.4695,
+      "end_s": 164.6805,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1636,9 +2050,12 @@
       "word_index_in_ayah": 9,
       "text_uthmani": "رَبَّنَاۤۖ",
       "text_norm": "ربنا",
-      "start_s": 165.04,
-      "end_s": 165.68,
-      "confidence": null
+      "start_s": 164.99975,
+      "end_s": 165.561625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1647,9 +2064,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "إِنَّكَ",
       "text_norm": "انك",
-      "start_s": 166.48,
-      "end_s": 167.36,
-      "confidence": null
+      "start_s": 166.3605625,
+      "end_s": 167.4013125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1658,9 +2078,12 @@
       "word_index_in_ayah": 11,
       "text_uthmani": "أَنتَ",
       "text_norm": "انت",
-      "start_s": 167.6,
-      "end_s": 167.68,
-      "confidence": null
+      "start_s": 167.5750625,
+      "end_s": 167.5950625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1668,10 +2091,13 @@
       "word_index_global": 142,
       "word_index_in_ayah": 12,
       "text_uthmani": "ٱلۡعَزِیزُ",
-      "text_norm": "العزیز",
-      "start_s": 168.8,
-      "end_s": 169.44,
-      "confidence": null
+      "text_norm": "العزيز",
+      "start_s": 168.7306875,
+      "end_s": 169.47175,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1679,10 +2105,13 @@
       "word_index_global": 143,
       "word_index_in_ayah": 13,
       "text_uthmani": "ٱلۡحَكِیمُ",
-      "text_norm": "الحكیم",
-      "start_s": 169.76,
-      "end_s": 170.48,
-      "confidence": null
+      "text_norm": "الحكيم",
+      "start_s": 169.816375,
+      "end_s": 170.518625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1691,9 +2120,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "لَقَدۡ",
       "text_norm": "لقد",
-      "start_s": 171.12,
-      "end_s": 171.20000000000002,
-      "confidence": null
+      "start_s": 171.0214375,
+      "end_s": 171.2745,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1702,9 +2134,12 @@
       "word_index_in_ayah": 2,
       "text_uthmani": "كَانَ",
       "text_norm": "كان",
-      "start_s": 171.68,
-      "end_s": 171.76,
-      "confidence": null
+      "start_s": 171.71625,
+      "end_s": 171.73625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1713,9 +2148,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "لَكُمۡ",
       "text_norm": "لكم",
-      "start_s": 172.24,
-      "end_s": 172.32,
-      "confidence": null
+      "start_s": 172.246625,
+      "end_s": 172.4339375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1723,10 +2161,13 @@
       "word_index_global": 147,
       "word_index_in_ayah": 4,
       "text_uthmani": "فِیهِمۡ",
-      "text_norm": "فیهم",
-      "start_s": 172.8,
-      "end_s": 173.44,
-      "confidence": null
+      "text_norm": "فيهم",
+      "start_s": 172.88475,
+      "end_s": 173.364,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1735,9 +2176,12 @@
       "word_index_in_ayah": 5,
       "text_uthmani": "أُسۡوَةٌ",
       "text_norm": "اسوة",
-      "start_s": 173.52,
-      "end_s": 174.08,
-      "confidence": null
+      "start_s": 173.574375,
+      "end_s": 174.1958125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1745,10 +2189,13 @@
       "word_index_global": 149,
       "word_index_in_ayah": 6,
       "text_uthmani": "حَسَنَةࣱ",
-      "text_norm": "حسنةࣱ",
-      "start_s": 174.56,
-      "end_s": 175.52,
-      "confidence": null
+      "text_norm": "حسنة",
+      "start_s": 174.5754375,
+      "end_s": 175.1810625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1757,9 +2204,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "لِّمَن",
       "text_norm": "لمن",
-      "start_s": 175.76,
-      "end_s": 176.16,
-      "confidence": null
+      "start_s": 175.3200625,
+      "end_s": 176.2578125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1768,9 +2218,12 @@
       "word_index_in_ayah": 8,
       "text_uthmani": "كَانَ",
       "text_norm": "كان",
-      "start_s": 176.72,
-      "end_s": 176.8,
-      "confidence": null
+      "start_s": 176.8098125,
+      "end_s": 176.8728125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1778,10 +2231,13 @@
       "word_index_global": 152,
       "word_index_in_ayah": 9,
       "text_uthmani": "یَرۡجُوا۟",
-      "text_norm": "یرجوا",
-      "start_s": 177.36,
-      "end_s": 178.0,
-      "confidence": null
+      "text_norm": "يرجوا",
+      "start_s": 177.2541875,
+      "end_s": 177.9151875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1790,9 +2246,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "ٱللَّهَ",
       "text_norm": "الله",
-      "start_s": 178.16,
-      "end_s": 178.24,
-      "confidence": null
+      "start_s": 178.18775,
+      "end_s": 178.20775,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1800,10 +2259,13 @@
       "word_index_global": 154,
       "word_index_in_ayah": 11,
       "text_uthmani": "وَٱلۡیَوۡمَ",
-      "text_norm": "والیوم",
-      "start_s": 178.72,
-      "end_s": 179.44,
-      "confidence": null
+      "text_norm": "واليوم",
+      "start_s": 178.7185,
+      "end_s": 179.5550625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1812,9 +2274,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "ٱلۡءَاخِرَۚ",
       "text_norm": "الءاخر",
-      "start_s": 179.68,
-      "end_s": 180.16,
-      "confidence": null
+      "start_s": 179.8,
+      "end_s": 180.193875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1823,9 +2288,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "وَمَن",
       "text_norm": "ومن",
-      "start_s": 180.96,
-      "end_s": 181.04,
-      "confidence": null
+      "start_s": 180.8833125,
+      "end_s": 180.92,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1833,10 +2301,13 @@
       "word_index_global": 157,
       "word_index_in_ayah": 14,
       "text_uthmani": "یَتَوَلَّ",
-      "text_norm": "یتول",
-      "start_s": 181.36,
-      "end_s": 182.16,
-      "confidence": null
+      "text_norm": "يتول",
+      "start_s": 181.74075,
+      "end_s": 182.09825,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1845,9 +2316,12 @@
       "word_index_in_ayah": 15,
       "text_uthmani": "فَإِنَّ",
       "text_norm": "فان",
-      "start_s": 182.72,
-      "end_s": 183.04,
-      "confidence": null
+      "start_s": 182.6373125,
+      "end_s": 183.1075625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1856,9 +2330,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "ٱللَّهَ",
       "text_norm": "الله",
-      "start_s": 183.68,
-      "end_s": 183.76,
-      "confidence": null
+      "start_s": 183.6539375,
+      "end_s": 183.67393750000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1867,9 +2344,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "هُوَ",
       "text_norm": "هو",
-      "start_s": 184.32,
-      "end_s": 184.4,
-      "confidence": null
+      "start_s": 184.2501875,
+      "end_s": 184.4620625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1877,10 +2357,13 @@
       "word_index_global": 161,
       "word_index_in_ayah": 18,
       "text_uthmani": "ٱلۡغَنِیُّ",
-      "text_norm": "الغنی",
-      "start_s": 184.88,
-      "end_s": 185.44,
-      "confidence": null
+      "text_norm": "الغني",
+      "start_s": 184.9154375,
+      "end_s": 185.1619375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1888,10 +2371,13 @@
       "word_index_global": 162,
       "word_index_in_ayah": 19,
       "text_uthmani": "ٱلۡحَمِیدُ",
-      "text_norm": "الحمید",
-      "start_s": 185.84,
-      "end_s": 186.56,
-      "confidence": null
+      "text_norm": "الحميد",
+      "start_s": 185.8785625,
+      "end_s": 186.6789375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1900,9 +2386,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "۞",
       "text_norm": "",
-      "start_s": 188.4,
-      "end_s": 188.72,
-      "confidence": null
+      "start_s": 188.3186875,
+      "end_s": 188.63825,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1911,9 +2400,12 @@
       "word_index_in_ayah": 2,
       "text_uthmani": "عَسَى",
       "text_norm": "عسي",
-      "start_s": 189.04,
-      "end_s": 189.12,
-      "confidence": null
+      "start_s": 189.0155,
+      "end_s": 189.0355,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1922,9 +2414,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "ٱللَّهُ",
       "text_norm": "الله",
-      "start_s": 189.6,
-      "end_s": 189.68,
-      "confidence": null
+      "start_s": 189.55375,
+      "end_s": 189.57375000000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1933,9 +2428,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "أَن",
       "text_norm": "ان",
-      "start_s": 189.84,
-      "end_s": 190.48,
-      "confidence": null
+      "start_s": 190.1440625,
+      "end_s": 190.27475,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1943,10 +2441,13 @@
       "word_index_global": 167,
       "word_index_in_ayah": 5,
       "text_uthmani": "یَجۡعَلَ",
-      "text_norm": "یجعل",
-      "start_s": 190.88,
-      "end_s": 191.52,
-      "confidence": null
+      "text_norm": "يجعل",
+      "start_s": 190.8358125,
+      "end_s": 191.4480625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1954,10 +2455,13 @@
       "word_index_global": 168,
       "word_index_in_ayah": 6,
       "text_uthmani": "بَیۡنَكُمۡ",
-      "text_norm": "بینكم",
-      "start_s": 191.76,
-      "end_s": 192.4,
-      "confidence": null
+      "text_norm": "بينكم",
+      "start_s": 191.657875,
+      "end_s": 192.3491875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1965,10 +2469,13 @@
       "word_index_global": 169,
       "word_index_in_ayah": 7,
       "text_uthmani": "وَبَیۡنَ",
-      "text_norm": "وبین",
-      "start_s": 192.56,
-      "end_s": 193.12,
-      "confidence": null
+      "text_norm": "وبين",
+      "start_s": 192.6625625,
+      "end_s": 192.7515,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1976,10 +2483,13 @@
       "word_index_global": 170,
       "word_index_in_ayah": 8,
       "text_uthmani": "ٱلَّذِینَ",
-      "text_norm": "الذین",
-      "start_s": 193.36,
-      "end_s": 194.48000000000002,
-      "confidence": null
+      "text_norm": "الذين",
+      "start_s": 193.3871875,
+      "end_s": 194.3855625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1987,10 +2497,13 @@
       "word_index_global": 171,
       "word_index_in_ayah": 9,
       "text_uthmani": "عَادَیۡتُم",
-      "text_norm": "عادیتم",
-      "start_s": 194.72,
-      "end_s": 195.28,
-      "confidence": null
+      "text_norm": "عاديتم",
+      "start_s": 194.6005625,
+      "end_s": 195.3268125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -1999,9 +2512,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "مِّنۡهُم",
       "text_norm": "منهم",
-      "start_s": 196.0,
-      "end_s": 197.12,
-      "confidence": null
+      "start_s": 195.9375625,
+      "end_s": 197.0641875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2009,10 +2525,13 @@
       "word_index_global": 173,
       "word_index_in_ayah": 11,
       "text_uthmani": "مَّوَدَّةࣰۚ",
-      "text_norm": "مودةࣰ",
-      "start_s": 197.44,
-      "end_s": 197.52,
-      "confidence": null
+      "text_norm": "مودة",
+      "start_s": 197.3390625,
+      "end_s": 197.40525,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2021,9 +2540,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "وَٱللَّهُ",
       "text_norm": "والله",
-      "start_s": 198.32,
-      "end_s": 199.12,
-      "confidence": null
+      "start_s": 198.3241875,
+      "end_s": 198.8823125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2031,10 +2553,13 @@
       "word_index_global": 175,
       "word_index_in_ayah": 13,
       "text_uthmani": "قَدِیرࣱۚ",
-      "text_norm": "قدیرࣱ",
-      "start_s": 200.64000000000001,
-      "end_s": 200.72,
-      "confidence": null
+      "text_norm": "قدير",
+      "start_s": 200.690375,
+      "end_s": 200.7875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2043,9 +2568,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "وَٱللَّهُ",
       "text_norm": "والله",
-      "start_s": 201.52,
-      "end_s": 202.32,
-      "confidence": null
+      "start_s": 201.57275,
+      "end_s": 202.1725,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2053,10 +2581,13 @@
       "word_index_global": 177,
       "word_index_in_ayah": 15,
       "text_uthmani": "غَفُورࣱ",
-      "text_norm": "غفورࣱ",
-      "start_s": 202.48000000000002,
-      "end_s": 203.20000000000002,
-      "confidence": null
+      "text_norm": "غفور",
+      "start_s": 202.7466875,
+      "end_s": 203.2375625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2064,10 +2595,13 @@
       "word_index_global": 178,
       "word_index_in_ayah": 16,
       "text_uthmani": "رَّحِیمࣱ",
-      "text_norm": "رحیمࣱ",
-      "start_s": 203.84,
-      "end_s": 203.92000000000002,
-      "confidence": null
+      "text_norm": "رحيم",
+      "start_s": 203.7695625,
+      "end_s": 203.8056875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2076,9 +2610,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "لَّا",
       "text_norm": "لا",
-      "start_s": 204.0,
-      "end_s": 205.12,
-      "confidence": null
+      "start_s": 204.2793125,
+      "end_s": 205.0133125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2086,10 +2623,13 @@
       "word_index_global": 180,
       "word_index_in_ayah": 2,
       "text_uthmani": "یَنۡهَىٰكُمُ",
-      "text_norm": "ینهيكم",
-      "start_s": 205.44,
-      "end_s": 205.52,
-      "confidence": null
+      "text_norm": "ينهيكم",
+      "start_s": 205.5500625,
+      "end_s": 205.5700625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2098,9 +2638,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "ٱللَّهُ",
       "text_norm": "الله",
-      "start_s": 206.08,
-      "end_s": 206.16,
-      "confidence": null
+      "start_s": 206.1995625,
+      "end_s": 206.21956250000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2109,9 +2652,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "عَنِ",
       "text_norm": "عن",
-      "start_s": 206.56,
-      "end_s": 207.12,
-      "confidence": null
+      "start_s": 206.62875,
+      "end_s": 206.64875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2119,10 +2665,13 @@
       "word_index_global": 183,
       "word_index_in_ayah": 5,
       "text_uthmani": "ٱلَّذِینَ",
-      "text_norm": "الذین",
-      "start_s": 207.28,
-      "end_s": 207.36,
-      "confidence": null
+      "text_norm": "الذين",
+      "start_s": 207.3459375,
+      "end_s": 207.3659375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2131,9 +2680,12 @@
       "word_index_in_ayah": 6,
       "text_uthmani": "لَمۡ",
       "text_norm": "لم",
-      "start_s": 207.68,
-      "end_s": 208.96,
-      "confidence": null
+      "start_s": 207.5614375,
+      "end_s": 208.8476875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2141,10 +2693,13 @@
       "word_index_global": 185,
       "word_index_in_ayah": 7,
       "text_uthmani": "یُقَـٰتِلُوكُمۡ",
-      "text_norm": "یقتلوكم",
-      "start_s": 209.20000000000002,
-      "end_s": 209.36,
-      "confidence": null
+      "text_norm": "يقتلوكم",
+      "start_s": 209.1738125,
+      "end_s": 209.1938125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2152,10 +2707,13 @@
       "word_index_global": 186,
       "word_index_in_ayah": 8,
       "text_uthmani": "فِی",
-      "text_norm": "فی",
-      "start_s": 209.52,
-      "end_s": 209.92000000000002,
-      "confidence": null
+      "text_norm": "في",
+      "start_s": 209.5446875,
+      "end_s": 209.56468750000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2163,10 +2721,13 @@
       "word_index_global": 187,
       "word_index_in_ayah": 9,
       "text_uthmani": "ٱلدِّینِ",
-      "text_norm": "الدین",
-      "start_s": 210.16,
-      "end_s": 210.24,
-      "confidence": null
+      "text_norm": "الدين",
+      "start_s": 210.275,
+      "end_s": 210.29500000000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2175,9 +2736,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "وَلَمۡ",
       "text_norm": "ولم",
-      "start_s": 210.32,
-      "end_s": 211.76,
-      "confidence": null
+      "start_s": 210.531875,
+      "end_s": 211.6405625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2185,10 +2749,13 @@
       "word_index_global": 189,
       "word_index_in_ayah": 11,
       "text_uthmani": "یُخۡرِجُوكُم",
-      "text_norm": "یخرجوكم",
-      "start_s": 212.32,
-      "end_s": 212.4,
-      "confidence": null
+      "text_norm": "يخرجوكم",
+      "start_s": 212.351875,
+      "end_s": 212.4764375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2197,9 +2764,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "مِّن",
       "text_norm": "من",
-      "start_s": 213.28,
-      "end_s": 216.48000000000002,
-      "confidence": null
+      "start_s": 213.38375,
+      "end_s": 214.12375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2207,10 +2777,13 @@
       "word_index_global": 191,
       "word_index_in_ayah": 13,
       "text_uthmani": "دِیَـٰرِكُمۡ",
-      "text_norm": "دیركم",
-      "start_s": 217.20000000000002,
-      "end_s": 217.28,
-      "confidence": null
+      "text_norm": "ديركم",
+      "start_s": 214.4665625,
+      "end_s": 214.52025,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2219,9 +2792,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "أَن",
       "text_norm": "ان",
-      "start_s": 217.84,
-      "end_s": 218.88,
-      "confidence": null
+      "start_s": 215.428375,
+      "end_s": 218.7675,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2230,9 +2806,12 @@
       "word_index_in_ayah": 15,
       "text_uthmani": "تَبَرُّوهُمۡ",
       "text_norm": "تبروهم",
-      "start_s": 219.12,
-      "end_s": 220.4,
-      "confidence": null
+      "start_s": 219.20625,
+      "end_s": 220.4083125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2241,9 +2820,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "وَتُقۡسِطُوۤا۟",
       "text_norm": "وتقسطوا",
-      "start_s": 220.4,
-      "end_s": 222.08,
-      "confidence": null
+      "start_s": 221.4299375,
+      "end_s": 221.96125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2251,10 +2833,13 @@
       "word_index_global": 195,
       "word_index_in_ayah": 17,
       "text_uthmani": "إِلَیۡهِمۡۚ",
-      "text_norm": "الیهم",
-      "start_s": 222.8,
-      "end_s": 222.88,
-      "confidence": null
+      "text_norm": "اليهم",
+      "start_s": 222.681125,
+      "end_s": 222.9709375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2263,9 +2848,12 @@
       "word_index_in_ayah": 18,
       "text_uthmani": "إِنَّ",
       "text_norm": "ان",
-      "start_s": 223.6,
-      "end_s": 223.68,
-      "confidence": null
+      "start_s": 223.551125,
+      "end_s": 223.799125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2274,9 +2862,12 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "ٱللَّهَ",
       "text_norm": "الله",
-      "start_s": 224.0,
-      "end_s": 224.56,
-      "confidence": null
+      "start_s": 224.234625,
+      "end_s": 224.5605,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2284,10 +2875,13 @@
       "word_index_global": 198,
       "word_index_in_ayah": 20,
       "text_uthmani": "یُحِبُّ",
-      "text_norm": "یحب",
-      "start_s": 225.28,
-      "end_s": 226.48000000000002,
-      "confidence": null
+      "text_norm": "يحب",
+      "start_s": 225.2606875,
+      "end_s": 226.479625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2295,10 +2889,13 @@
       "word_index_global": 199,
       "word_index_in_ayah": 21,
       "text_uthmani": "ٱلۡمُقۡسِطِینَ",
-      "text_norm": "المقسطین",
-      "start_s": 228.08,
-      "end_s": 228.88,
-      "confidence": null
+      "text_norm": "المقسطين",
+      "start_s": 227.9650625,
+      "end_s": 228.762375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2307,9 +2904,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "إِنَّمَا",
       "text_norm": "انما",
-      "start_s": 228.96,
-      "end_s": 230.0,
-      "confidence": null
+      "start_s": 229.0746875,
+      "end_s": 229.8943125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2317,10 +2917,13 @@
       "word_index_global": 201,
       "word_index_in_ayah": 2,
       "text_uthmani": "یَنۡهَىٰكُمُ",
-      "text_norm": "ینهيكم",
-      "start_s": 230.4,
-      "end_s": 230.48000000000002,
-      "confidence": null
+      "text_norm": "ينهيكم",
+      "start_s": 230.475,
+      "end_s": 230.523375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2329,9 +2932,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "ٱللَّهُ",
       "text_norm": "الله",
-      "start_s": 231.04,
-      "end_s": 231.12,
-      "confidence": null
+      "start_s": 231.15825,
+      "end_s": 231.17825000000002,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2340,9 +2946,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "عَنِ",
       "text_norm": "عن",
-      "start_s": 231.52,
-      "end_s": 232.08,
-      "confidence": null
+      "start_s": 231.5855625,
+      "end_s": 231.7148125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2350,10 +2959,13 @@
       "word_index_global": 204,
       "word_index_in_ayah": 5,
       "text_uthmani": "ٱلَّذِینَ",
-      "text_norm": "الذین",
-      "start_s": 232.24,
-      "end_s": 233.28,
-      "confidence": null
+      "text_norm": "الذين",
+      "start_s": 232.256875,
+      "end_s": 233.196,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2362,9 +2974,12 @@
       "word_index_in_ayah": 6,
       "text_uthmani": "قَـٰتَلُوكُمۡ",
       "text_norm": "قتلوكم",
-      "start_s": 233.52,
-      "end_s": 233.76,
-      "confidence": null
+      "start_s": 233.56975,
+      "end_s": 233.58975,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2372,10 +2987,13 @@
       "word_index_global": 206,
       "word_index_in_ayah": 7,
       "text_uthmani": "فِی",
-      "text_norm": "فی",
-      "start_s": 233.84,
-      "end_s": 234.24,
-      "confidence": null
+      "text_norm": "في",
+      "start_s": 233.8159375,
+      "end_s": 233.8359375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2383,10 +3001,13 @@
       "word_index_global": 207,
       "word_index_in_ayah": 8,
       "text_uthmani": "ٱلدِّینِ",
-      "text_norm": "الدین",
-      "start_s": 234.48000000000002,
-      "end_s": 235.68,
-      "confidence": null
+      "text_norm": "الدين",
+      "start_s": 234.5931875,
+      "end_s": 235.56425,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2395,9 +3016,12 @@
       "word_index_in_ayah": 9,
       "text_uthmani": "وَأَخۡرَجُوكُم",
       "text_norm": "واخرجوكم",
-      "start_s": 236.24,
-      "end_s": 236.32,
-      "confidence": null
+      "start_s": 236.1775,
+      "end_s": 236.2905625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2406,9 +3030,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "مِّن",
       "text_norm": "من",
-      "start_s": 237.12,
-      "end_s": 242.48000000000002,
-      "confidence": null
+      "start_s": 241.6973125,
+      "end_s": 242.377,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2416,10 +3043,13 @@
       "word_index_global": 210,
       "word_index_in_ayah": 11,
       "text_uthmani": "دِیَـٰرِكُمۡ",
-      "text_norm": "دیركم",
-      "start_s": 242.8,
-      "end_s": 243.76,
-      "confidence": null
+      "text_norm": "ديركم",
+      "start_s": 242.918625,
+      "end_s": 243.8318125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2428,9 +3058,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "وَظَـٰهَرُوا۟",
       "text_norm": "وظهروا",
-      "start_s": 244.0,
-      "end_s": 244.08,
-      "confidence": null
+      "start_s": 243.978375,
+      "end_s": 243.998375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2439,9 +3072,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "عَلَىٰۤ",
       "text_norm": "علي",
-      "start_s": 245.04,
-      "end_s": 246.16,
-      "confidence": null
+      "start_s": 245.105125,
+      "end_s": 246.0404375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2450,9 +3086,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "إِخۡرَاجِكُمۡ",
       "text_norm": "اخراجكم",
-      "start_s": 246.56,
-      "end_s": 246.64000000000001,
-      "confidence": null
+      "start_s": 246.4416875,
+      "end_s": 246.58125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2461,9 +3100,12 @@
       "word_index_in_ayah": 15,
       "text_uthmani": "أَن",
       "text_norm": "ان",
-      "start_s": 247.36,
-      "end_s": 248.56,
-      "confidence": null
+      "start_s": 247.479375,
+      "end_s": 248.5885625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2472,9 +3114,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "تَوَلَّوۡهُمۡۚ",
       "text_norm": "تولوهم",
-      "start_s": 249.12,
-      "end_s": 249.20000000000002,
-      "confidence": null
+      "start_s": 249.043125,
+      "end_s": 249.08,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2483,9 +3128,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "وَمَن",
       "text_norm": "ومن",
-      "start_s": 249.52,
-      "end_s": 250.96,
-      "confidence": null
+      "start_s": 249.94,
+      "end_s": 251.021,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2493,10 +3141,13 @@
       "word_index_global": 217,
       "word_index_in_ayah": 18,
       "text_uthmani": "یَتَوَلَّهُمۡ",
-      "text_norm": "یتولهم",
-      "start_s": 251.20000000000002,
-      "end_s": 253.68,
-      "confidence": null
+      "text_norm": "يتولهم",
+      "start_s": 251.156,
+      "end_s": 253.737625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2505,9 +3156,12 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "فَأُو۟لَـٰۤئِكَ",
       "text_norm": "فاوليك",
-      "start_s": 253.92000000000002,
-      "end_s": 254.24,
-      "confidence": null
+      "start_s": 253.8103125,
+      "end_s": 254.3578125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2516,9 +3170,12 @@
       "word_index_in_ayah": 20,
       "text_uthmani": "هُمُ",
       "text_norm": "هم",
-      "start_s": 254.4,
-      "end_s": 255.52,
-      "confidence": null
+      "start_s": 254.41775,
+      "end_s": 255.53575,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2527,9 +3184,12 @@
       "word_index_in_ayah": 21,
       "text_uthmani": "ٱلظَّـٰلِمُونَ",
       "text_norm": "الظلمون",
-      "start_s": 255.52,
-      "end_s": 258.8,
-      "confidence": null
+      "start_s": 256.367125,
+      "end_s": 258.888875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2537,10 +3197,13 @@
       "word_index_global": 221,
       "word_index_in_ayah": 1,
       "text_uthmani": "یَـٰۤأَیُّهَا",
-      "text_norm": "یایها",
-      "start_s": 259.04,
-      "end_s": 259.6,
-      "confidence": null
+      "text_norm": "يايها",
+      "start_s": 259.091125,
+      "end_s": 259.2391875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2548,10 +3211,13 @@
       "word_index_global": 222,
       "word_index_in_ayah": 2,
       "text_uthmani": "ٱلَّذِینَ",
-      "text_norm": "الذین",
-      "start_s": 259.76,
-      "end_s": 260.56,
-      "confidence": null
+      "text_norm": "الذين",
+      "start_s": 259.83425,
+      "end_s": 260.4865,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2560,9 +3226,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "ءَامَنُوۤا۟",
       "text_norm": "ءامنوا",
-      "start_s": 261.44,
-      "end_s": 261.92,
-      "confidence": null
+      "start_s": 261.515,
+      "end_s": 262.0084375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2571,9 +3240,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "إِذَا",
       "text_norm": "اذا",
-      "start_s": 262.08,
-      "end_s": 264.48,
-      "confidence": null
+      "start_s": 262.108375,
+      "end_s": 264.499125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2582,9 +3254,12 @@
       "word_index_in_ayah": 5,
       "text_uthmani": "جَاۤءَكُمُ",
       "text_norm": "جاءكم",
-      "start_s": 264.96,
-      "end_s": 266.0,
-      "confidence": null
+      "start_s": 264.871625,
+      "end_s": 265.9660625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2593,9 +3268,12 @@
       "word_index_in_ayah": 6,
       "text_uthmani": "ٱلۡمُؤۡمِنَـٰتُ",
       "text_norm": "المومنت",
-      "start_s": 266.16,
-      "end_s": 266.8,
-      "confidence": null
+      "start_s": 266.1675,
+      "end_s": 266.907125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2604,9 +3282,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "مُهَـٰجِرَ",
       "text_norm": "مهجر",
-      "start_s": 267.28000000000003,
-      "end_s": 268.4,
-      "confidence": null
+      "start_s": 267.25675,
+      "end_s": 267.27675,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2614,10 +3295,13 @@
       "word_index_global": 228,
       "word_index_in_ayah": 8,
       "text_uthmani": "ٰتࣲ",
-      "text_norm": "تࣲ",
-      "start_s": 268.56,
-      "end_s": 270.32,
-      "confidence": null
+      "text_norm": "ت",
+      "start_s": 268.6701875,
+      "end_s": 270.269375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2626,9 +3310,12 @@
       "word_index_in_ayah": 9,
       "text_uthmani": "فَٱمۡتَحِنُوهُنَّۖ",
       "text_norm": "فامتحنوهن",
-      "start_s": 272.08,
-      "end_s": 272.16,
-      "confidence": null
+      "start_s": 272.1759375,
+      "end_s": 272.19593749999996,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2637,9 +3324,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "ٱللَّهُ",
       "text_norm": "الله",
-      "start_s": 272.72,
-      "end_s": 272.96,
-      "confidence": null
+      "start_s": 272.71475,
+      "end_s": 272.8935625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2648,9 +3338,12 @@
       "word_index_in_ayah": 11,
       "text_uthmani": "أَعۡلَمُ",
       "text_norm": "اعلم",
-      "start_s": 273.44,
-      "end_s": 275.04,
-      "confidence": null
+      "start_s": 273.4408125,
+      "end_s": 275.0658125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2658,10 +3351,13 @@
       "word_index_global": 232,
       "word_index_in_ayah": 12,
       "text_uthmani": "بِإِیمَـٰنِهِنَّۖ",
-      "text_norm": "بایمنهن",
-      "start_s": 276.40000000000003,
-      "end_s": 276.8,
-      "confidence": null
+      "text_norm": "بايمنهن",
+      "start_s": 276.451,
+      "end_s": 276.682375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2670,9 +3366,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "فَإِنۡ",
       "text_norm": "فان",
-      "start_s": 276.96,
-      "end_s": 278.48,
-      "confidence": null
+      "start_s": 276.9136875,
+      "end_s": 278.4209375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2681,9 +3380,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "عَلِمۡتُمُوهُنَّ",
       "text_norm": "علمتموهن",
-      "start_s": 278.88,
-      "end_s": 280.48,
-      "confidence": null
+      "start_s": 278.831375,
+      "end_s": 279.72,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2691,10 +3393,13 @@
       "word_index_global": 235,
       "word_index_in_ayah": 15,
       "text_uthmani": "مُؤۡمِنَـٰتࣲ",
-      "text_norm": "مومنتࣲ",
-      "start_s": 280.56,
-      "end_s": 280.64,
-      "confidence": null
+      "text_norm": "مومنت",
+      "start_s": 280.616625,
+      "end_s": 280.636625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2703,9 +3408,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "فَلَا",
       "text_norm": "فلا",
-      "start_s": 281.12,
-      "end_s": 282.56,
-      "confidence": null
+      "start_s": 281.1461875,
+      "end_s": 282.5171875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2714,9 +3422,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "تَرۡجِعُوهُنَّ",
       "text_norm": "ترجعوهن",
-      "start_s": 283.12,
-      "end_s": 283.76,
-      "confidence": null
+      "start_s": 283.1501875,
+      "end_s": 283.695,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2725,9 +3436,12 @@
       "word_index_in_ayah": 18,
       "text_uthmani": "إِلَى",
       "text_norm": "الي",
-      "start_s": 283.76,
-      "end_s": 285.92,
-      "confidence": null
+      "start_s": 283.695,
+      "end_s": 285.9615625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2736,9 +3450,12 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "ٱلۡكُفَّارِۖ",
       "text_norm": "الكفار",
-      "start_s": 287.04,
-      "end_s": 287.12,
-      "confidence": null
+      "start_s": 286.9230625,
+      "end_s": 287.1780625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2747,9 +3464,12 @@
       "word_index_in_ayah": 20,
       "text_uthmani": "لَا",
       "text_norm": "لا",
-      "start_s": 287.36,
-      "end_s": 287.44,
-      "confidence": null
+      "start_s": 287.321625,
+      "end_s": 287.55475,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2758,9 +3478,12 @@
       "word_index_in_ayah": 21,
       "text_uthmani": "هُنَّ",
       "text_norm": "هن",
-      "start_s": 288.16,
-      "end_s": 289.04,
-      "confidence": null
+      "start_s": 288.2268125,
+      "end_s": 288.2468125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2768,10 +3491,13 @@
       "word_index_global": 242,
       "word_index_in_ayah": 22,
       "text_uthmani": "حِلࣱّ",
-      "text_norm": "حلࣱ",
-      "start_s": 289.12,
-      "end_s": 289.2,
-      "confidence": null
+      "text_norm": "حل",
+      "start_s": 288.996875,
+      "end_s": 289.01687499999997,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2780,9 +3506,12 @@
       "word_index_in_ayah": 23,
       "text_uthmani": "لَّهُمۡ",
       "text_norm": "لهم",
-      "start_s": 289.52,
-      "end_s": 289.6,
-      "confidence": null
+      "start_s": 289.595875,
+      "end_s": 289.61587499999996,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2791,9 +3520,12 @@
       "word_index_in_ayah": 24,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 289.84000000000003,
-      "end_s": 290.0,
-      "confidence": null
+      "start_s": 290.0143125,
+      "end_s": 290.0449375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2802,9 +3534,12 @@
       "word_index_in_ayah": 25,
       "text_uthmani": "هُمۡ",
       "text_norm": "هم",
-      "start_s": 290.0,
-      "end_s": 291.36,
-      "confidence": null
+      "start_s": 290.397625,
+      "end_s": 291.386,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2812,10 +3547,13 @@
       "word_index_global": 246,
       "word_index_in_ayah": 26,
       "text_uthmani": "یَحِلُّونَ",
-      "text_norm": "یحلون",
-      "start_s": 291.76,
-      "end_s": 292.08,
-      "confidence": null
+      "text_norm": "يحلون",
+      "start_s": 291.6476875,
+      "end_s": 291.9920625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2824,9 +3562,12 @@
       "word_index_in_ayah": 27,
       "text_uthmani": "لَهُنَّۖ",
       "text_norm": "لهن",
-      "start_s": 293.36,
-      "end_s": 294.48,
-      "confidence": null
+      "start_s": 293.2943125,
+      "end_s": 294.44975,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2835,9 +3576,12 @@
       "word_index_in_ayah": 28,
       "text_uthmani": "وَءَاتُوهُم",
       "text_norm": "وءاتوهم",
-      "start_s": 294.96,
-      "end_s": 295.04,
-      "confidence": null
+      "start_s": 295.043,
+      "end_s": 295.063,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2846,9 +3590,12 @@
       "word_index_in_ayah": 29,
       "text_uthmani": "مَّاۤ",
       "text_norm": "ما",
-      "start_s": 296.64,
-      "end_s": 298.8,
-      "confidence": null
+      "start_s": 296.6296875,
+      "end_s": 298.6975625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2857,9 +3604,12 @@
       "word_index_in_ayah": 30,
       "text_uthmani": "أَنفَقُوا۟ۚ",
       "text_norm": "انفقوا",
-      "start_s": 299.44,
-      "end_s": 299.52,
-      "confidence": null
+      "start_s": 299.3805,
+      "end_s": 299.40049999999997,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2868,9 +3618,12 @@
       "word_index_in_ayah": 31,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 299.92,
-      "end_s": 300.56,
-      "confidence": null
+      "start_s": 299.948375,
+      "end_s": 300.5483125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2879,9 +3632,12 @@
       "word_index_in_ayah": 32,
       "text_uthmani": "جُنَاحَ",
       "text_norm": "جناح",
-      "start_s": 300.8,
-      "end_s": 301.36,
-      "confidence": null
+      "start_s": 300.71925,
+      "end_s": 300.9239375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2889,10 +3645,13 @@
       "word_index_global": 253,
       "word_index_in_ayah": 33,
       "text_uthmani": "عَلَیۡكُمۡ",
-      "text_norm": "علیكم",
-      "start_s": 301.68,
-      "end_s": 301.76,
-      "confidence": null
+      "text_norm": "عليكم",
+      "start_s": 301.6269375,
+      "end_s": 301.6469375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2901,9 +3660,12 @@
       "word_index_in_ayah": 34,
       "text_uthmani": "أَن",
       "text_norm": "ان",
-      "start_s": 302.32,
-      "end_s": 304.24,
-      "confidence": null
+      "start_s": 302.336,
+      "end_s": 304.1910625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2912,9 +3674,12 @@
       "word_index_in_ayah": 35,
       "text_uthmani": "تَنكِحُوهُنَّ",
       "text_norm": "تنكحوهن",
-      "start_s": 304.72,
-      "end_s": 305.12,
-      "confidence": null
+      "start_s": 304.655375,
+      "end_s": 305.22675,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2923,9 +3688,12 @@
       "word_index_in_ayah": 36,
       "text_uthmani": "إِذَاۤ",
       "text_norm": "اذا",
-      "start_s": 307.28000000000003,
-      "end_s": 308.96,
-      "confidence": null
+      "start_s": 307.2893125,
+      "end_s": 309.0405,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2933,10 +3701,13 @@
       "word_index_global": 257,
       "word_index_in_ayah": 37,
       "text_uthmani": "ءَاتَیۡتُمُوهُنَّ",
-      "text_norm": "ءاتیتموهن",
-      "start_s": 309.44,
-      "end_s": 310.72,
-      "confidence": null
+      "text_norm": "ءاتيتموهن",
+      "start_s": 309.3976875,
+      "end_s": 310.688375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2945,9 +3716,12 @@
       "word_index_in_ayah": 38,
       "text_uthmani": "أُجُورَهُنَّۚ",
       "text_norm": "اجورهن",
-      "start_s": 312.24,
-      "end_s": 312.32,
-      "confidence": null
+      "start_s": 312.16625,
+      "end_s": 312.2010625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2956,9 +3730,12 @@
       "word_index_in_ayah": 39,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 312.72,
-      "end_s": 313.68,
-      "confidence": null
+      "start_s": 312.785875,
+      "end_s": 313.759,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2967,9 +3744,12 @@
       "word_index_in_ayah": 40,
       "text_uthmani": "تُمۡسِكُوا۟",
       "text_norm": "تمسكوا",
-      "start_s": 313.76,
-      "end_s": 314.48,
-      "confidence": null
+      "start_s": 313.759,
+      "end_s": 314.513875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2978,9 +3758,12 @@
       "word_index_in_ayah": 41,
       "text_uthmani": "بِعِصَمِ",
       "text_norm": "بعصم",
-      "start_s": 314.8,
-      "end_s": 315.44,
-      "confidence": null
+      "start_s": 314.724,
+      "end_s": 315.4748125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -2989,9 +3772,12 @@
       "word_index_in_ayah": 42,
       "text_uthmani": "ٱلۡكَوَافِرِ",
       "text_norm": "الكوافر",
-      "start_s": 316.08,
-      "end_s": 316.96,
-      "confidence": null
+      "start_s": 316.0574375,
+      "end_s": 316.9925625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3000,9 +3786,12 @@
       "word_index_in_ayah": 43,
       "text_uthmani": "وَسۡءَلُوا۟",
       "text_norm": "وسءلوا",
-      "start_s": 317.12,
-      "end_s": 317.2,
-      "confidence": null
+      "start_s": 317.0065,
+      "end_s": 317.185875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3011,9 +3800,12 @@
       "word_index_in_ayah": 44,
       "text_uthmani": "مَاۤ",
       "text_norm": "ما",
-      "start_s": 318.48,
-      "end_s": 320.24,
-      "confidence": null
+      "start_s": 318.48775,
+      "end_s": 320.24925,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3022,9 +3814,12 @@
       "word_index_in_ayah": 45,
       "text_uthmani": "أَنفَقۡتُمۡ",
       "text_norm": "انفقتم",
-      "start_s": 320.40000000000003,
-      "end_s": 321.6,
-      "confidence": null
+      "start_s": 320.31075,
+      "end_s": 321.5841875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3032,10 +3827,13 @@
       "word_index_global": 266,
       "word_index_in_ayah": 46,
       "text_uthmani": "وَلۡیَسۡءَلُوا۟",
-      "text_norm": "ولیسءلوا",
-      "start_s": 321.76,
-      "end_s": 321.84000000000003,
-      "confidence": null
+      "text_norm": "وليسءلوا",
+      "start_s": 321.8676875,
+      "end_s": 321.88768749999997,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3044,9 +3842,12 @@
       "word_index_in_ayah": 47,
       "text_uthmani": "مَاۤ",
       "text_norm": "ما",
-      "start_s": 323.12,
-      "end_s": 324.72,
-      "confidence": null
+      "start_s": 323.1211875,
+      "end_s": 324.600875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3055,9 +3856,12 @@
       "word_index_in_ayah": 48,
       "text_uthmani": "أَنفَقُوا۟ۚ",
       "text_norm": "انفقوا",
-      "start_s": 325.36,
-      "end_s": 325.44,
-      "confidence": null
+      "start_s": 325.2668125,
+      "end_s": 325.32975,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3066,9 +3870,12 @@
       "word_index_in_ayah": 49,
       "text_uthmani": "ذَ",
       "text_norm": "ذ",
-      "start_s": 325.92,
-      "end_s": 326.0,
-      "confidence": null
+      "start_s": 325.89775,
+      "end_s": 325.91774999999996,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3077,9 +3884,12 @@
       "word_index_in_ayah": 50,
       "text_uthmani": "ٰلِكُمۡ",
       "text_norm": "لكم",
-      "start_s": 326.24,
-      "end_s": 326.64,
-      "confidence": null
+      "start_s": 326.3275625,
+      "end_s": 326.5338125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3088,9 +3898,12 @@
       "word_index_in_ayah": 51,
       "text_uthmani": "حُكۡمُ",
       "text_norm": "حكم",
-      "start_s": 327.04,
-      "end_s": 327.12,
-      "confidence": null
+      "start_s": 327.085,
+      "end_s": 327.10499999999996,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3099,9 +3912,12 @@
       "word_index_in_ayah": 52,
       "text_uthmani": "ٱللَّهِ",
       "text_norm": "الله",
-      "start_s": 327.6,
-      "end_s": 328.0,
-      "confidence": null
+      "start_s": 327.715875,
+      "end_s": 327.9170625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3109,10 +3925,13 @@
       "word_index_global": 273,
       "word_index_in_ayah": 53,
       "text_uthmani": "یَحۡكُمُ",
-      "text_norm": "یحكم",
-      "start_s": 328.40000000000003,
-      "end_s": 329.04,
-      "confidence": null
+      "text_norm": "يحكم",
+      "start_s": 328.3673125,
+      "end_s": 328.928125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3120,10 +3939,13 @@
       "word_index_global": 274,
       "word_index_in_ayah": 54,
       "text_uthmani": "بَیۡنَكُمۡۖ",
-      "text_norm": "بینكم",
-      "start_s": 329.68,
-      "end_s": 329.76,
-      "confidence": null
+      "text_norm": "بينكم",
+      "start_s": 329.564875,
+      "end_s": 329.6650625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3132,9 +3954,12 @@
       "word_index_in_ayah": 55,
       "text_uthmani": "وَٱللَّهُ",
       "text_norm": "والله",
-      "start_s": 330.56,
-      "end_s": 331.28000000000003,
-      "confidence": null
+      "start_s": 330.5520625,
+      "end_s": 331.196625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3142,10 +3967,13 @@
       "word_index_global": 276,
       "word_index_in_ayah": 56,
       "text_uthmani": "عَلِیمٌ",
-      "text_norm": "علیم",
-      "start_s": 331.36,
-      "end_s": 333.84000000000003,
-      "confidence": null
+      "text_norm": "عليم",
+      "start_s": 331.3664375,
+      "end_s": 332.10775,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3153,10 +3981,13 @@
       "word_index_global": 277,
       "word_index_in_ayah": 57,
       "text_uthmani": "حَكِیمࣱ",
-      "text_norm": "حكیمࣱ",
-      "start_s": 334.08,
-      "end_s": 334.64,
-      "confidence": null
+      "text_norm": "حكيم",
+      "start_s": 333.966375,
+      "end_s": 334.53775,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3165,9 +3996,12 @@
       "word_index_in_ayah": 1,
       "text_uthmani": "وَإِن",
       "text_norm": "وان",
-      "start_s": 335.28000000000003,
-      "end_s": 336.16,
-      "confidence": null
+      "start_s": 335.4,
+      "end_s": 336.054625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3176,9 +4010,12 @@
       "word_index_in_ayah": 2,
       "text_uthmani": "فَاتَكُمۡ",
       "text_norm": "فاتكم",
-      "start_s": 336.40000000000003,
-      "end_s": 337.04,
-      "confidence": null
+      "start_s": 336.447625,
+      "end_s": 336.467625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3186,10 +4023,13 @@
       "word_index_global": 280,
       "word_index_in_ayah": 3,
       "text_uthmani": "شَیۡءࣱ",
-      "text_norm": "شیءࣱ",
-      "start_s": 337.28000000000003,
-      "end_s": 337.36,
-      "confidence": null
+      "text_norm": "شيء",
+      "start_s": 337.2161875,
+      "end_s": 337.416625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3198,9 +4038,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "مِّنۡ",
       "text_norm": "من",
-      "start_s": 337.76,
-      "end_s": 338.32,
-      "confidence": null
+      "start_s": 337.7334375,
+      "end_s": 338.43775,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3209,9 +4052,12 @@
       "word_index_in_ayah": 5,
       "text_uthmani": "أَزۡوَ",
       "text_norm": "ازو",
-      "start_s": 338.40000000000003,
-      "end_s": 338.8,
-      "confidence": null
+      "start_s": 338.43775,
+      "end_s": 338.6855625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3220,9 +4066,12 @@
       "word_index_in_ayah": 6,
       "text_uthmani": "ٰجِكُمۡ",
       "text_norm": "جكم",
-      "start_s": 339.04,
-      "end_s": 339.36,
-      "confidence": null
+      "start_s": 339.0305,
+      "end_s": 339.24,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3231,9 +4080,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "إِلَى",
       "text_norm": "الي",
-      "start_s": 339.52,
-      "end_s": 340.24,
-      "confidence": null
+      "start_s": 339.5380625,
+      "end_s": 340.2643125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3242,9 +4094,12 @@
       "word_index_in_ayah": 8,
       "text_uthmani": "ٱلۡكُفَّارِ",
       "text_norm": "الكفار",
-      "start_s": 340.48,
-      "end_s": 341.76,
-      "confidence": null
+      "start_s": 340.4869375,
+      "end_s": 341.8241875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3253,9 +4108,12 @@
       "word_index_in_ayah": 9,
       "text_uthmani": "فَعَاقَبۡتُمۡ",
       "text_norm": "فعاقبتم",
-      "start_s": 341.84000000000003,
-      "end_s": 342.56,
-      "confidence": null
+      "start_s": 341.8241875,
+      "end_s": 342.5269375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3264,9 +4122,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "فَءَاتُوا۟",
       "text_norm": "فءاتوا",
-      "start_s": 342.72,
-      "end_s": 343.28000000000003,
-      "confidence": null
+      "start_s": 342.76475,
+      "end_s": 342.92,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3274,10 +4135,13 @@
       "word_index_global": 288,
       "word_index_in_ayah": 11,
       "text_uthmani": "ٱلَّذِینَ",
-      "text_norm": "الذین",
-      "start_s": 343.44,
-      "end_s": 344.08,
-      "confidence": null
+      "text_norm": "الذين",
+      "start_s": 343.49575,
+      "end_s": 344.1535625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3286,9 +4150,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "ذَهَبَتۡ",
       "text_norm": "ذهبت",
-      "start_s": 344.24,
-      "end_s": 344.8,
-      "confidence": null
+      "start_s": 344.1535625,
+      "end_s": 344.899125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3297,9 +4164,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "أَزۡوَ",
       "text_norm": "ازو",
-      "start_s": 344.88,
-      "end_s": 345.28000000000003,
-      "confidence": null
+      "start_s": 344.899125,
+      "end_s": 345.2635625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3308,9 +4178,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "ٰجُهُم",
       "text_norm": "جهم",
-      "start_s": 345.6,
-      "end_s": 345.68,
-      "confidence": null
+      "start_s": 345.71225,
+      "end_s": 345.7898125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3319,9 +4192,12 @@
       "word_index_in_ayah": 15,
       "text_uthmani": "مِّثۡلَ",
       "text_norm": "مثل",
-      "start_s": 346.24,
-      "end_s": 346.32,
-      "confidence": null
+      "start_s": 346.1200625,
+      "end_s": 346.3894375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3330,9 +4206,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "مَاۤ",
       "text_norm": "ما",
-      "start_s": 347.52,
-      "end_s": 349.44,
-      "confidence": null
+      "start_s": 347.5293125,
+      "end_s": 349.5274375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3341,9 +4220,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "أَنفَقُوا۟ۚ",
       "text_norm": "انفقوا",
-      "start_s": 350.16,
-      "end_s": 350.96,
-      "confidence": null
+      "start_s": 350.1006875,
+      "end_s": 353.7534375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3352,9 +4234,12 @@
       "word_index_in_ayah": 18,
       "text_uthmani": "وَٱتَّقُوا۟",
       "text_norm": "واتقوا",
-      "start_s": 351.12,
-      "end_s": 351.2,
-      "confidence": null
+      "start_s": 353.9953125,
+      "end_s": 354.0153125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3363,9 +4248,12 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "ٱللَّهَ",
       "text_norm": "الله",
-      "start_s": 354.0,
-      "end_s": 355.68,
-      "confidence": null
+      "start_s": 354.7538125,
+      "end_s": 354.77381249999996,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3373,10 +4261,13 @@
       "word_index_global": 297,
       "word_index_in_ayah": 20,
       "text_uthmani": "ٱلَّذِیۤ",
-      "text_norm": "الذی",
-      "start_s": 356.0,
-      "end_s": 357.12,
-      "confidence": null
+      "text_norm": "الذي",
+      "start_s": 355.9746875,
+      "end_s": 357.0484375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3385,9 +4276,12 @@
       "word_index_in_ayah": 21,
       "text_uthmani": "أَنتُم",
       "text_norm": "انتم",
-      "start_s": 357.84000000000003,
-      "end_s": 357.92,
-      "confidence": null
+      "start_s": 357.8483125,
+      "end_s": 358.0106875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3396,9 +4290,12 @@
       "word_index_in_ayah": 22,
       "text_uthmani": "بِهِۦ",
       "text_norm": "به",
-      "start_s": 358.48,
-      "end_s": 359.44,
-      "confidence": null
+      "start_s": 358.4250625,
+      "end_s": 359.488,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3407,9 +4304,12 @@
       "word_index_in_ayah": 23,
       "text_uthmani": "مُؤۡمِنُونَ",
       "text_norm": "مومنون",
-      "start_s": 359.44,
-      "end_s": 363.68,
-      "confidence": null
+      "start_s": 360.4004375,
+      "end_s": 363.7131875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3417,10 +4317,13 @@
       "word_index_global": 301,
       "word_index_in_ayah": 1,
       "text_uthmani": "یَـٰۤأَیُّهَا",
-      "text_norm": "یایها",
-      "start_s": 364.0,
-      "end_s": 364.72,
-      "confidence": null
+      "text_norm": "يايها",
+      "start_s": 364.034375,
+      "end_s": 364.1989375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3428,10 +4331,13 @@
       "word_index_global": 302,
       "word_index_in_ayah": 2,
       "text_uthmani": "ٱلنَّبِیُّ",
-      "text_norm": "النبی",
-      "start_s": 364.88,
-      "end_s": 365.28000000000003,
-      "confidence": null
+      "text_norm": "النبي",
+      "start_s": 364.8428125,
+      "end_s": 365.36975,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3440,9 +4346,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "إِذَا",
       "text_norm": "اذا",
-      "start_s": 365.52,
-      "end_s": 367.28000000000003,
-      "confidence": null
+      "start_s": 365.4578125,
+      "end_s": 367.2825,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3451,9 +4360,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "جَاۤءَكَ",
       "text_norm": "جاءك",
-      "start_s": 367.52,
-      "end_s": 368.56,
-      "confidence": null
+      "start_s": 367.6375625,
+      "end_s": 368.531875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3462,9 +4374,12 @@
       "word_index_in_ayah": 5,
       "text_uthmani": "ٱلۡمُؤۡمِنَـٰتُ",
       "text_norm": "المومنت",
-      "start_s": 368.56,
-      "end_s": 370.0,
-      "confidence": null
+      "start_s": 368.6004375,
+      "end_s": 369.88,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3472,10 +4387,13 @@
       "word_index_global": 306,
       "word_index_in_ayah": 6,
       "text_uthmani": "یُبَایِعۡنَكَ",
-      "text_norm": "یبایعنك",
-      "start_s": 370.16,
-      "end_s": 370.24,
-      "confidence": null
+      "text_norm": "يبايعنك",
+      "start_s": 370.21575,
+      "end_s": 370.23575,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3484,9 +4402,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "عَلَىٰۤ",
       "text_norm": "علي",
-      "start_s": 371.2,
-      "end_s": 371.28000000000003,
-      "confidence": null
+      "start_s": 371.311125,
+      "end_s": 371.331125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3495,9 +4416,12 @@
       "word_index_in_ayah": 8,
       "text_uthmani": "أَن",
       "text_norm": "ان",
-      "start_s": 371.52,
-      "end_s": 371.6,
-      "confidence": null
+      "start_s": 371.4655,
+      "end_s": 371.4855,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3506,9 +4430,12 @@
       "word_index_in_ayah": 9,
       "text_uthmani": "لَّا",
       "text_norm": "لا",
-      "start_s": 371.76,
-      "end_s": 372.88,
-      "confidence": null
+      "start_s": 371.954375,
+      "end_s": 372.92675,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3516,10 +4443,13 @@
       "word_index_global": 310,
       "word_index_in_ayah": 10,
       "text_uthmani": "یُشۡرِكۡنَ",
-      "text_norm": "یشركن",
-      "start_s": 372.96,
-      "end_s": 373.04,
-      "confidence": null
+      "text_norm": "يشركن",
+      "start_s": 372.92675,
+      "end_s": 372.94675,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3528,9 +4458,12 @@
       "word_index_in_ayah": 11,
       "text_uthmani": "بِٱللَّهِ",
       "text_norm": "بالله",
-      "start_s": 373.84000000000003,
-      "end_s": 374.8,
-      "confidence": null
+      "start_s": 373.8756875,
+      "end_s": 374.38825,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3538,10 +4471,13 @@
       "word_index_global": 312,
       "word_index_in_ayah": 12,
       "text_uthmani": "شَیۡءࣰا",
-      "text_norm": "شیءࣰا",
-      "start_s": 374.8,
-      "end_s": 374.88,
-      "confidence": null
+      "text_norm": "شيءا",
+      "start_s": 374.8846875,
+      "end_s": 374.9906875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3550,9 +4486,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 375.04,
-      "end_s": 376.16,
-      "confidence": null
+      "start_s": 375.383875,
+      "end_s": 377.4228125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3560,10 +4499,13 @@
       "word_index_global": 314,
       "word_index_in_ayah": 14,
       "text_uthmani": "یَسۡرِقۡنَ",
-      "text_norm": "یسرقن",
-      "start_s": 376.32,
-      "end_s": 376.40000000000003,
-      "confidence": null
+      "text_norm": "يسرقن",
+      "start_s": 379.1844375,
+      "end_s": 379.354625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3572,9 +4514,12 @@
       "word_index_in_ayah": 15,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 376.56,
-      "end_s": 380.24,
-      "confidence": null
+      "start_s": 379.7744375,
+      "end_s": 380.596,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3582,10 +4527,13 @@
       "word_index_global": 316,
       "word_index_in_ayah": 16,
       "text_uthmani": "یَزۡنِینَ",
-      "text_norm": "یزنین",
-      "start_s": 380.72,
-      "end_s": 380.8,
-      "confidence": null
+      "text_norm": "يزنين",
+      "start_s": 380.8108125,
+      "end_s": 380.8308125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3594,9 +4542,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 380.88,
-      "end_s": 382.08,
-      "confidence": null
+      "start_s": 381.1415625,
+      "end_s": 382.11475,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3604,10 +4555,13 @@
       "word_index_global": 318,
       "word_index_in_ayah": 18,
       "text_uthmani": "یَقۡتُلۡنَ",
-      "text_norm": "یقتلن",
-      "start_s": 382.16,
-      "end_s": 383.52,
-      "confidence": null
+      "text_norm": "يقتلن",
+      "start_s": 382.11475,
+      "end_s": 383.63725,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3616,9 +4570,12 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "أَوۡلَـٰدَهُنَّ",
       "text_norm": "اولدهن",
-      "start_s": 384.0,
-      "end_s": 384.08,
-      "confidence": null
+      "start_s": 383.971875,
+      "end_s": 384.1864375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3627,9 +4584,12 @@
       "word_index_in_ayah": 20,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 384.48,
-      "end_s": 385.28000000000003,
-      "confidence": null
+      "start_s": 384.465,
+      "end_s": 385.38625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3637,10 +4597,13 @@
       "word_index_global": 321,
       "word_index_in_ayah": 21,
       "text_uthmani": "یَأۡتِینَ",
-      "text_norm": "یاتین",
-      "start_s": 385.44,
-      "end_s": 386.56,
-      "confidence": null
+      "text_norm": "ياتين",
+      "start_s": 385.38625,
+      "end_s": 386.28,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3648,10 +4611,13 @@
       "word_index_global": 322,
       "word_index_in_ayah": 22,
       "text_uthmani": "بِبُهۡتَـٰنࣲ",
-      "text_norm": "ببهتنࣲ",
-      "start_s": 386.56,
-      "end_s": 388.08,
-      "confidence": null
+      "text_norm": "ببهتن",
+      "start_s": 386.95875,
+      "end_s": 387.9975625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3659,10 +4625,13 @@
       "word_index_global": 323,
       "word_index_in_ayah": 23,
       "text_uthmani": "یَفۡتَرِینَهُۥ",
-      "text_norm": "یفترینه",
-      "start_s": 388.32,
-      "end_s": 388.8,
-      "confidence": null
+      "text_norm": "يفترينه",
+      "start_s": 388.36125,
+      "end_s": 388.38124999999997,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3670,10 +4639,13 @@
       "word_index_global": 324,
       "word_index_in_ayah": 24,
       "text_uthmani": "بَیۡنَ",
-      "text_norm": "بین",
-      "start_s": 388.88,
-      "end_s": 390.0,
-      "confidence": null
+      "text_norm": "بين",
+      "start_s": 388.8770625,
+      "end_s": 389.986375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3681,10 +4653,13 @@
       "word_index_global": 325,
       "word_index_in_ayah": 25,
       "text_uthmani": "أَیۡدِیهِنَّ",
-      "text_norm": "ایدیهن",
-      "start_s": 390.40000000000003,
-      "end_s": 391.84000000000003,
-      "confidence": null
+      "text_norm": "ايديهن",
+      "start_s": 390.4555,
+      "end_s": 391.8970625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3693,9 +4668,12 @@
       "word_index_in_ayah": 26,
       "text_uthmani": "وَأَرۡجُلِهِنَّ",
       "text_norm": "وارجلهن",
-      "start_s": 392.40000000000003,
-      "end_s": 392.48,
-      "confidence": null
+      "start_s": 394.633,
+      "end_s": 394.682,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3704,9 +4682,12 @@
       "word_index_in_ayah": 27,
       "text_uthmani": "وَلَا",
       "text_norm": "ولا",
-      "start_s": 392.72,
-      "end_s": 396.24,
-      "confidence": null
+      "start_s": 395.2315625,
+      "end_s": 396.1514375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3714,10 +4695,13 @@
       "word_index_global": 328,
       "word_index_in_ayah": 28,
       "text_uthmani": "یَعۡصِینَكَ",
-      "text_norm": "یعصینك",
-      "start_s": 396.40000000000003,
-      "end_s": 396.88,
-      "confidence": null
+      "text_norm": "يعصينك",
+      "start_s": 396.4236875,
+      "end_s": 396.4436875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3725,10 +4709,13 @@
       "word_index_global": 329,
       "word_index_in_ayah": 29,
       "text_uthmani": "فِی",
-      "text_norm": "فی",
-      "start_s": 397.04,
-      "end_s": 397.76,
-      "confidence": null
+      "text_norm": "في",
+      "start_s": 396.9119375,
+      "end_s": 397.5185,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3736,10 +4723,13 @@
       "word_index_global": 330,
       "word_index_in_ayah": 30,
       "text_uthmani": "مَعۡرُوفࣲ",
-      "text_norm": "معروفࣲ",
-      "start_s": 398.56,
-      "end_s": 400.08,
-      "confidence": null
+      "text_norm": "معروف",
+      "start_s": 398.64,
+      "end_s": 400.170625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3747,10 +4737,13 @@
       "word_index_global": 331,
       "word_index_in_ayah": 31,
       "text_uthmani": "فَبَایِعۡهُنَّ",
-      "text_norm": "فبایعهن",
-      "start_s": 400.56,
-      "end_s": 401.36,
-      "confidence": null
+      "text_norm": "فبايعهن",
+      "start_s": 400.608375,
+      "end_s": 401.3155625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3759,9 +4752,12 @@
       "word_index_in_ayah": 32,
       "text_uthmani": "وَٱسۡتَغۡفِرۡ",
       "text_norm": "واستغفر",
-      "start_s": 401.76,
-      "end_s": 402.32,
-      "confidence": null
+      "start_s": 401.7614375,
+      "end_s": 402.2990625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3770,9 +4766,12 @@
       "word_index_in_ayah": 33,
       "text_uthmani": "لَهُنَّ",
       "text_norm": "لهن",
-      "start_s": 402.88,
-      "end_s": 402.96000000000004,
-      "confidence": null
+      "start_s": 402.89825,
+      "end_s": 403.0770625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3781,9 +4780,12 @@
       "word_index_in_ayah": 34,
       "text_uthmani": "ٱللَّهَۚ",
       "text_norm": "الله",
-      "start_s": 406.08,
-      "end_s": 406.16,
-      "confidence": null
+      "start_s": 406.042625,
+      "end_s": 406.06262499999997,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3792,9 +4794,12 @@
       "word_index_in_ayah": 35,
       "text_uthmani": "إِنَّ",
       "text_norm": "ان",
-      "start_s": 407.44,
-      "end_s": 407.52,
-      "confidence": null
+      "start_s": 407.3890625,
+      "end_s": 407.63325,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3803,9 +4808,12 @@
       "word_index_in_ayah": 36,
       "text_uthmani": "ٱللَّهَ",
       "text_norm": "الله",
-      "start_s": 408.08,
-      "end_s": 409.12,
-      "confidence": null
+      "start_s": 408.1489375,
+      "end_s": 408.8831875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3813,10 +4821,13 @@
       "word_index_global": 337,
       "word_index_in_ayah": 37,
       "text_uthmani": "غَفُورࣱ",
-      "text_norm": "غفورࣱ",
-      "start_s": 409.28000000000003,
-      "end_s": 409.76,
-      "confidence": null
+      "text_norm": "غفور",
+      "start_s": 409.287375,
+      "end_s": 409.7559375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3824,10 +4835,13 @@
       "word_index_global": 338,
       "word_index_in_ayah": 38,
       "text_uthmani": "رَّحِیمࣱ",
-      "text_norm": "رحیمࣱ",
-      "start_s": 410.0,
-      "end_s": 413.04,
-      "confidence": null
+      "text_norm": "رحيم",
+      "start_s": 410.3643125,
+      "end_s": 413.067375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "nemo"
     },
     {
       "surah": 60,
@@ -3835,10 +4849,13 @@
       "word_index_global": 339,
       "word_index_in_ayah": 1,
       "text_uthmani": "یَـٰۤأَیُّهَا",
-      "text_norm": "یایها",
-      "start_s": 413.2,
-      "end_s": 413.76,
-      "confidence": null
+      "text_norm": "يايها",
+      "start_s": 413.067375,
+      "end_s": 413.087375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3846,10 +4863,13 @@
       "word_index_global": 340,
       "word_index_in_ayah": 2,
       "text_uthmani": "ٱلَّذِینَ",
-      "text_norm": "الذین",
-      "start_s": 414.0,
-      "end_s": 414.72,
-      "confidence": null
+      "text_norm": "الذين",
+      "start_s": 413.087375,
+      "end_s": 413.107375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3858,9 +4878,12 @@
       "word_index_in_ayah": 3,
       "text_uthmani": "ءَامَنُوا۟",
       "text_norm": "ءامنوا",
-      "start_s": 414.88,
-      "end_s": 414.96000000000004,
-      "confidence": null
+      "start_s": 413.107375,
+      "end_s": 413.127375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3869,9 +4892,12 @@
       "word_index_in_ayah": 4,
       "text_uthmani": "لَا",
       "text_norm": "لا",
-      "start_s": 415.2,
-      "end_s": 416.16,
-      "confidence": null
+      "start_s": 413.127375,
+      "end_s": 413.989875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3880,9 +4906,12 @@
       "word_index_in_ayah": 5,
       "text_uthmani": "تَتَوَلَّوۡا۟",
       "text_norm": "تتولوا",
-      "start_s": 416.40000000000003,
-      "end_s": 417.12,
-      "confidence": null
+      "start_s": 416.842,
+      "end_s": 417.129375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3891,9 +4920,12 @@
       "word_index_in_ayah": 6,
       "text_uthmani": "قَوۡمًا",
       "text_norm": "قوما",
-      "start_s": 417.2,
-      "end_s": 417.76,
-      "confidence": null
+      "start_s": 417.129375,
+      "end_s": 417.5748125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3902,9 +4934,12 @@
       "word_index_in_ayah": 7,
       "text_uthmani": "غَضِبَ",
       "text_norm": "غضب",
-      "start_s": 418.0,
-      "end_s": 418.08,
-      "confidence": null
+      "start_s": 418.7730625,
+      "end_s": 419.3951875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3913,9 +4948,12 @@
       "word_index_in_ayah": 8,
       "text_uthmani": "ٱللَّهُ",
       "text_norm": "الله",
-      "start_s": 418.56,
-      "end_s": 419.28000000000003,
-      "confidence": null
+      "start_s": 419.3951875,
+      "end_s": 420.868875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3923,10 +4961,13 @@
       "word_index_global": 347,
       "word_index_in_ayah": 9,
       "text_uthmani": "عَلَیۡهِمۡ",
-      "text_norm": "علیهم",
-      "start_s": 419.36,
-      "end_s": 419.44,
-      "confidence": null
+      "text_norm": "عليهم",
+      "start_s": 421.5155625,
+      "end_s": 422.0503125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3935,9 +4976,12 @@
       "word_index_in_ayah": 10,
       "text_uthmani": "قَدۡ",
       "text_norm": "قد",
-      "start_s": 419.52,
-      "end_s": 420.48,
-      "confidence": null
+      "start_s": 422.379375,
+      "end_s": 422.9616875,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3945,10 +4989,13 @@
       "word_index_global": 349,
       "word_index_in_ayah": 11,
       "text_uthmani": "یَئِسُوا۟",
-      "text_norm": "یيسوا",
-      "start_s": 420.64,
-      "end_s": 420.72,
-      "confidence": null
+      "text_norm": "ييسوا",
+      "start_s": 423.0165625,
+      "end_s": 424.2120625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3957,9 +5004,12 @@
       "word_index_in_ayah": 12,
       "text_uthmani": "مِنَ",
       "text_norm": "من",
-      "start_s": 421.12,
-      "end_s": 425.04,
-      "confidence": null
+      "start_s": 424.2120625,
+      "end_s": 424.5378125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3968,9 +5018,12 @@
       "word_index_in_ayah": 13,
       "text_uthmani": "ٱلۡءَاخِرَةِ",
       "text_norm": "الءاخرة",
-      "start_s": 425.28000000000003,
-      "end_s": 425.36,
-      "confidence": null
+      "start_s": 424.5378125,
+      "end_s": 425.2264375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3979,9 +5032,12 @@
       "word_index_in_ayah": 14,
       "text_uthmani": "كَمَا",
       "text_norm": "كما",
-      "start_s": 425.52,
-      "end_s": 426.32,
-      "confidence": null
+      "start_s": 425.2264375,
+      "end_s": 426.692375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -3989,10 +5045,13 @@
       "word_index_global": 353,
       "word_index_in_ayah": 15,
       "text_uthmani": "یَئِسَ",
-      "text_norm": "یيس",
-      "start_s": 426.72,
-      "end_s": 427.6,
-      "confidence": null
+      "text_norm": "ييس",
+      "start_s": 426.692375,
+      "end_s": 426.9865,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -4001,9 +5060,12 @@
       "word_index_in_ayah": 16,
       "text_uthmani": "ٱلۡكُفَّارُ",
       "text_norm": "الكفار",
-      "start_s": 427.92,
-      "end_s": 428.0,
-      "confidence": null
+      "start_s": 427.0525,
+      "end_s": 428.140375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -4012,9 +5074,12 @@
       "word_index_in_ayah": 17,
       "text_uthmani": "مِنۡ",
       "text_norm": "من",
-      "start_s": 428.24,
-      "end_s": 429.12,
-      "confidence": null
+      "start_s": 429.1433125,
+      "end_s": 429.5479375,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -4023,9 +5088,12 @@
       "word_index_in_ayah": 18,
       "text_uthmani": "أَصۡحَـٰبِ",
       "text_norm": "اصحب",
-      "start_s": 429.52,
-      "end_s": 430.24,
-      "confidence": null
+      "start_s": 429.5479375,
+      "end_s": 429.7938125,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     },
     {
       "surah": 60,
@@ -4034,17 +5102,30 @@
       "word_index_in_ayah": 19,
       "text_uthmani": "ٱلۡقُبُورِ",
       "text_norm": "القبور",
-      "start_s": 432.2436103330221,
-      "end_s": 433.4577777777778,
-      "confidence": null
+      "start_s": 429.7938125,
+      "end_s": 432.3555625,
+      "confidence": null,
+      "alignment_origin": "native",
+      "match_score": 100.0,
+      "engine_candidate": "mfa"
     }
   ],
   "qc": {
     "coverage": 1.0,
     "monotonic": true,
     "duration_match": true,
-    "warnings": [],
+    "warnings": [
+      "boundary_refinement_applied"
+    ],
     "zero_or_negative_ratio": 0.0,
-    "median_confidence": null
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.00039450692491252887,
+    "quantization_step_ms": 498.75000000000114,
+    "engine_candidate_scores": {
+      "nemo": 164.53062921575403,
+      "mfa": 161.83075340447024
+    }
   }
 }

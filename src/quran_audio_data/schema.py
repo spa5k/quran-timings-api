@@ -33,6 +33,7 @@ class EngineInfo(BaseModel):
     model: str
     device: str
     fallback_used: bool = False
+    attempted: list[str] = Field(default_factory=list)
 
 
 class AyahTiming(BaseModel):
@@ -75,6 +76,7 @@ class QCReport(BaseModel):
     monotonic: bool
     duration_match: bool
     warnings: list[str] = Field(default_factory=list)
+    reason_codes: list[str] = Field(default_factory=list)
     zero_or_negative_ratio: float = 0.0
     median_confidence: float | None = None
     interpolated_ratio: float = 0.0
@@ -82,10 +84,12 @@ class QCReport(BaseModel):
     speech_end_delta_ratio: float = 1.0
     quantization_step_ms: float | None = None
     engine_candidate_scores: dict[str, float] = Field(default_factory=dict)
+    speech_end_method: str | None = None
+    boundary_refine_method: str | None = None
 
 
 class TimingResult(BaseModel):
-    schema_version: Literal["v1"] = "v1"
+    schema_version: Literal["v2"] = "v2"
     audio: AudioMetadata
     meta: MetaInfo
     engine: EngineInfo
@@ -222,6 +226,7 @@ def compute_qc(
     candidate_scores: dict[str, float] | None = None,
 ) -> QCReport:
     warnings: list[str] = []
+    reason_codes: list[str] = []
 
     aligned_words = [w for w in words if w.end_s >= w.start_s]
     coverage = 0.0
@@ -280,23 +285,28 @@ def compute_qc(
         warnings.append(
             f"Coverage {coverage:.3f} below threshold {thresholds.min_coverage:.3f}"
         )
+        reason_codes.append("coverage_below_threshold")
     if not monotonic:
         warnings.append("Non-monotonic word sequence detected")
+        reason_codes.append("non_monotonic")
     if zero_or_negative_ratio > thresholds.max_zero_or_negative_ratio:
         warnings.append(
             "Zero/negative duration ratio "
             f"{zero_or_negative_ratio:.3f} above {thresholds.max_zero_or_negative_ratio:.3f}"
         )
+        reason_codes.append("zero_or_negative_ratio_high")
     if interpolated_ratio > thresholds.max_interpolated_ratio:
         warnings.append(
             "Interpolated/distributed ratio "
             f"{interpolated_ratio:.3f} above {thresholds.max_interpolated_ratio:.3f}"
         )
+        reason_codes.append("interpolated_ratio_high")
     if not duration_match:
         warnings.append(
             f"Speech/audio end mismatch ratio {duration_delta_ratio:.3f} exceeds "
             f"{thresholds.max_duration_delta_ratio:.3f}"
         )
+        reason_codes.append("duration_mismatch")
     if (
         median_confidence is not None
         and median_confidence < thresholds.min_median_confidence
@@ -304,6 +314,7 @@ def compute_qc(
         warnings.append(
             f"Median confidence {median_confidence:.3f} below {thresholds.min_median_confidence:.3f}"
         )
+        reason_codes.append("median_confidence_low")
     if (
         lexical_match_ratio is not None
         and lexical_match_ratio < thresholds.min_lexical_match_ratio
@@ -311,12 +322,14 @@ def compute_qc(
         warnings.append(
             f"Lexical match ratio {lexical_match_ratio:.3f} below {thresholds.min_lexical_match_ratio:.3f}"
         )
+        reason_codes.append("lexical_match_low")
 
     return QCReport(
         coverage=coverage,
         monotonic=monotonic,
         duration_match=duration_match,
         warnings=warnings,
+        reason_codes=reason_codes,
         zero_or_negative_ratio=zero_or_negative_ratio,
         median_confidence=median_confidence,
         interpolated_ratio=interpolated_ratio,
