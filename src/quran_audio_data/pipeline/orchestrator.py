@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
 import shutil
 import tempfile
@@ -14,11 +15,25 @@ from quran_audio_data.alignment import (
     MFAAligner,
     NemoAligner,
     WhisperXFallbackAligner,
+    apply_supervision_overlay,
 )
 from quran_audio_data.core.settings import get_settings
-from quran_audio_data.schema import QCThresholds, TimingResult, WordTiming, qc_requires_fallback
+from quran_audio_data.schema import (
+    QCThresholds,
+    SegmentSourceType,
+    TimingResult,
+    WordTiming,
+    qc_requires_fallback,
+)
 from quran_audio_data.sources import ExistingTimingResolver
-from quran_audio_data.text import CanonicalWord, QuranTextStore
+from quran_audio_data.supervision import (
+    build_audio_url,
+    fetch_best_verse_segments,
+    fetch_chapter_recitation_by_chapter,
+    normalize_segments,
+    resolve_reciter_mapping,
+)
+from quran_audio_data.text import CanonicalWord, QuranTextStore, TextSanitizationAudit
 
 from .artifacts import (
     build_result,
@@ -51,16 +66,22 @@ from .types import (
     ManifestRow,
     PipelineError,
     PipelineErrorDetail,
-    PipelineReportV2,
+    PipelineReportV3,
     default_cache_dir,
 )
+
+
+@dataclass(slots=True)
+class SupervisionContext:
+    sources: list[str]
+    segment_source_type: SegmentSourceType
+    word_bounds_by_ayah: dict[int, dict[int, tuple[float, float]]]
 
 
 def _normalize_engines(
     *,
     requested_engine: EngineOption,
     multi_engine: list[EngineOption],
-    accuracy_mode: AccuracyMode,
 ) -> list[EngineOption]:
     ordered: list[EngineOption] = []
     for item in multi_engine:
@@ -83,7 +104,7 @@ def run_alignment_pipeline(
     out_dir: str | Path,
     engine: EngineOption = "nemo",
     multi_engine: list[EngineOption] | None = None,
-    accuracy_mode: AccuracyMode = "standard",
+    accuracy_mode: AccuracyMode = "strict",
     device: DeviceOption = "auto",
     text_data: str | Path | None = None,
     cache_dir: str | Path | None = None,
@@ -93,16 +114,14 @@ def run_alignment_pipeline(
     availability_policy: EngineAvailabilityPolicy = "best_effort",
     registry: EngineRegistry | None = None,
     refine_word_boundaries_fn=refine_word_boundaries,
-) -> PipelineReportV2:
+) -> PipelineReportV3:
     started = time.time()
-    if accuracy_mode not in {"standard", "strict"}:
-        raise PipelineError(f"Unsupported accuracy mode: {accuracy_mode}")
+    if accuracy_mode != "strict":
+        raise PipelineError("Only strict mode is supported in the v3 pipeline")
 
     settings = get_settings()
     cache_root = Path(cache_dir) if cache_dir is not None else default_cache_dir()
-    thresholds = thresholds or (
-        QCThresholds.strict() if accuracy_mode == "strict" else QCThresholds()
-    )
+    thresholds = thresholds or QCThresholds.strict()
 
     rows = read_manifest(manifest_path)
     if sample_size is not None:
@@ -114,9 +133,9 @@ def run_alignment_pipeline(
     text_store = QuranTextStore(text_data)
     resolver = ExistingTimingResolver(cache_dir=cache_root, enable_remote=enable_remote)
     active_registry = registry or EngineRegistry(
-        nemo=NemoAligner(),
+        nemo=NemoAligner(model_name="nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0"),
         whisperx=WhisperXFallbackAligner(),
-        mfa=MFAAligner(),
+        mfa=NemoAligner(model_name="nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0"),
     )
 
     configured_engines = [
@@ -126,7 +145,11 @@ def run_alignment_pipeline(
     ]
     requested_engines = multi_engine or configured_engines
     if not requested_engines:
-        requested_engines = [cast(EngineOption, "nemo"), cast(EngineOption, "whisperx"), cast(EngineOption, "mfa")]
+        requested_engines = [
+            cast(EngineOption, "nemo"),
+            cast(EngineOption, "mfa"),
+            cast(EngineOption, "whisperx"),
+        ]
 
     selection = active_registry.select(
         requested_engine=engine,
@@ -137,13 +160,13 @@ def run_alignment_pipeline(
     outputs = []
     errors: list[str] = []
     error_details: list[PipelineErrorDetail] = []
-    existing_resolved = 0
     aligned = 0
     fallback_used_count = 0
+    priors_used_count = 0
 
     for row in rows:
         try:
-            processed = _process_row(
+            processed, priors_used = _process_row(
                 row=row,
                 out_dir=out_root,
                 text_store=text_store,
@@ -157,13 +180,13 @@ def run_alignment_pipeline(
                 device=device,
                 thresholds=thresholds,
                 cache_dir=cache_root,
+                enable_remote=enable_remote,
                 refine_word_boundaries_fn=refine_word_boundaries_fn,
             )
             outputs.append(processed)
-            if processed.source == "existing":
-                existing_resolved += 1
-            else:
-                aligned += 1
+            aligned += 1
+            if priors_used:
+                priors_used_count += 1
             if processed.fallback_used:
                 fallback_used_count += 1
         except Exception as exc:
@@ -179,11 +202,10 @@ def run_alignment_pipeline(
             )
 
     elapsed = time.time() - started
-    return PipelineReportV2(
+    return PipelineReportV3(
         total=len(rows),
         succeeded=len(outputs),
         failed=len(errors),
-        existing_resolved=existing_resolved,
         aligned=aligned,
         fallback_used=fallback_used_count,
         elapsed_s=elapsed,
@@ -191,87 +213,7 @@ def run_alignment_pipeline(
         errors=errors,
         error_details=error_details,
         attempted_engines=list(selection.engines_to_try),
-    )
-
-
-def run_resolve_existing_only(
-    *,
-    manifest_path: str | Path,
-    out_dir: str | Path,
-    text_data: str | Path | None = None,
-    cache_dir: str | Path | None = None,
-    enable_remote: bool = True,
-    sample_size: int | None = None,
-) -> PipelineReportV2:
-    started = time.time()
-    rows = read_manifest(manifest_path)
-    if sample_size is not None:
-        rows = rows[:sample_size]
-
-    out_root = Path(out_dir)
-    out_root.mkdir(parents=True, exist_ok=True)
-
-    text_store = QuranTextStore(text_data)
-    resolver = ExistingTimingResolver(
-        cache_dir=cache_dir if cache_dir is not None else default_cache_dir(),
-        enable_remote=enable_remote,
-    )
-
-    outputs = []
-    errors: list[str] = []
-
-    for row in rows:
-        try:
-            audio_info = probe_audio(row.audio_path)
-            canonical_words = _load_canonical_words(text_store=text_store, row=row)
-            resolved = resolver.resolve(
-                reciter_id=row.reciter_id,
-                surah=row.surah,
-                ayah=row.ayah,
-                canonical_words=canonical_words,
-                audio_duration_s=audio_info.duration_s,
-                source_url=row.source_url,
-            )
-            if resolved is None:
-                raise PipelineError("existing timing not found or failed validation")
-
-            result = build_result(
-                row=row,
-                audio_info=audio_info,
-                engine_name="existing",
-                engine_model=resolved.source_name,
-                device="n/a",
-                fallback_used=False,
-                ayahs=resolved.ayahs,
-                words=resolved.words,
-                expected_word_count=len(canonical_words),
-                thresholds=QCThresholds(),
-            )
-            outputs.append(write_result_artifacts(result=result, row=row, out_dir=out_root, source="existing"))
-        except Exception as exc:
-            key = f"{row.reciter_id}:{row.surah}:{row.ayah or 'full'}"
-            errors.append(f"{key}: {exc}")
-
-    elapsed = time.time() - started
-    return PipelineReportV2(
-        total=len(rows),
-        succeeded=len(outputs),
-        failed=len(errors),
-        existing_resolved=len(outputs),
-        aligned=0,
-        fallback_used=0,
-        elapsed_s=elapsed,
-        outputs=outputs,
-        errors=errors,
-        error_details=[
-            PipelineErrorDetail(
-                key=message.split(": ", 1)[0],
-                message=message.split(": ", 1)[1] if ": " in message else message,
-                attempted_engines=[],
-            )
-            for message in errors
-        ],
-        attempted_engines=[],
+        priors_used=priors_used_count,
     )
 
 
@@ -282,7 +224,7 @@ def benchmark_pipeline(
     sample_size: int,
     engine: EngineOption = "nemo",
     multi_engine: list[EngineOption] | None = None,
-    accuracy_mode: AccuracyMode = "standard",
+    accuracy_mode: AccuracyMode = "strict",
     device: DeviceOption = "auto",
     text_data: str | Path | None = None,
     cache_dir: str | Path | None = None,
@@ -314,9 +256,9 @@ def benchmark_pipeline(
         "total": summary.total,
         "succeeded": summary.succeeded,
         "failed": summary.failed,
-        "existing_resolved": summary.existing_resolved,
         "aligned": summary.aligned,
         "fallback_used": summary.fallback_used,
+        "priors_used": summary.priors_used,
         "elapsed_s": elapsed,
         "avg_file_runtime_s": avg_runtime,
         "errors": summary.errors,
@@ -339,12 +281,19 @@ def _process_row(
     device: DeviceOption,
     thresholds: QCThresholds,
     cache_dir: str | Path,
+    enable_remote: bool,
     refine_word_boundaries_fn=refine_word_boundaries,
-):
+) -> tuple[Any, bool]:
     started = time.time()
 
+    pass_trace: list[str] = [
+        "A_audio_normalization",
+        "B_ayah_anchors",
+        "C_word_candidates",
+    ]
+
     audio_info = probe_audio(row.audio_path)
-    canonical_words = _load_canonical_words(text_store=text_store, row=row)
+    canonical_words, text_audits = _load_canonical_words(text_store=text_store, row=row)
 
     resolved = resolver.resolve(
         reciter_id=row.reciter_id,
@@ -355,28 +304,12 @@ def _process_row(
         source_url=row.source_url,
     )
 
+    supervision = _load_supervision_context(
+        row=row,
+        enable_remote=enable_remote,
+    )
     if resolved is not None:
-        result = build_result(
-            row=row,
-            audio_info=audio_info,
-            engine_name="existing",
-            engine_model=resolved.source_name,
-            device="n/a",
-            fallback_used=False,
-            ayahs=resolved.ayahs,
-            words=resolved.words,
-            expected_word_count=len(canonical_words),
-            thresholds=thresholds,
-        )
-        if accuracy_mode != "strict" or not qc_requires_fallback(result.qc, thresholds):
-            return write_result_artifacts(
-                result=result,
-                row=row,
-                out_dir=out_dir,
-                source="existing",
-                fallback_used=False,
-                elapsed_s=time.time() - started,
-            )
+        supervision.sources.append(f"existing_prior:{resolved.source_name}")
 
     wav_path = ensure_wav_16k_mono(row.audio_path)
     speech_end_s, speech_end_method = estimate_speech_end_s(
@@ -386,7 +319,6 @@ def _process_row(
     engines_to_try = _normalize_engines(
         requested_engine=requested_engine,
         multi_engine=multi_engine,
-        accuracy_mode=accuracy_mode,
     )
 
     candidate_results: list[TimingResult] = []
@@ -406,6 +338,10 @@ def _process_row(
                 audio_duration_s=audio_info.duration_s,
                 device=device,
             )
+            supervised_words = _apply_supervision_to_words(
+                words=output.words,
+                supervision=supervision,
+            )
             result = build_result(
                 row=row,
                 audio_info=audio_info,
@@ -413,11 +349,15 @@ def _process_row(
                 engine_model=output.engine_model,
                 device=output.device,
                 fallback_used=False,
-                ayahs=output.ayahs,
-                words=output.words,
+                ayahs=derive_ayahs_from_words(supervised_words, source="aligned"),
+                words=supervised_words,
                 expected_word_count=len(canonical_words),
                 speech_end_s=speech_end_s,
                 thresholds=thresholds,
+                attempted_engines=engines_to_try,
+                supervision_sources=supervision.sources,
+                segment_source_type=supervision.segment_source_type,
+                pass_trace=pass_trace,
             )
             if refinement_warnings:
                 result.qc.warnings.extend(refinement_warnings)
@@ -426,46 +366,16 @@ def _process_row(
         except (AlignmentError, EngineUnavailable, PipelineError) as exc:
             candidate_failures.append(f"{engine_name}: {exc}")
 
-    if not candidate_results and requested_engine == "nemo":
-        try:
-            fallback_output, _ = _align_with_engine(
-                engine_name="whisperx",
-                row=row,
-                wav_path=wav_path,
-                canonical_words=canonical_words,
-                nemo=nemo,
-                whisperx=whisperx,
-                mfa=mfa,
-                audio_duration_s=audio_info.duration_s,
-                device=device,
-            )
-            fallback_result = build_result(
-                row=row,
-                audio_info=audio_info,
-                engine_name=fallback_output.engine_name,
-                engine_model=fallback_output.engine_model,
-                device=fallback_output.device,
-                fallback_used=True,
-                ayahs=fallback_output.ayahs,
-                words=fallback_output.words,
-                expected_word_count=len(canonical_words),
-                speech_end_s=speech_end_s,
-                thresholds=thresholds,
-            )
-            fallback_result.qc.speech_end_method = speech_end_method
-            candidate_results.append(fallback_result)
-        except (AlignmentError, EngineUnavailable, PipelineError) as exc:
-            candidate_failures.append(f"whisperx: {exc}")
-
     if not candidate_results:
         raise PipelineError("no_alignment_candidates_succeeded: " + "; ".join(candidate_failures))
 
-    candidate_scores = {
-        candidate.engine.name: score_timing_result(candidate)
-        for candidate in candidate_results
-    }
+    candidate_scores = _score_candidates_with_supervision(
+        candidates=candidate_results,
+        supervision=supervision,
+    )
 
-    if accuracy_mode == "strict" or len(candidate_results) > 1:
+    pass_trace.append("D_candidate_fusion")
+    if len(candidate_results) > 1:
         result = select_best_result_per_ayah(
             row=row,
             audio_info=audio_info,
@@ -478,64 +388,76 @@ def _process_row(
         result = max(candidate_results, key=score_timing_result)
         result.qc.engine_candidate_scores = candidate_scores
 
+    result.selected_candidate_engine = result.engine.name
+    result.candidate_scores = candidate_scores
+    result.supervision_sources = supervision.sources
+    result.segment_source_type = supervision.segment_source_type
+    result.pass_trace = list(pass_trace)
+
     if result.engine.name != requested_engine:
         fallback_used = True
 
+    pass_trace.append("E_boundary_refinement")
     selected_before_refinement = result
-    if accuracy_mode == "strict":
-        refined_raw = refine_word_boundaries_fn(
-            words=result.words,
-            wav_path=wav_path,
-            max_shift_s=0.12,
-            min_duration_s=0.02,
-        )
-        if isinstance(refined_raw, tuple):
-            refined_words, refine_method = refined_raw
-        else:
-            refined_words = refined_raw
-            refine_method = "numpy"
-        if refined_words:
-            source_by_ayah: dict[int, str] = {}
-            for ayah, ayah_words in words_by_ayah(refined_words).items():
-                if any(word.engine_candidate == "whisperx" for word in ayah_words):
-                    source_by_ayah[ayah] = "fallback"
-                else:
-                    source_by_ayah[ayah] = "aligned"
-            refined_ayahs = derive_ayahs_from_words_with_engine_sources(
-                words=refined_words,
-                source_by_ayah=source_by_ayah,
-                default_source="aligned",
-            )
-            refined_result = build_result(
-                row=row,
-                audio_info=audio_info,
-                engine_name=result.engine.name,
-                engine_model=result.engine.model,
-                device=result.engine.device,
-                fallback_used=fallback_used,
-                ayahs=refined_ayahs,
-                words=refined_words,
-                expected_word_count=len(canonical_words),
-                speech_end_s=speech_end_s,
-                thresholds=thresholds,
-                candidate_scores=candidate_scores,
-            )
-            refined_result.qc.speech_end_method = speech_end_method
-            refined_result.qc.boundary_refine_method = refine_method
-            if should_accept_refinement(
-                original=selected_before_refinement,
-                refined=refined_result,
-                thresholds=thresholds,
-            ):
-                result = refined_result
-                result.qc.warnings.append("boundary_refinement_applied")
+    refined_raw = refine_word_boundaries_fn(
+        words=result.words,
+        wav_path=wav_path,
+        max_shift_s=0.12,
+        min_duration_s=0.02,
+    )
+    if isinstance(refined_raw, tuple):
+        refined_words, refine_method = refined_raw
+    else:
+        refined_words = refined_raw
+        refine_method = "numpy"
+    if refined_words:
+        source_by_ayah: dict[int, str] = {}
+        for ayah, ayah_words in words_by_ayah(refined_words).items():
+            if any(word.engine_candidate == "whisperx" for word in ayah_words):
+                source_by_ayah[ayah] = "fallback"
             else:
-                result = selected_before_refinement
-                result.qc.boundary_refine_method = "none"
-                result.qc.warnings.append("boundary_refinement_rejected")
+                source_by_ayah[ayah] = "aligned"
+        refined_ayahs = derive_ayahs_from_words_with_engine_sources(
+            words=refined_words,
+            source_by_ayah=source_by_ayah,
+            default_source="aligned",
+        )
+        refined_result = build_result(
+            row=row,
+            audio_info=audio_info,
+            engine_name=result.engine.name,
+            engine_model=result.engine.model,
+            device=result.engine.device,
+            fallback_used=fallback_used,
+            ayahs=refined_ayahs,
+            words=refined_words,
+            expected_word_count=len(canonical_words),
+            speech_end_s=speech_end_s,
+            thresholds=thresholds,
+            candidate_scores=candidate_scores,
+            attempted_engines=engines_to_try,
+            supervision_sources=supervision.sources,
+            selected_candidate_engine=result.engine.name,
+            pass_trace=pass_trace,
+            segment_source_type=supervision.segment_source_type,
+        )
+        refined_result.qc.speech_end_method = speech_end_method
+        refined_result.qc.boundary_refine_method = refine_method
+        if should_accept_refinement(
+            original=selected_before_refinement,
+            refined=refined_result,
+            thresholds=thresholds,
+        ):
+            result = refined_result
+            result.qc.warnings.append("boundary_refinement_applied")
+        else:
+            result = selected_before_refinement
+            result.qc.boundary_refine_method = "none"
+            result.qc.warnings.append("boundary_refinement_rejected")
     else:
         result.qc.boundary_refine_method = "none"
 
+    pass_trace.append("F_qc_gates_and_rescue")
     if qc_requires_fallback(result.qc, thresholds):
         rescue_candidates = [
             result,
@@ -547,28 +469,227 @@ def _process_row(
             thresholds=thresholds,
         )
         if rescue is None:
-            raise PipelineError(
-                "qc_failed_after_all_candidates: " + "; ".join(result.qc.warnings)
-            )
-        result = rescue
-        result.qc.engine_candidate_scores = candidate_scores
-        result.qc.warnings.append("qc_rescue_selected")
-        fallback_used = result.engine.name != requested_engine
+            # Never silently pass: keep best and mark explicit failure code.
+            result = max(rescue_candidates, key=score_timing_result)
+            result.qc.warnings.append("qc_failed_after_rescue_keep_best")
+            result.qc.reason_codes.append("qc_failed_keep_best")
+        else:
+            result = rescue
+            result.qc.engine_candidate_scores = candidate_scores
+            result.qc.warnings.append("qc_rescue_selected")
+            fallback_used = result.engine.name != requested_engine
 
     result.qc.speech_end_method = speech_end_method
     if result.qc.boundary_refine_method is None:
         result.qc.boundary_refine_method = "none"
 
+    result.supervision_sources = supervision.sources
+    result.segment_source_type = supervision.segment_source_type
+    result.pass_trace = list(pass_trace)
+    result.selected_candidate_engine = result.engine.name
+    result.candidate_scores = candidate_scores
+
     write_cache_result(row=row, result=result, cache_root=cache_dir)
 
-    return write_result_artifacts(
+    text_audit_payload = {
+        "surah": row.surah,
+        "ayah": row.ayah,
+        "audits": [audit.to_dict() for audit in text_audits],
+    }
+
+    processed = write_result_artifacts(
         result=result,
         row=row,
         out_dir=out_dir,
         source=result.ayahs[0].source if result.ayahs else "aligned",
         fallback_used=fallback_used,
         elapsed_s=time.time() - started,
+        text_audit=text_audit_payload,
     )
+    return processed, resolved is not None
+
+
+def _load_supervision_context(*, row: ManifestRow, enable_remote: bool) -> SupervisionContext:
+    mapping = resolve_reciter_mapping(row.reciter_id)
+    sources: list[str] = []
+    word_bounds_by_ayah: dict[int, dict[int, tuple[float, float]]] = defaultdict(dict)
+    segment_source_type: SegmentSourceType = "none"
+
+    if mapping.everyayah_subfolder is not None:
+        if row.ayah is not None:
+            sources.append(
+                "everyayah:"
+                + build_audio_url(
+                    subfolder=mapping.everyayah_subfolder,
+                    surah=row.surah,
+                    ayah=row.ayah,
+                )
+            )
+        else:
+            sources.append(
+                f"everyayah:subfolder={mapping.everyayah_subfolder}:surah={row.surah}:scope=full_surah"
+            )
+
+    if not enable_remote or not mapping.qcom_word_supervision_supported or mapping.qcom_recitation_id is None:
+        return SupervisionContext(
+            sources=sources,
+            segment_source_type=segment_source_type,
+            word_bounds_by_ayah=dict(word_bounds_by_ayah),
+        )
+
+    try:
+        if row.ayah is not None:
+            verse_key = f"{row.surah}:{row.ayah}"
+            payload = fetch_best_verse_segments(
+                recitation_id=mapping.qcom_recitation_id,
+                chapter=row.surah,
+                verse_key=verse_key,
+            )
+            if payload is not None:
+                for seg in payload.segments:
+                    word_bounds_by_ayah[row.ayah][seg.word_index] = (
+                        seg.start_ms / 1000.0,
+                        seg.end_ms / 1000.0,
+                    )
+                segment_source_type = cast(SegmentSourceType, payload.source_type)
+                sources.append(
+                    f"qcom:{payload.source_type}:{mapping.qcom_recitation_id}:shape={payload.segment_shape}"
+                )
+        else:
+            chapter_payload = fetch_chapter_recitation_by_chapter(
+                mapping.qcom_recitation_id,
+                row.surah,
+                include_segments=True,
+            )
+            audio_file = chapter_payload.get("audio_file") if isinstance(chapter_payload, dict) else None
+            timestamps = audio_file.get("timestamps") if isinstance(audio_file, dict) else None
+            observed_shape = "unknown"
+            if isinstance(timestamps, list):
+                for item in timestamps:
+                    if not isinstance(item, dict):
+                        continue
+                    verse_key = str(item.get("verse_key") or "")
+                    if ":" not in verse_key:
+                        continue
+                    _, ayah_str = verse_key.split(":", 1)
+                    try:
+                        ayah = int(ayah_str)
+                    except ValueError:
+                        continue
+                    raw_segments = item.get("segments") if isinstance(item.get("segments"), list) else None
+                    if observed_shape == "unknown" and isinstance(raw_segments, list):
+                        for raw in raw_segments:
+                            if not isinstance(raw, list):
+                                continue
+                            if len(raw) >= 4:
+                                observed_shape = "4_field"
+                                break
+                            if len(raw) >= 3:
+                                observed_shape = "3_field"
+                                break
+                    segments = normalize_segments(raw_segments)
+                    for seg in segments:
+                        word_bounds_by_ayah[ayah][seg.word_index] = (
+                            seg.start_ms / 1000.0,
+                            seg.end_ms / 1000.0,
+                        )
+                if word_bounds_by_ayah:
+                    segment_source_type = "qcom_chapter"
+                    sources.append(
+                        f"qcom:qcom_chapter:{mapping.qcom_recitation_id}:shape={observed_shape}"
+                    )
+    except Exception:
+        # Supervision is optional; model-only path continues.
+        pass
+
+    return SupervisionContext(
+        sources=sources,
+        segment_source_type=segment_source_type,
+        word_bounds_by_ayah=dict(word_bounds_by_ayah),
+    )
+
+
+def _apply_supervision_to_words(*, words: list[WordTiming], supervision: SupervisionContext) -> list[WordTiming]:
+    source_provider = "quran_com" if supervision.segment_source_type.startswith("qcom_") else "none"
+    return apply_supervision_overlay(
+        words=words,
+        supervision_word_bounds=supervision.word_bounds_by_ayah,
+        model_weight=0.30,
+        source_provider=source_provider,
+    )
+
+
+def _score_candidates_with_supervision(
+    *,
+    candidates: list[TimingResult],
+    supervision: SupervisionContext,
+) -> dict[str, float]:
+    out: dict[str, float] = {}
+
+    agreement_by_engine = _inter_engine_agreement_scores(candidates)
+
+    for candidate in candidates:
+        base = score_timing_result(candidate)
+        supervision_bonus = _supervision_agreement_bonus(candidate, supervision)
+        inter_engine_bonus = agreement_by_engine.get(candidate.engine.name, 0.0)
+        out[candidate.engine.name] = base + supervision_bonus + inter_engine_bonus
+
+    return out
+
+
+def _supervision_agreement_bonus(result: TimingResult, supervision: SupervisionContext) -> float:
+    if not supervision.word_bounds_by_ayah:
+        return 0.0
+
+    errors_ms: list[float] = []
+    for word in result.words:
+        ayah_map = supervision.word_bounds_by_ayah.get(word.ayah)
+        if not ayah_map:
+            continue
+        target = ayah_map.get(word.word_index_in_ayah)
+        if target is None:
+            continue
+        start_s, end_s = target
+        errors_ms.append(abs(word.start_s - start_s) * 1000.0)
+        errors_ms.append(abs(word.end_s - end_s) * 1000.0)
+
+    if not errors_ms:
+        return 0.0
+
+    mean_err = sum(errors_ms) / len(errors_ms)
+    return max(-25.0, 30.0 - (mean_err / 8.0))
+
+
+def _inter_engine_agreement_scores(candidates: list[TimingResult]) -> dict[str, float]:
+    if len(candidates) < 2:
+        return {candidates[0].engine.name: 0.0} if candidates else {}
+
+    by_engine_index: dict[str, dict[tuple[int, int, int], WordTiming]] = {}
+    for candidate in candidates:
+        by_engine_index[candidate.engine.name] = {
+            (word.ayah, word.word_index_in_ayah, word.word_index_global): word
+            for word in candidate.words
+        }
+
+    scores: dict[str, float] = {}
+    for engine_name, index in by_engine_index.items():
+        deltas: list[float] = []
+        for other_engine, other_index in by_engine_index.items():
+            if other_engine == engine_name:
+                continue
+            keys = set(index).intersection(other_index)
+            for key in keys:
+                word_a = index[key]
+                word_b = other_index[key]
+                deltas.append(abs(word_a.start_s - word_b.start_s) * 1000.0)
+                deltas.append(abs(word_a.end_s - word_b.end_s) * 1000.0)
+        if not deltas:
+            scores[engine_name] = 0.0
+            continue
+        mean_delta = sum(deltas) / len(deltas)
+        scores[engine_name] = max(-20.0, 18.0 - (mean_delta / 10.0))
+
+    return scores
 
 
 def _align_with_engine(
@@ -613,12 +734,23 @@ def _align_with_engine(
             [],
         )
 
+    output = mfa.align(
+        audio_wav_path=str(wav_path),
+        canonical_words=canonical_words,
+        audio_duration_s=audio_duration_s,
+        device=device,
+    )
     return (
-        mfa.align(
-            audio_wav_path=str(wav_path),
-            canonical_words=canonical_words,
-            audio_duration_s=audio_duration_s,
-            device=device,
+        AlignmentOutput(
+            ayahs=output.ayahs,
+            words=[
+                word.model_copy(update={"engine_candidate": "mfa"})
+                for word in output.words
+            ],
+            engine_name="mfa",
+            engine_model=output.engine_model,
+            device=output.device,
+            source=output.source,
         ),
         [],
     )
@@ -817,8 +949,12 @@ def _estimate_ayah_ratio_window(
     return start_ratio, end_ratio
 
 
-def _load_canonical_words(*, text_store: QuranTextStore, row: ManifestRow) -> list[CanonicalWord]:
-    words = text_store.build_words(
+def _load_canonical_words(
+    *,
+    text_store: QuranTextStore,
+    row: ManifestRow,
+) -> tuple[list[CanonicalWord], list[TextSanitizationAudit]]:
+    words, audits = text_store.build_words_with_audit(
         surah=row.surah,
         ayah=row.ayah,
         text_variant=row.text_variant,
@@ -826,5 +962,4 @@ def _load_canonical_words(*, text_store: QuranTextStore, row: ManifestRow) -> li
     )
     if not words:
         raise PipelineError(f"No canonical words found for surah={row.surah} ayah={row.ayah}")
-    return words
-
+    return words, audits

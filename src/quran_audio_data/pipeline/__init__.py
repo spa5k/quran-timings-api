@@ -12,14 +12,13 @@ from .engine_registry import EngineProtocol, EngineRegistry
 from .manifest import ManifestRow, read_manifest
 from .orchestrator import _normalize_engines, benchmark_pipeline as _benchmark_pipeline
 from .orchestrator import run_alignment_pipeline as _run_alignment_pipeline
-from .orchestrator import run_resolve_existing_only as _run_resolve_existing_only
 from .types import (
     AccuracyMode,
     DeviceOption,
     EngineAvailabilityPolicy,
     EngineOption,
     PipelineError,
-    PipelineReportV2,
+    PipelineReportV3,
     ProcessingSummary,
 )
 
@@ -30,11 +29,18 @@ MFAAligner = _MFAAligner
 _refine_word_boundaries = _default_refine_word_boundaries
 
 
+def _init_nemo(model_name: str):
+    try:
+        return NemoAligner(model_name=model_name)
+    except TypeError:
+        return NemoAligner()
+
+
 def _build_registry() -> EngineRegistry:
     return EngineRegistry(
-        nemo=NemoAligner(),
+        nemo=_init_nemo("nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0"),
         whisperx=WhisperXFallbackAligner(),
-        mfa=MFAAligner(),
+        mfa=_init_nemo("nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0"),
     )
 
 
@@ -44,7 +50,7 @@ def run_alignment_pipeline(
     out_dir,
     engine: EngineOption = "nemo",
     multi_engine: list[EngineOption] | None = None,
-    accuracy_mode: AccuracyMode = "standard",
+    accuracy_mode: AccuracyMode = "strict",
     device: DeviceOption = "auto",
     text_data=None,
     cache_dir=None,
@@ -52,7 +58,7 @@ def run_alignment_pipeline(
     sample_size: int | None = None,
     thresholds=None,
     availability_policy: EngineAvailabilityPolicy = "best_effort",
-) -> PipelineReportV2:
+) -> PipelineReportV3:
     return _run_alignment_pipeline(
         manifest_path=manifest_path,
         out_dir=out_dir,
@@ -71,25 +77,6 @@ def run_alignment_pipeline(
     )
 
 
-def run_resolve_existing_only(
-    *,
-    manifest_path,
-    out_dir,
-    text_data=None,
-    cache_dir=None,
-    enable_remote: bool = True,
-    sample_size: int | None = None,
-) -> PipelineReportV2:
-    return _run_resolve_existing_only(
-        manifest_path=manifest_path,
-        out_dir=out_dir,
-        text_data=text_data,
-        cache_dir=cache_dir,
-        enable_remote=enable_remote,
-        sample_size=sample_size,
-    )
-
-
 def benchmark_pipeline(
     *,
     manifest_path,
@@ -97,7 +84,7 @@ def benchmark_pipeline(
     sample_size: int,
     engine: EngineOption = "nemo",
     multi_engine: list[EngineOption] | None = None,
-    accuracy_mode: AccuracyMode = "standard",
+    accuracy_mode: AccuracyMode = "strict",
     device: DeviceOption = "auto",
     text_data=None,
     cache_dir=None,
@@ -130,11 +117,10 @@ __all__ = [
     "EngineUnavailable",
     "ManifestRow",
     "PipelineError",
-    "PipelineReportV2",
+    "PipelineReportV3",
     "ProcessingSummary",
     "read_manifest",
     "run_alignment_pipeline",
-    "run_resolve_existing_only",
     "benchmark_pipeline",
     "validate_outputs",
     "probe_audio",

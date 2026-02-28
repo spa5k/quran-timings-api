@@ -16,7 +16,7 @@ class ManifestRowModel(BaseModel):
     language: str = "ar"
     riwaya: str | None = None
     text_variant: str | None = None
-    gold_split: str | None = None
+    reference_split: str | None = None
 
     @field_validator("audio_path", "reciter_id", mode="before")
     @classmethod
@@ -26,7 +26,7 @@ class ManifestRowModel(BaseModel):
             raise ValueError("value is required")
         return text
 
-    @field_validator("source_url", "sha256", "riwaya", "text_variant", "gold_split", mode="before")
+    @field_validator("source_url", "sha256", "riwaya", "text_variant", "reference_split", mode="before")
     @classmethod
     def _strip_optional_text(cls, value: Any) -> str | None:
         text = str(value).strip() if value is not None else ""

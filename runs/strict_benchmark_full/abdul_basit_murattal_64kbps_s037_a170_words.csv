@@ -1,5 +1,0 @@
-surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
-37,170,1,فَكَفَرُوا۟,0.503,1.617,,native,100.0,nemo
-37,170,2,بِهِۦۖ,1.617,1.866,,native,100.0,nemo
-37,170,3,فَسَوۡفَ,3.03,3.588,,native,100.0,nemo
-37,170,4,یَعۡلَمُونَ,3.846,5.721,,native,100.0,nemo

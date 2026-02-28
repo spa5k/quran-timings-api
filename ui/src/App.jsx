@@ -11,6 +11,132 @@ function formatStamp(seconds) {
   return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${String(millis).padStart(3, '0')}`
 }
 
+function formatDeltaMs(valueMs) {
+  if (!Number.isFinite(valueMs)) {
+    return '—'
+  }
+  const rounded = Math.round(valueMs)
+  return `${rounded >= 0 ? '+' : ''}${rounded}ms`
+}
+
+function formatMs(valueMs) {
+  if (!Number.isFinite(valueMs)) {
+    return '—'
+  }
+  return `${Math.round(valueMs)}ms`
+}
+
+function formatPercent(value) {
+  if (!Number.isFinite(value)) {
+    return '—'
+  }
+  return `${Math.round(value * 100)}%`
+}
+
+function clamp01(value) {
+  if (!Number.isFinite(value)) {
+    return 0
+  }
+  return Math.min(1, Math.max(0, value))
+}
+
+function toneFromRatio(value, goodThreshold = 0.9, watchThreshold = 0.7) {
+  if (!Number.isFinite(value)) {
+    return 'watch'
+  }
+  if (value >= goodThreshold) {
+    return 'healthy'
+  }
+  if (value >= watchThreshold) {
+    return 'watch'
+  }
+  return 'risk'
+}
+
+function humanizeSegmentSourceType(value) {
+  if (value === 'qcom_chapter') {
+    return 'Quran.com chapter timestamps'
+  }
+  if (value === 'qcom_verse') {
+    return 'Quran.com verse segments'
+  }
+  return 'No direct segment supervision'
+}
+
+function parseSourceRef(value) {
+  const raw = String(value ?? '')
+  if (raw.startsWith('everyayah:')) {
+    const body = raw.slice('everyayah:'.length)
+    if (body.startsWith('http://') || body.startsWith('https://')) {
+      return {
+        kind: 'everyayah',
+        raw,
+        label: `EveryAyah file • ${body}`,
+      }
+    }
+    const parts = body.split(':')
+    const fields = {}
+    for (const part of parts) {
+      const idx = part.indexOf('=')
+      if (idx <= 0) {
+        continue
+      }
+      fields[part.slice(0, idx)] = part.slice(idx + 1)
+    }
+    const bits = []
+    if (fields.subfolder) {
+      bits.push(`Folder ${fields.subfolder}`)
+    }
+    if (fields.surah) {
+      bits.push(`Surah ${fields.surah}`)
+    }
+    if (fields.scope === 'full_surah') {
+      bits.push('Stitched full-surah reference')
+    }
+    return {
+      kind: 'everyayah',
+      raw,
+      label: bits.join(' • ') || body,
+    }
+  }
+
+  if (raw.startsWith('qcom:')) {
+    const parts = raw.split(':')
+    const sourceType = parts[1] ?? ''
+    const recitation = parts[2] ?? ''
+    const shapeToken = parts.find((item) => item.startsWith('shape='))
+    const shape = shapeToken ? shapeToken.slice('shape='.length) : ''
+    const sourceLabel = sourceType === 'qcom_chapter' ? 'Quran.com chapter timestamps' : 'Quran.com verse segments'
+    const bits = [sourceLabel]
+    if (recitation) {
+      bits.push(`Recitation ${recitation}`)
+    }
+    if (shape) {
+      bits.push(shape.replace('_', ' '))
+    }
+    return {
+      kind: 'qcom',
+      raw,
+      label: bits.join(' • '),
+    }
+  }
+
+  return {
+    kind: 'other',
+    raw,
+    label: raw || 'Unknown source reference',
+  }
+}
+
+function percentile(values, p) {
+  if (!Array.isArray(values) || values.length === 0) {
+    return null
+  }
+  const sorted = [...values].sort((a, b) => a - b)
+  const rank = Math.min(sorted.length - 1, Math.max(0, Math.ceil((p / 100) * sorted.length) - 1))
+  return sorted[rank]
+}
+
 function findSegmentIndexByTime(
   segments,
   timeS,
@@ -392,6 +518,155 @@ function App() {
   const displayAyahNumber = focusedAyah
   const displayAyahWords = wordsByAyah.get(displayAyahNumber) ?? []
 
+  const supervisionSources = useMemo(
+    () => (Array.isArray(timingData?.supervision_sources) ? timingData.supervision_sources : []),
+    [timingData],
+  )
+
+  const parsedSourceRefs = useMemo(() => supervisionSources.map((value) => parseSourceRef(value)), [supervisionSources])
+  const everyayahSourceRefs = useMemo(() => parsedSourceRefs.filter((value) => value.kind === 'everyayah'), [parsedSourceRefs])
+  const qcomSourceRefs = useMemo(() => parsedSourceRefs.filter((value) => value.kind === 'qcom'), [parsedSourceRefs])
+
+  const sourceComparedWords = useMemo(
+    () =>
+      words.filter(
+        (word) =>
+          Number.isFinite(word?.source_start_s) &&
+          Number.isFinite(word?.source_end_s) &&
+          Number.isFinite(word?.start_s) &&
+          Number.isFinite(word?.end_s),
+      ),
+    [words],
+  )
+
+  const sourceBoundaryErrorsMs = useMemo(() => {
+    const out = []
+    for (const word of sourceComparedWords) {
+      out.push(Math.abs(word.start_s - word.source_start_s) * 1000)
+      out.push(Math.abs(word.end_s - word.source_end_s) * 1000)
+    }
+    return out
+  }, [sourceComparedWords])
+
+  const sourceErrorMedianMs = useMemo(() => percentile(sourceBoundaryErrorsMs, 50), [sourceBoundaryErrorsMs])
+  const sourceErrorP95Ms = useMemo(() => percentile(sourceBoundaryErrorsMs, 95), [sourceBoundaryErrorsMs])
+  const sourceBoundaryHit80Pct = useMemo(() => {
+    if (!sourceBoundaryErrorsMs.length) {
+      return null
+    }
+    const hits = sourceBoundaryErrorsMs.filter((value) => value <= 80).length
+    return hits / sourceBoundaryErrorsMs.length
+  }, [sourceBoundaryErrorsMs])
+  const qcWarnings = useMemo(() => (Array.isArray(timingData?.qc?.warnings) ? timingData.qc.warnings : []), [timingData])
+  const qcReasonCodes = useMemo(
+    () => (Array.isArray(timingData?.qc?.reason_codes) ? timingData.qc.reason_codes.filter((value) => String(value).trim()) : []),
+    [timingData],
+  )
+  const everyayahStitchEval = useMemo(
+    () => (timingData && typeof timingData.everyayah_stitch_eval === 'object' ? timingData.everyayah_stitch_eval : null),
+    [timingData],
+  )
+  const everyayahDiffRows = useMemo(
+    () => (Array.isArray(everyayahStitchEval?.ayah_differences) ? everyayahStitchEval.ayah_differences : []),
+    [everyayahStitchEval],
+  )
+  const everyayahDiffRanked = useMemo(() => {
+    return everyayahDiffRows
+      .map((row) => {
+        const absStartMs = Number.isFinite(row.abs_start_ms) ? Math.abs(row.abs_start_ms) : Math.abs(row.delta_start_ms ?? 0)
+        const absEndMs = Number.isFinite(row.abs_end_ms) ? Math.abs(row.abs_end_ms) : Math.abs(row.delta_end_ms ?? 0)
+        const maxAbsBoundaryMs = Math.max(absStartMs, absEndMs)
+        return {
+          ...row,
+          absStartMs,
+          absEndMs,
+          maxAbsBoundaryMs,
+        }
+      })
+      .sort((first, second) => second.maxAbsBoundaryMs - first.maxAbsBoundaryMs)
+  }, [everyayahDiffRows])
+  const everyayahWorstBoundaryMs = useMemo(
+    () => (everyayahDiffRanked.length ? everyayahDiffRanked[0].maxAbsBoundaryMs : null),
+    [everyayahDiffRanked],
+  )
+  const everyayahBoundaryHit80Pct = useMemo(() => {
+    if (!everyayahDiffRanked.length) {
+      return null
+    }
+    const hits = everyayahDiffRanked.filter((row) => row.maxAbsBoundaryMs <= 80).length
+    return hits / everyayahDiffRanked.length
+  }, [everyayahDiffRanked])
+  const everyayahRiskCount = useMemo(
+    () => everyayahDiffRanked.filter((row) => row.maxAbsBoundaryMs > 250).length,
+    [everyayahDiffRanked],
+  )
+  const ayahDurationsMs = useMemo(
+    () =>
+      ayahs
+        .map((ayah) => (ayah.end_s - ayah.start_s) * 1000)
+        .filter((value) => Number.isFinite(value) && value > 0),
+    [ayahs],
+  )
+  const wordDurationsMs = useMemo(
+    () =>
+      words
+        .map((word) => (word.end_s - word.start_s) * 1000)
+        .filter((value) => Number.isFinite(value) && value > 0),
+    [words],
+  )
+  const ayahGapDurationsMs = useMemo(() => {
+    const out = []
+    for (let index = 1; index < ayahs.length; index += 1) {
+      const gapMs = (ayahs[index].start_s - ayahs[index - 1].end_s) * 1000
+      if (Number.isFinite(gapMs) && gapMs >= 0) {
+        out.push(gapMs)
+      }
+    }
+    return out
+  }, [ayahs])
+  const ayahDurationMedianMs = useMemo(() => percentile(ayahDurationsMs, 50), [ayahDurationsMs])
+  const ayahDurationP95Ms = useMemo(() => percentile(ayahDurationsMs, 95), [ayahDurationsMs])
+  const wordDurationMedianMs = useMemo(() => percentile(wordDurationsMs, 50), [wordDurationsMs])
+  const wordDurationP95Ms = useMemo(() => percentile(wordDurationsMs, 95), [wordDurationsMs])
+  const ayahPauseMedianMs = useMemo(() => percentile(ayahGapDurationsMs, 50), [ayahGapDurationsMs])
+  const candidateScoreEntries = useMemo(() => {
+    const candidateMap =
+      timingData && typeof timingData.candidate_scores === 'object'
+        ? timingData.candidate_scores
+        : timingData?.qc?.engine_candidate_scores ?? null
+    if (!candidateMap || typeof candidateMap !== 'object') {
+      return []
+    }
+    return Object.entries(candidateMap)
+      .filter(([, score]) => Number.isFinite(score))
+      .sort((first, second) => second[1] - first[1])
+  }, [timingData])
+  const candidateTopScore = useMemo(
+    () => (candidateScoreEntries.length ? candidateScoreEntries[0][1] : null),
+    [candidateScoreEntries],
+  )
+  const candidateScoreSpread = useMemo(() => {
+    if (candidateScoreEntries.length < 2) {
+      return null
+    }
+    return candidateScoreEntries[0][1] - candidateScoreEntries[candidateScoreEntries.length - 1][1]
+  }, [candidateScoreEntries])
+  const sourceTimingNote = useMemo(() => {
+    if (sourceComparedWords.length > 0) {
+      return null
+    }
+    if (everyayahStitchEval) {
+      return 'Word-level reference is unavailable for EveryAyah; ayah-level stitched comparison is shown below.'
+    }
+    if (qcomSourceRefs.length > 0) {
+      return 'Quran.com source found but no word-level source timestamps were attached in this run.'
+    }
+    if (everyayahSourceRefs.length > 0) {
+      return 'EveryAyah source detected. Word-level timestamp metadata is not provided by EveryAyah.'
+    }
+    return 'No external source timestamps were attached for this run.'
+  }, [everyayahSourceRefs.length, everyayahStitchEval, qcomSourceRefs.length, sourceComparedWords.length])
+
   const playSegment = useCallback(
     (startS, endS) => {
       const audio = audioRef.current
@@ -483,6 +758,25 @@ function App() {
     : 'No surah selected'
   const progressPct = durationS > 0 ? Math.min(100, (currentTime / durationS) * 100) : 0
   const hasTimingData = ayahs.length > 0 || words.length > 0
+  const qcCoverage = Number.isFinite(timingData?.qc?.coverage) ? clamp01(timingData.qc.coverage) : null
+  const sourceCoverage = words.length > 0 ? sourceComparedWords.length / words.length : null
+  const qcCoverageTone = toneFromRatio(qcCoverage, 0.98, 0.9)
+  const sourceTone = toneFromRatio(sourceCoverage, 0.75, 0.2)
+  const warningTone = qcWarnings.length === 0 ? 'healthy' : qcWarnings.length <= 2 ? 'watch' : 'risk'
+  const sourceP95Tone = Number.isFinite(sourceErrorP95Ms)
+    ? sourceErrorP95Ms <= 80
+      ? 'healthy'
+      : sourceErrorP95Ms <= 180
+        ? 'watch'
+        : 'risk'
+    : 'watch'
+  const passTrace = Array.isArray(timingData?.pass_trace) ? timingData.pass_trace : []
+  const speechEndDeltaRatio = Number.isFinite(timingData?.qc?.speech_end_delta_ratio)
+    ? timingData.qc.speech_end_delta_ratio
+    : null
+  const lexicalMatchRatio = Number.isFinite(timingData?.qc?.lexical_match_ratio) ? timingData.qc.lexical_match_ratio : null
+  const quantizationStepMs = Number.isFinite(timingData?.qc?.quantization_step_ms) ? timingData.qc.quantization_step_ms : null
+  const interpolationRatio = Number.isFinite(timingData?.qc?.interpolated_ratio) ? timingData.qc.interpolated_ratio : null
 
   return (
     <div className="app-shell">
@@ -568,6 +862,430 @@ function App() {
             <span>Duration</span>
           </div>
         </div>
+      </section>
+
+      <section className="panel check-panel">
+        <div className="check-head">
+          <h2>Data Check</h2>
+          <p>Quality snapshot for alignment health, source fit, and timing behavior.</p>
+        </div>
+        <div className="check-kpis">
+          <article className="check-kpi">
+            <p className="check-kpi-label">QC Coverage</p>
+            <p className="check-kpi-value">{formatPercent(qcCoverage)}</p>
+            <div className="check-meter" role="presentation">
+              <span className={`tone-${qcCoverageTone}`} style={{ width: `${Math.round(clamp01(qcCoverage ?? 0) * 100)}%` }} />
+            </div>
+            <p className={`check-kpi-note tone-${qcCoverageTone}`}>
+              {timingData?.qc?.monotonic === false ? 'Non-monotonic segments detected' : 'Monotonic ordering'}
+            </p>
+          </article>
+          <article className="check-kpi">
+            <p className="check-kpi-label">Source Coverage</p>
+            <p className="check-kpi-value">{formatPercent(sourceCoverage)}</p>
+            <div className="check-meter" role="presentation">
+              <span
+                className={`tone-${sourceTone}`}
+                style={{ width: `${Math.round(clamp01(sourceCoverage ?? 0) * 100)}%` }}
+              />
+            </div>
+            <p className={`check-kpi-note tone-${sourceTone}`}>{sourceComparedWords.length} words compared to source</p>
+          </article>
+          <article className="check-kpi">
+            <p className="check-kpi-label">Warnings</p>
+            <p className="check-kpi-value">{qcWarnings.length}</p>
+            <div className="check-meter" role="presentation">
+              <span
+                className={`tone-${warningTone}`}
+                style={{ width: `${qcWarnings.length === 0 ? 100 : Math.min(100, qcWarnings.length * 28)}%` }}
+              />
+            </div>
+            <p className={`check-kpi-note tone-${warningTone}`}>
+              {qcWarnings.length === 0 ? 'No QC warnings' : `${qcReasonCodes.length} reason code${qcReasonCodes.length === 1 ? '' : 's'}`}
+            </p>
+          </article>
+          <article className="check-kpi">
+            <p className="check-kpi-label">Boundary Error p95</p>
+            <p className="check-kpi-value">{formatMs(sourceErrorP95Ms)}</p>
+            <div className="check-meter" role="presentation">
+              <span
+                className={`tone-${sourceP95Tone}`}
+                style={{
+                  width: `${Math.min(100, Number.isFinite(sourceErrorP95Ms) ? (sourceErrorP95Ms / 240) * 100 : 0)}%`,
+                }}
+              />
+            </div>
+            <p className={`check-kpi-note tone-${sourceP95Tone}`}>
+              Hit rate ≤80ms: {formatPercent(sourceBoundaryHit80Pct)}
+            </p>
+          </article>
+        </div>
+        {hasTimingData ? (
+          <div className="check-grid">
+          <article className="check-card check-card-drift">
+            <div className="check-card-head">
+              <h3 className="check-card-title">Pipeline + QC</h3>
+              <span className={`state-chip tone-${timingData?.qc?.monotonic === false ? 'risk' : 'healthy'}`}>
+                {timingData?.qc?.monotonic === false ? 'Non-monotonic' : 'Monotonic'}
+              </span>
+            </div>
+            <dl className="check-list">
+              <div>
+                <dt>Engine selected</dt>
+                <dd>{timingData?.selected_candidate_engine ?? timingData?.engine?.name ?? '—'}</dd>
+              </div>
+              <div>
+                <dt>Supervision mode</dt>
+                <dd>{humanizeSegmentSourceType(timingData?.segment_source_type ?? 'none')}</dd>
+              </div>
+              <div>
+                <dt>QC coverage</dt>
+                <dd>{formatPercent(qcCoverage)}</dd>
+              </div>
+              <div>
+                <dt>Duration match</dt>
+                <dd>{timingData?.qc?.duration_match === true ? 'Yes' : 'No'}</dd>
+              </div>
+              <div>
+                <dt>Speech end delta</dt>
+                <dd>{formatPercent(speechEndDeltaRatio)}</dd>
+              </div>
+              <div>
+                <dt>Lexical match</dt>
+                <dd>{formatPercent(lexicalMatchRatio)}</dd>
+              </div>
+              <div>
+                <dt>Quantization</dt>
+                <dd>{formatMs(quantizationStepMs)}</dd>
+              </div>
+              <div>
+                <dt>Interpolated boundaries</dt>
+                <dd>{formatPercent(interpolationRatio)}</dd>
+              </div>
+            </dl>
+            {qcReasonCodes.length ? (
+              <div className="chip-row">
+                {qcReasonCodes.map((code) => (
+                  <span key={code} className="tag-chip">
+                    {code}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="inline-note tone-healthy">No reason codes were emitted for this run.</p>
+            )}
+            {qcWarnings.length ? (
+              <details className="compact-details">
+                <summary>Warning Details</summary>
+                <ul className="source-list">
+                  {qcWarnings.map((value) => (
+                    <li key={String(value)}>{String(value)}</li>
+                  ))}
+                </ul>
+              </details>
+            ) : null}
+          </article>
+          <article className="check-card">
+            <div className="check-card-head">
+              <h3 className="check-card-title">Source Alignment</h3>
+              <span className={`state-chip tone-${sourceTone}`}>{sourceComparedWords.length ? 'Word-linked' : 'Ayah-only'}</span>
+            </div>
+            <dl className="check-list">
+              <div>
+                <dt>Playback audio</dt>
+                <dd>{surahConfig?.audioSrc ?? '—'}</dd>
+              </div>
+              <div>
+                <dt>Quran.com refs</dt>
+                <dd>{qcomSourceRefs.length}</dd>
+              </div>
+              <div>
+                <dt>EveryAyah refs</dt>
+                <dd>{everyayahSourceRefs.length}</dd>
+              </div>
+              <div>
+                <dt>Word comparisons</dt>
+                <dd>
+                  {sourceComparedWords.length}/{words.length}
+                </dd>
+              </div>
+              <div>
+                <dt>Boundary error median/p95</dt>
+                <dd>
+                  {formatMs(sourceErrorMedianMs)} / {formatMs(sourceErrorP95Ms)}
+                </dd>
+              </div>
+              <div>
+                <dt>Boundary hit rate ≤80ms</dt>
+                <dd>{formatPercent(sourceBoundaryHit80Pct)}</dd>
+              </div>
+            </dl>
+            {sourceTimingNote ? <p className="inline-note tone-watch">{sourceTimingNote}</p> : null}
+          </article>
+          <article className="check-card">
+            <div className="check-card-head">
+              <h3 className="check-card-title">Source References</h3>
+            </div>
+            <dl className="check-list">
+              <div>
+                <dt>Total references</dt>
+                <dd>{parsedSourceRefs.length}</dd>
+              </div>
+              <div>
+                <dt>Quran.com refs</dt>
+                <dd>{qcomSourceRefs.length}</dd>
+              </div>
+              <div>
+                <dt>EveryAyah refs</dt>
+                <dd>{everyayahSourceRefs.length}</dd>
+              </div>
+            </dl>
+            {qcomSourceRefs.length ? (
+              <details className="compact-details">
+                <summary>Quran.com references</summary>
+                <ul className="source-list">
+                  {qcomSourceRefs.map((value) => (
+                    <li key={value.raw}>{value.label}</li>
+                  ))}
+                </ul>
+              </details>
+            ) : null}
+            {everyayahSourceRefs.length ? (
+              <details className="compact-details">
+                <summary>EveryAyah references</summary>
+                <ul className="source-list">
+                  {everyayahSourceRefs.map((value) => (
+                    <li key={value.raw}>{value.label}</li>
+                  ))}
+                </ul>
+              </details>
+            ) : null}
+            {!qcomSourceRefs.length && !everyayahSourceRefs.length ? (
+              <p className="inline-note tone-watch">No explicit source references were attached to this timing file.</p>
+            ) : null}
+          </article>
+          <article className="check-card">
+            <div className="check-card-head">
+              <h3 className="check-card-title">Detected Ayah Timing Drift</h3>
+              {everyayahDiffRanked.length ? (
+                <span className={`state-chip tone-${everyayahRiskCount === 0 ? 'healthy' : 'watch'}`}>
+                  {everyayahRiskCount} high-drift ayahs
+                </span>
+              ) : null}
+            </div>
+            {everyayahStitchEval ? (
+              <>
+                <dl className="check-list">
+                  <div>
+                    <dt>Ayah coverage</dt>
+                    <dd>
+                      {everyayahStitchEval.matched_ayahs ?? '—'} / {everyayahStitchEval.expected_ayahs ?? '—'} (
+                      {formatPercent(everyayahStitchEval.coverage_vs_reference)})
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Boundary error median/p95</dt>
+                    <dd>
+                      {formatMs(everyayahStitchEval.boundary_error_median_ms)} / {formatMs(everyayahStitchEval.boundary_error_p95_ms)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Normalized median/p95</dt>
+                    <dd>
+                      {formatMs(everyayahStitchEval.offset_normalized_boundary_error_median_ms)} /{' '}
+                      {formatMs(everyayahStitchEval.offset_normalized_boundary_error_p95_ms)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Worst boundary drift</dt>
+                    <dd>{formatMs(everyayahWorstBoundaryMs)}</dd>
+                  </div>
+                  <div>
+                    <dt>Hit rate ≤80ms</dt>
+                    <dd>{formatPercent(everyayahBoundaryHit80Pct)}</dd>
+                  </div>
+                  <div>
+                    <dt>Detected start shift</dt>
+                    <dd>{formatDeltaMs(Number(everyayahStitchEval.start_offset_s) * 1000)}</dd>
+                  </div>
+                </dl>
+                {everyayahDiffRanked.length ? (
+                  <div className="diff-card-list">
+                    {everyayahDiffRanked.slice(0, 6).map((row) => {
+                      const rowTone = row.maxAbsBoundaryMs <= 80 ? 'healthy' : row.maxAbsBoundaryMs <= 250 ? 'watch' : 'risk'
+                      return (
+                        <article key={`diff-card-${row.ayah}`} className="diff-card-item">
+                          <div className="diff-card-head">
+                            <span>Ayah {row.ayah}</span>
+                            <span className={`state-chip tone-${rowTone}`}>{formatMs(row.maxAbsBoundaryMs)}</span>
+                          </div>
+                          <div className="mini-bar-row">
+                            <span>Δ start</span>
+                            <div className="mini-meter" role="presentation">
+                              <span
+                                className={`tone-${rowTone}`}
+                                style={{ width: `${Math.min(100, (row.absStartMs / 1200) * 100)}%` }}
+                              />
+                            </div>
+                            <em>{formatDeltaMs(row.delta_start_ms)}</em>
+                          </div>
+                          <div className="mini-bar-row">
+                            <span>Δ end</span>
+                            <div className="mini-meter" role="presentation">
+                              <span
+                                className={`tone-${rowTone}`}
+                                style={{ width: `${Math.min(100, (row.absEndMs / 1200) * 100)}%` }}
+                              />
+                            </div>
+                            <em>{formatDeltaMs(row.delta_end_ms)}</em>
+                          </div>
+                        </article>
+                      )
+                    })}
+                  </div>
+                ) : null}
+                {everyayahDiffRows.length ? (
+                  <details className="compact-details">
+                    <summary>All ayah drift rows</summary>
+                    <div className="diff-table-wrap">
+                      <table className="diff-table">
+                        <thead>
+                          <tr>
+                            <th>Ayah</th>
+                            <th>Reference</th>
+                            <th>Aligned</th>
+                            <th>Δ Start</th>
+                            <th>Δ End</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {everyayahDiffRows.map((row) => (
+                            <tr key={`ayah-diff-${row.ayah}`}>
+                              <td>{row.ayah}</td>
+                              <td>
+                                {formatStamp(row.ref_start_s)} → {formatStamp(row.ref_end_s)}
+                              </td>
+                              <td>
+                                {formatStamp(row.pred_start_s)} → {formatStamp(row.pred_end_s)}
+                              </td>
+                              <td>{formatDeltaMs(row.delta_start_ms)}</td>
+                              <td>{formatDeltaMs(row.delta_end_ms)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </details>
+                ) : null}
+              </>
+            ) : (
+              <p className="inline-note tone-watch">No EveryAyah stitch evaluation is available for this run.</p>
+            )}
+          </article>
+          <article className="check-card">
+            <div className="check-card-head">
+              <h3 className="check-card-title">Timing Distribution</h3>
+            </div>
+            <dl className="check-list">
+              <div>
+                <dt>Ayah duration median/p95</dt>
+                <dd>
+                  {formatMs(ayahDurationMedianMs)} / {formatMs(ayahDurationP95Ms)}
+                </dd>
+              </div>
+              <div>
+                <dt>Word duration median/p95</dt>
+                <dd>
+                  {formatMs(wordDurationMedianMs)} / {formatMs(wordDurationP95Ms)}
+                </dd>
+              </div>
+              <div>
+                <dt>Median pause between ayahs</dt>
+                <dd>{formatMs(ayahPauseMedianMs)}</dd>
+              </div>
+              <div>
+                <dt>Boundary refinement</dt>
+                <dd>{timingData?.qc?.boundary_refine_method ?? '—'}</dd>
+              </div>
+            </dl>
+            <div className="mini-bars">
+              <div className="mini-bar-row">
+                <span>Word p95</span>
+                <div className="mini-meter" role="presentation">
+                  <span style={{ width: `${Math.min(100, Number.isFinite(wordDurationP95Ms) ? (wordDurationP95Ms / 1200) * 100 : 0)}%` }} />
+                </div>
+                <em>{formatMs(wordDurationP95Ms)}</em>
+              </div>
+              <div className="mini-bar-row">
+                <span>Ayah p95</span>
+                <div className="mini-meter" role="presentation">
+                  <span style={{ width: `${Math.min(100, Number.isFinite(ayahDurationP95Ms) ? (ayahDurationP95Ms / 10000) * 100 : 0)}%` }} />
+                </div>
+                <em>{formatMs(ayahDurationP95Ms)}</em>
+              </div>
+              <div className="mini-bar-row">
+                <span>Median gap</span>
+                <div className="mini-meter" role="presentation">
+                  <span style={{ width: `${Math.min(100, Number.isFinite(ayahPauseMedianMs) ? (ayahPauseMedianMs / 3000) * 100 : 0)}%` }} />
+                </div>
+                <em>{formatMs(ayahPauseMedianMs)}</em>
+              </div>
+            </div>
+          </article>
+          <article className="check-card">
+            <div className="check-card-head">
+              <h3 className="check-card-title">Candidate Ranking</h3>
+            </div>
+            {candidateScoreEntries.length ? (
+              <ul className="score-list">
+                {candidateScoreEntries.map(([engineName, score]) => (
+                  <li key={engineName}>
+                    <div className="score-line">
+                      <span>{engineName}</span>
+                      <span className="score-value">{score.toFixed(3)}</span>
+                    </div>
+                    <div className="mini-meter" role="presentation">
+                      <span
+                        style={{
+                          width: `${Math.min(100, candidateTopScore > 0 ? (score / candidateTopScore) * 100 : 0)}%`,
+                        }}
+                      />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="inline-note tone-watch">No candidate score breakdown was included in this timing file.</p>
+            )}
+            <dl className="check-list">
+              <div>
+                <dt>Score spread</dt>
+                <dd>{Number.isFinite(candidateScoreSpread) ? candidateScoreSpread.toFixed(3) : '—'}</dd>
+              </div>
+              <div>
+                <dt>Pass trace steps</dt>
+                <dd>{passTrace.length}</dd>
+              </div>
+            </dl>
+            <div className="chip-row">
+              {passTrace.length ? (
+                passTrace.map((step) => (
+                  <span key={step} className="tag-chip">
+                    {step}
+                  </span>
+                ))
+              ) : (
+                <span className="tag-chip">No pass trace</span>
+              )}
+            </div>
+          </article>
+          </div>
+        ) : (
+          <div className="check-empty">
+            <p className="check-empty-title">No timing data loaded for this selection.</p>
+            <p className="check-empty-note">Choose a reciter/surah pair with generated timings to view QC and drift diagnostics.</p>
+          </div>
+        )}
       </section>
 
       <section className="player-panel">
@@ -669,6 +1387,13 @@ function App() {
                 <span className="segment-time">
                   {formatStamp(word.start_s)} {'→'} {formatStamp(word.end_s)}
                 </span>
+                {Number.isFinite(word?.source_start_s) && Number.isFinite(word?.source_end_s) ? (
+                  <span className="segment-source-time">
+                    Source ({word.source_provider ?? 'source'}): {formatStamp(word.source_start_s)} {'→'}{' '}
+                    {formatStamp(word.source_end_s)} | Δs {formatDeltaMs((word.start_s - word.source_start_s) * 1000)} | Δe{' '}
+                    {formatDeltaMs((word.end_s - word.source_end_s) * 1000)}
+                  </span>
+                ) : null}
               </button>
             ))}
             {!selectedAyahWords.length ? <p className="empty-state">No word timings for this ayah.</p> : null}

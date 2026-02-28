@@ -1,8 +1,0 @@
-surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
-69,14,1,وَحُمِلَتِ,0.534,1.631,,native,100.0,nemo
-69,14,2,ٱلۡأَرۡضُ,2.183,2.672,,native,100.0,nemo
-69,14,3,وَٱلۡجِبَالُ,2.843,4.182,,native,100.0,nemo
-69,14,4,فَدُكَّتَا,4.506,5.64,,native,100.0,nemo
-69,14,5,دَكَّةࣰ,6.17,8.47,,native,100.0,nemo
-69,14,6,وَ,8.47,8.75,,native,100.0,nemo
-69,14,7,ٰحِدَةࣰ,8.75,9.953,,native,100.0,nemo

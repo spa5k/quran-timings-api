@@ -235,7 +235,8 @@ def prepare_benchmark_data(
     seed: int = 42,
     download_audio: bool = True,
     timeout_s: float = 20.0,
-    gold_split: str = "benchmark",
+    manifest_reciter_id: str | None = None,
+    reference_split: str = "benchmark",
     request_retries: int = 5,
     retry_backoff_s: float = 1.0,
     resume: bool = True,
@@ -269,10 +270,14 @@ def prepare_benchmark_data(
     )
 
     audio_dir = out_root / "audio"
-    gold_dir = out_root / "gold_templates"
-    gold_dir.mkdir(parents=True, exist_ok=True)
+    reference_dir = out_root / "reference_templates"
+    reference_dir.mkdir(parents=True, exist_ok=True)
 
-    reciter_id = _sanitize_reciter_id(reciter.subfolder)
+    reciter_id = (
+        str(manifest_reciter_id).strip().lower()
+        if manifest_reciter_id is not None and str(manifest_reciter_id).strip()
+        else _sanitize_reciter_id(reciter.subfolder)
+    )
     manifest_path = out_root / "benchmark_manifest.csv"
 
     rows: list[dict[str, str]] = []
@@ -283,9 +288,9 @@ def prepare_benchmark_data(
             ayah=ayah,
         )
         verse_key = f"{surah}:{ayah}"
-        gold_path = gold_dir / f"{reciter_id}_s{surah:03d}_a{ayah:03d}.json"
+        reference_path = reference_dir / f"{reciter_id}_s{surah:03d}_a{ayah:03d}.json"
 
-        if not (resume and gold_path.exists()):
+        if not (resume and reference_path.exists()):
             verse = fetch_quran_com_verse(
                 surah=surah,
                 ayah=ayah,
@@ -295,7 +300,7 @@ def prepare_benchmark_data(
             )
 
             words = verse.get("words") if isinstance(verse.get("words"), list) else []
-            gold_words: list[dict[str, Any]] = []
+            reference_words: list[dict[str, Any]] = []
             for word in words:
                 if not isinstance(word, dict):
                     continue
@@ -303,7 +308,7 @@ def prepare_benchmark_data(
                 text_uthmani = str(word.get("text_uthmani") or word.get("text") or "").strip()
                 if not text_uthmani:
                     continue
-                gold_words.append(
+                reference_words.append(
                     {
                         "ayah": ayah,
                         "word_index_in_ayah": position,
@@ -314,7 +319,7 @@ def prepare_benchmark_data(
                 )
 
             verse_key = str(verse.get("verse_key") or verse_key)
-            gold_payload = {
+            reference_payload = {
                 "meta": {
                     "reciter_id": reciter_id,
                     "surah": surah,
@@ -327,14 +332,14 @@ def prepare_benchmark_data(
                         "everyayah": source_url,
                     },
                 },
-                "words": gold_words,
+                "words": reference_words,
             }
-            gold_path.write_bytes(orjson.dumps(gold_payload, option=orjson.OPT_INDENT_2))
-        elif gold_path.exists():
+            reference_path.write_bytes(orjson.dumps(reference_payload, option=orjson.OPT_INDENT_2))
+        elif reference_path.exists():
             try:
-                existing_gold = orjson.loads(gold_path.read_bytes())
-                if isinstance(existing_gold, dict):
-                    meta = existing_gold.get("meta")
+                existing_reference = orjson.loads(reference_path.read_bytes())
+                if isinstance(existing_reference, dict):
+                    meta = existing_reference.get("meta")
                     if isinstance(meta, dict):
                         verse_key = str(meta.get("verse_key") or verse_key)
             except orjson.JSONDecodeError:
@@ -367,7 +372,7 @@ def prepare_benchmark_data(
                 "language": "ar",
                 "riwaya": "",
                 "text_variant": "",
-                "gold_split": gold_split,
+                "reference_split": reference_split,
             }
         )
 
@@ -384,7 +389,7 @@ def prepare_benchmark_data(
                 "language",
                 "riwaya",
                 "text_variant",
-                "gold_split",
+                "reference_split",
             ],
         )
         writer.writeheader()
@@ -399,7 +404,7 @@ def prepare_benchmark_data(
             "bitrate": reciter.bitrate,
         },
         "manifest_path": str(manifest_path),
-        "gold_dir": str(gold_dir),
+        "reference_dir": str(reference_dir),
         "audio_dir": str(audio_dir) if download_audio else None,
         "download_audio": download_audio,
         "seed": seed,

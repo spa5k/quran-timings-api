@@ -15,7 +15,7 @@ class AppSettings(BaseSettings):
     retry_max_backoff_s: float = 30.0
     retry_jitter_s: float = 0.4
 
-    cache_dir: str = ".cache/timings/v2"
+    cache_dir: str = ".cache/timings/v3"
     mfa_cache_dir: str = ".cache/mfa"
 
     engine_order: list[str] = Field(default_factory=lambda: ["nemo", "whisperx", "mfa"])

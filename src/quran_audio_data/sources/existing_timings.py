@@ -7,7 +7,6 @@ from typing import Any
 import orjson
 
 from quran_audio_data.core.http import get_json_or_none
-from quran_audio_data.sources.adapters import normalize_payload_with_adapters
 from quran_audio_data.schema import AyahTiming, WordTiming
 from quran_audio_data.text.quran_text import CanonicalWord
 
@@ -26,17 +25,18 @@ class ResolvedTiming:
     warnings: list[str]
 
 
-class ExistingTimingResolver:
-    QURAN_AUDIO_URL_TEMPLATES = (
-        "https://quranaudio.pages.dev/timing/{reciter_id}/{surah}.json",
-        "https://quranaudio.pages.dev/timing/{reciter_id}/{surah:03d}.json",
-        "https://quranaudio.pages.dev/timing/{reciter_id}/{surah}/{ayah}.json",
-    )
+@dataclass(slots=True)
+class _NormalizedTiming:
+    ayahs: list[AyahTiming]
+    words: list[WordTiming]
 
-    QURAN_FOUNDATION_URL_TEMPLATES = (
-        "https://api.quran.foundation/api/v4/chapter_recitations/{reciter_id}/{surah}",
-        "https://api.quran.foundation/api/v4/chapter_recitations/{reciter_id}/{surah}:{ayah}",
-    )
+
+class ExistingTimingResolver:
+    """Resolve prior timings from local cache or explicit source URL.
+
+    Legacy multi-source adapter stacks were removed intentionally to keep the v3
+    code path minimal and deterministic.
+    """
 
     def __init__(
         self,
@@ -63,37 +63,33 @@ class ExistingTimingResolver:
         if expected_word_count == 0:
             return None
 
-        candidates = self._build_candidates(
+        for source_name, payload in self._build_candidates(
             reciter_id=reciter_id,
             surah=surah,
             ayah=ayah,
             source_url=source_url,
-        )
-
-        for source_name, payload in candidates:
+        ):
             if payload is None:
                 continue
-            normalized = normalize_payload_with_adapters(
+            normalized = _normalize_prior_payload(
                 payload=payload,
                 canonical_words=canonical_words,
-                source_name=source_name,
                 source_default="existing",
             )
             if normalized is None:
                 continue
 
-            ayahs, words = normalized.ayahs, normalized.words
             validation = validate_external_timing(
-                ayahs=ayahs,
-                words=words,
+                ayahs=normalized.ayahs,
+                words=normalized.words,
                 expected_word_count=expected_word_count,
                 audio_duration_s=audio_duration_s,
-                require_lexical_scores=not source_name.startswith("qf:"),
+                require_lexical_scores=False,
             )
             if validation.ok:
                 return ResolvedTiming(
-                    ayahs=ayahs,
-                    words=words,
+                    ayahs=normalized.ayahs,
+                    words=normalized.words,
                     source_name=source_name,
                     warnings=validation.warnings,
                 )
@@ -123,19 +119,6 @@ class ExistingTimingResolver:
                 )
             )
 
-        if self.enable_remote:
-            for template in self.QURAN_AUDIO_URL_TEMPLATES:
-                url = template.format(reciter_id=reciter_id, surah=surah, ayah=ayah or "")
-                candidates.append(
-                    (f"quranaudio:{url}", get_json_or_none(url=url, timeout_s=self.timeout_s))
-                )
-
-            for template in self.QURAN_FOUNDATION_URL_TEMPLATES:
-                url = template.format(reciter_id=reciter_id, surah=surah, ayah=ayah or "")
-                candidates.append(
-                    (f"qf:{url}", get_json_or_none(url=url, timeout_s=self.timeout_s))
-                )
-
         return candidates
 
     def _local_cache_candidates(self, *, reciter_id: str, surah: int, ayah: int | None) -> list[Path]:
@@ -150,6 +133,102 @@ class ExistingTimingResolver:
         paths.append(reciter_dir / f"{surah}.json")
         paths.append(self.cache_dir / f"{reciter_id}_{surah:03d}.json")
         return paths
+
+
+def _normalize_prior_payload(
+    *,
+    payload: Any,
+    canonical_words: list[CanonicalWord],
+    source_default: str,
+) -> _NormalizedTiming | None:
+    if not isinstance(payload, dict):
+        return None
+
+    words_payload = payload.get("words")
+    if not isinstance(words_payload, list):
+        return None
+
+    canonical_by_key = {
+        (word.ayah, word.word_index_in_ayah): word
+        for word in canonical_words
+    }
+
+    words: list[WordTiming] = []
+    for raw in words_payload:
+        if not isinstance(raw, dict):
+            continue
+
+        ayah = _to_int(raw.get("ayah"))
+        position = _to_int(raw.get("word_index_in_ayah") or raw.get("position"))
+        start_s = _to_float(raw.get("start_s") if "start_s" in raw else raw.get("start"))
+        end_s = _to_float(raw.get("end_s") if "end_s" in raw else raw.get("end"))
+        if ayah is None or position is None or start_s is None or end_s is None:
+            continue
+
+        canon = canonical_by_key.get((ayah, position))
+        if canon is None:
+            continue
+
+        origin_raw = str(raw.get("alignment_origin") or "native")
+        alignment_origin = origin_raw if origin_raw in {"native", "interpolated", "distributed"} else "native"
+
+        words.append(
+            WordTiming(
+                surah=canon.surah,
+                ayah=canon.ayah,
+                word_index_global=canon.word_index_global,
+                word_index_in_ayah=canon.word_index_in_ayah,
+                text_uthmani=canon.text_uthmani,
+                text_norm=canon.text_norm,
+                start_s=start_s,
+                end_s=end_s,
+                confidence=_to_float(raw.get("confidence")),
+                alignment_origin=alignment_origin,
+                match_score=_to_float(raw.get("match_score")),
+                engine_candidate="existing",
+            )
+        )
+
+    if not words:
+        return None
+
+    ayahs_payload = payload.get("ayahs")
+    ayahs: list[AyahTiming] = []
+    if isinstance(ayahs_payload, list):
+        for raw in ayahs_payload:
+            if not isinstance(raw, dict):
+                continue
+            ayah = _to_int(raw.get("ayah"))
+            start_s = _to_float(raw.get("start_s") if "start_s" in raw else raw.get("start"))
+            end_s = _to_float(raw.get("end_s") if "end_s" in raw else raw.get("end"))
+            if ayah is None or start_s is None or end_s is None:
+                continue
+            ayahs.append(
+                AyahTiming(
+                    surah=canonical_words[0].surah,
+                    ayah=ayah,
+                    start_s=start_s,
+                    end_s=end_s,
+                    source=source_default,
+                )
+            )
+
+    if not ayahs:
+        grouped: dict[int, list[WordTiming]] = {}
+        for word in words:
+            grouped.setdefault(word.ayah, []).append(word)
+        for ayah_num, group in sorted(grouped.items()):
+            ayahs.append(
+                AyahTiming(
+                    surah=canonical_words[0].surah,
+                    ayah=ayah_num,
+                    start_s=min(word.start_s for word in group),
+                    end_s=max(word.end_s for word in group),
+                    source=source_default,
+                )
+            )
+
+    return _NormalizedTiming(ayahs=ayahs, words=words)
 
 
 def validate_external_timing(
@@ -220,6 +299,25 @@ def validate_external_timing(
         and monotonic
     )
     return ExternalValidationResult(ok=ok, warnings=warnings)
+
+
+def _to_int(value: Any) -> int | None:
+    try:
+        if value is None:
+            return None
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _to_float(value: Any) -> float | None:
+    try:
+        if value is None:
+            return None
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
 
 def _read_json_file(path: Path) -> Any | None:
     if not path.exists() or not path.is_file():

@@ -45,7 +45,7 @@ def read_manifest(manifest_path: str | Path) -> list[ManifestRow]:
                 language=normalized.language,
                 riwaya=normalized.riwaya,
                 text_variant=normalized.text_variant,
-                gold_split=normalized.gold_split,
+                reference_split=normalized.reference_split,
             )
         )
 

@@ -1,9 +1,0 @@
-surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
-51,43,1,وَفِی,1.033,1.255,,native,100.0,nemo
-51,43,2,ثَمُودَ,1.724,2.437,,native,100.0,nemo
-51,43,3,إِذۡ,2.707,3.077,,native,100.0,nemo
-51,43,4,قِیلَ,3.173,3.635,,native,100.0,nemo
-51,43,5,لَهُمۡ,3.934,4.104,,native,100.0,nemo
-51,43,6,تَمَتَّعُوا۟,4.634,5.969,,native,100.0,nemo
-51,43,7,حَتَّىٰ,6.174,6.7,,native,100.0,nemo
-51,43,8,حِینࣲ,7.318,8.464,,native,100.0,nemo

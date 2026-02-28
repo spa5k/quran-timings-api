@@ -1,5 +1,0 @@
-surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,match_score,engine_candidate
-53,42,1,وَأَنَّ,0.681,1.269,,native,100.0,nemo
-53,42,2,إِلَىٰ,2.086,2.483,,native,100.0,nemo
-53,42,3,رَبِّكَ,2.774,3.497,,native,100.0,nemo
-53,42,4,ٱلۡمُنتَهَىٰ,3.951,6.452,,native,100.0,nemo

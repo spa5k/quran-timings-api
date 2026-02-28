@@ -10,6 +10,8 @@ from typing import Any
 import numpy as np
 import orjson
 
+from quran_audio_data.supervision import is_qcom_word_supervision_supported
+
 
 @dataclass(slots=True)
 class ErrorMetrics:
@@ -50,11 +52,6 @@ def _as_float(value: Any) -> float | None:
         return parsed
     except (TypeError, ValueError):
         return None
-
-
-def _append_error(errors: list[str], message: str, max_errors: int) -> None:
-    if len(errors) < max_errors:
-        errors.append(message)
 
 
 def _extract_key_and_words(payload: dict[str, Any], file_path: Path) -> list[tuple[tuple[str, int, int], list[dict[str, Any]]]]:
@@ -147,40 +144,40 @@ def _metrics_from_errors(boundary_errors_ms: list[float]) -> ErrorMetrics:
 def evaluate_predictions(
     *,
     pred_dir: str | Path,
-    gold_dir: str | Path,
+    reference_dir: str | Path,
 ) -> dict[str, Any]:
     predictions = _collect_dataset(pred_dir)
-    gold = _collect_dataset(gold_dir)
+    reference = _collect_dataset(reference_dir)
 
     boundary_errors_ms: list[float] = []
     per_reciter_errors: dict[str, list[float]] = defaultdict(list)
     missing_predictions: list[str] = []
     matched_ayahs = 0
 
-    for key, gold_words in gold.items():
+    for key, reference_words in reference.items():
         reciter_id, surah, ayah = key
         pred_words = predictions.get(key)
         if pred_words is None:
             missing_predictions.append(f"{reciter_id}:{surah}:{ayah}")
             continue
 
-        gold_lookup = _word_lookup(gold_words)
+        reference_lookup = _word_lookup(reference_words)
         pred_lookup = _word_lookup(pred_words)
 
-        for word_idx, gold_word in gold_lookup.items():
+        for word_idx, reference_word in reference_lookup.items():
             pred_word = pred_lookup.get(word_idx)
             if pred_word is None:
                 continue
             try:
-                gold_start = float(gold_word.get("start_s"))
-                gold_end = float(gold_word.get("end_s"))
+                reference_start = float(reference_word.get("start_s"))
+                reference_end = float(reference_word.get("end_s"))
                 pred_start = float(pred_word.get("start_s"))
                 pred_end = float(pred_word.get("end_s"))
             except (TypeError, ValueError):
                 continue
 
-            start_err = abs(pred_start - gold_start) * 1000.0
-            end_err = abs(pred_end - gold_end) * 1000.0
+            start_err = abs(pred_start - reference_start) * 1000.0
+            end_err = abs(pred_end - reference_end) * 1000.0
             boundary_errors_ms.extend([start_err, end_err])
             per_reciter_errors[reciter_id].extend([start_err, end_err])
 
@@ -193,7 +190,7 @@ def evaluate_predictions(
     }
 
     report = {
-        "gold_ayahs": len(gold),
+        "reference_ayahs": len(reference),
         "pred_ayahs": len(predictions),
         "matched_ayahs": matched_ayahs,
         "missing_predictions": missing_predictions,
@@ -217,141 +214,179 @@ def evaluate_predictions(
     return report
 
 
-def validate_gold_annotations(
-    *,
-    gold_dir: str | Path,
-    max_errors: int = 50,
-) -> dict[str, Any]:
-    root = Path(gold_dir)
+def _collect_prediction_metadata(path: str | Path) -> dict[str, Any]:
+    root = Path(path)
     files = sorted(root.rglob("*.json")) if root.is_dir() else [root]
 
-    errors: list[str] = []
-    total_files = len(files)
-    valid_files = 0
-    invalid_files = 0
-    parse_errors = 0
-    no_words_files = 0
-    total_words = 0
-    unlabeled_words = 0
-    invalid_duration_words = 0
-    non_monotonic_words = 0
-    missing_word_index = 0
-    duplicate_word_index = 0
+    reciters: set[str] = set()
+    supervision_source_counter: dict[str, int] = defaultdict(int)
+    segment_shape_counter: dict[str, int] = defaultdict(int)
+    segment_source_type_counter: dict[str, int] = defaultdict(int)
 
     for file_path in files:
+        if file_path.name.endswith("_qc_report.json") or file_path.name.endswith("_text_audit.json"):
+            continue
         try:
             payload = orjson.loads(file_path.read_bytes())
-        except Exception as exc:
-            invalid_files += 1
-            parse_errors += 1
-            _append_error(errors, f"{file_path}: parse error: {exc}", max_errors=max_errors)
+        except Exception:
             continue
-
         if not isinstance(payload, dict):
-            invalid_files += 1
-            parse_errors += 1
-            _append_error(errors, f"{file_path}: root payload is not an object", max_errors=max_errors)
             continue
+        meta = payload.get("meta")
+        if isinstance(meta, dict):
+            reciter_id = str(meta.get("reciter_id") or "").strip()
+            if reciter_id:
+                reciters.add(reciter_id)
 
-        words = payload.get("words")
-        if not isinstance(words, list) or not words:
-            invalid_files += 1
-            no_words_files += 1
-            _append_error(errors, f"{file_path}: missing or empty words list", max_errors=max_errors)
-            continue
+        for source in payload.get("supervision_sources", []) if isinstance(payload.get("supervision_sources"), list) else []:
+            source_key = str(source)
+            supervision_source_counter[source_key] += 1
+            if "shape=3_field" in source_key:
+                segment_shape_counter["3_field"] += 1
+            elif "shape=4_field" in source_key:
+                segment_shape_counter["4_field"] += 1
 
-        file_invalid = False
-        previous_start = -1.0
-        previous_end = -1.0
-        seen_word_indices: set[int] = set()
+        segment_source_type = str(payload.get("segment_source_type") or "none")
+        segment_source_type_counter[segment_source_type] += 1
 
-        for idx, word in enumerate(words, start=1):
-            total_words += 1
-            if not isinstance(word, dict):
-                file_invalid = True
-                _append_error(
-                    errors,
-                    f"{file_path}: word[{idx}] is not an object",
-                    max_errors=max_errors,
-                )
-                continue
-
-            word_index = _as_int(word.get("word_index_in_ayah"))
-            if word_index is None:
-                file_invalid = True
-                missing_word_index += 1
-                _append_error(
-                    errors,
-                    f"{file_path}: word[{idx}] missing integer word_index_in_ayah",
-                    max_errors=max_errors,
-                )
-            elif word_index in seen_word_indices:
-                file_invalid = True
-                duplicate_word_index += 1
-                _append_error(
-                    errors,
-                    f"{file_path}: duplicate word_index_in_ayah={word_index}",
-                    max_errors=max_errors,
-                )
-            else:
-                seen_word_indices.add(word_index)
-
-            start_s = _as_float(word.get("start_s"))
-            end_s = _as_float(word.get("end_s"))
-            if start_s is None or end_s is None:
-                file_invalid = True
-                unlabeled_words += 1
-                _append_error(
-                    errors,
-                    f"{file_path}: word[{idx}] has null/non-numeric start_s/end_s",
-                    max_errors=max_errors,
-                )
-                continue
-
-            if end_s <= start_s:
-                file_invalid = True
-                invalid_duration_words += 1
-                _append_error(
-                    errors,
-                    f"{file_path}: word[{idx}] end_s ({end_s}) must be > start_s ({start_s})",
-                    max_errors=max_errors,
-                )
-
-            if start_s < previous_start or end_s < previous_end:
-                file_invalid = True
-                non_monotonic_words += 1
-                _append_error(
-                    errors,
-                    (
-                        f"{file_path}: word[{idx}] non-monotonic timing "
-                        f"(prev_start={previous_start}, prev_end={previous_end}, "
-                        f"start={start_s}, end={end_s})"
-                    ),
-                    max_errors=max_errors,
-                )
-
-            previous_start = start_s
-            previous_end = end_s
-
-        if file_invalid:
-            invalid_files += 1
-        else:
-            valid_files += 1
-
-    report = {
-        "gold_files": total_files,
-        "valid_files": valid_files,
-        "invalid_files": invalid_files,
-        "parse_errors": parse_errors,
-        "no_words_files": no_words_files,
-        "total_words": total_words,
-        "unlabeled_words": unlabeled_words,
-        "invalid_duration_words": invalid_duration_words,
-        "non_monotonic_words": non_monotonic_words,
-        "missing_word_index": missing_word_index,
-        "duplicate_word_index": duplicate_word_index,
-        "max_errors": max_errors,
-        "errors": errors,
-        "passes": invalid_files == 0 and parse_errors == 0,
+    total_supervision_sources = sum(supervision_source_counter.values())
+    supervision_source_usage_ratio = {
+        key: (value / total_supervision_sources if total_supervision_sources else 0.0)
+        for key, value in sorted(supervision_source_counter.items())
     }
-    return report
+
+    shape_total = segment_shape_counter.get("3_field", 0) + segment_shape_counter.get("4_field", 0)
+    segment_shape_usage_ratio = {
+        "3_field": segment_shape_counter.get("3_field", 0) / shape_total if shape_total else 0.0,
+        "4_field": segment_shape_counter.get("4_field", 0) / shape_total if shape_total else 0.0,
+    }
+
+    return {
+        "reciters": sorted(reciters),
+        "supervision_source_usage_ratio": supervision_source_usage_ratio,
+        "segment_shape_usage_ratio": segment_shape_usage_ratio,
+        "segment_source_type_counts": dict(segment_source_type_counter),
+    }
+
+
+def _filter_dataset_by_support(
+    dataset: dict[tuple[str, int, int], list[dict[str, Any]]],
+    *,
+    supported: bool,
+) -> dict[tuple[str, int, int], list[dict[str, Any]]]:
+    out: dict[tuple[str, int, int], list[dict[str, Any]]] = {}
+    for (reciter_id, surah, ayah), words in dataset.items():
+        if is_qcom_word_supervision_supported(reciter_id) == supported:
+            out[(reciter_id, surah, ayah)] = words
+    return out
+
+
+def _evaluate_on_datasets(
+    *,
+    predictions: dict[tuple[str, int, int], list[dict[str, Any]]],
+    reference: dict[tuple[str, int, int], list[dict[str, Any]]],
+) -> dict[str, Any]:
+    boundary_errors_ms: list[float] = []
+    per_reciter_errors: dict[str, list[float]] = defaultdict(list)
+    missing_predictions: list[str] = []
+    matched_ayahs = 0
+
+    for key, reference_words in reference.items():
+        reciter_id, surah, ayah = key
+        pred_words = predictions.get(key)
+        if pred_words is None:
+            missing_predictions.append(f"{reciter_id}:{surah}:{ayah}")
+            continue
+
+        reference_lookup = _word_lookup(reference_words)
+        pred_lookup = _word_lookup(pred_words)
+
+        for word_idx, reference_word in reference_lookup.items():
+            pred_word = pred_lookup.get(word_idx)
+            if pred_word is None:
+                continue
+            try:
+                reference_start = float(reference_word.get("start_s"))
+                reference_end = float(reference_word.get("end_s"))
+                pred_start = float(pred_word.get("start_s"))
+                pred_end = float(pred_word.get("end_s"))
+            except (TypeError, ValueError):
+                continue
+
+            start_err = abs(pred_start - reference_start) * 1000.0
+            end_err = abs(pred_end - reference_end) * 1000.0
+            boundary_errors_ms.extend([start_err, end_err])
+            per_reciter_errors[reciter_id].extend([start_err, end_err])
+
+        matched_ayahs += 1
+
+    summary_metrics = _metrics_from_errors(boundary_errors_ms)
+    per_reciter = {
+        reciter_id: _metrics_from_errors(values).to_dict()
+        for reciter_id, values in sorted(per_reciter_errors.items())
+    }
+    return {
+        "reference_ayahs": len(reference),
+        "pred_ayahs": len(predictions),
+        "matched_ayahs": matched_ayahs,
+        "missing_predictions": missing_predictions,
+        "summary": summary_metrics.to_dict(),
+        "per_reciter": per_reciter,
+    }
+
+
+def evaluate_bakeoff(
+    *,
+    pred_dir: str | Path,
+    reference_dir: str | Path,
+) -> dict[str, Any]:
+    predictions = _collect_dataset(pred_dir)
+    reference = _collect_dataset(reference_dir)
+
+    overall = _evaluate_on_datasets(predictions=predictions, reference=reference)
+    supported_predictions = _filter_dataset_by_support(predictions, supported=True)
+    supported_reference = _filter_dataset_by_support(reference, supported=True)
+    unsupported_predictions = _filter_dataset_by_support(predictions, supported=False)
+    unsupported_reference = _filter_dataset_by_support(reference, supported=False)
+
+    supported_eval = _evaluate_on_datasets(predictions=supported_predictions, reference=supported_reference)
+    unsupported_eval = _evaluate_on_datasets(predictions=unsupported_predictions, reference=unsupported_reference)
+
+    metadata = _collect_prediction_metadata(pred_dir)
+    supported_reciters = sorted(
+        {reciter_id for (reciter_id, _, _) in supported_reference}
+    )
+    unsupported_reciters = sorted(
+        {reciter_id for (reciter_id, _, _) in unsupported_reference}
+    )
+
+    return {
+        "overall": overall,
+        "ayah_truth_everyayah": overall["summary"],
+        "word_truth_qcom_segments_supported": supported_eval["summary"],
+        "word_truth_model_only_unsupported": unsupported_eval["summary"],
+        "supported_group": supported_eval,
+        "unsupported_group": unsupported_eval,
+        "coverage": {
+            "supported_reciters": len(supported_reciters),
+            "unsupported_reciters": len(unsupported_reciters),
+            "supported_reciter_ids": supported_reciters,
+            "unsupported_reciter_ids": unsupported_reciters,
+        },
+        "supervision_source_usage_ratio": metadata["supervision_source_usage_ratio"],
+        "segment_shape_usage_ratio": metadata["segment_shape_usage_ratio"],
+        "segment_source_type_counts": metadata["segment_source_type_counts"],
+        "required_fields": {
+            "median_p90_p95": {
+                "median_abs_error_ms": overall["summary"]["median_abs_error_ms"],
+                "p90_abs_error_ms": overall["summary"]["p90_abs_error_ms"],
+                "p95_abs_error_ms": overall["summary"]["p95_abs_error_ms"],
+            },
+            "hit_rates": {
+                "hit_rate_20ms": overall["summary"]["hit_rate_20ms"],
+                "hit_rate_50ms": overall["summary"]["hit_rate_50ms"],
+                "hit_rate_80ms": overall["summary"]["hit_rate_80ms"],
+            },
+            "per_reciter_metrics": overall["per_reciter"],
+        },
+    }

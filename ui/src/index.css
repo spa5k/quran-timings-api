@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Amiri+Quran&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Changa:wght@400;500;700&family=Amiri+Quran&display=swap');
 
 :root {
-  font-family: 'Space Grotesk', 'Trebuchet MS', sans-serif;
+  font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
   line-height: 1.4;
   font-weight: 400;
   font-synthesis: none;
@@ -9,21 +9,39 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg-warm: #f4f0dd;
-  --bg-cool: #dfeee6;
+  --page-top: #f7f2e8;
+  --page-mid: #d9ebf0;
+  --page-bottom: #eaf4f8;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+}
+
+body {
+  color: #10384f;
   background:
-    radial-gradient(circle at 12% 8%, rgba(26, 108, 73, 0.24), transparent 35%),
-    radial-gradient(circle at 94% 18%, rgba(215, 177, 108, 0.22), transparent 32%),
-    linear-gradient(160deg, var(--bg-warm), var(--bg-cool));
-  color: #163b2c;
+    radial-gradient(circle at 12% 8%, rgba(255, 193, 116, 0.3), transparent 28%),
+    radial-gradient(circle at 92% 9%, rgba(95, 212, 216, 0.3), transparent 34%),
+    linear-gradient(180deg, var(--page-top) 0%, var(--page-mid) 48%, var(--page-bottom) 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at center, black 20%, transparent 100%);
 }

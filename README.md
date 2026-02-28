@@ -8,9 +8,9 @@ It produces:
 - JSON + CSV outputs
 
 Pipeline policy:
-1. Resolve trusted existing timings first.
-2. If missing/invalid, run model alignment.
-3. If primary alignment fails or QC fails, run WhisperX fallback.
+1. Always run strict multi-pass model alignment.
+2. Use existing timings as priors only (never final output).
+3. Fuse external supervision from EveryAyah/Quran.com when available.
 
 ## Current status
 
@@ -93,7 +93,7 @@ Optional columns:
 - `language` (defaults to `ar`)
 - `riwaya` (optional text-variant hint)
 - `text_variant` (optional canonical variant key)
-- `gold_split` (optional benchmark split tag)
+- `reference_split` (optional benchmark split tag)
 
 Example:
 
@@ -112,24 +112,14 @@ uv run qad --help
 ### Align
 
 ```bash
-uv run qad align --manifest /path/manifest.csv --out /path/out --device auto
+uv run qad align --manifest /path/manifest.csv --out /path/out
 ```
 
 Options:
-- `--engine nemo|whisperx|mfa`
-- `--accuracy-mode standard|strict`
-- `--device auto|cpu|cuda`
 - `--text-data /path/to/quran_text_uthmani_v1.json`
-- `--cache-dir .cache/timings`
-- `--no-remote`
+- `--cache-dir .cache/timings/v3`
 
-Default behavior now runs all three engines (`nemo`, `whisperx`, `mfa`) and selects the best result.
-
-### Resolve existing only
-
-```bash
-uv run qad resolve-existing --manifest /path/manifest.csv --out /path/out
-```
+`align` always runs the full quality stack (strict multi-engine + multi-pass + supervision fusion).
 
 ### Validate outputs
 
@@ -141,6 +131,18 @@ uv run qad validate --input /path/out
 
 ```bash
 uv run qad benchmark --manifest /path/manifest.csv --out /path/out --sample-size 10
+```
+
+### Prepare supervision cache
+
+```bash
+uv run qad prepare-supervision --manifest /path/manifest.csv --out-dir .cache/supervision
+```
+
+### Validate live supervision endpoints
+
+```bash
+uv run qad validate-supervision --reciter-id 2 --chapter 1 --verse-key 1:1
 ```
 
 ### Build Benchmark Data (Quran.com + EveryAyah)
@@ -161,10 +163,10 @@ This command:
 - Pulls ayah/word metadata from Quran.com API v4 (`/verses/by_key/{surah}:{ayah}`)
 - Pulls reciter catalog + ayah MP3s from EveryAyah (`recitations.js` + ayah MP3 URLs)
 - Retries transient 429/5xx/timeout failures with exponential backoff
-- Supports resume mode to reuse existing `gold_templates` and downloaded MP3s
+- Supports resume mode to reuse existing `reference_templates` and downloaded MP3s
 - Writes:
   - `benchmark_manifest.csv`
-  - `gold_templates/*.json` (manual labeling templates)
+  - `reference_templates/*.json` (manual labeling templates)
   - `benchmark_metadata.json`
 
 Script equivalent:
@@ -172,6 +174,56 @@ Script equivalent:
 ```bash
 python3 scripts/build_benchmark_data.py --out-dir benchmarks/generated --count 200 --download-audio
 ```
+
+Optional for stable reciter IDs (instead of auto-sanitized EveryAyah subfolder):
+
+```bash
+uv run qad benchmark-data \
+  --out-dir benchmarks/generated \
+  --reciter-subfolder Abdul_Basit_Murattal_64kbps \
+  --manifest-reciter-id abdul_basit_murattal_64kbps \
+  --surahs 1
+```
+
+### Sync reciter catalog (EveryAyah + Quran.com)
+
+```bash
+uv run qad sync-reciters \
+  --out data/reciter_catalog.json \
+  --enabled-reciters abdul_basit_murattal_64kbps,abdurrahmaan_as-sudays,sa3ood_al-shuraym,yasser_ad-dussary
+```
+
+List configured reciters:
+
+```bash
+uv run qad list-reciters --enabled-only
+```
+
+### Run one reciter + surah end-to-end
+
+```bash
+uv run qad run-surah \
+  --reciter-id abdurrahmaan_as-sudays \
+  --surah 1 \
+  --out-root runs/surah_runs
+```
+
+This command builds full-surah audio from configured supervision sources only:
+- EveryAyah ayah MP3s (concatenated per surah), or
+- Quran.com chapter recitation audio API (fallback when EveryAyah is unavailable).
+
+It then runs strict alignment, writes `run_summary.json` with QC/supervision breakdown, and syncs both timing JSON + audio assets into:
+- `ui/public/data` (`*_full.json` + `audio/*.mp3`)
+- `ui/dist/data` (`*_full.json` + `audio/*.mp3`)
+
+For EveryAyah-backed runs, the pipeline also:
+- records per-ayah stitched boundaries in `input/everyayah_stitch_timeline.json`
+- evaluates aligned surah-level ayah boundaries against stitched ayah references (raw + offset-normalized metrics in `run_summary.json` under `quality.everyayah_stitch_eval`)
+
+UI now includes a **Data Check** panel that shows:
+- output/QC values from generated timing JSON
+- supervision source references (`everyayah:*`, `qcom:*`)
+- per-word aligned vs source timing deltas when source word timings are available (Quran.com supervision)
 
 ### Sync UI data from latest runs
 
@@ -181,10 +233,12 @@ Use this to refresh UI timing JSON files from the newest run artifact for each `
 uv run qad sync-ui-data
 ```
 
+`sync-ui-data` auto-bootstraps `ui/public/data/catalog.json` from `data/reciter_catalog.json` when needed, and updates `audioSrc` to local `/data/audio/...` files copied from run artifacts.
+
 Useful flags:
 - `--dry-run` prints changes without writing files
 - `--no-sync-dist` updates `ui/public/data` only
-- `--prune-ui` removes stale `*_full.json` files not present in latest run selection
+- `--prune-ui` removes stale `*_full.json` and stale `audio/*` files not present in latest run selection
 
 Script equivalent:
 
@@ -192,31 +246,17 @@ Script equivalent:
 python3 scripts/sync_ui_from_latest_runs.py
 ```
 
-### Evaluate against gold
+### Evaluate against references
 
 ```bash
-uv run qad eval --pred-dir /path/predictions --gold-dir /path/gold --report /path/report.json
+uv run qad eval --pred-dir /path/predictions --reference-dir /path/reference --report /path/report.json
 ```
 
-### Validate gold labels
+### Bakeoff evaluation (coverage split + supervision ratios)
 
 ```bash
-uv run qad validate-gold --gold-dir /path/gold --report /path/gold_validation_report.json
+uv run qad eval-bakeoff --pred-dir /path/predictions --reference-dir /path/reference --report /path/bakeoff_report.json
 ```
-
-### Auto-label gold (no manual labeling)
-
-```bash
-uv run qad auto-label-gold \
-  --gold-dir /path/gold_templates \
-  --chapter-reciter-id 2 \
-  --report /path/auto_label_report.json
-```
-
-Notes:
-- Uses Quran.com `chapter_recitations/{id}/{surah}?segments=true` word segments.
-- For `Abdul_Basit_Murattal_64kbps`, use `--chapter-reciter-id 2`.
-- If Quran.com omits a word position in `segments`, boundaries are auto-imputed from neighboring anchors.
 
 ### GPU doctor
 
@@ -254,38 +294,12 @@ The command must write a JSON containing word timestamps (or `words` list compat
 
 If NeMo is unavailable or fails, pipeline can fall back to WhisperX.
 
-## MFA aligner wiring
+## Engine lineup
 
-MFA is enabled by default in the alignment engine set.
-
-Runtime mode:
-- If local `mfa` works, it is used directly.
-- If local `mfa` is broken/unavailable, Docker fallback is used automatically (`mmcauliffe/montreal-forced-aligner:latest`), so Docker must be installed.
-- Default MFA profile uses `english_mfa` with an auto-generated per-file `spn` dictionary (`__auto_spn__`) to keep MFA runnable without extra dictionary setup.
-- MFA cache/models are stored under `.cache/mfa`.
-
-Optional one-time model pre-warm:
-
-```bash
-docker run --rm -e MFA_ROOT_DIR=/mfa-root -v "$PWD/.cache/mfa:/mfa-root" \
-  mmcauliffe/montreal-forced-aligner:latest mfa model download acoustic english_mfa
-docker run --rm -e MFA_ROOT_DIR=/mfa-root -v "$PWD/.cache/mfa:/mfa-root" \
-  mmcauliffe/montreal-forced-aligner:latest mfa model download dictionary english_us_arpa
-```
-
-If your local MFA invocation differs from defaults, set `QAD_MFA_ALIGN_CMD`:
-
-```bash
-export QAD_MFA_ALIGN_CMD='mfa align --clean --single_speaker --output_format json {corpus_dir} {dictionary} {acoustic_model} {output_dir}'
-```
-
-Template placeholders:
-- `{corpus_dir}`
-- `{output_dir}`
-- `{dictionary}`
-- `{acoustic_model}`
-- `{audio_wav}`
-- `{transcript_txt}`
+The strict v3 pipeline runs these candidates for fusion:
+- `nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0`
+- `nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0`
+- WhisperX Arabic aligner
 
 ## Output files
 
@@ -294,10 +308,15 @@ Per input row:
 - `<stem>_ayah.csv`
 - `<stem>_words.csv`
 - `<stem>_qc_report.json`
+- `<stem>_text_audit.json`
 
 `<stem>` format:
 - `reciter_sNNN_full` for full-surah rows
 - `reciter_sNNN_aNNN` for ayah rows
+
+Repository policy:
+- Generated artifacts are not stored in git (`runs/`, `benchmarks/generated/`, `ui/public/data/` are rebuildable).
+- Regenerate as needed using `qad align`, `qad benchmark-data`, and `qad sync-ui-data`.
 
 ## Tests
 
@@ -309,6 +328,6 @@ Current suite covers:
 - Arabic normalization/token-boundary behavior
 - Deterministic canonical word indexing
 - External timing validation rejection
-- Ayah-file existing-resolution flow
-- Full-surah existing-resolution flow
-- Fallback trigger + schema validation
+- Prior-assisted alignment flow (existing timings as priors)
+- Strict candidate fusion + QC rescue behavior
+- Supervision segment normalization and endpoint contract parsing

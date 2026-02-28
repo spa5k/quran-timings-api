@@ -12,6 +12,14 @@ wheels/
 # Runtime artifacts
 .cache/
 samples/audio/
+runs/*
+!runs/.gitkeep
+benchmarks/generated/*
+!benchmarks/generated/.gitkeep
+ui/public/data/*
+!ui/public/data/.gitkeep
+ui/node_modules/
+ui/dist/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

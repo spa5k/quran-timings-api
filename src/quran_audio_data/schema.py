@@ -13,6 +13,7 @@ from pydantic import BaseModel, Field, model_validator
 InputMode = Literal["full_surah", "ayah_file"]
 TimingSource = Literal["existing", "aligned", "fallback"]
 AlignmentOrigin = Literal["native", "interpolated", "distributed"]
+SegmentSourceType = Literal["qcom_chapter", "qcom_verse", "none"]
 
 
 class AudioMetadata(BaseModel):
@@ -63,6 +64,9 @@ class WordTiming(BaseModel):
     alignment_origin: AlignmentOrigin = "native"
     match_score: float | None = None
     engine_candidate: str | None = None
+    source_start_s: float | None = None
+    source_end_s: float | None = None
+    source_provider: str | None = None
 
     @model_validator(mode="after")
     def _validate_timing(self) -> "WordTiming":
@@ -89,13 +93,20 @@ class QCReport(BaseModel):
 
 
 class TimingResult(BaseModel):
-    schema_version: Literal["v2"] = "v2"
+    schema_version: Literal["v3"] = "v3"
     audio: AudioMetadata
     meta: MetaInfo
     engine: EngineInfo
     ayahs: list[AyahTiming]
     words: list[WordTiming]
     qc: QCReport
+
+    # v3 provenance fields.
+    supervision_sources: list[str] = Field(default_factory=list)
+    selected_candidate_engine: str | None = None
+    candidate_scores: dict[str, float] = Field(default_factory=dict)
+    pass_trace: list[str] = Field(default_factory=list)
+    segment_source_type: SegmentSourceType = "none"
 
     def to_dict(self) -> dict[str, Any]:
         return self.model_dump(mode="json")
@@ -146,6 +157,9 @@ class TimingResult(BaseModel):
                     "alignment_origin",
                     "match_score",
                     "engine_candidate",
+                    "source_start_s",
+                    "source_end_s",
+                    "source_provider",
                 ],
             )
             writer.writeheader()
@@ -166,6 +180,13 @@ class TimingResult(BaseModel):
                         if word.match_score is None
                         else round(word.match_score, 2),
                         "engine_candidate": word.engine_candidate,
+                        "source_start_s": None
+                        if word.source_start_s is None
+                        else round(word.source_start_s, 3),
+                        "source_end_s": None
+                        if word.source_end_s is None
+                        else round(word.source_end_s, 3),
+                        "source_provider": word.source_provider,
                     }
                 )
 

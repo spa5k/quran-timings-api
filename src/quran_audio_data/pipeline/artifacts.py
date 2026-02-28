@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
+from typing import Any
 
 import orjson
 
@@ -11,6 +12,7 @@ from quran_audio_data.schema import (
     EngineInfo,
     MetaInfo,
     QCThresholds,
+    SegmentSourceType,
     TimingResult,
     WordTiming,
     compute_qc,
@@ -32,6 +34,8 @@ def validate_outputs(input_path: str | Path) -> tuple[int, int, list[str]]:
 
     for file_path in files:
         if file_path.name.endswith("_qc_report.json"):
+            continue
+        if file_path.name.endswith("_text_audit.json"):
             continue
         try:
             TimingResult.read_json(file_path)
@@ -101,6 +105,11 @@ def build_result(
     speech_end_s: float | None = None,
     thresholds: QCThresholds,
     candidate_scores: dict[str, float] | None = None,
+    attempted_engines: list[str] | None = None,
+    supervision_sources: list[str] | None = None,
+    selected_candidate_engine: str | None = None,
+    pass_trace: list[str] | None = None,
+    segment_source_type: SegmentSourceType = "none",
 ) -> TimingResult:
     input_mode = "ayah_file" if row.ayah is not None else "full_surah"
     qc = compute_qc(
@@ -120,10 +129,16 @@ def build_result(
             model=engine_model,
             device=device,
             fallback_used=fallback_used,
+            attempted=attempted_engines or [],
         ),
         ayahs=ayahs,
         words=words,
         qc=qc,
+        supervision_sources=supervision_sources or [],
+        selected_candidate_engine=selected_candidate_engine,
+        candidate_scores=candidate_scores or {},
+        pass_trace=pass_trace or [],
+        segment_source_type=segment_source_type,
     )
 
 
@@ -135,6 +150,7 @@ def write_result_artifacts(
     source: str,
     fallback_used: bool = False,
     elapsed_s: float = 0.0,
+    text_audit: dict[str, Any] | None = None,
 ) -> ProcessedFile:
     stem = output_stem(row)
     json_path = out_dir / f"{stem}.json"
@@ -144,12 +160,18 @@ def write_result_artifacts(
     qc_path = out_dir / f"{stem}_qc_report.json"
     qc_path.write_bytes(orjson.dumps(result.qc.model_dump(mode="json"), option=orjson.OPT_INDENT_2))
 
+    text_audit_path: Path | None = None
+    if text_audit is not None:
+        text_audit_path = out_dir / f"{stem}_text_audit.json"
+        text_audit_path.write_bytes(orjson.dumps(text_audit, option=orjson.OPT_INDENT_2))
+
     return ProcessedFile(
         row=row,
         output_json=json_path,
         output_ayah_csv=ayah_csv,
         output_words_csv=words_csv,
         qc_report_json=qc_path,
+        text_audit_json=text_audit_path,
         source=source,
         fallback_used=fallback_used,
         elapsed_s=elapsed_s,
@@ -178,6 +200,7 @@ def output_stem(row: ManifestRow) -> str:
     if row.ayah is None:
         return f"{row.reciter_id}_s{row.surah:03d}_full"
     return f"{row.reciter_id}_s{row.surah:03d}_a{row.ayah:03d}"
+
 
 __all__ = [
     "ManifestRow",

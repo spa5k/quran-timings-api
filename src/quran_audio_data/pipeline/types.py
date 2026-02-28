@@ -6,7 +6,7 @@ from typing import Literal
 
 DeviceOption = Literal["auto", "cpu", "cuda"]
 EngineOption = Literal["nemo", "whisperx", "mfa"]
-AccuracyMode = Literal["standard", "strict"]
+AccuracyMode = Literal["strict"]
 EngineAvailabilityPolicy = Literal["best_effort", "require_requested", "require_all"]
 
 
@@ -25,7 +25,7 @@ class ManifestRow:
     language: str
     riwaya: str | None
     text_variant: str | None
-    gold_split: str | None
+    reference_split: str | None
 
 
 @dataclass(slots=True)
@@ -35,6 +35,7 @@ class ProcessedFile:
     output_ayah_csv: Path
     output_words_csv: Path
     qc_report_json: Path
+    text_audit_json: Path | None
     source: str
     fallback_used: bool
     elapsed_s: float
@@ -48,11 +49,10 @@ class PipelineErrorDetail:
 
 
 @dataclass(slots=True)
-class PipelineReportV2:
+class PipelineReportV3:
     total: int
     succeeded: int
     failed: int
-    existing_resolved: int
     aligned: int
     fallback_used: int
     elapsed_s: float
@@ -60,10 +60,11 @@ class PipelineReportV2:
     errors: list[str]
     error_details: list[PipelineErrorDetail]
     attempted_engines: list[str]
-    schema_version: Literal["v2"] = "v2"
+    priors_used: int
+    schema_version: Literal["v3"] = "v3"
 
 
-ProcessingSummary = PipelineReportV2
+ProcessingSummary = PipelineReportV3
 
 
 def default_cache_dir() -> Path:

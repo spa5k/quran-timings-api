@@ -6,6 +6,7 @@ import csv
 import numpy as np
 import orjson
 import soundfile as sf
+import pytest
 
 import quran_audio_data.pipeline as pipeline
 from quran_audio_data.alignment.base import AlignmentOutput
@@ -63,6 +64,58 @@ class _AlwaysAvailableMFA:
             device="cpu",
             source="aligned",
         )
+
+
+class _AlwaysAvailableNemo:
+    model_name = "fake-nemo"
+
+    def __init__(self, *args, **kwargs) -> None:
+        pass
+
+    def align(self, *, audio_wav_path, canonical_words, audio_duration_s, device):
+        words = []
+        total = max(1, len(canonical_words))
+        for idx, word in enumerate(canonical_words):
+            start = idx / total
+            end = (idx + 1) / total
+            words.append(
+                WordTiming(
+                    surah=word.surah,
+                    ayah=word.ayah,
+                    word_index_global=word.word_index_global,
+                    word_index_in_ayah=word.word_index_in_ayah,
+                    text_uthmani=word.text_uthmani,
+                    text_norm=word.text_norm,
+                    start_s=start,
+                    end_s=end,
+                    confidence=0.95,
+                    alignment_origin="native",
+                    match_score=99.0,
+                    engine_candidate="nemo",
+                )
+            )
+        ayahs = [
+            AyahTiming(
+                surah=canonical_words[0].surah,
+                ayah=canonical_words[0].ayah,
+                start_s=0.0,
+                end_s=1.0,
+                source="aligned",
+            )
+        ]
+        return AlignmentOutput(
+            ayahs=ayahs,
+            words=words,
+            engine_name="nemo",
+            engine_model="fake-nemo",
+            device="cpu",
+            source="aligned",
+        )
+
+
+class _UnavailableWhisperX:
+    def align(self, *, audio_wav_path, canonical_words, audio_duration_s, device):
+        raise pipeline.EngineUnavailable("unused")
 
 
 def _write_silence_wav(path: Path, duration_s: float = 1.0, sample_rate: int = 16000) -> None:
@@ -137,6 +190,8 @@ def _build_existing_payload(store: QuranTextStore, *, surah: int, ayah: int | No
 
 def test_ayah_file_mode_resolves_existing_and_exports(tmp_path, monkeypatch) -> None:
     monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(pipeline, "NemoAligner", _AlwaysAvailableNemo)
+    monkeypatch.setattr(pipeline, "WhisperXFallbackAligner", _UnavailableWhisperX)
     monkeypatch.setattr(pipeline, "MFAAligner", _AlwaysAvailableMFA)
 
     store = QuranTextStore(TEXT_DATA)
@@ -174,7 +229,8 @@ def test_ayah_file_mode_resolves_existing_and_exports(tmp_path, monkeypatch) -> 
     )
 
     assert summary.succeeded == 1
-    assert summary.existing_resolved == 1
+    assert summary.priors_used == 1
+    assert summary.aligned == 1
     assert summary.failed == 0
 
     output_json = out_dir / "test_reciter_s001_a001.json"
@@ -183,6 +239,8 @@ def test_ayah_file_mode_resolves_existing_and_exports(tmp_path, monkeypatch) -> 
 
 def test_full_surah_mode_resolves_existing_for_all_ayahs(tmp_path, monkeypatch) -> None:
     monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(pipeline, "NemoAligner", _AlwaysAvailableNemo)
+    monkeypatch.setattr(pipeline, "WhisperXFallbackAligner", _UnavailableWhisperX)
     monkeypatch.setattr(pipeline, "MFAAligner", _AlwaysAvailableMFA)
 
     store = QuranTextStore(TEXT_DATA)
@@ -220,7 +278,7 @@ def test_full_surah_mode_resolves_existing_for_all_ayahs(tmp_path, monkeypatch) 
     )
 
     assert summary.succeeded == 1
-    assert summary.existing_resolved == 1
+    assert summary.priors_used == 1
     result = orjson.loads((out_dir / "full_reciter_s001_full.json").read_bytes())
     assert len(result["ayahs"]) == 7
 
@@ -458,12 +516,11 @@ def test_normalize_engines_always_includes_all_tracks() -> None:
     engines = pipeline._normalize_engines(
         requested_engine="nemo",
         multi_engine=["nemo"],
-        accuracy_mode="standard",
     )
     assert engines == ["nemo", "whisperx", "mfa"]
 
 
-def test_standard_mode_fails_when_all_candidates_fail_qc(tmp_path, monkeypatch) -> None:
+def test_non_strict_mode_is_rejected(tmp_path, monkeypatch) -> None:
     monkeypatch.chdir(tmp_path)
 
     audio = tmp_path / "all_bad.wav"
@@ -556,20 +613,17 @@ def test_standard_mode_fails_when_all_candidates_fail_qc(tmp_path, monkeypatch) 
     monkeypatch.setattr(pipeline, "WhisperXFallbackAligner", FakeWhisperX)
     monkeypatch.setattr(pipeline, "MFAAligner", FakeMFA)
 
-    summary = pipeline.run_alignment_pipeline(
-        manifest_path=manifest,
-        out_dir=out_dir,
-        text_data=TEXT_DATA,
-        cache_dir=tmp_path / ".cache" / "timings",
-        enable_remote=False,
-        accuracy_mode="standard",
-        engine="nemo",
-        device="cpu",
-    )
-
-    assert summary.succeeded == 0
-    assert summary.failed == 1
-    assert not (out_dir / "all_bad_reciter_s001_a001.json").exists()
+    with pytest.raises(pipeline.PipelineError):
+        pipeline.run_alignment_pipeline(
+            manifest_path=manifest,
+            out_dir=out_dir,
+            text_data=TEXT_DATA,
+            cache_dir=tmp_path / ".cache" / "timings",
+            enable_remote=False,
+            accuracy_mode="standard",  # type: ignore[arg-type]
+            engine="nemo",
+            device="cpu",
+        )
 
 
 def test_strict_mode_rejects_bad_refinement_and_keeps_original(tmp_path, monkeypatch) -> None:
@@ -682,7 +736,7 @@ def test_ayah_cache_write_does_not_overwrite_surah_cache(tmp_path) -> None:
         language="ar",
         riwaya=None,
         text_variant=None,
-        gold_split=None,
+        reference_split=None,
     )
     result = TimingResult(
         audio=AudioMetadata(path="sample.wav", duration_s=1.0, sample_rate=16000, channels=1),

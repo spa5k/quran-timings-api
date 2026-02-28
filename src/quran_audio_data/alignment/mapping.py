@@ -173,6 +173,50 @@ def map_canonical_words(
     return mapped
 
 
+def apply_supervision_overlay(
+    *,
+    words: list[WordTiming],
+    supervision_word_bounds: dict[int, dict[int, tuple[float, float]]],
+    model_weight: float = 0.30,
+    source_provider: str = "quran_com",
+) -> list[WordTiming]:
+    """Blend model timings with external supervision bounds."""
+
+    if not supervision_word_bounds:
+        return words
+
+    supervision_weight = max(0.0, min(1.0, 1.0 - model_weight))
+    model_weight = 1.0 - supervision_weight
+    overlaid: list[WordTiming] = []
+    for word in words:
+        ayah_bounds = supervision_word_bounds.get(word.ayah)
+        if ayah_bounds is None:
+            overlaid.append(word)
+            continue
+        supervised = ayah_bounds.get(word.word_index_in_ayah)
+        if supervised is None:
+            overlaid.append(word)
+            continue
+        sup_start, sup_end = supervised
+        start = (model_weight * word.start_s) + (supervision_weight * sup_start)
+        end = (model_weight * word.end_s) + (supervision_weight * sup_end)
+        if end < start:
+            end = start
+        overlaid.append(
+            word.model_copy(
+                update={
+                    "start_s": start,
+                    "end_s": end,
+                    "alignment_origin": "native",
+                    "source_start_s": sup_start,
+                    "source_end_s": sup_end,
+                    "source_provider": source_provider,
+                }
+            )
+        )
+    return overlaid
+
+
 def derive_ayahs_from_words(
     *,
     words: list[WordTiming],
