@@ -24,7 +24,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 95,6,6,فَلَهُمۡ,24.733,25.117,,native,100.0,nemo
 95,6,7,أَجۡرٌ,25.488,25.681,,native,100.0,nemo
 95,6,8,غَیۡرُ,26.16,26.232,,native,100.0,nemo
-95,6,9,مَمۡنُونࣲ,26.763,27.732,,native,100.0,nemo
+95,6,9,مَمۡنُونࣲ,26.763,27.576,,native,100.0,nemo
 95,7,1,فَمَا,28.562,28.924,,native,100.0,nemo
 95,7,2,یُكَذِّبُكَ,29.32,30.324,,native,100.0,nemo
 95,7,3,بَعۡدُ,30.513,30.533,,native,100.0,nemo

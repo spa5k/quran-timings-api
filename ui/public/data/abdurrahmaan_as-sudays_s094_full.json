@@ -364,7 +364,7 @@
       "text_uthmani": "ٱلۡعُسۡرِ",
       "text_norm": "العسر",
       "start_s": 18.76,
-      "end_s": 19.825,
+      "end_s": 19.3906875,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -376,7 +376,7 @@
       "word_index_global": 22,
       "word_index_in_ayah": 4,
       "text_uthmani": "یُسۡرࣰا",
-      "text_norm": "يسرࣰا",
+      "text_norm": "يسرا",
       "start_s": 19.825,
       "end_s": 20.5095625,
       "confidence": null,
@@ -481,7 +481,7 @@
     "interpolated_ratio": 0.0,
     "lexical_match_ratio": 1.0,
     "speech_end_delta_ratio": 0.003204555443397452,
-    "quantization_step_ms": 397.7499999999985,
+    "quantization_step_ms": 401.34374999999875,
     "engine_candidate_scores": {
       "nemo": 154.5456725635805,
       "mfa": 155.8563930816344

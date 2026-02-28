@@ -1029,7 +1029,7 @@
       "text_uthmani": "وَٱلۡءَاخِرَةُ",
       "text_norm": "والءاخرة",
       "start_s": 63.4529375,
-      "end_s": 63.883125,
+      "end_s": 63.4811875,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -1041,7 +1041,7 @@
       "word_index_global": 64,
       "word_index_in_ayah": 2,
       "text_uthmani": "خَیۡرࣱ",
-      "text_norm": "خيرࣱ",
+      "text_norm": "خير",
       "start_s": 64.8933125,
       "end_s": 65.5931875,
       "confidence": null,
@@ -1202,7 +1202,7 @@
     "interpolated_ratio": 0.0,
     "lexical_match_ratio": 1.0,
     "speech_end_delta_ratio": 0.01277418298247889,
-    "quantization_step_ms": 429.1249999999991,
+    "quantization_step_ms": 427.06250000000523,
     "engine_candidate_scores": {
       "nemo": 162.2704248042532,
       "mfa": 162.8090141148696

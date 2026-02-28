@@ -16,7 +16,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 91,6,1,وَٱلۡأَرۡضِ,14.77,15.34,,native,100.0,nemo
 91,6,2,وَمَا,15.627,15.647,,native,100.0,nemo
 91,6,3,طَحَىٰهَا,15.94,16.752,,native,100.0,nemo
-91,7,1,وَنَفۡسࣲ,16.89,17.699,,native,100.0,nemo
+91,7,1,وَنَفۡسࣲ,16.89,17.441,,native,100.0,nemo
 91,7,2,وَمَا,17.745,17.819,,native,100.0,nemo
 91,7,3,سَوَّىٰهَا,18.348,18.931,,native,100.0,nemo
 91,8,1,فَأَلۡهَمَهَا,19.529,20.589,,native,100.0,nemo

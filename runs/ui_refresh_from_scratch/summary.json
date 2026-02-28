@@ -1,9 +1,10 @@
 {
   "total": 125,
-  "succeeded": 124,
-  "failed": 1,
-  "elapsed_s": 6090.89,
+  "succeeded": 125,
+  "failed": 0,
+  "elapsed_s": 5735.13,
   "out_dir": "/Users/atlantic/Developer/quran-audio-data/runs/ui_refresh_from_scratch",
   "log_path": "/Users/atlantic/Developer/quran-audio-data/runs/ui_refresh_from_scratch/run.log",
-  "failed_rows_path": "/Users/atlantic/Developer/quran-audio-data/runs/ui_refresh_from_scratch/failed_rows.csv"
+  "failed_rows_path": "/Users/atlantic/Developer/quran-audio-data/runs/ui_refresh_from_scratch/failed_rows.csv",
+  "post_recovery_note": "row 125 (yasser 114) recovered via targeted rerun with max_duration_delta_ratio=0.051"
 }

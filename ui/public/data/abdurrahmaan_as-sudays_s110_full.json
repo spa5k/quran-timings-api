@@ -201,7 +201,7 @@
       "word_index_global": 12,
       "word_index_in_ayah": 7,
       "text_uthmani": "أَفۡوَاجࣰا",
-      "text_norm": "افواجࣰا",
+      "text_norm": "افواجا",
       "start_s": 18.309999465942383,
       "end_s": 18.610000610351562,
       "confidence": null,
@@ -313,7 +313,7 @@
     "monotonic": true,
     "duration_match": true,
     "warnings": [
-      "strict_rescue_selected"
+      "qc_rescue_selected"
     ],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,

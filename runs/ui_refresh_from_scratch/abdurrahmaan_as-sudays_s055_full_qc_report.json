@@ -10,7 +10,7 @@
   "interpolated_ratio": 0.0,
   "lexical_match_ratio": 1.0,
   "speech_end_delta_ratio": 0.00010166158753786098,
-  "quantization_step_ms": 590.8437499999906,
+  "quantization_step_ms": 597.687499999978,
   "engine_candidate_scores": {
     "nemo": 164.55770556530794,
     "mfa": 164.67812620274742

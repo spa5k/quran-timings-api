@@ -9,7 +9,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 93,3,4,وَمَا,6.064,6.237,,native,100.0,nemo
 93,3,5,قَلَىٰ,6.671,6.984,,native,100.0,nemo
 93,4,1,وَلَلۡءَاخِرَةُ,7.5,8.8,,native,100.0,nemo
-93,4,2,خَیۡرࣱ,9.005,9.381,,native,100.0,nemo
+93,4,2,خَیۡرࣱ,9.005,9.025,,native,100.0,nemo
 93,4,3,لَّكَ,9.735,9.878,,native,100.0,nemo
 93,4,4,مِنَ,10.1,10.145,,native,100.0,nemo
 93,4,5,ٱلۡأُولَىٰ,10.664,11.315,,native,100.0,nemo
@@ -19,7 +19,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 93,5,4,فَتَرۡضَىٰۤ,14.412,15.379,,native,100.0,nemo
 93,6,1,أَلَمۡ,15.63,15.66,,native,100.0,nemo
 93,6,2,یَجِدۡكَ,16.241,16.844,,native,100.0,nemo
-93,6,3,یَتِیمࣰا,17.24,18.08,,native,100.0,nemo
+93,6,3,یَتِیمࣰا,17.24,17.854,,native,100.0,nemo
 93,6,4,فَءَاوَىٰ,18.95,19.638,,native,100.0,nemo
 93,7,1,وَوَجَدَكَ,20.267,21.331,,native,100.0,nemo
 93,7,2,ضَاۤلࣰّا,21.331,24.431,,native,100.0,nemo

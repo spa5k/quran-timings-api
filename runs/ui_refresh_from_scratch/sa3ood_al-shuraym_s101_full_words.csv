@@ -22,7 +22,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 101,6,5,ٰزِینُهُۥ,20.258,20.768,,native,100.0,nemo
 101,7,1,فَهُوَ,21.098,21.118,,native,100.0,nemo
 101,7,2,فِی,21.587,21.607,,native,100.0,nemo
-101,7,3,عِیشَةࣲ,21.907,22.587,,native,100.0,nemo
+101,7,3,عِیشَةࣲ,21.907,22.448,,native,100.0,nemo
 101,7,4,رَّاضِیَةࣲ,22.603,23.618,,native,100.0,nemo
 101,8,1,وَأَمَّا,23.801,24.309,,native,100.0,nemo
 101,8,2,مَنۡ,24.862,24.882,,native,100.0,nemo
@@ -30,7 +30,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 101,8,4,مَوَ,25.72,26.276,,native,100.0,nemo
 101,8,5,ٰزِینُهُۥ,26.276,26.844,,native,100.0,nemo
 101,9,1,فَأُمُّهُۥ,27.056,27.968,,native,100.0,nemo
-101,9,2,هَاوِیَةࣱ,28.265,29.126,,native,100.0,nemo
+101,9,2,هَاوِیَةࣱ,28.265,28.678,,native,100.0,nemo
 101,10,1,وَمَاۤ,29.407,29.719,,native,100.0,nemo
 101,10,2,أَدۡرَىٰكَ,30.036,30.721,,native,100.0,nemo
 101,10,3,مَا,30.96,30.98,,native,100.0,nemo

@@ -264,7 +264,7 @@
       "word_index_global": 15,
       "word_index_in_ayah": 3,
       "text_uthmani": "عَابِدࣱ",
-      "text_norm": "عابدࣱ",
+      "text_norm": "عابد",
       "start_s": 17.520000457763672,
       "end_s": 17.65999984741211,
       "confidence": null,
@@ -432,7 +432,7 @@
     "monotonic": true,
     "duration_match": true,
     "warnings": [
-      "strict_rescue_selected"
+      "qc_rescue_selected"
     ],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,

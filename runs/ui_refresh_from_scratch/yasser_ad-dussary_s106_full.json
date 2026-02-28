@@ -236,9 +236,9 @@
       "word_index_global": 14,
       "word_index_in_ayah": 4,
       "text_uthmani": "جُوعࣲ",
-      "text_norm": "جوعࣲ",
+      "text_norm": "جوع",
       "start_s": 15.56,
-      "end_s": 16.0516875,
+      "end_s": 15.9476875,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -299,7 +299,7 @@
     "interpolated_ratio": 0.0,
     "lexical_match_ratio": 1.0,
     "speech_end_delta_ratio": 0.000496441097586124,
-    "quantization_step_ms": 518.6249999999992,
+    "quantization_step_ms": 466.6249999999996,
     "engine_candidate_scores": {
       "nemo": 164.72147720239323,
       "mfa": 164.91747452987946

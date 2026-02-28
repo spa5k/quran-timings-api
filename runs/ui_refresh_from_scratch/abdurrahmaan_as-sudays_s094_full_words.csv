@@ -19,7 +19,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 94,5,4,یُسۡرًا,16.727,16.831,,native,100.0,nemo
 94,6,1,إِنَّ,17.454,17.496,,native,100.0,nemo
 94,6,2,مَعَ,17.856,18.328,,native,100.0,nemo
-94,6,3,ٱلۡعُسۡرِ,18.76,19.825,,native,100.0,nemo
+94,6,3,ٱلۡعُسۡرِ,18.76,19.391,,native,100.0,nemo
 94,6,4,یُسۡرࣰا,19.825,20.51,,native,100.0,nemo
 94,7,1,فَإِذَا,20.651,21.128,,native,100.0,nemo
 94,7,2,فَرَغۡتَ,21.42,22.684,,native,100.0,nemo

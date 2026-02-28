@@ -11,7 +11,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 97,2,5,ٱلۡقَدۡرِ,12.079,12.384,,native,100.0,nemo
 97,3,1,لَیۡلَةُ,12.927,13.531,,native,100.0,nemo
 97,3,2,ٱلۡقَدۡرِ,13.9,14.092,,native,100.0,nemo
-97,3,3,خَیۡرࣱ,14.513,14.886,,native,100.0,nemo
+97,3,3,خَیۡرࣱ,14.513,14.533,,native,100.0,nemo
 97,3,4,مِّنۡ,15.481,15.776,,native,100.0,nemo
 97,3,5,أَلۡفِ,16.287,16.307,,native,100.0,nemo
 97,3,6,شَهۡرࣲ,16.544,16.976,,native,100.0,nemo
@@ -23,7 +23,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 97,4,6,رَبِّهِم,23.558,24.109,,native,100.0,nemo
 97,4,7,مِّن,24.542,24.562,,native,100.0,nemo
 97,4,8,كُلِّ,25.125,25.145,,native,100.0,nemo
-97,4,9,أَمۡرࣲ,25.747,26.359,,native,100.0,nemo
+97,4,9,أَمۡرࣲ,25.747,26.193,,native,100.0,nemo
 97,5,1,سَلَـٰمٌ,26.635,27.15,,native,100.0,nemo
 97,5,2,هِیَ,27.812,27.832,,native,100.0,nemo
 97,5,3,حَتَّىٰ,28.341,28.796,,native,100.0,nemo

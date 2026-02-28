@@ -13,7 +13,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 109,3,5,أَعۡبُدُ,28.119,28.918,,native,100.0,nemo
 109,4,1,وَلَاۤ,30.442,30.607,,native,100.0,nemo
 109,4,2,أَنَا۠,32.669,32.848,,native,100.0,nemo
-109,4,3,عَابِدࣱ,33.211,34.133,,native,100.0,nemo
+109,4,3,عَابِدࣱ,33.211,33.783,,native,100.0,nemo
 109,4,4,مَّا,34.807,34.827,,native,100.0,nemo
 109,4,5,عَبَدتُّمۡ,35.477,36.436,,native,100.0,nemo
 109,5,1,وَلَاۤ,37.481,37.651,,native,100.0,nemo

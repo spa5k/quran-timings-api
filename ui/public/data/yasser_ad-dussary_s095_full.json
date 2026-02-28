@@ -43,7 +43,7 @@
       "surah": 95,
       "ayah": 4,
       "start_s": 6.5645625,
-      "end_s": 12.8868125,
+      "end_s": 12.6631875,
       "source": "aligned"
     },
     {
@@ -57,7 +57,7 @@
       "surah": 95,
       "ayah": 6,
       "start_s": 18.1031875,
-      "end_s": 25.512,
+      "end_s": 25.349,
       "source": "aligned"
     },
     {
@@ -250,9 +250,9 @@
       "word_index_global": 13,
       "word_index_in_ayah": 6,
       "text_uthmani": "تَقۡوِیمࣲ",
-      "text_norm": "تقويمࣲ",
+      "text_norm": "تقويم",
       "start_s": 11.98175,
-      "end_s": 12.8868125,
+      "end_s": 12.6631875,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -432,9 +432,9 @@
       "word_index_global": 26,
       "word_index_in_ayah": 9,
       "text_uthmani": "مَمۡنُونࣲ",
-      "text_norm": "ممنونࣲ",
+      "text_norm": "ممنون",
       "start_s": 24.599875,
-      "end_s": 25.512,
+      "end_s": 25.349,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -565,7 +565,7 @@
     "interpolated_ratio": 0.0,
     "lexical_match_ratio": 1.0,
     "speech_end_delta_ratio": 0.030387417528055044,
-    "quantization_step_ms": 558.3750000000001,
+    "quantization_step_ms": 558.8125000000001,
     "engine_candidate_scores": {
       "nemo": 163.64808619233136,
       "mfa": 164.84224399588643

@@ -59,8 +59,8 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 96,15,4,یَنتَهِ,51.36,52.16,,native,100.0,nemo
 96,15,5,لَنَسۡفَعَۢا,52.4,53.44,,native,100.0,nemo
 96,15,6,بِٱلنَّاصِیَةِ,53.92,55.2,,native,100.0,nemo
-96,16,1,نَاصِیَةࣲ,55.6,57.2,,native,100.0,nemo
-96,16,2,كَـٰذِبَةٍ,57.52,58.0,,native,100.0,nemo
+96,16,1,نَاصِیَةࣲ,55.6,56.48,,native,100.0,nemo
+96,16,2,كَـٰذِبَةٍ,57.12,58.0,,native,100.0,nemo
 96,16,3,خَاطِئَةࣲ,58.32,59.2,,native,100.0,nemo
 96,17,1,فَلۡیَدۡعُ,59.6,60.48,,native,100.0,nemo
 96,17,2,نَادِیَهُۥ,60.72,61.52,,native,100.0,nemo
@@ -69,6 +69,6 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 96,19,1,كَلَّا,64.48,64.96,,native,100.0,nemo
 96,19,2,لَا,65.36,65.44,,native,100.0,nemo
 96,19,3,تُطِعۡهُ,65.92,66.88,,native,100.0,nemo
-96,19,4,وَ̅ٱ̅سۡ̅جُ̅دۡ̅,67.2,68.16,,native,100.0,nemo
+96,19,4,وَ̅ٱ̅سۡ̅جُ̅دۡ̅,67.2,67.84,,native,100.0,nemo
 96,19,5,وَٱقۡتَرِب,68.4,69.52,,native,100.0,nemo
 96,19,6,۩,69.961,70.933,,distributed,,nemo

@@ -348,7 +348,7 @@
     "monotonic": true,
     "duration_match": true,
     "warnings": [
-      "strict_rescue_selected"
+      "qc_rescue_selected"
     ],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,

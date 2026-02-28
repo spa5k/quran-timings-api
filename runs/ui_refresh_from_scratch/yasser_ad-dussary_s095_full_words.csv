@@ -11,7 +11,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 95,4,3,ٱلۡإِنسَـٰنَ,8.124,9.675,,native,100.0,nemo
 95,4,4,فِیۤ,9.941,9.978,,native,100.0,nemo
 95,4,5,أَحۡسَنِ,11.185,11.457,,native,100.0,nemo
-95,4,6,تَقۡوِیمࣲ,11.982,12.887,,native,100.0,nemo
+95,4,6,تَقۡوِیمࣲ,11.982,12.663,,native,100.0,nemo
 95,5,1,ثُمَّ,13.298,13.32,,native,100.0,nemo
 95,5,2,رَدَدۡنَـٰهُ,14.097,15.218,,native,100.0,nemo
 95,5,3,أَسۡفَلَ,15.398,15.777,,native,100.0,nemo
@@ -24,7 +24,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 95,6,6,فَلَهُمۡ,22.423,22.994,,native,100.0,nemo
 95,6,7,أَجۡرٌ,23.156,23.364,,native,100.0,nemo
 95,6,8,غَیۡرُ,23.907,23.927,,native,100.0,nemo
-95,6,9,مَمۡنُونࣲ,24.6,25.512,,native,100.0,nemo
+95,6,9,مَمۡنُونࣲ,24.6,25.349,,native,100.0,nemo
 95,7,1,فَمَا,26.361,26.62,,native,100.0,nemo
 95,7,2,یُكَذِّبُكَ,26.915,27.989,,native,100.0,nemo
 95,7,3,بَعۡدُ,28.231,28.251,,native,100.0,nemo

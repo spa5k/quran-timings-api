@@ -264,9 +264,9 @@
       "word_index_global": 15,
       "word_index_in_ayah": 3,
       "text_uthmani": "عَابِدࣱ",
-      "text_norm": "عابدࣱ",
+      "text_norm": "عابد",
       "start_s": 33.2105625,
-      "end_s": 34.13325,
+      "end_s": 33.7828125,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -439,7 +439,7 @@
     "interpolated_ratio": 0.0,
     "lexical_match_ratio": 1.0,
     "speech_end_delta_ratio": 0.02422819431568803,
-    "quantization_step_ms": 583.8749999999991,
+    "quantization_step_ms": 572.2499999999968,
     "engine_candidate_scores": {
       "nemo": 163.8747349751158,
       "mfa": 164.93706103198764

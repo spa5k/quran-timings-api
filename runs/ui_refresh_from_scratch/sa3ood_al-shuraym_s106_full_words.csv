@@ -12,7 +12,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 106,4,1,ٱلَّذِیۤ,12.824,12.905,,native,100.0,nemo
 106,4,2,أَطۡعَمَهُم,13.472,14.442,,native,100.0,nemo
 106,4,3,مِّن,14.646,14.714,,native,100.0,nemo
-106,4,4,جُوعࣲ,15.357,15.949,,native,100.0,nemo
+106,4,4,جُوعࣲ,15.357,15.857,,native,100.0,nemo
 106,4,5,وَءَامَنَهُم,16.188,17.27,,native,100.0,nemo
 106,4,6,مِّنۡ,17.491,17.511,,native,100.0,nemo
 106,4,7,خَوۡفِۭ,17.93,18.48,,native,100.0,nemo

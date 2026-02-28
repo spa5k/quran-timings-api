@@ -9,7 +9,7 @@ surah,ayah,word_index_in_ayah,text,start_s,end_s,confidence,alignment_origin,mat
 93,3,4,وَمَا,9.28,9.3,,native,100.0,nemo
 93,3,5,قَلَىٰ,9.716,9.963,,native,100.0,nemo
 93,4,1,وَلَلۡءَاخِرَةُ,10.507,11.683,,native,100.0,nemo
-93,4,2,خَیۡرࣱ,11.943,12.346,,native,100.0,nemo
+93,4,2,خَیۡرࣱ,11.943,11.963,,native,100.0,nemo
 93,4,3,لَّكَ,12.688,12.904,,native,100.0,nemo
 93,4,4,مِنَ,13.119,13.332,,native,100.0,nemo
 93,4,5,ٱلۡأُولَىٰ,13.696,14.123,,native,100.0,nemo

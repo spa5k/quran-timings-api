@@ -271,9 +271,9 @@
       "word_index_global": 15,
       "word_index_in_ayah": 1,
       "text_uthmani": "فَوَیۡلࣱ",
-      "text_norm": "فويلࣱ",
+      "text_norm": "فويل",
       "start_s": 13.060125,
-      "end_s": 13.8690625,
+      "end_s": 13.5450625,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -446,7 +446,7 @@
     "interpolated_ratio": 0.0,
     "lexical_match_ratio": 1.0,
     "speech_end_delta_ratio": 0.021444815358308698,
-    "quantization_step_ms": 357.5624999999998,
+    "quantization_step_ms": 343.6874999999997,
     "engine_candidate_scores": {
       "nemo": 164.0959077670023,
       "mfa": 56.31017732584013

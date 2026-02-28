@@ -43,7 +43,7 @@
       "surah": 95,
       "ayah": 4,
       "start_s": 20.391375,
-      "end_s": 28.156375,
+      "end_s": 27.89025,
       "source": "aligned"
     },
     {
@@ -57,7 +57,7 @@
       "surah": 95,
       "ayah": 6,
       "start_s": 38.219,
-      "end_s": 51.6234375,
+      "end_s": 50.670125,
       "source": "aligned"
     },
     {
@@ -250,9 +250,9 @@
       "word_index_global": 13,
       "word_index_in_ayah": 6,
       "text_uthmani": "تَقۡوِیمࣲ",
-      "text_norm": "تقويمࣲ",
+      "text_norm": "تقويم",
       "start_s": 26.9576875,
-      "end_s": 28.156375,
+      "end_s": 27.89025,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
@@ -432,9 +432,9 @@
       "word_index_global": 26,
       "word_index_in_ayah": 9,
       "text_uthmani": "مَمۡنُونࣲ",
-      "text_norm": "ممنونࣲ",
+      "text_norm": "ممنون",
       "start_s": 49.513875,
-      "end_s": 51.6234375,
+      "end_s": 50.670125,
       "confidence": null,
       "alignment_origin": "native",
       "match_score": 100.0,
