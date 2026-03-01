@@ -361,6 +361,16 @@ def update_catalog(
             or 0
         )
 
+    # Keep UI catalog focused on runnable artifacts only: hide reciters with no synced surahs.
+    filtered_recitations: list[dict[str, Any]] = []
+    for item in recitations:
+        if not isinstance(item, dict):
+            continue
+        surahs = item.get("surahs")
+        if isinstance(surahs, list) and surahs:
+            filtered_recitations.append(item)
+    payload["recitations"] = filtered_recitations
+
     rendered = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
     changed = rendered != raw
     if changed and not dry_run:

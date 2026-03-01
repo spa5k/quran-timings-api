@@ -4,15 +4,35 @@
   "enabled_manifest_reciters": [
     "abdul_basit_murattal_64kbps",
     "abdurrahmaan_as-sudays",
+    "eya_abdullah_matroud",
+    "eya_ahmed_neana",
+    "eya_maher_al_muaiqly",
+    "eya_minshawy_murattal",
+    "eya_muhammad_ayyoub",
+    "eya_muhammad_jibreel",
+    "eya_nasser_alqatami",
+    "eya_salaah_bukhatir",
+    "eya_salah_al_budair",
+    "eya_yaser_salamah",
     "muhsin_al_qasim",
+    "qcom_abdulbaset_abdulsamad_murattal",
+    "qcom_abdurrahman_as_sudais",
+    "qcom_abu_bakr_al_shatri",
+    "qcom_hani_ar_rifai",
+    "qcom_husary",
+    "qcom_husary_muallim",
+    "qcom_minshawi_murattal",
+    "qcom_mishari_alafasy",
+    "qcom_mohamed_al_tablawi",
+    "qcom_saud_ash_shuraym",
     "sa3ood_al-shuraym",
     "yasser_ad-dussary"
   ],
   "counts": {
     "everyayah_reciters": 79,
     "quran_com_reciters": 12,
-    "configured_reciters": 6,
-    "configured_enabled": 5
+    "configured_reciters": 26,
+    "configured_enabled": 25
   },
   "sources": {
     "everyayah_catalog_url": "https://everyayah.com/data/recitations.js",
@@ -89,6 +109,236 @@
       "qcom_word_supervision_supported": true
     },
     {
+      "manifest_reciter_id": "eya_abdullah_matroud",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Abdullah_Matroud_128kbps",
+        "reciter_key": 55,
+        "name": "Abdullah Matroud"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_ahmed_neana",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Ahmed_Neana_128kbps",
+        "reciter_key": 56,
+        "name": "Ahmed Neana"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_maher_al_muaiqly",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "MaherAlMuaiqly128kbps",
+        "reciter_key": 29,
+        "name": "Maher Al Muaiqly"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_minshawy_murattal",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Minshawy_Murattal_128kbps",
+        "reciter_key": 34,
+        "name": "Minshawy Murattal"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_muhammad_ayyoub",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Muhammad_Ayyoub_128kbps",
+        "reciter_key": 37,
+        "name": "Muhammad Ayyoub"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_muhammad_jibreel",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Muhammad_Jibreel_128kbps",
+        "reciter_key": 41,
+        "name": "Muhammad Jibreel"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_nasser_alqatami",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Nasser_Alqatami_128kbps",
+        "reciter_key": 68,
+        "name": "Nasser_Alqatami"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_salaah_bukhatir",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Salaah_AbdulRahman_Bukhatir_128kbps",
+        "reciter_key": 51,
+        "name": "Salaah AbdulRahman Bukhatir"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_salah_al_budair",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Salah_Al_Budair_128kbps",
+        "reciter_key": 54,
+        "name": "Salah Al Budair"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "eya_yaser_salamah",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "checks": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "sources": {
+        "everyayah": true,
+        "quran_com": false
+      },
+      "everyayah": {
+        "subfolder": "Yaser_Salamah_128kbps",
+        "reciter_key": 74,
+        "name": "Yaser Salamah"
+      },
+      "quran_com": {
+        "recitation_id": null,
+        "name": null
+      },
+      "qcom_word_supervision_supported": false
+    },
+    {
       "manifest_reciter_id": "muhsin_al_qasim",
       "enabled": true,
       "check_type": "ayah_by_ayah",
@@ -110,6 +360,236 @@
         "name": null
       },
       "qcom_word_supervision_supported": false
+    },
+    {
+      "manifest_reciter_id": "qcom_abdulbaset_abdulsamad_murattal",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 2,
+        "name": "AbdulBaset AbdulSamad"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_abdurrahman_as_sudais",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 3,
+        "name": "Abdur-Rahman as-Sudais"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_abu_bakr_al_shatri",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 4,
+        "name": "Abu Bakr al-Shatri"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_hani_ar_rifai",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 5,
+        "name": "Hani ar-Rifai"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_husary",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 6,
+        "name": "Mahmoud Khalil Al-Husary"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_husary_muallim",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 12,
+        "name": "Mahmoud Khalil Al-Husary"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_minshawi_murattal",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 8,
+        "name": "Mohamed Siddiq al-Minshawi"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_mishari_alafasy",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 7,
+        "name": "Mishari Rashid al-`Afasy"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_mohamed_al_tablawi",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 11,
+        "name": "Mohamed al-Tablawi"
+      },
+      "qcom_word_supervision_supported": true
+    },
+    {
+      "manifest_reciter_id": "qcom_saud_ash_shuraym",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "checks": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "sources": {
+        "everyayah": false,
+        "quran_com": true
+      },
+      "everyayah": {
+        "subfolder": null,
+        "reciter_key": null,
+        "name": null
+      },
+      "quran_com": {
+        "recitation_id": 10,
+        "name": "Sa`ud ash-Shuraym"
+      },
+      "qcom_word_supervision_supported": true
     },
     {
       "manifest_reciter_id": "sa3ood_al-shuraym",

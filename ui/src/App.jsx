@@ -628,6 +628,18 @@ function App() {
         : [],
     [everyayahStitchEval],
   );
+  const everyayahDiffByAyah = useMemo(() => {
+    const byAyah = new Map();
+    for (const row of everyayahDiffRows) {
+      const ayah = Number(row?.ayah);
+      if (Number.isFinite(ayah)) {
+        byAyah.set(ayah, row);
+      }
+    }
+    return byAyah;
+  }, [everyayahDiffRows]);
+  const hasEveryayahSourceComparison =
+    everyayahSourceRefs.length > 0 && everyayahDiffByAyah.size > 0;
   const everyayahDiffRanked = useMemo(() => {
     return everyayahDiffRows
       .map((row) => {
@@ -931,7 +943,7 @@ function App() {
                   className={`active-ayah-word ${
                     activeWordGlobal === word.word_index_global
                       ? "active-ayah-word-current"
-                      : ""
+                      : "active-ayah-word-inactive"
                   }`}
                 >
                   {word.text_uthmani}
@@ -1080,94 +1092,152 @@ function App() {
       {error ? <p className="error">{error}</p> : null}
       {/* --- NEW TIMELINES GRID --- */}
       <main className="bt-grid">
-        <section className="bt-panel">
-          <div className="bt-head">
+        <section className="bt-panel ay-panel">
+          <div className="ay-head">
             <h2>Ayah Timeline</h2>
-            <span className="bt-badge">{ayahs.length} total</span>
+            <span className="ay-badge">{ayahs.length} total</span>
           </div>
 
-          <div ref={ayahListRef} className="bt-scroll">
+          <div ref={ayahListRef} className="ay-scroll">
             {ayahs.length ? (
-              ayahs.map((ayah) => (
-                <button
-                  type="button"
-                  key={`ayah-${ayah.ayah}`}
-                  ref={(node) => {
-                    if (node) {
-                      ayahRowRefs.current.set(ayah.ayah, node);
-                    } else {
-                      ayahRowRefs.current.delete(ayah.ayah);
-                    }
-                  }}
-                  className={`bt-row ${activeAyah === ayah.ayah ? "active" : ""} ${
-                    focusedAyah === ayah.ayah ? "focused" : ""
-                  }`}
-                  aria-current={activeAyah === ayah.ayah ? "true" : undefined}
-                  onClick={() => playAyah(ayah)}
-                >
-                  <div className="bt-info">
-                    <span className="bt-title">Ayah {ayah.ayah}</span>
-                    <span className="bt-time">
-                      {formatStamp(ayah.start_s)}{" "}
-                      <span className="bt-arrow">→</span>{" "}
-                      {formatStamp(ayah.end_s)}
-                    </span>
-                  </div>
-                  {activeAyah === ayah.ayah && (
-                    <div className="bt-indicator"></div>
-                  )}
-                </button>
-              ))
+              ayahs.map((ayah) => {
+                const sourceAyahRow = hasEveryayahSourceComparison
+                  ? everyayahDiffByAyah.get(ayah.ayah)
+                  : null;
+                const sourceStart = Number(sourceAyahRow?.ref_start_s);
+                const sourceEnd = Number(sourceAyahRow?.ref_end_s);
+                const sourceDeltaStartMs = Number(sourceAyahRow?.delta_start_ms);
+                const sourceDeltaEndMs = Number(sourceAyahRow?.delta_end_ms);
+                const hasSourceTimes =
+                  Number.isFinite(sourceStart) && Number.isFinite(sourceEnd);
+                return (
+                  <button
+                    type="button"
+                    key={`ayah-${ayah.ayah}`}
+                    ref={(node) => {
+                      if (node) {
+                        ayahRowRefs.current.set(ayah.ayah, node);
+                      } else {
+                        ayahRowRefs.current.delete(ayah.ayah);
+                      }
+                    }}
+                    className={`ay-row ${
+                      activeAyah === ayah.ayah ? "active" : "inactive"
+                    } ${focusedAyah === ayah.ayah ? "focused" : ""}`}
+                    aria-current={activeAyah === ayah.ayah ? "true" : undefined}
+                    onClick={() => playAyah(ayah)}
+                  >
+                    <div className="ay-row-top">
+                      <span className="ay-title">Ayah {ayah.ayah}</span>
+                      {activeAyah === ayah.ayah && (
+                        <span className="ay-indicator" aria-hidden="true"></span>
+                      )}
+                    </div>
+                    <div
+                      className={`ay-times ${hasSourceTimes ? "has-source" : ""}`}
+                    >
+                      <div className="ay-time-line ay-time-line-ours">
+                        <span className="ay-time-label">Our</span>
+                        <span className="ay-time-range">
+                          {formatStamp(ayah.start_s)}{" "}
+                          <span className="ay-arrow">→</span>{" "}
+                          {formatStamp(ayah.end_s)}
+                        </span>
+                      </div>
+                      {hasSourceTimes ? (
+                        <div className="ay-time-line ay-time-line-source">
+                          <span className="ay-time-label">Src</span>
+                          <span className="ay-time-range">
+                            {formatStamp(sourceStart)}{" "}
+                            <span className="ay-arrow">→</span>{" "}
+                            {formatStamp(sourceEnd)}
+                          </span>
+                          <span className="ay-delta">
+                            Δs {formatDeltaMs(sourceDeltaStartMs)} | Δe{" "}
+                            {formatDeltaMs(sourceDeltaEndMs)}
+                          </span>
+                        </div>
+                      ) : null}
+                    </div>
+                  </button>
+                );
+              })
             ) : (
-              <div className="bt-empty">No ayah timings mapped.</div>
+              <div className="ay-empty">No ayah timings mapped.</div>
             )}
           </div>
         </section>
 
-        <section className="bt-panel">
-          <div className="bt-head">
+        <section className="bt-panel aw-panel">
+          <div className="aw-head">
             <h2>Words {focusedAyah ? `(Ayah ${focusedAyah})` : ""}</h2>
-            <span className="bt-badge">{selectedAyahWords.length} subset</span>
+            <span className="aw-badge">{selectedAyahWords.length} subset</span>
           </div>
 
-          <div ref={wordListRef} className="bt-scroll bt-words-scroll">
+          <div ref={wordListRef} className="aw-scroll">
             {selectedAyahWords.length ? (
-              selectedAyahWords.map((word) => (
-                <button
-                  type="button"
-                  key={`word-${word.word_index_global}`}
-                  ref={(node) => {
-                    if (node) {
-                      wordRowRefs.current.set(word.word_index_global, node);
-                    } else {
-                      wordRowRefs.current.delete(word.word_index_global);
+              selectedAyahWords.map((word) => {
+                const sourceStart = Number(word?.source_start_s);
+                const sourceEnd = Number(word?.source_end_s);
+                const hasSourceTimes =
+                  Number.isFinite(sourceStart) && Number.isFinite(sourceEnd);
+                return (
+                  <button
+                    type="button"
+                    key={`word-${word.word_index_global}`}
+                    ref={(node) => {
+                      if (node) {
+                        wordRowRefs.current.set(word.word_index_global, node);
+                      } else {
+                        wordRowRefs.current.delete(word.word_index_global);
+                      }
+                    }}
+                    className={`aw-row ${
+                      activeWordGlobal === word.word_index_global
+                        ? "active"
+                        : "inactive"
+                    }`}
+                    aria-current={
+                      activeWordGlobal === word.word_index_global
+                        ? "true"
+                        : undefined
                     }
-                  }}
-                  className={`bt-row word-row ${activeWordGlobal === word.word_index_global ? "active-word" : ""}`}
-                  aria-current={
-                    activeWordGlobal === word.word_index_global
-                      ? "true"
-                      : undefined
-                  }
-                  onClick={() => playWord(word)}
-                >
-                  <div className="bt-info">
-                    <span className="bt-title arabic">{word.text_uthmani}</span>
-                    <div className="bt-meta-col">
-                      <span className="bt-time">
-                        {formatStamp(word.start_s)}{" "}
-                        <span className="bt-arrow">→</span>{" "}
-                        {formatStamp(word.end_s)}
+                    onClick={() => playWord(word)}
+                  >
+                    <div className="aw-row-top">
+                      <span className="aw-title" lang="ar" dir="rtl">
+                        {word.text_uthmani}
                       </span>
-                      {Number.isFinite(word?.source_start_s) &&
-                      Number.isFinite(word?.source_end_s) ? (
-                        <span className="bt-source-time">
-                          Src: {formatStamp(word.source_start_s)}{" "}
-                          <span className="bt-arrow">→</span>{" "}
-                          {formatStamp(word.source_end_s)}
-                          <span className="bt-delta">
-                            {" "}
-                            (Δs{" "}
+                      {activeWordGlobal === word.word_index_global ? (
+                        <span
+                          className="aw-indicator"
+                          aria-hidden="true"
+                        ></span>
+                      ) : null}
+                    </div>
+
+                    <div
+                      className={`aw-times ${hasSourceTimes ? "has-source" : ""}`}
+                    >
+                      <div className="aw-time-line aw-time-line-ours">
+                        <span className="aw-time-label">Our</span>
+                        <span className="aw-time-range">
+                          {formatStamp(word.start_s)}{" "}
+                          <span className="aw-arrow">→</span>{" "}
+                          {formatStamp(word.end_s)}
+                        </span>
+                      </div>
+
+                      {hasSourceTimes ? (
+                        <div className="aw-time-line aw-time-line-source">
+                          <span className="aw-time-label">Src</span>
+                          <span className="aw-time-range">
+                            {formatStamp(sourceStart)}{" "}
+                            <span className="aw-arrow">→</span>{" "}
+                            {formatStamp(sourceEnd)}
+                          </span>
+                          <span className="aw-delta">
+                            Δs{" "}
                             {formatDeltaMs(
                               (word.start_s - word.source_start_s) * 1000,
                             )}{" "}
@@ -1175,19 +1245,15 @@ function App() {
                             {formatDeltaMs(
                               (word.end_s - word.source_end_s) * 1000,
                             )}
-                            )
                           </span>
-                        </span>
+                        </div>
                       ) : null}
                     </div>
-                  </div>
-                  {activeWordGlobal === word.word_index_global && (
-                    <div className="bt-indicator word-indicator"></div>
-                  )}
-                </button>
-              ))
+                  </button>
+                );
+              })
             ) : (
-              <div className="bt-empty">
+              <div className="aw-empty">
                 Select an ayah to view word timing.
               </div>
             )}
