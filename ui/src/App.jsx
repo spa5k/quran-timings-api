@@ -1,216 +1,26 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 
-const TIMING_EPSILON_S = 0.03;
-
-function formatStamp(seconds) {
-  const safe = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
-  const mins = Math.floor(safe / 60);
-  const secs = Math.floor(safe % 60);
-  const millis = Math.floor((safe - Math.floor(safe)) * 1000);
-  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}.${String(millis).padStart(3, "0")}`;
-}
-
-function formatDeltaMs(valueMs) {
-  if (!Number.isFinite(valueMs)) {
-    return "—";
-  }
-  const rounded = Math.round(valueMs);
-  return `${rounded >= 0 ? "+" : ""}${rounded}ms`;
-}
-
-function formatMs(valueMs) {
-  if (!Number.isFinite(valueMs)) {
-    return "—";
-  }
-  return `${Math.round(valueMs)}ms`;
-}
-
-function formatPercent(value) {
-  if (!Number.isFinite(value)) {
-    return "—";
-  }
-  return `${Math.round(value * 100)}%`;
-}
-
-function clamp01(value) {
-  if (!Number.isFinite(value)) {
-    return 0;
-  }
-  return Math.min(1, Math.max(0, value));
-}
-
-function toneFromRatio(value, goodThreshold = 0.9, watchThreshold = 0.7) {
-  if (!Number.isFinite(value)) {
-    return "watch";
-  }
-  if (value >= goodThreshold) {
-    return "healthy";
-  }
-  if (value >= watchThreshold) {
-    return "watch";
-  }
-  return "risk";
-}
-
-function humanizeSegmentSourceType(value) {
-  if (value === "qcom_chapter") {
-    return "Quran.com chapter timestamps";
-  }
-  if (value === "qcom_verse") {
-    return "Quran.com verse segments";
-  }
-  return "No direct segment supervision";
-}
-
-function parseSourceRef(value) {
-  const raw = String(value ?? "");
-  if (raw.startsWith("everyayah:")) {
-    const body = raw.slice("everyayah:".length);
-    if (body.startsWith("http://") || body.startsWith("https://")) {
-      return {
-        kind: "everyayah",
-        raw,
-        label: `EveryAyah file • ${body}`,
-      };
-    }
-    const parts = body.split(":");
-    const fields = {};
-    for (const part of parts) {
-      const idx = part.indexOf("=");
-      if (idx <= 0) {
-        continue;
-      }
-      fields[part.slice(0, idx)] = part.slice(idx + 1);
-    }
-    const bits = [];
-    if (fields.subfolder) {
-      bits.push(`Folder ${fields.subfolder}`);
-    }
-    if (fields.surah) {
-      bits.push(`Surah ${fields.surah}`);
-    }
-    if (fields.scope === "full_surah") {
-      bits.push("Stitched full-surah reference");
-    }
-    return {
-      kind: "everyayah",
-      raw,
-      label: bits.join(" • ") || body,
-    };
-  }
-
-  if (raw.startsWith("qcom:")) {
-    const parts = raw.split(":");
-    const sourceType = parts[1] ?? "";
-    const recitation = parts[2] ?? "";
-    const shapeToken = parts.find((item) => item.startsWith("shape="));
-    const shape = shapeToken ? shapeToken.slice("shape=".length) : "";
-    const sourceLabel =
-      sourceType === "qcom_chapter"
-        ? "Quran.com chapter timestamps"
-        : "Quran.com verse segments";
-    const bits = [sourceLabel];
-    if (recitation) {
-      bits.push(`Recitation ${recitation}`);
-    }
-    if (shape) {
-      bits.push(shape.replace("_", " "));
-    }
-    return {
-      kind: "qcom",
-      raw,
-      label: bits.join(" • "),
-    };
-  }
-
-  return {
-    kind: "other",
-    raw,
-    label: raw || "Unknown source reference",
-  };
-}
-
-function percentile(values, p) {
-  if (!Array.isArray(values) || values.length === 0) {
-    return null;
-  }
-  const sorted = [...values].sort((a, b) => a - b);
-  const rank = Math.min(
-    sorted.length - 1,
-    Math.max(0, Math.ceil((p / 100) * sorted.length) - 1),
-  );
-  return sorted[rank];
-}
-
-function findSegmentIndexByTime(
-  segments,
-  timeS,
-  {
-    tolerance = TIMING_EPSILON_S,
-    holdInGap = false,
-    moveToNextInGap = false,
-  } = {},
-) {
-  if (
-    !Array.isArray(segments) ||
-    segments.length === 0 ||
-    !Number.isFinite(timeS)
-  ) {
-    return -1;
-  }
-
-  let left = 0;
-  let right = segments.length - 1;
-  let candidate = -1;
-  const target = timeS + tolerance;
-
-  while (left <= right) {
-    const mid = (left + right) >> 1;
-    if (segments[mid].start_s <= target) {
-      candidate = mid;
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
-  }
-
-  if (candidate < 0) {
-    return -1;
-  }
-
-  const current = segments[candidate];
-  if (
-    timeS >= current.start_s - tolerance &&
-    timeS <= current.end_s + tolerance
-  ) {
-    return candidate;
-  }
-
-  const next = segments[candidate + 1];
-  if (timeS > current.end_s && (!next || timeS < next.start_s)) {
-    if (moveToNextInGap) {
-      return next ? candidate + 1 : candidate;
-    }
-    if (holdInGap) {
-      return candidate;
-    }
-  }
-
-  return -1;
-}
-
-// Removed ensureVisible completely to prevent scroll hijacking
+import ActiveAyahPanel from "./components/ActiveAyahPanel.jsx";
+import DiagnosticsDrawer from "./components/DiagnosticsDrawer.jsx";
+import Masthead from "./components/Masthead.jsx";
+import SegmentLedger from "./components/SegmentLedger.jsx";
+import TransportCard from "./components/TransportCard.jsx";
+import WordInspector from "./components/WordInspector.jsx";
+import {
+  clamp01,
+  findSegmentIndexByTime,
+  parseSourceRef,
+  percentile,
+  toneFromRatio,
+} from "./utils/timing.js";
+import { formatSurahLabel } from "./utils/surah.js";
 
 function App() {
   const audioRef = useRef(null);
   const segmentStopRef = useRef(null);
   const rafRef = useRef(null);
   const lastClockPaintRef = useRef(-1);
-  const ayahListRef = useRef(null);
-  const wordListRef = useRef(null);
-  const ayahRowRefs = useRef(new Map());
-  const wordRowRefs = useRef(new Map());
 
   const [catalog, setCatalog] = useState(null);
   const [selectedReciterId, setSelectedReciterId] = useState("");
@@ -227,6 +37,7 @@ function App() {
   const [isTimingLoading, setIsTimingLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState("");
+  const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -242,11 +53,13 @@ function App() {
         }
 
         const loaded = await response.json();
-        setCatalog(loaded);
+        if (controller.signal.aborted) {
+          return;
+        }
 
+        setCatalog(loaded);
         const firstRecitation = loaded?.recitations?.[0];
         const firstSurah = firstRecitation?.surahs?.[0];
-
         if (firstRecitation) {
           setSelectedReciterId(firstRecitation.id);
         }
@@ -265,9 +78,7 @@ function App() {
     };
 
     loadCatalog();
-    return () => {
-      controller.abort();
-    };
+    return () => controller.abort();
   }, []);
 
   const recitations = useMemo(() => catalog?.recitations ?? [], [catalog]);
@@ -347,13 +158,39 @@ function App() {
     };
 
     loadTiming();
-    return () => {
-      controller.abort();
-    };
+    return () => controller.abort();
   }, [surahConfig]);
 
   const ayahs = useMemo(() => timingData?.ayahs ?? [], [timingData]);
   const words = useMemo(() => timingData?.words ?? [], [timingData]);
+
+  const wordsByAyah = useMemo(() => {
+    const groups = new Map();
+    for (const word of words) {
+      if (!groups.has(word.ayah)) {
+        groups.set(word.ayah, []);
+      }
+      groups.get(word.ayah).push(word);
+    }
+    return groups;
+  }, [words]);
+
+  const wordsByGlobal = useMemo(() => {
+    const groups = new Map();
+    for (const word of words) {
+      groups.set(word.word_index_global, word);
+    }
+    return groups;
+  }, [words]);
+
+  const activeWord =
+    activeWordGlobal !== null
+      ? (wordsByGlobal.get(activeWordGlobal) ?? null)
+      : null;
+  const focusedAyah = activeWord?.ayah ?? selectedAyah ?? activeAyah;
+  const selectedAyahWords = wordsByAyah.get(focusedAyah) ?? [];
+  const displayAyahNumber = focusedAyah;
+  const displayAyahWords = wordsByAyah.get(displayAyahNumber) ?? [];
 
   const syncFromTime = useCallback(
     (timeS) => {
@@ -381,15 +218,13 @@ function App() {
       }
 
       const ayahIndex = findSegmentIndexByTime(ayahs, timeS, {
-        tolerance: TIMING_EPSILON_S,
+        tolerance: 0.03,
         holdInGap: true,
       });
-
       const nextAyah = ayahIndex >= 0 ? ayahs[ayahIndex].ayah : null;
       setActiveAyah((prevAyah) =>
         prevAyah === nextAyah ? prevAyah : nextAyah,
       );
-
       if (nextAyah !== null) {
         setSelectedAyah((prevAyah) =>
           prevAyah === nextAyah ? prevAyah : nextAyah,
@@ -496,55 +331,6 @@ function App() {
     };
   }, [surahConfig?.audioSrc, syncFromTime, timingData?.audio?.duration_s]);
 
-  useEffect(() => {
-    if (activeAyah === null) {
-      return;
-    }
-    // const row = ayahRowRefs.current.get(activeAyah);
-    // ensureVisible(ayahListRef.current, row, true);
-  }, [activeAyah]);
-
-  useEffect(() => {
-    if (activeWordGlobal === null) {
-      return;
-    }
-    // const row = wordRowRefs.current.get(activeWordGlobal);
-    // ensureVisible(wordListRef.current, row);
-  }, [activeWordGlobal, selectedAyah]);
-
-  const wordsByAyah = useMemo(() => {
-    const groups = new Map();
-    if (!words.length) {
-      return groups;
-    }
-
-    for (const word of words) {
-      if (!groups.has(word.ayah)) {
-        groups.set(word.ayah, []);
-      }
-      groups.get(word.ayah).push(word);
-    }
-
-    return groups;
-  }, [words]);
-
-  const wordsByGlobal = useMemo(() => {
-    const groups = new Map();
-    for (const word of words) {
-      groups.set(word.word_index_global, word);
-    }
-    return groups;
-  }, [words]);
-
-  const activeWord =
-    activeWordGlobal !== null
-      ? (wordsByGlobal.get(activeWordGlobal) ?? null)
-      : null;
-  const focusedAyah = activeWord?.ayah ?? selectedAyah ?? activeAyah;
-  const selectedAyahWords = wordsByAyah.get(focusedAyah) ?? [];
-  const displayAyahNumber = focusedAyah;
-  const displayAyahWords = wordsByAyah.get(displayAyahNumber) ?? [];
-
   const supervisionSources = useMemo(
     () =>
       Array.isArray(timingData?.supervision_sources)
@@ -572,6 +358,7 @@ function App() {
         (word) =>
           Number.isFinite(word?.source_start_s) &&
           Number.isFinite(word?.source_end_s) &&
+          !(word.source_start_s === 0 && word.source_end_s === 0) &&
           Number.isFinite(word?.start_s) &&
           Number.isFinite(word?.end_s),
       ),
@@ -595,13 +382,7 @@ function App() {
     () => percentile(sourceBoundaryErrorsMs, 95),
     [sourceBoundaryErrorsMs],
   );
-  const sourceBoundaryHit80Pct = useMemo(() => {
-    if (!sourceBoundaryErrorsMs.length) {
-      return null;
-    }
-    const hits = sourceBoundaryErrorsMs.filter((value) => value <= 80).length;
-    return hits / sourceBoundaryErrorsMs.length;
-  }, [sourceBoundaryErrorsMs]);
+
   const qcWarnings = useMemo(
     () =>
       Array.isArray(timingData?.qc?.warnings) ? timingData.qc.warnings : [],
@@ -614,6 +395,7 @@ function App() {
         : [],
     [timingData],
   );
+
   const everyayahStitchEval = useMemo(
     () =>
       timingData && typeof timingData.everyayah_stitch_eval === "object"
@@ -661,6 +443,7 @@ function App() {
         (first, second) => second.maxAbsBoundaryMs - first.maxAbsBoundaryMs,
       );
   }, [everyayahDiffRows]);
+
   const everyayahWorstBoundaryMs = useMemo(
     () =>
       everyayahDiffRanked.length
@@ -682,6 +465,7 @@ function App() {
       everyayahDiffRanked.filter((row) => row.maxAbsBoundaryMs > 250).length,
     [everyayahDiffRanked],
   );
+
   const ayahDurationsMs = useMemo(
     () =>
       ayahs
@@ -706,6 +490,7 @@ function App() {
     }
     return out;
   }, [ayahs]);
+
   const ayahDurationMedianMs = useMemo(
     () => percentile(ayahDurationsMs, 50),
     [ayahDurationsMs],
@@ -726,6 +511,7 @@ function App() {
     () => percentile(ayahGapDurationsMs, 50),
     [ayahGapDurationsMs],
   );
+
   const candidateScoreEntries = useMemo(() => {
     const candidateMap =
       timingData && typeof timingData.candidate_scores === "object"
@@ -738,19 +524,12 @@ function App() {
       .filter(([, score]) => Number.isFinite(score))
       .sort((first, second) => second[1] - first[1]);
   }, [timingData]);
+
   const candidateTopScore = useMemo(
     () => (candidateScoreEntries.length ? candidateScoreEntries[0][1] : null),
     [candidateScoreEntries],
   );
-  const candidateScoreSpread = useMemo(() => {
-    if (candidateScoreEntries.length < 2) {
-      return null;
-    }
-    return (
-      candidateScoreEntries[0][1] -
-      candidateScoreEntries[candidateScoreEntries.length - 1][1]
-    );
-  }, [candidateScoreEntries]);
+
   const sourceTimingNote = useMemo(() => {
     if (sourceComparedWords.length > 0) {
       return null;
@@ -787,6 +566,19 @@ function App() {
       if (playPromise && typeof playPromise.catch === "function") {
         playPromise.catch(() => {});
       }
+    },
+    [syncFromTime],
+  );
+
+  const seekTo = useCallback(
+    (timeS) => {
+      const audio = audioRef.current;
+      if (!audio || !Number.isFinite(timeS)) {
+        return;
+      }
+      segmentStopRef.current = null;
+      audio.currentTime = Math.max(0, timeS);
+      syncFromTime(audio.currentTime);
     },
     [syncFromTime],
   );
@@ -846,7 +638,6 @@ function App() {
     if (!ayahs.length) {
       return;
     }
-
     const match = ayahs.find((ayah) => ayah.ayah === activeAyah) ?? ayahs[0];
     playAyah(match);
   }, [activeAyah, ayahs, playAyah]);
@@ -855,7 +646,6 @@ function App() {
     if (!words.length) {
       return;
     }
-
     const match =
       words.find((word) => word.word_index_global === activeWordGlobal) ??
       words[0];
@@ -863,20 +653,28 @@ function App() {
   }, [activeWordGlobal, playWord, words]);
 
   if (isCatalogLoading) {
-    return <div className="status">Loading timing explorer...</div>;
+    return (
+      <div className="status">
+        <div className="status__card">
+          <div className="status__k">Quran Audio Data</div>
+          <div className="status__h">Loading Timing Desk…</div>
+          <div className="status__sub">Fetching catalog and run index.</div>
+        </div>
+      </div>
+    );
   }
 
   const currentSurahLabel = surahConfig
-    ? `${surahConfig.surah}. ${surahConfig.title ?? `Surah ${surahConfig.surah}`}`
+    ? formatSurahLabel(surahConfig.surah)
     : "No surah selected";
-  const progressPct =
-    durationS > 0 ? Math.min(100, (currentTime / durationS) * 100) : 0;
+
   const hasTimingData = ayahs.length > 0 || words.length > 0;
   const qcCoverage = Number.isFinite(timingData?.qc?.coverage)
     ? clamp01(timingData.qc.coverage)
     : null;
   const sourceCoverage =
     words.length > 0 ? sourceComparedWords.length / words.length : null;
+
   const qcCoverageTone = toneFromRatio(qcCoverage, 0.98, 0.9);
   const sourceTone = toneFromRatio(sourceCoverage, 0.75, 0.2);
   const warningTone =
@@ -892,6 +690,7 @@ function App() {
         ? "watch"
         : "risk"
     : "watch";
+
   const passTrace = Array.isArray(timingData?.pass_trace)
     ? timingData.pass_trace
     : [];
@@ -912,704 +711,160 @@ function App() {
     ? timingData.qc.interpolated_ratio
     : null;
 
+  const sourceLabel = (() => {
+    const kinds = new Set(
+      (parsedSourceRefs ?? [])
+        .map((ref) => ref.kind)
+        .filter((kind) => kind === "qcom" || kind === "everyayah"),
+    );
+    const bits = [];
+    if (kinds.has("qcom")) {
+      bits.push("Quran.com");
+    }
+    if (kinds.has("everyayah")) {
+      bits.push("EveryAyah");
+    }
+    if (bits.length) {
+      return bits.join(" + ");
+    }
+
+    const segmentSourceType = timingData?.segment_source_type;
+    if (segmentSourceType === "qcom_chapter") {
+      return "Quran.com (chapter)";
+    }
+    if (segmentSourceType === "qcom_verse") {
+      return "Quran.com (verse)";
+    }
+    return "None";
+  })();
+
   return (
-    <div className="app-shell">
-      <header className="hero">
-        <p className="kicker">Quran Audio Data</p>
-        <h1>Timing Explorer</h1>
-        <p className="subtitle">
-          Recitation to Surah to Ayah by Ayah / Word by Word
-        </p>
-        <div className="hero-meta" aria-live="polite">
-          <span className="pill">Surah {currentSurahLabel}</span>
-          <span className={`pill ${isPlaying ? "play-state-active" : ""}`}>
-            {isPlaying ? "Playing" : "Paused"}
-          </span>
-          <span className="pill">Active Ayah: {activeAyah ?? "—"}</span>
-          <span className="pill arabic-pill">
-            {activeWord?.text_uthmani ?? "—"}
-          </span>
-        </div>
-        <section className="active-ayah-panel" aria-label="Active ayah text">
-          <p className="active-ayah-panel-label">
-            Active Ayah Text{" "}
-            {displayAyahNumber ? `(Ayah ${displayAyahNumber})` : ""}
-          </p>
-          {displayAyahWords.length ? (
-            <p className="active-ayah-text" lang="ar" dir="rtl">
-              {displayAyahWords.map((word) => (
-                <span
-                  key={`active-line-word-${word.word_index_global}`}
-                  className={`active-ayah-word ${
-                    activeWordGlobal === word.word_index_global
-                      ? "active-ayah-word-current"
-                      : "active-ayah-word-inactive"
-                  }`}
-                >
-                  {word.text_uthmani}
-                </span>
-              ))}
-            </p>
-          ) : (
-            <p className="active-ayah-empty">
-              No ayah text available for this timing set.
-            </p>
-          )}
-        </section>
-      </header>
-      <section className="controls">
-        <label htmlFor="reciter-select">
-          Recitation
-          <select
-            id="reciter-select"
-            value={reciter?.id ?? ""}
-            onChange={(event) => {
-              const nextId = event.target.value;
-              setSelectedReciterId(nextId);
-              const nextReciter = recitations.find(
-                (entry) => entry.id === nextId,
-              );
-              const firstSurah = nextReciter?.surahs?.[0];
-              setSelectedSurah(firstSurah ? String(firstSurah.surah) : "");
-            }}
-          >
-            {recitations.map((entry) => (
-              <option key={entry.id} value={entry.id}>
-                {entry.name}
-              </option>
-            ))}
-          </select>
-        </label>
+    <div className="app">
+      <Masthead
+        recitations={recitations}
+        reciterId={reciter?.id ?? ""}
+        onReciterChange={(nextId) => {
+          setSelectedReciterId(nextId);
+          const nextReciter = recitations.find((entry) => entry.id === nextId);
+          const firstSurah = nextReciter?.surahs?.[0];
+          setSelectedSurah(firstSurah ? String(firstSurah.surah) : "");
+        }}
+        surahs={surahs}
+        surahValue={surahConfig ? String(surahConfig.surah) : ""}
+        onSurahChange={(value) => setSelectedSurah(value)}
+        currentSurahLabel={currentSurahLabel}
+        sourceLabel={sourceLabel}
+        isPlaying={isPlaying}
+        activeAyah={activeAyah}
+        activeWordText={activeWord?.text_uthmani ?? "—"}
+        counts={{
+          ayahs: timingData?.ayahs?.length ?? 0,
+          words: timingData?.words?.length ?? 0,
+          durationS,
+        }}
+      />
 
-        <label htmlFor="surah-select">
-          Surah
-          <select
-            id="surah-select"
-            value={surahConfig ? String(surahConfig.surah) : ""}
-            onChange={(event) => setSelectedSurah(event.target.value)}
-          >
-            {surahs.map((entry) => (
-              <option key={entry.surah} value={entry.surah}>
-                {entry.surah}. {entry.title ?? `Surah ${entry.surah}`}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <div className="stat-grid">
-          <div>
-            <strong>{timingData?.ayahs?.length ?? 0}</strong>
-            <span>Ayahs</span>
-          </div>
-          <div>
-            <strong>{timingData?.words?.length ?? 0}</strong>
-            <span>Words</span>
-          </div>
-          <div>
-            <strong>{formatStamp(durationS)}</strong>
-            <span>Duration</span>
-          </div>
+      {error ? (
+        <div className="toast" role="status">
+          <div className="toast__title">Problem</div>
+          <div className="toast__body">{error}</div>
         </div>
-      </section>
-      {/* --- NEW PLAYER PANEL --- */}
-      <section className="bp-panel">
-        <div className="bp-head">
-          <h2>Playback Interface</h2>
-          <p>
-            {isTimingLoading
-              ? "Syncing timing payload..."
-              : `At ${formatStamp(currentTime)}`}
-          </p>
-        </div>
+      ) : null}
 
-        <div className="bp-card">
-          <audio
-            key={surahConfig?.audioSrc ?? "audio"}
-            ref={audioRef}
-            controls
-            preload="metadata"
-            src={surahConfig?.audioSrc ?? ""}
-            className="bp-audio"
+      <main className="bench" aria-label="Timing workbench">
+        <SegmentLedger
+          ayahs={ayahs}
+          activeAyah={activeAyah}
+          focusedAyah={focusedAyah}
+          hasSourceComparison={hasEveryayahSourceComparison}
+          diffByAyah={everyayahDiffByAyah}
+          onPlayAyah={playAyah}
+        />
+
+        <section className="center" aria-label="Playback desk">
+          <TransportCard
+            audioKey={surahConfig?.audioSrc ?? "audio"}
+            audioSrc={surahConfig?.audioSrc ?? ""}
+            audioRef={audioRef}
+            isTimingLoading={isTimingLoading}
+            isPlaying={isPlaying}
+            currentTime={currentTime}
+            durationS={durationS}
+            hasTimingData={hasTimingData}
+            onSeek={seekTo}
+            onPlayFullSurah={playFullSurah}
+            onPlayActiveAyah={playActiveAyah}
+            onPlayActiveWord={playActiveWord}
+            onStop={stopSegment}
           />
 
-          <div className="bp-timeline-wrap" aria-hidden={!hasTimingData}>
-            <div
-              className="bp-track"
-              role="progressbar"
-              aria-label="Playback progress"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={Math.round(progressPct)}
-            >
-              <div
-                className="bp-fill"
-                style={{ width: `${progressPct}%` }}
-              ></div>
-            </div>
-            <div className="bp-marks">
-              <span>{formatStamp(currentTime)}</span>
-              <span>{formatStamp(durationS)}</span>
-            </div>
-          </div>
-
-          <div className="bp-actions">
-            <button
-              type="button"
-              className="bp-btn bp-primary"
-              onClick={playFullSurah}
-              disabled={!surahConfig?.audioSrc}
-            >
-              <span className="bp-icon">▶</span> Full Surah
-            </button>
-            <button
-              type="button"
-              className="bp-btn bp-secondary"
-              onClick={playActiveAyah}
-              disabled={!ayahs.length}
-            >
-              Play Active Ayah
-            </button>
-            <button
-              type="button"
-              className="bp-btn bp-secondary"
-              onClick={playActiveWord}
-              disabled={!words.length}
-            >
-              Play Active Word
-            </button>
-            <div className="bp-spacer"></div>
-            <button
-              type="button"
-              className="bp-btn bp-ghost"
-              onClick={stopSegment}
-              disabled={!hasTimingData}
-            >
-              ⏏ Stop
-            </button>
-          </div>
-        </div>
-      </section>
-      {error ? <p className="error">{error}</p> : null}
-      {/* --- NEW TIMELINES GRID --- */}
-      <main className="bt-grid">
-        <section className="bt-panel ay-panel">
-          <div className="ay-head">
-            <h2>Ayah Timeline</h2>
-            <span className="ay-badge">{ayahs.length} total</span>
-          </div>
-
-          <div ref={ayahListRef} className="ay-scroll">
-            {ayahs.length ? (
-              ayahs.map((ayah) => {
-                const sourceAyahRow = hasEveryayahSourceComparison
-                  ? everyayahDiffByAyah.get(ayah.ayah)
-                  : null;
-                const sourceStart = Number(sourceAyahRow?.ref_start_s);
-                const sourceEnd = Number(sourceAyahRow?.ref_end_s);
-                const sourceDeltaStartMs = Number(sourceAyahRow?.delta_start_ms);
-                const sourceDeltaEndMs = Number(sourceAyahRow?.delta_end_ms);
-                const hasSourceTimes =
-                  Number.isFinite(sourceStart) && Number.isFinite(sourceEnd);
-                return (
-                  <button
-                    type="button"
-                    key={`ayah-${ayah.ayah}`}
-                    ref={(node) => {
-                      if (node) {
-                        ayahRowRefs.current.set(ayah.ayah, node);
-                      } else {
-                        ayahRowRefs.current.delete(ayah.ayah);
-                      }
-                    }}
-                    className={`ay-row ${
-                      activeAyah === ayah.ayah ? "active" : "inactive"
-                    } ${focusedAyah === ayah.ayah ? "focused" : ""}`}
-                    aria-current={activeAyah === ayah.ayah ? "true" : undefined}
-                    onClick={() => playAyah(ayah)}
-                  >
-                    <div className="ay-row-top">
-                      <span className="ay-title">Ayah {ayah.ayah}</span>
-                      {activeAyah === ayah.ayah && (
-                        <span className="ay-indicator" aria-hidden="true"></span>
-                      )}
-                    </div>
-                    <div
-                      className={`ay-times ${hasSourceTimes ? "has-source" : ""}`}
-                    >
-                      <div className="ay-time-line ay-time-line-ours">
-                        <span className="ay-time-label">Our</span>
-                        <span className="ay-time-range">
-                          {formatStamp(ayah.start_s)}{" "}
-                          <span className="ay-arrow">→</span>{" "}
-                          {formatStamp(ayah.end_s)}
-                        </span>
-                      </div>
-                      {hasSourceTimes ? (
-                        <div className="ay-time-line ay-time-line-source">
-                          <span className="ay-time-label">Src</span>
-                          <span className="ay-time-range">
-                            {formatStamp(sourceStart)}{" "}
-                            <span className="ay-arrow">→</span>{" "}
-                            {formatStamp(sourceEnd)}
-                          </span>
-                          <span className="ay-delta">
-                            Δs {formatDeltaMs(sourceDeltaStartMs)} | Δe{" "}
-                            {formatDeltaMs(sourceDeltaEndMs)}
-                          </span>
-                        </div>
-                      ) : null}
-                    </div>
-                  </button>
-                );
-              })
-            ) : (
-              <div className="ay-empty">No ayah timings mapped.</div>
-            )}
-          </div>
+          <ActiveAyahPanel
+            ayahNumber={displayAyahNumber}
+            words={displayAyahWords}
+            activeWordGlobal={activeWordGlobal}
+            onWordClick={playWord}
+          />
         </section>
 
-        <section className="bt-panel aw-panel">
-          <div className="aw-head">
-            <h2>Words {focusedAyah ? `(Ayah ${focusedAyah})` : ""}</h2>
-            <span className="aw-badge">{selectedAyahWords.length} subset</span>
-          </div>
-
-          <div ref={wordListRef} className="aw-scroll">
-            {selectedAyahWords.length ? (
-              selectedAyahWords.map((word) => {
-                const sourceStart = Number(word?.source_start_s);
-                const sourceEnd = Number(word?.source_end_s);
-                const hasSourceTimes =
-                  Number.isFinite(sourceStart) && Number.isFinite(sourceEnd);
-                return (
-                  <button
-                    type="button"
-                    key={`word-${word.word_index_global}`}
-                    ref={(node) => {
-                      if (node) {
-                        wordRowRefs.current.set(word.word_index_global, node);
-                      } else {
-                        wordRowRefs.current.delete(word.word_index_global);
-                      }
-                    }}
-                    className={`aw-row ${
-                      activeWordGlobal === word.word_index_global
-                        ? "active"
-                        : "inactive"
-                    }`}
-                    aria-current={
-                      activeWordGlobal === word.word_index_global
-                        ? "true"
-                        : undefined
-                    }
-                    onClick={() => playWord(word)}
-                  >
-                    <div className="aw-row-top">
-                      <span className="aw-title" lang="ar" dir="rtl">
-                        {word.text_uthmani}
-                      </span>
-                      {activeWordGlobal === word.word_index_global ? (
-                        <span
-                          className="aw-indicator"
-                          aria-hidden="true"
-                        ></span>
-                      ) : null}
-                    </div>
-
-                    <div
-                      className={`aw-times ${hasSourceTimes ? "has-source" : ""}`}
-                    >
-                      <div className="aw-time-line aw-time-line-ours">
-                        <span className="aw-time-label">Our</span>
-                        <span className="aw-time-range">
-                          {formatStamp(word.start_s)}{" "}
-                          <span className="aw-arrow">→</span>{" "}
-                          {formatStamp(word.end_s)}
-                        </span>
-                      </div>
-
-                      {hasSourceTimes ? (
-                        <div className="aw-time-line aw-time-line-source">
-                          <span className="aw-time-label">Src</span>
-                          <span className="aw-time-range">
-                            {formatStamp(sourceStart)}{" "}
-                            <span className="aw-arrow">→</span>{" "}
-                            {formatStamp(sourceEnd)}
-                          </span>
-                          <span className="aw-delta">
-                            Δs{" "}
-                            {formatDeltaMs(
-                              (word.start_s - word.source_start_s) * 1000,
-                            )}{" "}
-                            | Δe{" "}
-                            {formatDeltaMs(
-                              (word.end_s - word.source_end_s) * 1000,
-                            )}
-                          </span>
-                        </div>
-                      ) : null}
-                    </div>
-                  </button>
-                );
-              })
-            ) : (
-              <div className="aw-empty">
-                Select an ayah to view word timing.
-              </div>
-            )}
-          </div>
-        </section>
+        <WordInspector
+          words={selectedAyahWords}
+          activeWordGlobal={activeWordGlobal}
+          focusedAyah={focusedAyah}
+          onPlayWord={playWord}
+          sourceTimingNote={sourceTimingNote}
+        />
       </main>
-      ;
-      <section className="bento-wrapper">
-        <header className="bento-header">
-          <h2>Data Diagnostics</h2>
-          <p>
-            Quality snapshot for alignment health, source fit, and timing
-            behavior.
-          </p>
-        </header>
 
-        <div className="bento-kpi-row">
-          <div className="bento-kpi">
-            <span className="bento-kpi-label">QC Cover</span>
-            <strong className="bento-kpi-value">
-              {formatPercent(qcCoverage)}
-            </strong>
-            <div
-              className={`bento-spark tone-${qcCoverageTone}`}
-              style={{
-                "--fill": `${Math.round(clamp01(qcCoverage ?? 0) * 100)}%`,
-              }}
-            ></div>
-            <span className="bento-kpi-sub tone-dim">
-              {timingData?.qc?.monotonic === false
-                ? "Non-monotonic"
-                : "Monotonic"}
-            </span>
-          </div>
-          <div className="bento-kpi">
-            <span className="bento-kpi-label">Src Match</span>
-            <strong className="bento-kpi-value">
-              {formatPercent(sourceCoverage)}
-            </strong>
-            <div
-              className={`bento-spark tone-${sourceTone}`}
-              style={{
-                "--fill": `${Math.round(clamp01(sourceCoverage ?? 0) * 100)}%`,
-              }}
-            ></div>
-            <span className="bento-kpi-sub tone-dim">
-              {sourceComparedWords.length} matched
-            </span>
-          </div>
-          <div className="bento-kpi">
-            <span className="bento-kpi-label">Alerts</span>
-            <strong className="bento-kpi-value">{qcWarnings.length}</strong>
-            <div
-              className={`bento-spark tone-${warningTone}`}
-              style={{
-                "--fill": `${qcWarnings.length === 0 ? 100 : Math.min(100, qcWarnings.length * 28)}%`,
-              }}
-            ></div>
-            <span className="bento-kpi-sub tone-dim">
-              {qcWarnings.length === 0
-                ? "Clean"
-                : `${qcReasonCodes.length} codes`}
-            </span>
-          </div>
-          <div className="bento-kpi">
-            <span className="bento-kpi-label">Max Drift</span>
-            <strong className="bento-kpi-value">
-              {formatMs(everyayahWorstBoundaryMs)}
-            </strong>
-            <div
-              className={`bento-spark tone-${sourceP95Tone}`}
-              style={{
-                "--fill": `${Math.min(100, Number.isFinite(everyayahWorstBoundaryMs) ? (everyayahWorstBoundaryMs / 240) * 100 : 0)}%`,
-              }}
-            ></div>
-            <span className="bento-kpi-sub tone-dim">
-              p95 err: {formatMs(sourceErrorP95Ms)}
-            </span>
-          </div>
-        </div>
-
-        {hasTimingData ? (
-          <div className="bento-grid">
-            <article className="bento-card bento-span-2 bento-card-dark">
-              <div className="bc-top">
-                <h3>Pipeline Matrix</h3>
-                <span
-                  className={`bento-chip tone-${timingData?.qc?.monotonic === false ? "risk" : "healthy"}`}
-                >
-                  {timingData?.qc?.monotonic === false ? "ERR" : "OK"}
-                </span>
-              </div>
-              <div className="bento-matrix">
-                <div className="matrix-col">
-                  <div className="m-item">
-                    <span>Engine</span>{" "}
-                    <strong>
-                      {timingData?.selected_candidate_engine ??
-                        timingData?.engine?.name ??
-                        "—"}
-                    </strong>
-                  </div>
-                  <div className="m-item">
-                    <span>Supervision</span>{" "}
-                    <strong>
-                      {humanizeSegmentSourceType(
-                        timingData?.segment_source_type ?? "none",
-                      )}
-                    </strong>
-                  </div>
-                  <div className="m-item">
-                    <span>Quantization</span>{" "}
-                    <strong>{formatMs(quantizationStepMs)}</strong>
-                  </div>
-                </div>
-                <div className="matrix-col">
-                  <div className="m-item">
-                    <span>Speech End Δ</span>{" "}
-                    <strong>{formatPercent(speechEndDeltaRatio)}</strong>
-                  </div>
-                  <div className="m-item">
-                    <span>Lexical Match</span>{" "}
-                    <strong>{formatPercent(lexicalMatchRatio)}</strong>
-                  </div>
-                  <div className="m-item">
-                    <span>Interpolation</span>{" "}
-                    <strong>{formatPercent(interpolationRatio)}</strong>
-                  </div>
-                </div>
-              </div>
-              {qcReasonCodes.length > 0 && (
-                <div className="bento-tag-array mt-rt">
-                  {qcReasonCodes.map((code) => (
-                    <span key={code} className="bt-tag">
-                      {code}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </article>
-
-            <article className="bento-card">
-              <div className="bc-top">
-                <h3>Source Anchors</h3>
-              </div>
-              <div className="bento-list">
-                <div className="bl-row">
-                  <span>Audio</span>{" "}
-                  <em>{surahConfig?.audioSrc ? "Found" : "Missing"}</em>
-                </div>
-                <div className="bl-row">
-                  <span>Quran.com</span> <em>{qcomSourceRefs.length} refs</em>
-                </div>
-                <div className="bl-row">
-                  <span>EveryAyah</span>{" "}
-                  <em>{everyayahSourceRefs.length} refs</em>
-                </div>
-                <div className="bl-row">
-                  <span>Words</span>{" "}
-                  <em>
-                    {sourceComparedWords.length}/{words.length}
-                  </em>
-                </div>
-                <div className="bl-row">
-                  <span>Align Md</span> <em>{formatMs(sourceErrorMedianMs)}</em>
-                </div>
-              </div>
-              {sourceTimingNote && (
-                <p className="bento-subtext mt-rt">{sourceTimingNote}</p>
-              )}
-            </article>
-
-            <article className="bento-card">
-              <div className="bc-top">
-                <h3>Timing Velocity</h3>
-              </div>
-              <div className="bento-list mb-rt">
-                <div className="bl-row">
-                  <span>Refine</span>{" "}
-                  <em>{timingData?.qc?.boundary_refine_method ?? "—"}</em>
-                </div>
-                <div className="bl-row">
-                  <span>Med Gap</span> <em>{formatMs(ayahPauseMedianMs)}</em>
-                </div>
-              </div>
-              <div className="bento-track-group">
-                <div className="btg-head">
-                  <span>Ayah p95</span>{" "}
-                  <strong>{formatMs(ayahDurationP95Ms)}</strong>
-                </div>
-                <div
-                  className="btg-bar"
-                  style={{
-                    "--v-fill": `${Math.min(100, Number.isFinite(ayahDurationP95Ms) ? (ayahDurationP95Ms / 10000) * 100 : 0)}%`,
-                  }}
-                ></div>
-              </div>
-              <div className="bento-track-group">
-                <div className="btg-head">
-                  <span>Word p95</span>{" "}
-                  <strong>{formatMs(wordDurationP95Ms)}</strong>
-                </div>
-                <div
-                  className="btg-bar btg-bar-alt"
-                  style={{
-                    "--v-fill": `${Math.min(100, Number.isFinite(wordDurationP95Ms) ? (wordDurationP95Ms / 1200) * 100 : 0)}%`,
-                  }}
-                ></div>
-              </div>
-            </article>
-
-            <article className="bento-card bento-span-full bento-card-dark">
-              <div className="bc-top gap-md">
-                <h3>Drift Diagnostics</h3>
-                {everyayahDiffRanked.length > 0 && (
-                  <span
-                    className={`bento-chip outline tone-${everyayahRiskCount === 0 ? "healthy" : "watch"}`}
-                  >
-                    {everyayahRiskCount} risk ayahs
-                  </span>
-                )}
-              </div>
-
-              {everyayahStitchEval ? (
-                <div className="bento-drift-layout">
-                  <div className="drift-metrics">
-                    <div className="dm-block">
-                      <span>Covered</span>
-                      <strong>
-                        {everyayahStitchEval.matched_ayahs ?? "—"} /{" "}
-                        {everyayahStitchEval.expected_ayahs ?? "—"}
-                      </strong>
-                    </div>
-                    <div className="dm-block">
-                      <span>≤80ms</span>
-                      <strong>
-                        {formatPercent(everyayahBoundaryHit80Pct)}
-                      </strong>
-                    </div>
-                    <div className="dm-block">
-                      <span>Worst</span>
-                      <strong className="drift-warn">
-                        {formatMs(everyayahWorstBoundaryMs)}
-                      </strong>
-                    </div>
-                    <div className="dm-block">
-                      <span>Shift</span>
-                      <strong>
-                        {formatDeltaMs(
-                          Number(everyayahStitchEval.start_offset_s) * 1000,
-                        )}
-                      </strong>
-                    </div>
-                  </div>
-
-                  {everyayahDiffRanked.length > 0 && (
-                    <div className="drift-leaderboard">
-                      {everyayahDiffRanked.slice(0, 5).map((row) => {
-                        const rowTone =
-                          row.maxAbsBoundaryMs <= 80
-                            ? "healthy"
-                            : row.maxAbsBoundaryMs <= 250
-                              ? "watch"
-                              : "risk";
-                        return (
-                          <div
-                            key={`diff-${row.ayah}`}
-                            className="drift-lb-item"
-                          >
-                            <div className="dlb-title">
-                              Ayah {row.ayah}{" "}
-                              <span className={`tone-${rowTone}`}>
-                                • {formatMs(row.maxAbsBoundaryMs)} Δ
-                              </span>
-                            </div>
-                            <div className="dlb-tracks">
-                              <div className="dlb-tr">
-                                <div
-                                  className={`dtb-fill tone-${rowTone}`}
-                                  style={{
-                                    "--dt-fill": `${Math.min(100, (row.absStartMs / 1200) * 100)}%`,
-                                  }}
-                                ></div>
-                                <span>
-                                  {formatDeltaMs(row.delta_start_ms)} <em>S</em>
-                                </span>
-                              </div>
-                              <div className="dlb-tr">
-                                <div
-                                  className={`dtb-fill tone-${rowTone}`}
-                                  style={{
-                                    "--dt-fill": `${Math.min(100, (row.absEndMs / 1200) * 100)}%`,
-                                  }}
-                                ></div>
-                                <span>
-                                  {formatDeltaMs(row.delta_end_ms)} <em>E</em>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <p className="bento-subtext">No Eval.</p>
-              )}
-            </article>
-
-            <article className="bento-card bento-card-darker">
-              <div className="bc-top">
-                <h3>Candidate Rank</h3>
-              </div>
-              {candidateScoreEntries.length ? (
-                <div className="bento-voters">
-                  {candidateScoreEntries.map(([engineName, score]) => (
-                    <div key={engineName} className="voter-row">
-                      <div className="voter-info">
-                        <span>{engineName}</span>{" "}
-                        <strong>{score.toFixed(3)}</strong>
-                      </div>
-                      <div
-                        className="voter-bar"
-                        style={{
-                          "--voter-w": `${Math.min(100, candidateTopScore > 0 ? (score / candidateTopScore) * 100 : 0)}%`,
-                        }}
-                      ></div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="bento-subtext">None.</p>
-              )}
-              {passTrace.length > 0 && (
-                <div className="bento-tag-array mt-rt">
-                  {passTrace.map((step) => (
-                    <span key={step} className="bt-tag sm">
-                      {step}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </article>
-          </div>
-        ) : (
-          <div className="bento-placeholder">
-            <span className="bp-icon">⛶</span>
-            <p>
-              Select a reciter with populated timing payload to render the
-              diagnostics grid.
-            </p>
-          </div>
-        )}
-      </section>
-      ;
+      <DiagnosticsDrawer
+        open={diagnosticsOpen}
+        onToggle={() => setDiagnosticsOpen((value) => !value)}
+        hasTimingData={hasTimingData}
+        parsedSourceRefs={parsedSourceRefs}
+        qc={{
+          coverage: qcCoverage,
+          coverageTone: qcCoverageTone,
+          monotonic: timingData?.qc?.monotonic,
+          warnings: qcWarnings.length,
+          warningTone,
+          reasonCodes: qcReasonCodes,
+        }}
+        source={{
+          coverage: sourceCoverage,
+          coverageTone: sourceTone,
+          matchedWords: sourceComparedWords.length,
+          errorMedianMs: sourceErrorMedianMs,
+          errorP95Ms: sourceErrorP95Ms,
+          p95Tone: sourceP95Tone,
+        }}
+        everyayah={{
+          stitchEval: everyayahStitchEval,
+          ranked: everyayahDiffRanked,
+          worstBoundaryMs: everyayahWorstBoundaryMs,
+          hit80Pct: everyayahBoundaryHit80Pct,
+          riskCount: everyayahRiskCount,
+        }}
+        pipeline={{
+          engineName:
+            timingData?.selected_candidate_engine ?? timingData?.engine?.name,
+          segmentSourceType: timingData?.segment_source_type ?? "none",
+          quantizationStepMs,
+          speechEndDeltaRatio,
+          lexicalMatchRatio,
+          interpolationRatio,
+          passTrace,
+        }}
+        distribution={{
+          ayahMedianMs: ayahDurationMedianMs,
+          ayahP95Ms: ayahDurationP95Ms,
+          wordMedianMs: wordDurationMedianMs,
+          wordP95Ms: wordDurationP95Ms,
+          ayahPauseMedianMs,
+        }}
+        candidates={{
+          entries: candidateScoreEntries,
+          topScore: candidateTopScore,
+        }}
+      />
     </div>
   );
 }

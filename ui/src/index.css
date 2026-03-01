@@ -1,52 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Sora:wght@400;500;600;700;800&family=Amiri+Quran&display=swap");
-
-:root {
-  font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
-  line-height: 1.4;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --font-display: "Sora", "IBM Plex Sans", "Avenir Next", sans-serif;
-  --font-ui: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
-  --font-arabic: "Noto Naskh Arabic", "Amiri Quran", serif;
-  --font-quran: "Amiri Quran", "Noto Naskh Arabic", serif;
-
-  --page-top: #020911;
-  --page-mid: #05141e;
-  --page-bottom: #091a26;
-  color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,750;9..144,900&family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Amiri+Quran&display=swap");
 
 html,
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100%;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  line-height: 1.35;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  color: #e5edf3;
   background:
-    radial-gradient(
-      circle at 12% 8%,
-      rgba(26, 115, 232, 0.15),
-      transparent 30%
-    ),
-    radial-gradient(circle at 92% 9%, rgba(0, 255, 170, 0.1), transparent 35%),
-    linear-gradient(
-      180deg,
-      var(--page-top) 0%,
-      var(--page-mid) 48%,
-      var(--page-bottom) 100%
-    );
+    radial-gradient(circle at 20% 8%, rgba(15, 122, 88, 0.12), transparent 38%),
+    radial-gradient(circle at 92% 14%, rgba(192, 69, 45, 0.1), transparent 36%),
+    radial-gradient(circle at 60% 92%, rgba(178, 137, 60, 0.12), transparent 44%),
+    linear-gradient(180deg, #f9f3e8 0%, #f3ead8 45%, #efe3cf 100%);
   background-attachment: fixed;
 }
 
@@ -56,9 +28,33 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: -1;
+  opacity: 0.42;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 34px 34px;
-  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    repeating-linear-gradient(
+      0deg,
+      rgba(21, 19, 15, 0.03) 0px,
+      rgba(21, 19, 15, 0.03) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(21, 19, 15, 0.02) 0px,
+      rgba(21, 19, 15, 0.02) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(circle at 40% 20%, black 35%, transparent 75%);
 }
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(15, 122, 88, 0.22);
+}
+
