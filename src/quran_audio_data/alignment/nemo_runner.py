@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import argparse
+from tempfile import TemporaryDirectory
 from typing import Any
 
 import orjson
@@ -93,6 +94,17 @@ def forced_align(
         ) from exc
 
     transcript_text = " ".join(transcript_words)
+    enable_chunked_logits = bool(resolved_device == "cpu" and audio_duration_s >= 15 * 60)
+    hypotheses: list[Any] | None = None
+    if enable_chunked_logits:
+        logits = _transcribe_log_probs_chunked(
+            audio_path=audio_path,
+            model=model,
+            torch=torch,
+            chunk_s=30.0,
+        )
+        hypotheses = [_InlineHypothesis(y_sequence=logits, text="")]
+
     (
         log_probs_batch,
         y_batch,
@@ -101,7 +113,7 @@ def forced_align(
         utt_obj_batch,
         output_timestep_duration,
     ) = get_batch_variables(
-        audio=[str(audio_path)],
+        audio=hypotheses if hypotheses is not None else [str(audio_path)],
         model=model,
         segment_separators=None,
         align_using_pred_text=False,
@@ -111,6 +123,7 @@ def forced_align(
         simulate_cache_aware_streaming=False,
         use_buffered_chunked_streaming=False,
         buffered_chunk_params={},
+        has_hypotheses=hypotheses is not None,
     )
 
     alignments = viterbi_decoding(
@@ -135,6 +148,91 @@ def forced_align(
     )
 
     return mapped_words, resolved_device
+
+
+@dataclass(slots=True)
+class _InlineHypothesis:
+    y_sequence: Any
+    text: str
+
+
+def _transcribe_log_probs_chunked(
+    *,
+    audio_path: Path,
+    model: Any,
+    torch: Any,
+    chunk_s: float,
+) -> Any:
+    if chunk_s <= 0:
+        raise ValueError(f"chunk_s must be > 0, got: {chunk_s}")
+
+    info = sf.info(str(audio_path))
+    sample_rate = int(info.samplerate)
+    channels = int(info.channels)
+    if channels != 1:
+        raise RuntimeError(f"expected mono audio for NeMo chunking, got channels={channels}")
+
+    frames_per_chunk = int(round(chunk_s * sample_rate))
+    frames_per_chunk = max(1, frames_per_chunk)
+
+    chunk_logits: list[tuple[Path, int]] = []
+    with TemporaryDirectory(prefix="qad_nemo_chunks_") as tmp:
+        tmp_dir = Path(tmp)
+        with sf.SoundFile(str(audio_path), mode="r") as reader:
+            chunk_idx = 0
+            while True:
+                audio = reader.read(frames_per_chunk, dtype="float32")
+                if audio is None or len(audio) == 0:
+                    break
+
+                chunk_wav = tmp_dir / f"chunk_{chunk_idx:05d}.wav"
+                sf.write(str(chunk_wav), audio, sample_rate)
+
+                with torch.no_grad():
+                    hypotheses = model.transcribe(
+                        [str(chunk_wav)],
+                        return_hypotheses=True,
+                        batch_size=1,
+                        verbose=False,
+                    )
+
+                if isinstance(hypotheses, tuple) and len(hypotheses) == 2:
+                    hypotheses = hypotheses[0]
+                if not hypotheses:
+                    raise RuntimeError(f"empty hypotheses for chunk {chunk_idx}")
+
+                hyp = hypotheses[0]
+                logits = getattr(hyp, "y_sequence", None)
+                if logits is None or not hasattr(logits, "shape"):
+                    raise RuntimeError(f"missing y_sequence on hypothesis for chunk {chunk_idx}")
+
+                logits = logits.detach().cpu()
+                frames = int(logits.shape[0])
+                if frames <= 0:
+                    raise RuntimeError(f"empty logits for chunk {chunk_idx}")
+
+                logits_path = tmp_dir / f"chunk_{chunk_idx:05d}.pt"
+                torch.save(logits, str(logits_path))
+                chunk_logits.append((logits_path, frames))
+                chunk_idx += 1
+
+        if not chunk_logits:
+            raise RuntimeError("no chunk logits produced")
+
+        total_frames = sum(frames for _, frames in chunk_logits)
+        first = torch.load(str(chunk_logits[0][0]), map_location="cpu")
+        vocab_dim = int(first.shape[1])
+        full = torch.empty((total_frames, vocab_dim), dtype=first.dtype)
+
+        offset = 0
+        for path, frames in chunk_logits:
+            piece = torch.load(str(path), map_location="cpu")
+            if int(piece.shape[1]) != vocab_dim:
+                raise RuntimeError("vocab dim mismatch while stitching chunk logits")
+            full[offset : offset + frames] = piece
+            offset += frames
+
+        return full
 
 
 def load_transcript_words(path: Path) -> list[str]:
