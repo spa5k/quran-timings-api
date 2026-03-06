@@ -12,7 +12,7 @@ import orjson
 from rapidfuzz import fuzz
 
 from quran_audio_data.alignment.base import AlignmentOutput, AlignmentError
-from quran_audio_data.alignment.mapping import MappingConfig, derive_ayahs_from_words
+from quran_audio_data.alignment.mapping import derive_ayahs_from_words
 from quran_audio_data.core.parsing import safe_get, to_float
 from quran_audio_data.schema import WordTiming
 from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic

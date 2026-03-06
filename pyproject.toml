@@ -30,18 +30,9 @@ gpu = [
   "nemo_toolkit[asr]>=2.0.0",
   "whisperx>=3.3.1",
 ]
-mfa = [
-  "montreal-forced-aligner>=3.2.0",
-]
-audio = [
-  "librosa>=0.10.2.post1",
-  "webrtcvad>=2.0.10",
-]
-dev = [
-  "pytest>=8.3.3",
-  "pytest-cov>=5.0.0",
-  "hypothesis>=6.112.1",
-]
+mfa = ["montreal-forced-aligner>=3.2.0"]
+audio = ["librosa>=0.10.2.post1", "webrtcvad>=2.0.10"]
+dev = ["pytest>=8.3.3", "pytest-cov>=5.0.0", "hypothesis>=6.112.1"]
 
 [project.scripts]
 qad = "quran_audio_data.cli:app"
