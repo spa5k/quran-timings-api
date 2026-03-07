@@ -11,6 +11,12 @@ This repository provides a public Quran recitation timings dataset (ayah + word 
 - Reciter metadata + per-surah timing endpoints
 - CLI pipeline to run alignment and publish updated timing files
 
+## UI Screenshots
+
+### Overview (Desktop)
+
+![Quran Audio Timing Desk overview](docs/screenshots/ui-overview-desktop.png)
+
 ## Public API
 
 URL structure:
