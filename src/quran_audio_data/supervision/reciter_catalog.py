@@ -16,7 +16,7 @@ from .reciter_defaults import (
 )
 
 
-DEFAULT_RECITER_CATALOG_PATH = Path("data/reciter_catalog.json")
+DEFAULT_RECITER_CATALOG_PATH = Path("data/reciters.json")
 
 
 def _parse_everyayah_catalog(payload: dict[str, Any]) -> list[dict[str, Any]]:
@@ -81,9 +81,7 @@ def _build_configured_reciters(
         if isinstance(item.get("subfolder"), str)
     }
     by_qcom_id = {
-        int(item["id"]): item
-        for item in qcom_reciters
-        if isinstance(item.get("id"), int)
+        int(item["id"]): item for item in qcom_reciters if isinstance(item.get("id"), int)
     }
 
     configured_ids = sorted(
@@ -114,36 +112,50 @@ def _build_configured_reciters(
 
         everyayah_meta = by_subfolder.get(everyayah_subfolder) if everyayah_subfolder else None
         qcom_meta = by_qcom_id.get(qcom_recitation_id) if qcom_recitation_id else None
+        reciter_name = (
+            str(
+                (qcom_meta.get("translated_name") if qcom_meta else None)
+                or (qcom_meta.get("reciter_name") if qcom_meta else None)
+                or (everyayah_meta.get("name") if everyayah_meta else None)
+                or reciter_id
+            ).strip()
+            or reciter_id
+        )
         out.append(
             {
-                "manifest_reciter_id": reciter_id,
+                "slug": reciter_id,
+                "name": reciter_name,
                 "enabled": reciter_id in enabled_reciters,
                 "check_type": check_type,
-                "checks": {
+                "capabilities": {
                     "ayah_by_ayah": ayah_by_ayah,
                     "word_by_word": word_by_word,
                 },
-                "sources": {
-                    "everyayah": everyayah_subfolder is not None,
-                    "quran_com": qcom_recitation_id is not None,
+                "source": {
+                    "everyayah": {
+                        "subfolder": everyayah_subfolder,
+                        "reciter_key": everyayah_meta.get("reciter_key")
+                        if everyayah_meta
+                        else None,
+                        "name": everyayah_meta.get("name") if everyayah_meta else None,
+                    },
+                    "quran_com": {
+                        "recitation_id": qcom_recitation_id,
+                        "name": (
+                            qcom_meta.get("translated_name") or qcom_meta.get("reciter_name")
+                            if qcom_meta
+                            else None
+                        ),
+                    },
                 },
-                "everyayah": {
-                    "subfolder": everyayah_subfolder,
-                    "reciter_key": everyayah_meta.get("reciter_key") if everyayah_meta else None,
-                    "name": everyayah_meta.get("name") if everyayah_meta else None,
+                "endpoints": {
+                    "metadata": f"/data/reciters/{reciter_id}/metadata.json",
                 },
-                "quran_com": {
-                    "recitation_id": qcom_recitation_id,
-                    "name": (
-                        qcom_meta.get("translated_name")
-                        or qcom_meta.get("reciter_name")
-                        if qcom_meta
-                        else None
-                    ),
-                },
-                "qcom_word_supervision_supported": qcom_word_supervision_supported,
+                "surahs_available": [],
+                "surah_count": 0,
             }
         )
+    out.sort(key=lambda item: str(item.get("slug") or ""))
     return out
 
 
@@ -151,7 +163,11 @@ def build_reciter_catalog_payload(
     *,
     enabled_reciters: set[str] | None = None,
 ) -> dict[str, Any]:
-    enabled = {item.strip().lower() for item in (enabled_reciters or DEFAULT_ENABLED_RECITERS) if item.strip()}
+    enabled = {
+        item.strip().lower()
+        for item in (enabled_reciters or DEFAULT_ENABLED_RECITERS)
+        if item.strip()
+    }
     everyayah_payload = fetch_everyayah_catalog()
     qcom_payload = fetch_recitation_catalog(language="en")
 
@@ -164,20 +180,20 @@ def build_reciter_catalog_payload(
     )
 
     return {
-        "version": 1,
+        "schema_version": "v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "enabled_manifest_reciters": sorted(enabled),
         "counts": {
-            "everyayah_reciters": len(everyayah_reciters),
-            "quran_com_reciters": len(qcom_reciters),
+            "everyayah_source_reciters": len(everyayah_reciters),
+            "quran_com_source_reciters": len(qcom_reciters),
             "configured_reciters": len(configured),
-            "configured_enabled": sum(1 for item in configured if item.get("enabled")),
+            "enabled_reciters": sum(1 for item in configured if item.get("enabled")),
         },
         "sources": {
             "everyayah_catalog_url": "https://everyayah.com/data/recitations.js",
             "quran_com_recitations_url": "https://api.quran.com/api/v4/resources/recitations?language=en",
         },
-        "configured_reciters": configured,
+        "reciters": configured,
+        # Keep source catalogs for tooling that inspects external mapping pools.
         "everyayah_reciters": everyayah_reciters,
         "quran_com_reciters": qcom_reciters,
     }
@@ -205,6 +221,9 @@ def read_reciter_catalog(path: str | Path = DEFAULT_RECITER_CATALOG_PATH) -> dic
         return None
     if not isinstance(payload, dict):
         return None
+    reciters = payload.get("reciters")
+    if not isinstance(reciters, list):
+        return None
     return payload
 
 
@@ -216,7 +235,7 @@ def get_configured_reciter_entry(
     payload = read_reciter_catalog(catalog_path)
     if payload is None:
         return None
-    configured = payload.get("configured_reciters")
+    configured = payload.get("reciters")
     if not isinstance(configured, list):
         return None
 
@@ -224,7 +243,7 @@ def get_configured_reciter_entry(
     for item in configured:
         if not isinstance(item, dict):
             continue
-        value = str(item.get("manifest_reciter_id") or "").strip().lower()
+        value = str(item.get("slug") or "").strip().lower()
         if value == key:
             return item
     return None
@@ -237,4 +256,3 @@ __all__ = [
     "read_reciter_catalog",
     "get_configured_reciter_entry",
 ]
-

@@ -1,0 +1,76 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "qcom_mishari_alafasy",
+    "name": "qcom_mishari_alafasy"
+  },
+  "surah": {
+    "number": 110,
+    "title": "Surah 110",
+    "ayah_count": 3,
+    "word_count": 19
+  },
+  "audio": {
+    "granularity": "surah",
+    "primary_asset": "surah_direct",
+    "fallback_order": ["qcom_surah"],
+    "assets": {
+      "surah_direct": {
+        "provider": "quranicaudio",
+        "level": "surah",
+        "kind": "direct",
+        "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/110.mp3"
+      },
+      "qcom_surah": {
+        "provider": "quran_com",
+        "level": "surah",
+        "kind": "resolver",
+        "url": "https://api.quran.com/api/v4/chapter_recitations/7/110",
+        "resolve_json_path": "$.audio_file.audio_url"
+      }
+    },
+    "duration_s": 25.104739229024943,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": ["boundary_refinement_applied"],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.022167281260476027,
+    "quantization_step_ms": 597.5000000000006,
+    "everyayah_stitch_eval": null
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "whisperx", "mfa"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 193.74802003017095,
+      "mfa": 190.64041024136773
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": ["qcom:qcom_chapter:7:shape=3_field"],
+    "segment_source_type": "qcom_chapter"
+  },
+  "timings_endpoint": "/data/reciters/qcom_mishari_alafasy/surahs/110/timings.json",
+  "updated_at": "2026-03-01T00:50:06.024838+00:00"
+}

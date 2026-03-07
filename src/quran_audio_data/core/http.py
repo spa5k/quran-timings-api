@@ -52,9 +52,7 @@ def get_json_with_retry(
     attempts = retries if retries is not None else settings.request_retries
     initial = retry_backoff_s if retry_backoff_s is not None else settings.retry_backoff_s
     maximum = (
-        retry_max_backoff_s
-        if retry_max_backoff_s is not None
-        else settings.retry_max_backoff_s
+        retry_max_backoff_s if retry_max_backoff_s is not None else settings.retry_max_backoff_s
     )
     jitter = retry_jitter_s if retry_jitter_s is not None else settings.retry_jitter_s
 
@@ -85,9 +83,7 @@ def get_bytes_with_retry(
     attempts = retries if retries is not None else settings.request_retries
     initial = retry_backoff_s if retry_backoff_s is not None else settings.retry_backoff_s
     maximum = (
-        retry_max_backoff_s
-        if retry_max_backoff_s is not None
-        else settings.retry_max_backoff_s
+        retry_max_backoff_s if retry_max_backoff_s is not None else settings.retry_max_backoff_s
     )
     jitter = retry_jitter_s if retry_jitter_s is not None else settings.retry_jitter_s
 

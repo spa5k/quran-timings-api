@@ -7,7 +7,12 @@ from quran_audio_data.alignment import WhisperXFallbackAligner as _WhisperXFallb
 
 from .artifacts import validate_outputs
 from .artifacts import write_cache_result as _write_cache_result
-from .audio import ensure_wav_16k_mono, probe_audio, refine_word_boundaries as _default_refine_word_boundaries, sha256_file
+from .audio import (
+    ensure_wav_16k_mono,
+    probe_audio,
+    refine_word_boundaries as _default_refine_word_boundaries,
+    sha256_file,
+)
 from .engine_registry import EngineProtocol, EngineRegistry
 from .manifest import ManifestRow, read_manifest
 from .orchestrator import _normalize_engines, benchmark_pipeline as _benchmark_pipeline

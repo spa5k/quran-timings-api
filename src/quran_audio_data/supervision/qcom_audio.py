@@ -161,7 +161,9 @@ def fetch_best_verse_segments(
     chapter: int,
     verse_key: str,
 ) -> VerseSegmentPayload | None:
-    chapter_payload = fetch_chapter_recitation_by_chapter(recitation_id, chapter, include_segments=True)
+    chapter_payload = fetch_chapter_recitation_by_chapter(
+        recitation_id, chapter, include_segments=True
+    )
     from_chapter = extract_chapter_timestamp_segments(chapter_payload, verse_key=verse_key)
     if from_chapter is not None:
         return from_chapter

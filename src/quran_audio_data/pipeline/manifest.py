@@ -21,9 +21,7 @@ def read_manifest(manifest_path: str | Path) -> list[ManifestRow]:
     required = {"audio_path", "reciter_id", "surah", "ayah"}
     missing = required - set(reader.fieldnames or [])
     if missing:
-        raise PipelineError(
-            "Manifest missing required columns: " + ", ".join(sorted(missing))
-        )
+        raise PipelineError("Manifest missing required columns: " + ", ".join(sorted(missing)))
 
     parsed: list[ManifestRow] = []
     for idx, row in enumerate(rows, start=2):
@@ -50,5 +48,6 @@ def read_manifest(manifest_path: str | Path) -> list[ManifestRow]:
         )
 
     return parsed
+
 
 __all__ = ["ManifestRow", "read_manifest"]

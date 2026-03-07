@@ -20,8 +20,22 @@ def test_resolver_accepts_local_schema_like_payload(tmp_path) -> None:
             }
         ],
         "words": [
-            {"surah": 1, "ayah": 1, "word_index_in_ayah": 1, "start_s": 0.0, "end_s": 0.4, "match_score": 90.0},
-            {"surah": 1, "ayah": 1, "word_index_in_ayah": 2, "start_s": 0.4, "end_s": 1.0, "match_score": 90.0},
+            {
+                "surah": 1,
+                "ayah": 1,
+                "word_index_in_ayah": 1,
+                "start_s": 0.0,
+                "end_s": 0.4,
+                "match_score": 90.0,
+            },
+            {
+                "surah": 1,
+                "ayah": 1,
+                "word_index_in_ayah": 2,
+                "start_s": 0.4,
+                "end_s": 1.0,
+                "match_score": 90.0,
+            },
         ],
     }
     (reciter_dir / "001_001.json").write_bytes(orjson.dumps(payload))

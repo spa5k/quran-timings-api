@@ -303,9 +303,7 @@ def compute_qc(
     quantization_step_ms = _estimate_quantization_step_ms(words)
 
     if coverage < thresholds.min_coverage:
-        warnings.append(
-            f"Coverage {coverage:.3f} below threshold {thresholds.min_coverage:.3f}"
-        )
+        warnings.append(f"Coverage {coverage:.3f} below threshold {thresholds.min_coverage:.3f}")
         reason_codes.append("coverage_below_threshold")
     if not monotonic:
         warnings.append("Non-monotonic word sequence detected")
@@ -328,18 +326,12 @@ def compute_qc(
             f"{thresholds.max_duration_delta_ratio:.3f}"
         )
         reason_codes.append("duration_mismatch")
-    if (
-        median_confidence is not None
-        and median_confidence < thresholds.min_median_confidence
-    ):
+    if median_confidence is not None and median_confidence < thresholds.min_median_confidence:
         warnings.append(
             f"Median confidence {median_confidence:.3f} below {thresholds.min_median_confidence:.3f}"
         )
         reason_codes.append("median_confidence_low")
-    if (
-        lexical_match_ratio is not None
-        and lexical_match_ratio < thresholds.min_lexical_match_ratio
-    ):
+    if lexical_match_ratio is not None and lexical_match_ratio < thresholds.min_lexical_match_ratio:
         warnings.append(
             f"Lexical match ratio {lexical_match_ratio:.3f} below {thresholds.min_lexical_match_ratio:.3f}"
         )

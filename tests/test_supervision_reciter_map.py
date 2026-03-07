@@ -20,13 +20,18 @@ def test_catalog_override_respected(tmp_path) -> None:
     catalog_path.write_bytes(
         orjson.dumps(
             {
-                "configured_reciters": [
+                "reciters": [
                     {
-                        "manifest_reciter_id": "foo_reciter",
+                        "slug": "foo_reciter",
                         "enabled": True,
-                        "qcom_word_supervision_supported": True,
-                        "everyayah": {"subfolder": "Foo_64kbps"},
-                        "quran_com": {"recitation_id": 99},
+                        "capabilities": {
+                            "ayah_by_ayah": True,
+                            "word_by_word": True,
+                        },
+                        "source": {
+                            "everyayah": {"subfolder": "Foo_64kbps"},
+                            "quran_com": {"recitation_id": 99},
+                        },
                     }
                 ]
             }

@@ -1,0 +1,28 @@
+{
+  "name": "quran-audio-data",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Batch Quran recitation timing extraction CLI.",
+  "keywords": [],
+  "homepage": "https://github.com/spa5k/quran-word-sync#readme",
+  "bugs": {
+    "url": "https://github.com/spa5k/quran-word-sync/issues"
+  },
+  "license": "ISC",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spa5k/quran-word-sync.git"
+  },
+  "scripts": {
+    "fmt": "npm run fmt:js && npm run fmt:py",
+    "fmt:check": "npm run fmt:check:js && npm run fmt:check:py",
+    "fmt:js": "oxfmt .",
+    "fmt:check:js": "oxfmt --check .",
+    "fmt:py": "uv run --with ruff ruff format .",
+    "fmt:check:py": "uv run --with ruff ruff format --check ."
+  },
+  "devDependencies": {
+    "oxfmt": "^0.36.0"
+  }
+}

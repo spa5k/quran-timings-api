@@ -79,7 +79,11 @@ def interpolate_slot(
     if next_i is not None:
         right = predicted_words[matched_idx[next_i]].start_s
     else:
-        right = max(audio_duration_s, predicted_words[-1].end_s) if predicted_words else audio_duration_s
+        right = (
+            max(audio_duration_s, predicted_words[-1].end_s)
+            if predicted_words
+            else audio_duration_s
+        )
 
     if prev_i is not None and next_i is not None:
         gap_count = max(1, next_i - prev_i - 1)

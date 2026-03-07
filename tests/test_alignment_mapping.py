@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from quran_audio_data.alignment.mapping import MappingConfig, map_canonical_words, to_prediction_spans
+from quran_audio_data.alignment.mapping import (
+    MappingConfig,
+    map_canonical_words,
+    to_prediction_spans,
+)
 from quran_audio_data.text.quran_text import CanonicalWord, normalize_arabic
 
 

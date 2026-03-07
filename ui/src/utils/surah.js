@@ -123,4 +123,3 @@ export function formatSurahLabel(surahNumber) {
   }
   return name ? `${num} \u00b7 ${name}` : `${num}`;
 }
-

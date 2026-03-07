@@ -78,7 +78,11 @@ def derive_ayahs_from_words_with_engine_sources(
 
     ayahs: list[AyahTiming] = []
     for (surah, ayah), group in sorted(grouped.items(), key=lambda item: (item[0][0], item[0][1])):
-        source = source_by_ayah.get(ayah, default_source) if source_by_ayah is not None else default_source
+        source = (
+            source_by_ayah.get(ayah, default_source)
+            if source_by_ayah is not None
+            else default_source
+        )
         ayahs.append(
             AyahTiming(
                 surah=surah,

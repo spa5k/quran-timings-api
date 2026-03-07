@@ -11,7 +11,9 @@ from quran_audio_data.core.parsing import parse_csv_ints, parse_csv_strings
 
 
 def main() -> None:
-    parser = ArgumentParser(description="Build benchmark manifest + reference templates from Quran.com and EveryAyah")
+    parser = ArgumentParser(
+        description="Build benchmark manifest + reference templates from Quran.com and EveryAyah"
+    )
     parser.add_argument("--out-dir", default="benchmarks/generated")
     parser.add_argument("--count", type=int, default=200)
     parser.add_argument("--surahs", default=None)

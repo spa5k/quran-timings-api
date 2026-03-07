@@ -108,19 +108,27 @@ def _expected_output_name(row: JobRow) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run a full from-scratch UI timing refresh one row at a time.")
+    parser = argparse.ArgumentParser(
+        description="Run a full from-scratch UI timing refresh one row at a time."
+    )
     parser.add_argument("--repo-root", default=".", help="Repository root path")
     parser.add_argument(
         "--catalog",
         default="ui/public/data/catalog.json",
         help="UI catalog path used to enumerate reciter/surah rows",
     )
-    parser.add_argument("--out-dir", default="runs/ui_refresh_from_scratch", help="Output run directory")
-    parser.add_argument("--cache-dir", default=".cache/timings_from_scratch", help="Fresh cache directory")
+    parser.add_argument(
+        "--out-dir", default="runs/ui_refresh_from_scratch", help="Output run directory"
+    )
+    parser.add_argument(
+        "--cache-dir", default=".cache/timings_from_scratch", help="Fresh cache directory"
+    )
     parser.add_argument("--accuracy-mode", default="strict", choices=["standard", "strict"])
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda"])
     parser.add_argument("--no-remote", action="store_true", default=True)
-    parser.add_argument("--keep-remote", action="store_true", help="Allow remote existing timing resolver")
+    parser.add_argument(
+        "--keep-remote", action="store_true", help="Allow remote existing timing resolver"
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()

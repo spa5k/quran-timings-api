@@ -31,7 +31,7 @@ export default function WordInspector({
       <header className="inspector__head">
         <div className="inspector__title">
           <h2 className="inspector__h">
-            Word Inspector {focusedAyah ? `(Ayah ${focusedAyah})` : ""}
+            Word Timeline {focusedAyah ? `(Ayah ${focusedAyah})` : ""}
           </h2>
           <div className="inspector__meta">
             <span className="tag tag--mono">{words.length} words</span>
@@ -41,13 +41,11 @@ export default function WordInspector({
                 checked={onlyWithSource}
                 onChange={(event) => setOnlyWithSource(event.target.checked)}
               />
-              <span>Only w/ source</span>
+              <span>Only with source times</span>
             </label>
           </div>
         </div>
-        {sourceTimingNote ? (
-          <p className="inspector__note">{sourceTimingNote}</p>
-        ) : null}
+        {sourceTimingNote ? <p className="inspector__note">{sourceTimingNote}</p> : null}
       </header>
 
       <div className="inspector__scroll" role="list">
@@ -75,13 +73,13 @@ export default function WordInspector({
                     {word.text_uthmani}
                   </span>
                   <span className="wrow__badge" aria-hidden={!isActive}>
-                    {isActive ? "LIVE" : ""}
+                    {isActive ? "PLAYING" : ""}
                   </span>
                 </div>
 
                 <div className={`wrow__times ${hasSrc ? "has-ref" : ""}`}>
-                  <div className="wrow__line">
-                    <span className="wrow__k">Our</span>
+                  <div className={`wrow__line ${hasSrc ? "" : "wrow__line--solo"}`}>
+                    {hasSrc ? <span className="wrow__k">API</span> : null}
                     <span className="wrow__v">
                       {formatStamp(word.start_s)} <span aria-hidden="true">→</span>{" "}
                       {formatStamp(word.end_s)}
@@ -90,14 +88,14 @@ export default function WordInspector({
 
                   {hasSrc ? (
                     <div className="wrow__line wrow__line--ref">
-                      <span className="wrow__k">Src</span>
+                      <span className="wrow__k">Ref</span>
                       <span className="wrow__v">
                         {formatStamp(srcStart)} <span aria-hidden="true">→</span>{" "}
                         {formatStamp(srcEnd)}
                       </span>
                       <span className="wrow__delta">
-                        Δs {formatDeltaMs((word.start_s - word.source_start_s) * 1000)}{" "}
-                        | Δe {formatDeltaMs((word.end_s - word.source_end_s) * 1000)}
+                        Δs {formatDeltaMs((word.start_s - word.source_start_s) * 1000)} | Δe{" "}
+                        {formatDeltaMs((word.end_s - word.source_end_s) * 1000)}
                       </span>
                     </div>
                   ) : null}
@@ -108,8 +106,8 @@ export default function WordInspector({
         ) : (
           <div className="empty">
             {onlyWithSource
-              ? "No words with source timestamps in this ayah."
-              : "Select an ayah to inspect its words."}
+              ? "No source-backed words in this ayah."
+              : "Choose an ayah to inspect word timings."}
           </div>
         )}
       </div>

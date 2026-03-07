@@ -6,20 +6,26 @@ function clamp(value, min, max) {
 }
 
 export default function TransportCard({
-  audioKey,
   audioSrc,
   audioRef,
   isTimingLoading,
   isPlaying,
   currentTime,
   durationS,
+  isAyahByAyah,
+  hasPrevAyah,
+  hasNextAyah,
+  shouldHighlightNextAyah,
   hasTimingData,
+  hasSegmentPlayback,
+  onTogglePlayback,
   onSeek,
-  onPlayFullSurah,
-  onPlayActiveAyah,
   onPlayActiveWord,
+  onPlayPrevAyah,
+  onPlayNextAyah,
   onStop,
 }) {
+  const hasAudio = Boolean(audioSrc);
   const safeDuration = Number.isFinite(durationS) && durationS > 0 ? durationS : 0;
   const safeTime = Number.isFinite(currentTime) ? currentTime : 0;
   const progressPct = safeDuration > 0 ? (safeTime / safeDuration) * 100 : 0;
@@ -33,42 +39,36 @@ export default function TransportCard({
   }, [progressPct]);
 
   return (
-    <section className="transport" aria-label="Playback controls">
+    <section className="transport" aria-label="Playback transport">
       <header className="transport__head">
         <div className="transport__title">
-          <div className="transport__kicker">Transport</div>
+          <div className="transport__kicker">Playback</div>
           <h2 className="transport__h">
-            {isTimingLoading ? "Syncing timing payload..." : "Playback Desk"}
+            {isTimingLoading ? "Loading timings and audio..." : "Ayah Playback"}
           </h2>
         </div>
         <div className="transport__dial" style={dialStyle} aria-hidden="true">
           <div className="transport__dialInner">
             <div className="transport__dialTime">{formatStamp(safeTime)}</div>
-            <div className="transport__dialSub">
-              {isPlaying ? "LIVE" : "HOLD"}
-            </div>
+            <div className="transport__dialSub">{isPlaying ? "PLAY" : "PAUSED"}</div>
           </div>
         </div>
       </header>
 
       <div className="transport__card">
         <audio
-          key={audioKey}
           ref={audioRef}
-          controls
-          preload="metadata"
-          src={audioSrc ?? ""}
-          className="transport__audio"
+          aria-hidden="true"
+          tabIndex={-1}
+          preload="auto"
+          className="transport__audio transport__audio--hidden"
         />
 
         <div className="transport__scrub">
           <label className="transport__scrubLabel" htmlFor="scrub">
-            <span className="transport__scrubText">
-              {dragging ? "Scrub" : "Position"}
-            </span>
+            <span className="transport__scrubText">{dragging ? "Seek" : "Timeline"}</span>
             <span className="transport__scrubValue">
-              {formatStamp(dragging ? draftTime : safeTime)} /{" "}
-              {formatStamp(safeDuration)}
+              {formatStamp(dragging ? draftTime : safeTime)} / {formatStamp(safeDuration)}
             </span>
           </label>
           <input
@@ -79,7 +79,7 @@ export default function TransportCard({
             max={safeDuration || 1}
             step={0.01}
             value={dragging ? draftTime : safeTime}
-            disabled={!audioSrc}
+            disabled={!hasAudio}
             onPointerDown={() => {
               setDragging(true);
               setDraftTime(safeTime);
@@ -114,26 +114,38 @@ export default function TransportCard({
           <button
             type="button"
             className="btn btn--primary"
-            onClick={onPlayFullSurah}
-            disabled={!audioSrc}
+            onClick={onTogglePlayback}
+            disabled={!hasSegmentPlayback}
           >
-            Full Surah
+            {isPlaying ? "Pause" : "Play"}
           </button>
+          {isAyahByAyah ? (
+            <>
+              <button
+                type="button"
+                className="btn btn--ghost"
+                onClick={onPlayPrevAyah}
+                disabled={!hasPrevAyah}
+              >
+                Prev Ayah
+              </button>
+              <button
+                type="button"
+                className={`btn btn--ghost ${shouldHighlightNextAyah ? "btn--nudge" : ""}`}
+                onClick={onPlayNextAyah}
+                disabled={!hasNextAyah}
+              >
+                Next Ayah
+              </button>
+            </>
+          ) : null}
           <button
             type="button"
-            className="btn btn--ink"
-            onClick={onPlayActiveAyah}
-            disabled={!hasTimingData}
-          >
-            Active Ayah
-          </button>
-          <button
-            type="button"
-            className="btn btn--ink"
+            className="btn btn--ghost"
             onClick={onPlayActiveWord}
-            disabled={!hasTimingData}
+            disabled={!hasTimingData || !hasSegmentPlayback}
           >
-            Active Word
+            Play Word
           </button>
           <span className="transport__spacer" />
           <button
@@ -145,6 +157,11 @@ export default function TransportCard({
             Stop
           </button>
         </div>
+        {isAyahByAyah && shouldHighlightNextAyah ? (
+          <p className="transport__hint">
+            Ayah ended. Tap <strong>Next Ayah</strong> to continue.
+          </p>
+        ) : null}
       </div>
     </section>
   );

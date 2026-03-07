@@ -321,8 +321,7 @@ def _build_everyayah_surah_audio(
     }
     timeline_path.write_bytes(orjson.dumps(timeline_payload, option=orjson.OPT_INDENT_2))
     bounds = {
-        int(item["ayah"]): (float(item["start_s"]), float(item["end_s"]))
-        for item in ayah_meta
+        int(item["ayah"]): (float(item["start_s"]), float(item["end_s"])) for item in ayah_meta
     }
     return PreparedSurahAudio(
         source_url=f"everyayah:subfolder={subfolder}:surah={surah}:scope=full_surah",
@@ -334,10 +333,7 @@ def _build_everyayah_surah_audio(
 
 def _concat_mp3_files(*, ayah_paths: list[Path], output_path: Path) -> None:
     concat_manifest = output_path.parent / f"{output_path.stem}_concat.txt"
-    lines = [
-        "file '" + str(path.resolve()).replace("'", "'\\''") + "'"
-        for path in ayah_paths
-    ]
+    lines = ["file '" + str(path.resolve()).replace("'", "'\\''") + "'" for path in ayah_paths]
     concat_manifest.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     try:
@@ -563,7 +559,9 @@ def _evaluate_ayah_timing_against_reference(
         "boundary_hit_rate_50ms": round(_hit_rate(boundary_errors_ms, 50.0), 6),
         "boundary_hit_rate_80ms": round(_hit_rate(boundary_errors_ms, 80.0), 6),
         "start_offset_s": round(offset_s, 6),
-        "offset_normalized_boundary_error_median_ms": round(float(statistics.median(normalized_errors_ms)), 3),
+        "offset_normalized_boundary_error_median_ms": round(
+            float(statistics.median(normalized_errors_ms)), 3
+        ),
         "offset_normalized_boundary_error_p95_ms": round(_percentile(normalized_errors_ms, 95), 3),
         "offset_normalized_hit_rate_20ms": round(_hit_rate(normalized_errors_ms, 20.0), 6),
         "offset_normalized_hit_rate_50ms": round(_hit_rate(normalized_errors_ms, 50.0), 6),

@@ -92,9 +92,7 @@ def ensure_wav_16k_mono(path: str | Path) -> Path:
 
     ffmpeg = shutil.which("ffmpeg")
     if ffmpeg is None:
-        raise PipelineError(
-            "ffmpeg is required for converting input audio to mono WAV 16k."
-        )
+        raise PipelineError("ffmpeg is required for converting input audio to mono WAV 16k.")
 
     tmp_dir = Path(tempfile.mkdtemp(prefix="qad_audio_"))
     dst = tmp_dir / f"{src.stem}_16k_mono.wav"
@@ -149,12 +147,17 @@ def refine_word_boundaries(
             hop = max(1, int(sample_rate * 0.005))
             frame = max(hop * 2, int(sample_rate * 0.02))
             rms = librosa.feature.rms(y=audio_f32, frame_length=frame, hop_length=hop)[0]
-            frame_times = librosa.frames_to_time(np.arange(len(rms)), sr=sample_rate, hop_length=hop)
+            frame_times = librosa.frames_to_time(
+                np.arange(len(rms)), sr=sample_rate, hop_length=hop
+            )
             max_shift = max(max_shift_s, 0.01)
 
             def snap(ts: float) -> float:
                 left = max(0, int(np.searchsorted(frame_times, ts - max_shift, side="left")))
-                right = min(len(frame_times), int(np.searchsorted(frame_times, ts + max_shift, side="right")))
+                right = min(
+                    len(frame_times),
+                    int(np.searchsorted(frame_times, ts + max_shift, side="right")),
+                )
                 if right <= left:
                     return ts
                 region = rms[left:right]
@@ -164,7 +167,9 @@ def refine_word_boundaries(
                 snapped = float(frame_times[left + offset])
                 return max(0.0, snapped)
 
-            return _finalize_refined_words(words=words, snap=snap, min_duration_s=min_duration_s), "librosa"
+            return _finalize_refined_words(
+                words=words, snap=snap, min_duration_s=min_duration_s
+            ), "librosa"
         except Exception:
             pass
 
@@ -309,6 +314,7 @@ def cut_audio_chunk(
     proc = subprocess.run(cmd, capture_output=True, text=True)
     if proc.returncode != 0:
         raise PipelineError(f"ffmpeg chunk extraction failed: {proc.stderr.strip()}")
+
 
 __all__ = [
     "probe_audio",

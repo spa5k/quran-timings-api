@@ -530,7 +530,11 @@ def _load_supervision_context(*, row: ManifestRow, enable_remote: bool) -> Super
                 f"everyayah:subfolder={mapping.everyayah_subfolder}:surah={row.surah}:scope=full_surah"
             )
 
-    if not enable_remote or not mapping.qcom_word_supervision_supported or mapping.qcom_recitation_id is None:
+    if (
+        not enable_remote
+        or not mapping.qcom_word_supervision_supported
+        or mapping.qcom_recitation_id is None
+    ):
         return SupervisionContext(
             sources=sources,
             segment_source_type=segment_source_type,
@@ -561,7 +565,9 @@ def _load_supervision_context(*, row: ManifestRow, enable_remote: bool) -> Super
                 row.surah,
                 include_segments=True,
             )
-            audio_file = chapter_payload.get("audio_file") if isinstance(chapter_payload, dict) else None
+            audio_file = (
+                chapter_payload.get("audio_file") if isinstance(chapter_payload, dict) else None
+            )
             timestamps = audio_file.get("timestamps") if isinstance(audio_file, dict) else None
             observed_shape = "unknown"
             if isinstance(timestamps, list):
@@ -576,7 +582,9 @@ def _load_supervision_context(*, row: ManifestRow, enable_remote: bool) -> Super
                         ayah = int(ayah_str)
                     except ValueError:
                         continue
-                    raw_segments = item.get("segments") if isinstance(item.get("segments"), list) else None
+                    raw_segments = (
+                        item.get("segments") if isinstance(item.get("segments"), list) else None
+                    )
                     if observed_shape == "unknown" and isinstance(raw_segments, list):
                         for raw in raw_segments:
                             if not isinstance(raw, list):
@@ -609,7 +617,9 @@ def _load_supervision_context(*, row: ManifestRow, enable_remote: bool) -> Super
     )
 
 
-def _apply_supervision_to_words(*, words: list[WordTiming], supervision: SupervisionContext) -> list[WordTiming]:
+def _apply_supervision_to_words(
+    *, words: list[WordTiming], supervision: SupervisionContext
+) -> list[WordTiming]:
     source_provider = "quran_com" if supervision.segment_source_type.startswith("qcom_") else "none"
     return apply_supervision_overlay(
         words=words,
@@ -743,10 +753,7 @@ def _align_with_engine(
     return (
         AlignmentOutput(
             ayahs=output.ayahs,
-            words=[
-                word.model_copy(update={"engine_candidate": "mfa"})
-                for word in output.words
-            ],
+            words=[word.model_copy(update={"engine_candidate": "mfa"}) for word in output.words],
             engine_name="mfa",
             engine_model=output.engine_model,
             device=output.device,

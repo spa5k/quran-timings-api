@@ -281,7 +281,12 @@ def _extract_mfa_words(payload: Any) -> list[tuple[str, float, float]]:
                             begin_f = to_float(entry[0])
                             end_f = to_float(entry[1])
                             label = str(entry[2]).strip() if entry[2] is not None else ""
-                            if label and label != "<eps>" and begin_f is not None and end_f is not None:
+                            if (
+                                label
+                                and label != "<eps>"
+                                and begin_f is not None
+                                and end_f is not None
+                            ):
                                 words.append((label, begin_f, end_f))
 
             label = node.get("label") or node.get("text") or node.get("word")

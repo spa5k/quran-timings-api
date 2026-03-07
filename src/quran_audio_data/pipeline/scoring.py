@@ -23,7 +23,9 @@ def score_words_slice(words: list[WordTiming], expected_count: int) -> float:
         (sum(lexical_scores) / len(lexical_scores)) / 100.0 if lexical_scores else 0.0
     )
     confidence_scores = [word.confidence for word in words if word.confidence is not None]
-    confidence_component = sum(confidence_scores) / len(confidence_scores) if confidence_scores else 0.0
+    confidence_component = (
+        sum(confidence_scores) / len(confidence_scores) if confidence_scores else 0.0
+    )
 
     score = 100.0
     score += count_ratio * 25.0
@@ -170,10 +172,7 @@ def select_best_result_per_ayah(
 
         selected_sources[ayah] = "fallback" if best_engine == "whisperx" else "aligned"
         selected_words.extend(
-            [
-                word.model_copy(update={"engine_candidate": best_engine})
-                for word in best_slice
-            ]
+            [word.model_copy(update={"engine_candidate": best_engine}) for word in best_slice]
         )
 
     selected_words.sort(key=lambda word: word.word_index_global)
@@ -196,6 +195,7 @@ def select_best_result_per_ayah(
         thresholds=thresholds,
         candidate_scores=candidate_scores,
     )
+
 
 __all__ = [
     "score_words_slice",

@@ -28,19 +28,17 @@ export default function Masthead({
     <header className="mast">
       <div className="mast__brand">
         <div className="mast__seal" aria-hidden="true">
-          QAD
+          QTA
         </div>
         <div className="mast__title">
-          <p className="mast__kicker">Quran Audio Data</p>
-          <h1 className="mast__h">Timing Desk</h1>
-          <p className="mast__sub">
-            A split-view workbench for ayah and word alignment timing.
-          </p>
+          <p className="mast__kicker">spa5k/quran-timings-api</p>
+          <h1 className="mast__h">Quran Timings Desk</h1>
+          <p className="mast__sub">Inspect ayah and word timings, drift, and endpoint payloads.</p>
         </div>
       </div>
 
       <div className="mast__bar" aria-label="Selection controls">
-        <Field label="Recitation" id="reciter-select">
+        <Field label="Reciter" id="reciter-select">
           <select
             id="reciter-select"
             className="select"
@@ -88,7 +86,7 @@ export default function Masthead({
 
       <div className="mast__chips" aria-live="polite">
         <span className="chip chip--paper">Surah {currentSurahLabel}</span>
-        <span className="chip chip--paper">Source: {sourceLabel ?? "None"}</span>
+        <span className="chip chip--paper">Reference: {sourceLabel ?? "None"}</span>
         <span className={`chip ${isPlaying ? "chip--live" : "chip--idle"}`}>
           {isPlaying ? "Playing" : "Paused"}
         </span>

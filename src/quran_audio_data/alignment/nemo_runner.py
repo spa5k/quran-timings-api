@@ -34,7 +34,9 @@ def parse_args() -> argparse.Namespace:
         description="Run NeMo CTC forced alignment and emit word timestamps."
     )
     parser.add_argument("--audio", required=True, help="Path to WAV audio (16k mono recommended)")
-    parser.add_argument("--transcript", required=True, help="Path to reference transcript text file")
+    parser.add_argument(
+        "--transcript", required=True, help="Path to reference transcript text file"
+    )
     parser.add_argument("--model", required=True, help="NeMo pretrained model name")
     parser.add_argument("--device", default="auto", choices=["auto", "cpu", "cuda"])
     parser.add_argument("--out", required=True, help="Output JSON path")
@@ -318,7 +320,9 @@ def map_reference_words(
     audio_duration_s: float,
 ) -> list[dict[str, Any]]:
     if not predicted_words:
-        return build_uniform_words(transcript_words=transcript_words, audio_duration_s=audio_duration_s)
+        return build_uniform_words(
+            transcript_words=transcript_words, audio_duration_s=audio_duration_s
+        )
 
     canonical_words = [
         CanonicalWord(
@@ -364,7 +368,9 @@ def map_reference_words(
     ]
 
 
-def build_uniform_words(*, transcript_words: list[str], audio_duration_s: float) -> list[dict[str, Any]]:
+def build_uniform_words(
+    *, transcript_words: list[str], audio_duration_s: float
+) -> list[dict[str, Any]]:
     total = max(1, len(transcript_words))
     slot = audio_duration_s / total if audio_duration_s > 0 else 0.0
     rows: list[dict[str, Any]] = []

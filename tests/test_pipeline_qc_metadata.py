@@ -24,7 +24,15 @@ def _write_manifest(path: Path, audio_path: Path) -> None:
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(
             fh,
-            fieldnames=["audio_path", "reciter_id", "surah", "ayah", "source_url", "sha256", "language"],
+            fieldnames=[
+                "audio_path",
+                "reciter_id",
+                "surah",
+                "ayah",
+                "source_url",
+                "sha256",
+                "language",
+            ],
         )
         writer.writeheader()
         writer.writerow(

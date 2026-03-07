@@ -1,1614 +1,722 @@
 {
-  "version": 1,
-  "updated_at": "2026-03-06T09:04:44.246780+00:00",
+  "schema_version": "v1",
+  "generated_at": "2026-03-06T19:05:21.460674+00:00",
+  "counts": {
+    "everyayah_source_reciters": 79,
+    "quran_com_source_reciters": 12,
+    "configured_reciters": 6,
+    "enabled_reciters": 6
+  },
+  "sources": {
+    "everyayah_catalog_url": "https://everyayah.com/data/recitations.js",
+    "quran_com_recitations_url": "https://api.quran.com/api/v4/resources/recitations?language=en"
+  },
   "reciters": [
     {
-      "id": "everyayah_abdul_basit_mujawwad_128kbps",
-      "name": "Abdul Basit Mujawwad",
-      "source": "everyayah",
-      "notes": "everyayah_key=3; subfolder=Abdul_Basit_Mujawwad_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "slug": "eya_nasser_alqatami",
+      "name": "eya_nasser_alqatami",
+      "enabled": true,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [90, 110, 111, 112, 113, 114],
+      "surah_count": 6,
+      "endpoints": {
+        "metadata": "/data/reciters/eya_nasser_alqatami/metadata.json"
+      }
     },
     {
-      "id": "everyayah_abdul_basit_murattal_192kbps",
-      "name": "Abdul Basit Murattal",
-      "source": "everyayah",
-      "notes": "everyayah_key=2; subfolder=Abdul_Basit_Murattal_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "slug": "eya_salah_al_budair",
+      "name": "eya_salah_al_budair",
+      "enabled": true,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [90, 110, 111, 112, 113, 114],
+      "surah_count": 6,
+      "endpoints": {
+        "metadata": "/data/reciters/eya_salah_al_budair/metadata.json"
+      }
     },
     {
-      "id": "everyayah_abdul_basit_murattal_64kbps",
-      "name": "Abdul Basit Murattal",
-      "source": "everyayah",
-      "notes": "everyayah_key=1; subfolder=Abdul_Basit_Murattal_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdullaah_3awwaad_al_juhaynee_128kbps",
-      "name": "Abdullaah 3awwaad Al-Juhaynee",
-      "source": "everyayah",
-      "notes": "everyayah_key=53; subfolder=Abdullaah_3awwaad_Al-Juhaynee_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdullah_basfar_192kbps",
-      "name": "Abdullah Basfar",
-      "source": "everyayah",
-      "notes": "everyayah_key=6; subfolder=Abdullah_Basfar_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdullah_basfar_32kbps",
-      "name": "Abdullah Basfar",
-      "source": "everyayah",
-      "notes": "everyayah_key=4; subfolder=Abdullah_Basfar_32kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdullah_basfar_64kbps",
-      "name": "Abdullah Basfar",
-      "source": "everyayah",
-      "notes": "everyayah_key=5; subfolder=Abdullah_Basfar_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdullah_matroud_128kbps",
-      "name": "Abdullah Matroud",
-      "source": "everyayah",
-      "notes": "everyayah_key=55; subfolder=Abdullah_Matroud_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdulsamad_64kbps_quranexplorer_com",
-      "name": "AbdulSamad QuranExplorer.Com",
-      "source": "everyayah",
-      "notes": "everyayah_key=9; subfolder=AbdulSamad_64kbps_QuranExplorer.Com",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdurrahmaan_as_sudais_192kbps",
-      "name": "Abdurrahmaan As-Sudais",
-      "source": "everyayah",
-      "notes": "everyayah_key=8; subfolder=Abdurrahmaan_As-Sudais_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abdurrahmaan_as_sudais_64kbps",
-      "name": "Abdurrahmaan As-Sudais",
-      "source": "everyayah",
-      "notes": "everyayah_key=7; subfolder=Abdurrahmaan_As-Sudais_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abu_bakr_ash_shaatree_128kbps",
-      "name": "Abu Bakr Ash-Shaatree",
-      "source": "everyayah",
-      "notes": "everyayah_key=11; subfolder=Abu_Bakr_Ash-Shaatree_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_abu_bakr_ash_shaatree_64kbps",
-      "name": "Abu Bakr Ash-Shaatree",
-      "source": "everyayah",
-      "notes": "everyayah_key=10; subfolder=Abu_Bakr_Ash-Shaatree_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ahmed_ibn_ali_al_ajamy_128kbps",
-      "name": "Ahmed Ibn Ali Al Ajamy",
-      "source": "everyayah",
-      "notes": "everyayah_key=71; subfolder=ahmed_ibn_ali_al_ajamy_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ahmed_ibn_ali_al_ajamy_128kbps_ketaballah_net",
-      "name": "Ahmed ibn Ali al-Ajamy KetabAllah.Net",
-      "source": "everyayah",
-      "notes": "everyayah_key=13; subfolder=Ahmed_ibn_Ali_al-Ajamy_128kbps_ketaballah.net",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ahmed_ibn_ali_al_ajamy_64kbps_quranexplorer_com",
-      "name": "Ahmed ibn Ali al-Ajamy QuranExplorer.Com",
-      "source": "everyayah",
-      "notes": "everyayah_key=12; subfolder=Ahmed_ibn_Ali_al-Ajamy_64kbps_QuranExplorer.Com",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ahmed_neana_128kbps",
-      "name": "Ahmed Neana",
-      "source": "everyayah",
-      "notes": "everyayah_key=56; subfolder=Ahmed_Neana_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_akram_alalaqimy_128kbps",
-      "name": "Akram Al Alaqimy",
-      "source": "everyayah",
-      "notes": "everyayah_key=75; subfolder=Akram_AlAlaqimy_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_alafasy_128kbps",
-      "name": "Alafasy",
-      "source": "everyayah",
-      "notes": "everyayah_key=15; subfolder=Alafasy_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_alafasy_64kbps",
-      "name": "Alafasy",
-      "source": "everyayah",
-      "notes": "everyayah_key=14; subfolder=Alafasy_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ali_hajjaj_alsuesy_128kbps",
-      "name": "Ali_Hajjaj_AlSuesy",
-      "source": "everyayah",
-      "notes": "everyayah_key=69; subfolder=Ali_Hajjaj_AlSuesy_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ali_jaber_64kbps",
-      "name": "Ali Jaber",
-      "source": "everyayah",
-      "notes": "everyayah_key=76; subfolder=Ali_Jaber_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ayman_sowaid_64kbps",
-      "name": "Ayman Sowaid",
-      "source": "everyayah",
-      "notes": "everyayah_key=79; subfolder=Ayman_Sowaid_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_aziz_alili_128kbps",
-      "name": "Aziz Alili",
-      "source": "everyayah",
-      "notes": "everyayah_key=73; subfolder=aziz_alili_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_english_sahih_intnl_ibrahim_walk_192kbps",
-      "name": "(English) Translated by Sahih International Recited by Ibrahim Walk",
-      "source": "everyayah",
-      "notes": "everyayah_key=45; subfolder=English/Sahih_Intnl_Ibrahim_Walk_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_fares_abbad_64kbps",
-      "name": "Fares Abbad",
-      "source": "everyayah",
-      "notes": "everyayah_key=77; subfolder=Fares_Abbad_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ghamadi_40kbps",
-      "name": "Ghamadi",
-      "source": "everyayah",
-      "notes": "everyayah_key=16; subfolder=Ghamadi_40kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_hani_rifai_192kbps",
-      "name": "Hani Rifai",
-      "source": "everyayah",
-      "notes": "everyayah_key=18; subfolder=Hani_Rifai_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_hani_rifai_64kbps",
-      "name": "Hani Rifai",
-      "source": "everyayah",
-      "notes": "everyayah_key=17; subfolder=Hani_Rifai_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_hudhaify_128kbps",
-      "name": "Hudhaify",
-      "source": "everyayah",
-      "notes": "everyayah_key=25; subfolder=Hudhaify_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_hudhaify_32kbps",
-      "name": "Hudhaify",
-      "source": "everyayah",
-      "notes": "everyayah_key=23; subfolder=Hudhaify_32kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_hudhaify_64kbps",
-      "name": "Hudhaify",
-      "source": "everyayah",
-      "notes": "everyayah_key=24; subfolder=Hudhaify_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_husary_128kbps",
-      "name": "Husary",
-      "source": "everyayah",
-      "notes": "everyayah_key=20; subfolder=Husary_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_husary_128kbps_mujawwad",
-      "name": "Husary Mujawwad",
-      "source": "everyayah",
-      "notes": "everyayah_key=22; subfolder=Husary_128kbps_Mujawwad",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_husary_64kbps",
-      "name": "Husary",
-      "source": "everyayah",
-      "notes": "everyayah_key=19; subfolder=Husary_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_husary_muallim_128kbps",
-      "name": "Husary (Muallim)",
-      "source": "everyayah",
-      "notes": "everyayah_key=65; subfolder=Husary_Muallim_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_husary_mujawwad_64kbps",
-      "name": "Husary Mujawwad",
-      "source": "everyayah",
-      "notes": "everyayah_key=21; subfolder=Husary_Mujawwad_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ibrahim_akhdar_32kbps",
-      "name": "Ibrahim Akhdar",
-      "source": "everyayah",
-      "notes": "everyayah_key=26; subfolder=Ibrahim_Akhdar_32kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_ibrahim_akhdar_64kbps",
-      "name": "Ibrahim Akhdar",
-      "source": "everyayah",
-      "notes": "everyayah_key=27; subfolder=Ibrahim_Akhdar_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_karim_mansoori_40kbps",
-      "name": "Karim Mansoori (Iran)",
-      "source": "everyayah",
-      "notes": "everyayah_key=64; subfolder=Karim_Mansoori_40kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_khaalid_abdullaah_al_qahtaanee_192kbps",
-      "name": "Khalid Abdullah al-Qahtanee",
-      "source": "everyayah",
-      "notes": "everyayah_key=66; subfolder=Khaalid_Abdullaah_al-Qahtaanee_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_khalefa_al_tunaiji_64kbps",
-      "name": "Khalefa Al-Tunaiji",
-      "source": "everyayah",
-      "notes": "everyayah_key=58; subfolder=khalefa_al_tunaiji_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_maher_almuaiqly_64kbps",
-      "name": "Maher Al Muaiqly",
-      "source": "everyayah",
-      "notes": "everyayah_key=28; subfolder=Maher_AlMuaiqly_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_maheralmuaiqly128kbps",
-      "name": "Maher Al Muaiqly",
-      "source": "everyayah",
-      "notes": "everyayah_key=29; subfolder=MaherAlMuaiqly128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_mahmoud_ali_al_banna_32kbps",
-      "name": "Mahmoud Ali Al-Banna",
-      "source": "everyayah",
-      "notes": "everyayah_key=59; subfolder=mahmoud_ali_al_banna_32kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_menshawi_16kbps",
-      "name": "Menshawi",
-      "source": "everyayah",
-      "notes": "everyayah_key=30; subfolder=Menshawi_16kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_menshawi_32kbps",
-      "name": "Menshawi",
-      "source": "everyayah",
-      "notes": "everyayah_key=31; subfolder=Menshawi_32kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_minshawy_mujawwad_192kbps",
-      "name": "Minshawy Mujawwad",
-      "source": "everyayah",
-      "notes": "everyayah_key=33; subfolder=Minshawy_Mujawwad_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_minshawy_mujawwad_64kbps",
-      "name": "Minshawy Mujawwad",
-      "source": "everyayah",
-      "notes": "everyayah_key=32; subfolder=Minshawy_Mujawwad_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_minshawy_murattal_128kbps",
-      "name": "Minshawy Murattal",
-      "source": "everyayah",
-      "notes": "everyayah_key=34; subfolder=Minshawy_Murattal_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_mohammad_al_tablaway_128kbps",
-      "name": "Mohammad al Tablaway",
-      "source": "everyayah",
-      "notes": "everyayah_key=36; subfolder=Mohammad_al_Tablaway_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_mohammad_al_tablaway_64kbps",
-      "name": "Mohammad al Tablaway",
-      "source": "everyayah",
-      "notes": "everyayah_key=35; subfolder=Mohammad_al_Tablaway_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_muhammad_abdulkareem_128kbps",
-      "name": "Muhammad AbdulKareem",
-      "source": "everyayah",
-      "notes": "everyayah_key=57; subfolder=Muhammad_AbdulKareem_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_muhammad_ayyoub_128kbps",
-      "name": "Muhammad Ayyoub",
-      "source": "everyayah",
-      "notes": "everyayah_key=37; subfolder=Muhammad_Ayyoub_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_muhammad_ayyoub_32kbps",
-      "name": "Muhammad Ayyoub",
-      "source": "everyayah",
-      "notes": "everyayah_key=39; subfolder=Muhammad_Ayyoub_32kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_muhammad_ayyoub_64kbps",
-      "name": "Muhammad Ayyoub",
-      "source": "everyayah",
-      "notes": "everyayah_key=38; subfolder=Muhammad_Ayyoub_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_muhammad_jibreel_128kbps",
-      "name": "Muhammad Jibreel",
-      "source": "everyayah",
-      "notes": "everyayah_key=41; subfolder=Muhammad_Jibreel_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_muhammad_jibreel_64kbps",
-      "name": "Muhammad Jibreel",
-      "source": "everyayah",
-      "notes": "everyayah_key=40; subfolder=Muhammad_Jibreel_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_muhsin_al_qasim_192kbps",
+      "slug": "muhsin_al_qasim",
       "name": "Muhsin Al Qasim",
-      "source": "everyayah",
-      "notes": "everyayah_key=52; subfolder=Muhsin_Al_Qasim_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhsin_Al_Qasim_192kbps",
+          "reciter_key": 52,
+          "name": "Muhsin Al Qasim"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/muhsin_al_qasim/metadata.json"
+      },
+      "surahs_available": [110, 111, 112, 113, 114],
+      "surah_count": 5
     },
     {
-      "id": "everyayah_multilanguage_basfar_walk_192kbps",
-      "name": "MultiLanguage/Basfar Walk",
-      "source": "everyayah",
-      "notes": "everyayah_key=46; subfolder=MultiLanguage/Basfar_Walk_192kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "slug": "qcom_husary",
+      "name": "qcom_husary",
+      "enabled": true,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [90, 110, 111, 112, 113, 114],
+      "surah_count": 6,
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_husary/metadata.json"
+      }
     },
     {
-      "id": "everyayah_mustafa_ismail_48kbps",
-      "name": "Mustafa Ismail",
-      "source": "everyayah",
-      "notes": "everyayah_key=42; subfolder=Mustafa_Ismail_48kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "slug": "qcom_mishari_alafasy",
+      "name": "qcom_mishari_alafasy",
+      "enabled": true,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [90, 110, 111, 112, 113, 114],
+      "surah_count": 6,
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_mishari_alafasy/metadata.json"
+      }
     },
     {
-      "id": "everyayah_nasser_alqatami_128kbps",
-      "name": "Nasser_Alqatami",
-      "source": "everyayah",
-      "notes": "everyayah_key=68; subfolder=Nasser_Alqatami_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_parhizgar_48kbps",
-      "name": "Parhizgar_64Kbps",
-      "source": "everyayah",
-      "notes": "everyayah_key=49; subfolder=Parhizgar_48kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_sahl_yassin_128kbps",
-      "name": "Sahl_Yassin",
-      "source": "everyayah",
-      "notes": "everyayah_key=70; subfolder=Sahl_Yassin_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_salaah_abdulrahman_bukhatir_128kbps",
-      "name": "Salaah AbdulRahman Bukhatir",
-      "source": "everyayah",
-      "notes": "everyayah_key=51; subfolder=Salaah_AbdulRahman_Bukhatir_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_salah_al_budair_128kbps",
-      "name": "Salah Al Budair",
-      "source": "everyayah",
-      "notes": "everyayah_key=54; subfolder=Salah_Al_Budair_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_saood_ash_shuraym_128kbps",
-      "name": "Saood bin Ibraaheem Ash-Shuraym",
-      "source": "everyayah",
-      "notes": "everyayah_key=44; subfolder=Saood_ash-Shuraym_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_saood_ash_shuraym_64kbps",
-      "name": "Saood bin Ibraaheem Ash-Shuraym",
-      "source": "everyayah",
-      "notes": "everyayah_key=43; subfolder=Saood_ash-Shuraym_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_translations_azerbaijani_balayev",
-      "name": "Balayev",
-      "source": "everyayah",
-      "notes": "everyayah_key=50; subfolder=translations/azerbaijani/balayev",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_translations_besim_korkut_ajet_po_ajet",
-      "name": "Besim Korkut (Bosnian)",
-      "source": "everyayah",
-      "notes": "everyayah_key=72; subfolder=translations/besim_korkut_ajet_po_ajet",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_translations_fooladvand_hedayatfar_40kbps",
-      "name": "(Persian) Translated by Fooladvand Recited by Hedayatfar",
-      "source": "everyayah",
-      "notes": "everyayah_key=48; subfolder=translations/Fooladvand_Hedayatfar_40Kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_translations_makarem_kabiri_16kbps",
-      "name": "(Persian) Translated by Makarem Recited by Kabiri",
-      "source": "everyayah",
-      "notes": "everyayah_key=47; subfolder=translations/Makarem_Kabiri_16Kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_translations_urdu_farhat_hashmi",
-      "name": "Farhat Hashmi (Urdu word for word translation)",
-      "source": "everyayah",
-      "notes": "everyayah_key=78; subfolder=translations/urdu_farhat_hashmi",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_translations_urdu_shamshad_ali_khan_46kbps",
-      "name": "(Urdu) Shamshad Ali Khan",
-      "source": "everyayah",
-      "notes": "everyayah_key=63; subfolder=translations/urdu_shamshad_ali_khan_46kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_warsh_warsh_abdul_basit_128kbps",
-      "name": "(Warsh) Abdul Basit",
-      "source": "everyayah",
-      "notes": "everyayah_key=62; subfolder=warsh/warsh_Abdul_Basit_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_warsh_warsh_ibrahim_aldosary_128kbps",
-      "name": "(Warsh) Ibrahim Al-Dosary",
-      "source": "everyayah",
-      "notes": "everyayah_key=60; subfolder=warsh/warsh_ibrahim_aldosary_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_warsh_warsh_yassin_al_jazaery_64kbps",
-      "name": "(Warsh) Yassin Al-Jazaery",
-      "source": "everyayah",
-      "notes": "everyayah_key=61; subfolder=warsh/warsh_yassin_al_jazaery_64kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_yaser_salamah_128kbps",
-      "name": "Yaser Salamah",
-      "source": "everyayah",
-      "notes": "everyayah_key=74; subfolder=Yaser_Salamah_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "everyayah_yasser_ad_dussary_128kbps",
+      "slug": "yasser_ad-dussary",
       "name": "Yasser_Ad-Dussary",
-      "source": "everyayah",
-      "notes": "everyayah_key=67; subfolder=Yasser_Ad-Dussary_128kbps",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Yasser_Ad-Dussary_128kbps",
+          "reciter_key": 67,
+          "name": "Yasser_Ad-Dussary"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/yasser_ad-dussary/metadata.json"
+      },
+      "surahs_available": [110, 111, 112, 113, 114],
+      "surah_count": 5
+    }
+  ],
+  "everyayah_reciters": [
+    {
+      "reciter_key": 1,
+      "name": "Abdul Basit Murattal",
+      "subfolder": "Abdul_Basit_Murattal_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quran_com_1",
-      "name": "AbdulBaset AbdulSamad",
-      "source": "quran.com",
-      "notes": "recitation_id=1; reciter_name=AbdulBaset AbdulSamad; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 2,
+      "name": "Abdul Basit Murattal",
+      "subfolder": "Abdul_Basit_Murattal_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quran_com_10",
-      "name": "Sa`ud ash-Shuraym",
-      "source": "quran.com",
-      "notes": "recitation_id=10; reciter_name=Sa`ud ash-Shuraym; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 3,
+      "name": "Abdul Basit Mujawwad",
+      "subfolder": "Abdul_Basit_Mujawwad_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quran_com_11",
-      "name": "Mohamed al-Tablawi",
-      "source": "quran.com",
-      "notes": "recitation_id=11; reciter_name=Mohamed al-Tablawi; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_12",
-      "name": "Mahmoud Khalil Al-Husary",
-      "source": "quran.com",
-      "notes": "recitation_id=12; reciter_name=Mahmoud Khalil Al-Husary; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_2",
-      "name": "AbdulBaset AbdulSamad",
-      "source": "quran.com",
-      "notes": "recitation_id=2; reciter_name=AbdulBaset AbdulSamad; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_3",
-      "name": "Abdur-Rahman as-Sudais",
-      "source": "quran.com",
-      "notes": "recitation_id=3; reciter_name=Abdur-Rahman as-Sudais; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_4",
-      "name": "Abu Bakr al-Shatri",
-      "source": "quran.com",
-      "notes": "recitation_id=4; reciter_name=Abu Bakr al-Shatri; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_5",
-      "name": "Hani ar-Rifai",
-      "source": "quran.com",
-      "notes": "recitation_id=5; reciter_name=Hani ar-Rifai; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_6",
-      "name": "Mahmoud Khalil Al-Husary",
-      "source": "quran.com",
-      "notes": "recitation_id=6; reciter_name=Mahmoud Khalil Al-Husary; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_7",
-      "name": "Mishari Rashid al-`Afasy",
-      "source": "quran.com",
-      "notes": "recitation_id=7; reciter_name=Mishari Rashid al-`Afasy; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_8",
-      "name": "Mohamed Siddiq al-Minshawi",
-      "source": "quran.com",
-      "notes": "recitation_id=8; reciter_name=Mohamed Siddiq al-Minshawi; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quran_com_9",
-      "name": "Mohamed Siddiq al-Minshawi",
-      "source": "quran.com",
-      "notes": "recitation_id=9; reciter_name=Mohamed Siddiq al-Minshawi; style=-",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdul_basit_murattal",
-      "name": "AbdulBaset AbdulSamad [Murattal]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=37; relative_path=abdul_basit_murattal/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdul_muhsin_alqasim",
-      "name": "AbdulMuhsin al-Qasim",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=11; relative_path=abdul_muhsin_alqasim/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdulazeez_al_ahmad",
-      "name": "AbdulAzeez al-Ahmad",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=21; relative_path=abdulazeez_al-ahmad/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdulbaset_mujawwad",
-      "name": "AbdulBaset AbdulSamad [Mujawwad]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=50; relative_path=abdulbaset_mujawwad/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdulbaset_warsh",
-      "name": "AbdulBaset AbdulSamad [Warsh]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=54; relative_path=abdulbaset_warsh/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdulbaset_with_naeem_sultan_pickthall",
-      "name": "AbdulBaset AbdulSamad with Naeem Sultan [Pickthall Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=47; relative_path=abdulbaset_with_naeem_sultan_pickthall/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdulbasit_w_ibrahim_walk_si",
-      "name": "AbdulBaset AbdulSamad with Ibrahim Walk [Saheeh Intl Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=57; relative_path=abdulbasit_w_ibrahim_walk_si/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdullaah_3awwaad_al_juhaynee",
-      "name": "Abdullah Awad al-Juhani",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=1; relative_path=abdullaah_3awwaad_al-juhaynee/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdullaah_alee_jaabir",
-      "name": "Abdullah Ali Jabir [Taraweeh]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=24; relative_path=abdullaah_alee_jaabir/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdullaah_alee_jaabir_studio",
-      "name": "Abdullah Ali Jabir",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=69; relative_path=abdullaah_alee_jaabir_studio/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdullaah_basfar",
+      "reciter_key": 4,
       "name": "Abdullah Basfar",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=2; relative_path=abdullaah_basfar/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "subfolder": "Abdullah_Basfar_32kbps",
+      "bitrate": "32kbps"
     },
-    {
-      "id": "quranicaudio_abdullah_basfar_w_ibrahim_walk_si",
-      "name": "Abdullah Basfar with Ibrahim Walk [Saheeh Intl Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=66; relative_path=abdullah_basfar_w_ibrahim_walk_si/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdulrazaq_bin_abtan_al_dulaimi",
-      "name": "Abdur-Razaq bin Abtan al-Dulaimi [Mujawwad]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=68; relative_path=abdulrazaq_bin_abtan_al_dulaimi/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdulwadood_haneef",
-      "name": "AbdulWadud Haneef",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=40; relative_path=abdulwadood_haneef/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdurrahmaan_as_sudays",
-      "name": "Abdur-Rahman as-Sudais",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=7; relative_path=abdurrahmaan_as-sudays/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdurrashid_sufi_khalaf_3an_7amza_recitation",
-      "name": "Abdur-Rashid Sufi [Khalaf]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=62; relative_path=abdurrashid_sufi_-_khalaf_3an_7amza_recitation/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdurrashid_sufi_soosi_2020",
-      "name": "Abdur-Rashid Sufi [Soosi, 2020]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=137; relative_path=abdurrashid_sufi_soosi_2020/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abdurrashid_sufi_soosi_rec",
-      "name": "Abdur-Rashid Sufi [Soosi]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=60; relative_path=abdurrashid_sufi_soosi_rec/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_abu_bakr_ash_shaatree",
-      "name": "Abu Bakr al-Shatri",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=3; relative_path=abu_bakr_ash-shaatree/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_ahmed_ibn_3ali_al_3ajamy",
-      "name": "Ahmed ibn Ali al-Ajmy",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=19; relative_path=ahmed_ibn_3ali_al-3ajamy/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_alhusaynee_al3azazee_with_children",
-      "name": "Al-Hussayni Al-'Azazy (with Children)",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=55; relative_path=alhusaynee_al3azazee_with_children/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_ali_jaber",
-      "name": "Abdullah Ali Jabir",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=158; relative_path=ali_jaber/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_aziz_alili",
-      "name": "Aziz Alili",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=44; relative_path=aziz_alili/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_dr_shawqy_7amed_mujawwad",
-      "name": "Dr. Shawqy Hamed [Mujawwad]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=75; relative_path=dr.shawqy_7amed/mujawwad/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_dr_shawqy_7amed_murattal",
-      "name": "Dr. Shawqy Hamed [Murattal]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=74; relative_path=dr.shawqy_7amed/murattal/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_fares",
-      "name": "Fares Abbad",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=14; relative_path=fares/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_hamad_sinan",
-      "name": "Hamad Sinan",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=64; relative_path=hamad_sinan/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_hatem_farid_collection",
-      "name": "Hatem Farid",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=85; relative_path=hatem_farid/collection/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_hatem_farid_taraweeh1430",
-      "name": "Hatem Farid - Taraweeh 1430",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=139; relative_path=hatem_farid/taraweeh1430/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_hatem_farid_taraweeh1432",
-      "name": "Hatem Farid - Taraweeh 1432",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=86; relative_path=hatem_farid/taraweeh1432/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_hatem_farid_taraweeh1433",
-      "name": "Hatem Farid - Taraweeh 1433",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=96; relative_path=hatem_farid/taraweeh1433/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_hatem_farid_taraweeh1434",
-      "name": "Hatem Farid - Taraweeh 1434",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=140; relative_path=hatem_farid/taraweeh1434/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_husary_muallim",
-      "name": "Mahmoud Khaleel Al-Husary (Muallam)",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=141; relative_path=husary_muallim/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_husary_muallim_kids_repeat",
-      "name": "Mahmoud Khaleel Al-Husary (with Children)",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=142; relative_path=husary_muallim_kids_repeat/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_huthayfi",
-      "name": "Ali Abdur-Rahman al-Huthaify",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=8; relative_path=huthayfi/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_imad_zuhair_hafez",
-      "name": "Imad Zuhair Hafez",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=93; relative_path=imad_zuhair_hafez/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_jibreen",
-      "name": "Ibrahim Al-Jibrin",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=28; relative_path=jibreen/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_jibreen_jibreen_1426_1427",
-      "name": "Ibrahim Al-Jibreen [1426-1427]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=56; relative_path=jibreen/jibreen_1426-1427/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_khaalid_al_qahtaanee",
-      "name": "Khalid al-Qahtani",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=9; relative_path=khaalid_al-qahtaanee/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_khayat",
-      "name": "Abdullah Khayat",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=72; relative_path=khayat/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1419",
-      "name": "Madinah Taraweeh 1419",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=25; relative_path=madinah_1419/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1423",
-      "name": "Madinah Taraweeh 1423",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=46; relative_path=madinah_1423/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1426",
-      "name": "Madinah Taraweeh 1426",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=30; relative_path=madinah_1426/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1427",
-      "name": "Madinah Taraweeh 1427",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=33; relative_path=madinah_1427/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1428",
-      "name": "Madinah Taraweeh 1428",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=73; relative_path=madinah_1428/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1434",
-      "name": "Madinah Taraweeh 1434",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=143; relative_path=madinah_1434/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1436",
-      "name": "Madinah Taraweeh 1436",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=144; relative_path=madinah_1436/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1437",
-      "name": "Madinah Taraweeh 1437",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=145; relative_path=madinah_1437/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1439",
-      "name": "Madinah Taraweeh 1439",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=146; relative_path=madinah_1439/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
-    {
-      "id": "quranicaudio_madinah_1440",
-      "name": "Madinah Taraweeh 1440",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=147; relative_path=madinah_1440/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
-    },
     {
-      "id": "quranicaudio_madinah_1441",
-      "name": "Madinah Taraweeh 1441",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=148; relative_path=madinah_1441/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 5,
+      "name": "Abdullah Basfar",
+      "subfolder": "Abdullah_Basfar_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_madinah_1442",
-      "name": "Madinah Taraweeh 1442",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=149; relative_path=madinah_1442/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 6,
+      "name": "Abdullah Basfar",
+      "subfolder": "Abdullah_Basfar_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quranicaudio_maher_256",
-      "name": "Maher al-Muaiqly",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=65; relative_path=maher_256/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 7,
+      "name": "Abdurrahmaan As-Sudais",
+      "subfolder": "Abdurrahmaan_As-Sudais_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_maher_almu3aiqly_year1422_1423",
-      "name": "Maher al-Muaiqly [1422-1423]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=52; relative_path=maher_almu3aiqly/year1422-1423/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 8,
+      "name": "Abdurrahmaan As-Sudais",
+      "subfolder": "Abdurrahmaan_As-Sudais_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quranicaudio_maher_almu3aiqly_year1424_1425",
-      "name": "Maher al-Muaiqly [Assorted]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=51; relative_path=maher_almu3aiqly/year1424-1425/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 9,
+      "name": "AbdulSamad QuranExplorer.Com",
+      "subfolder": "AbdulSamad_64kbps_QuranExplorer.Com",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_maher_almu3aiqly_year1440",
-      "name": "Maher al-Muaiqly",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=159; relative_path=maher_almu3aiqly/year1440/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 10,
+      "name": "Abu Bakr Ash-Shaatree",
+      "subfolder": "Abu_Bakr_Ash-Shaatree_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_mahmood_khaleel_al_husaree",
-      "name": "Mahmoud Khaleel Al-Husary",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=16; relative_path=mahmood_khaleel_al-husaree/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 11,
+      "name": "Abu Bakr Ash-Shaatree",
+      "subfolder": "Abu_Bakr_Ash-Shaatree_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_mahmood_khaleel_al_husaree_doori",
-      "name": "Mahmoud Khalil Al-Husary [Doori]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=78; relative_path=mahmood_khaleel_al-husaree_doori/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 12,
+      "name": "Ahmed ibn Ali al-Ajamy QuranExplorer.Com",
+      "subfolder": "Ahmed_ibn_Ali_al-Ajamy_64kbps_QuranExplorer.Com",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_makkah_1424",
-      "name": "Makkah Taraweeh 1424",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=63; relative_path=makkah_1424/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 13,
+      "name": "Ahmed ibn Ali al-Ajamy KetabAllah.Net",
+      "subfolder": "Ahmed_ibn_Ali_al-Ajamy_128kbps_ketaballah.net",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_makkah_1425",
-      "name": "Makkah Taraweeh 1425",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=45; relative_path=makkah_1425/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 14,
+      "name": "Alafasy",
+      "subfolder": "Alafasy_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_makkah_1426",
-      "name": "Makkah Taraweeh 1426",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=29; relative_path=makkah_1426/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 15,
+      "name": "Alafasy",
+      "subfolder": "Alafasy_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_makkah_1427",
-      "name": "Makkah Taraweeh 1427",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=34; relative_path=makkah_1427/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 16,
+      "name": "Ghamadi",
+      "subfolder": "Ghamadi_40kbps",
+      "bitrate": "40kbps"
     },
     {
-      "id": "quranicaudio_makkah_1428",
-      "name": "Makkah Taraweeh 1428",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=59; relative_path=makkah_1428/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 17,
+      "name": "Hani Rifai",
+      "subfolder": "Hani_Rifai_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_makkah_1429",
-      "name": "Makkah Taraweeh 1429",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=77; relative_path=makkah_1429/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 18,
+      "name": "Hani Rifai",
+      "subfolder": "Hani_Rifai_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quranicaudio_makkah_1431",
-      "name": "Makkah Taraweeh 1431",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=83; relative_path=makkah_1431/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 19,
+      "name": "Husary",
+      "subfolder": "Husary_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_makkah_1432",
-      "name": "Makkah Taraweeh 1432",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=94; relative_path=makkah_1432/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 20,
+      "name": "Husary",
+      "subfolder": "Husary_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_makkah_1433",
-      "name": "Makkah Taraweeh 1433",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=98; relative_path=makkah_1433/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 21,
+      "name": "Husary Mujawwad",
+      "subfolder": "Husary_Mujawwad_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_makkah_1438",
-      "name": "Makkah Taraweeh 1438",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=150; relative_path=makkah_1438/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 22,
+      "name": "Husary Mujawwad",
+      "subfolder": "Husary_128kbps_Mujawwad",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_makkah_1439",
-      "name": "Makkah Taraweeh 1439",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=151; relative_path=makkah_1439/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 23,
+      "name": "Hudhaify",
+      "subfolder": "Hudhaify_32kbps",
+      "bitrate": "32kbps"
     },
     {
-      "id": "quranicaudio_makkah_1440",
-      "name": "Makkah Taraweeh 1440",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=152; relative_path=makkah_1440/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 24,
+      "name": "Hudhaify",
+      "subfolder": "Hudhaify_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_makkah_1441",
-      "name": "Makkah Taraweeh 1441",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=153; relative_path=makkah_1441/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 25,
+      "name": "Hudhaify",
+      "subfolder": "Hudhaify_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_makkah_1442",
-      "name": "Makkah Taraweeh 1442",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=154; relative_path=makkah_1442/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 26,
+      "name": "Ibrahim Akhdar",
+      "subfolder": "Ibrahim_Akhdar_32kbps",
+      "bitrate": "32kbps"
     },
     {
-      "id": "quranicaudio_mehysni",
-      "name": "Muhammad al-Mehysni",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=26; relative_path=mehysni/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 27,
+      "name": "Ibrahim Akhdar",
+      "subfolder": "Ibrahim_Akhdar_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_minshawi_mujawwad",
-      "name": "Muhammad Siddiq al-Minshawi [Mujawwad]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=41; relative_path=minshawi_mujawwad/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 28,
+      "name": "Maher Al Muaiqly",
+      "subfolder": "Maher_AlMuaiqly_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_mishaari_california",
-      "name": "Mishari al-`Afasy - Taraweeh 1430",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=95; relative_path=mishaari_california/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 29,
+      "name": "Maher Al Muaiqly",
+      "subfolder": "MaherAlMuaiqly128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_mishaari_raashid_al_3afaasee",
-      "name": "Mishari Rashid al-`Afasy",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=5; relative_path=mishaari_raashid_al_3afaasee/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 30,
+      "name": "Menshawi",
+      "subfolder": "Menshawi_16kbps",
+      "bitrate": "16kbps"
     },
     {
-      "id": "quranicaudio_mishaari_w_ibrahim_walk_si",
-      "name": "Mishari ibn Rashid al-`Afasy with Ibrahim Walk [Saheeh Intl Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=58; relative_path=mishaari_w_ibrahim_walk_si/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 31,
+      "name": "Menshawi",
+      "subfolder": "Menshawi_32kbps",
+      "bitrate": "32kbps"
     },
     {
-      "id": "quranicaudio_mishaari_with_saabir_mkhan",
-      "name": "Mishari ibn Rashid al-`Afasy with Saabir [Muhsin Khan Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=49; relative_path=mishaari_with_saabir_mkhan/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 32,
+      "name": "Minshawy Mujawwad",
+      "subfolder": "Minshawy_Mujawwad_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_mohammad_altablawi",
-      "name": "Mohammad Al-Tablawi",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=91; relative_path=mohammad_altablawi/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 33,
+      "name": "Minshawy Mujawwad",
+      "subfolder": "Minshawy_Mujawwad_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quranicaudio_mostafa_ismaeel",
-      "name": "Mostafa Ismaeel",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=88; relative_path=mostafa_ismaeel/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 34,
+      "name": "Minshawy Murattal",
+      "subfolder": "Minshawy_Murattal_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_mu7ammad_7assan",
-      "name": "Muhammad Hassan",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=79; relative_path=mu7ammad_7assan/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 35,
+      "name": "Mohammad al Tablaway",
+      "subfolder": "Mohammad_al_Tablaway_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_muhammad_abdulkareem",
-      "name": "Muhammad Abdul-Kareem",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=70; relative_path=muhammad_abdulkareem/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 36,
+      "name": "Mohammad al Tablaway",
+      "subfolder": "Mohammad_al_Tablaway_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_muhammad_alhaidan",
-      "name": "Muhammad al-Luhaidan",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=53; relative_path=muhammad_alhaidan/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 37,
+      "name": "Muhammad Ayyoub",
+      "subfolder": "Muhammad_Ayyoub_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_muhammad_ayub_and_mikaal_waters",
-      "name": "Muhammad Ayyub with Mikaal Waters [Muhsin Khan Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=39; relative_path=muhammad_ayub_and_mikaal_waters/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 38,
+      "name": "Muhammad Ayyoub",
+      "subfolder": "Muhammad_Ayyoub_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_muhammad_ayyoob",
-      "name": "Muhammad Ayyoob",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=22; relative_path=muhammad_ayyoob/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 39,
+      "name": "Muhammad Ayyoub",
+      "subfolder": "Muhammad_Ayyoub_32kbps",
+      "bitrate": "32kbps"
     },
     {
-      "id": "quranicaudio_muhammad_jibreel_complete",
+      "reciter_key": 40,
       "name": "Muhammad Jibreel",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=12; relative_path=muhammad_jibreel/complete/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "subfolder": "Muhammad_Jibreel_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_muhammad_jibreel_hidayah",
-      "name": "Muhammad Jibreel (Partial)",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=32; relative_path=muhammad_jibreel/hidayah/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 41,
+      "name": "Muhammad Jibreel",
+      "subfolder": "Muhammad_Jibreel_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_muhammad_siddeeq_al_minshaawee",
-      "name": "Muhammad Siddiq al-Minshawi",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=6; relative_path=muhammad_siddeeq_al-minshaawee/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 42,
+      "name": "Mustafa Ismail",
+      "subfolder": "Mustafa_Ismail_48kbps",
+      "bitrate": "48kbps"
     },
     {
-      "id": "quranicaudio_mustafa_al3azzawi",
-      "name": "Mustafa al-`Azawi",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=71; relative_path=mustafa_al3azzawi/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 43,
+      "name": "Saood bin Ibraaheem Ash-Shuraym",
+      "subfolder": "Saood_ash-Shuraym_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_nabil_rifa3i",
-      "name": "Nabil ar-Rifai",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=10; relative_path=nabil_rifa3i/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 44,
+      "name": "Saood bin Ibraaheem Ash-Shuraym",
+      "subfolder": "Saood_ash-Shuraym_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_noreen_siddiq",
-      "name": "Noreen Siddiq [ad-Doori an Abi Amr]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=155; relative_path=noreen_siddiq/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 45,
+      "name": "(English) Translated by Sahih International Recited by Ibrahim Walk",
+      "subfolder": "English/Sahih_Intnl_Ibrahim_Walk_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quranicaudio_rifai",
-      "name": "Hani ar-Rifai",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=27; relative_path=rifai/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 46,
+      "name": "MultiLanguage/Basfar Walk",
+      "subfolder": "MultiLanguage/Basfar_Walk_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quranicaudio_sa3d_al_ghaamidi_complete",
-      "name": "Saad al-Ghamdi",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=13; relative_path=sa3d_al-ghaamidi/complete/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 47,
+      "name": "(Persian) Translated by Makarem Recited by Kabiri",
+      "subfolder": "translations/Makarem_Kabiri_16Kbps",
+      "bitrate": "64Kbps"
     },
     {
-      "id": "quranicaudio_sa3d_al_ghaamidi_hidayah",
-      "name": "Saad al-Ghamdi (Partial)",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=31; relative_path=sa3d_al-ghaamidi/hidayah/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 48,
+      "name": "(Persian) Translated by Fooladvand Recited by Hedayatfar",
+      "subfolder": "translations/Fooladvand_Hedayatfar_40Kbps",
+      "bitrate": "64Kbps"
     },
     {
-      "id": "quranicaudio_sa3ood_al_shuraym",
-      "name": "Sa`ud ash-Shuraym",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=4; relative_path=sa3ood_al-shuraym/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 49,
+      "name": "Parhizgar_64Kbps",
+      "subfolder": "Parhizgar_48kbps",
+      "bitrate": "64Kbps"
     },
     {
-      "id": "quranicaudio_sa3ood_al_shuraym_older",
-      "name": "Sa`ud ash-Shuraym [older recitation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=156; relative_path=sa3ood_al-shuraym/older/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 50,
+      "name": "Balayev",
+      "subfolder": "translations/azerbaijani/balayev",
+      "bitrate": "64Kbps"
     },
     {
-      "id": "quranicaudio_sadaqat_ali",
-      "name": "Sadaqat `Ali",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=61; relative_path=sadaqat_ali/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 51,
+      "name": "Salaah AbdulRahman Bukhatir",
+      "subfolder": "Salaah_AbdulRahman_Bukhatir_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_sahl_yaaseen",
-      "name": "Sahl Yasin",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=17; relative_path=sahl_yaaseen/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 52,
+      "name": "Muhsin Al Qasim",
+      "subfolder": "Muhsin_Al_Qasim_192kbps",
+      "bitrate": "192kbps"
     },
     {
-      "id": "quranicaudio_salaah_bukhaatir",
-      "name": "Salah Bukhatir",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=18; relative_path=salaah_bukhaatir/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 53,
+      "name": "Abdullaah 3awwaad Al-Juhaynee",
+      "subfolder": "Abdullaah_3awwaad_Al-Juhaynee_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_salah_alhashim",
-      "name": "Salah Al-Hashim",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=80; relative_path=salah_alhashim/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 54,
+      "name": "Salah Al Budair",
+      "subfolder": "Salah_Al_Budair_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_salahbudair",
-      "name": "Salah al-Budair",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=43; relative_path=salahbudair/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 55,
+      "name": "Abdullah Matroud",
+      "subfolder": "Abdullah_Matroud_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_saleh_al_taleb",
-      "name": "Saleh al Taleb",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=35; relative_path=saleh_al_taleb/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 56,
+      "name": "Ahmed Neana",
+      "subfolder": "Ahmed_Neana_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_shakir_qasami_with_english",
-      "name": "Shakir Qasami with Aslam Athar [Pickthall Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=42; relative_path=shakir_qasami_with_english/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 57,
+      "name": "Muhammad AbdulKareem",
+      "subfolder": "Muhammad_AbdulKareem_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_sodais_and_shuraim",
-      "name": "Sudais and Shuraym",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=20; relative_path=sodais_and_shuraim/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 58,
+      "name": "Khalefa Al-Tunaiji",
+      "subfolder": "khalefa_al_tunaiji_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_sodais_and_shuraim_older",
-      "name": "Sudais and Shuraym [older recitation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=157; relative_path=sodais_and_shuraim/older/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 59,
+      "name": "Mahmoud Ali Al-Banna",
+      "subfolder": "mahmoud_ali_al_banna_32kbps",
+      "bitrate": "32kbps"
     },
     {
-      "id": "quranicaudio_sudais_and_shuraim_with_urdu",
-      "name": "Sudais and Shuraym [Urdu Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=67; relative_path=sudais_and_shuraim_with_urdu/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 60,
+      "name": "(Warsh) Ibrahim Al-Dosary",
+      "subfolder": "warsh/warsh_ibrahim_aldosary_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_sudais_shuraim_and_english",
-      "name": "Sudais and Shuraym with Aslam Athar [Pickthall Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=36; relative_path=sudais_shuraim_and_english/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 61,
+      "name": "(Warsh) Yassin Al-Jazaery",
+      "subfolder": "warsh/warsh_yassin_al_jazaery_64kbps",
+      "bitrate": "64kbps"
     },
     {
-      "id": "quranicaudio_sudais_shuraim_with_naeem_sultan_pickthall",
-      "name": "Sudais and Shuraym with Naeem Sultan [Pickthall Translation]",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=48; relative_path=sudais_shuraim_with_naeem_sultan_pickthall/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 62,
+      "name": "(Warsh) Abdul Basit",
+      "subfolder": "warsh/warsh_Abdul_Basit_128kbps",
+      "bitrate": "128kbps"
     },
     {
-      "id": "quranicaudio_tawfeeq_bin_saeed_as_sawaaigh",
-      "name": "Tawfeeq ibn Sa`id as-Sawa'igh",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=23; relative_path=tawfeeq_bin_saeed-as-sawaaigh/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 63,
+      "name": "(Urdu) Shamshad Ali Khan",
+      "subfolder": "translations/urdu_shamshad_ali_khan_46kbps",
+      "bitrate": "46kbps"
     },
     {
-      "id": "quranicaudio_thubaity",
-      "name": "AbdulBari ath-Thubaity",
-      "source": "quranicaudio",
-      "notes": "quranicaudio_id=15; relative_path=thubaity/",
-      "created_at": "2026-03-06T09:04:44.246780+00:00",
-      "updated_at": "2026-03-06T09:04:44.246780+00:00"
+      "reciter_key": 64,
+      "name": "Karim Mansoori (Iran)",
+      "subfolder": "Karim_Mansoori_40kbps",
+      "bitrate": "40kbps"
+    },
+    {
+      "reciter_key": 65,
+      "name": "Husary (Muallim)",
+      "subfolder": "Husary_Muallim_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 66,
+      "name": "Khalid Abdullah al-Qahtanee",
+      "subfolder": "Khaalid_Abdullaah_al-Qahtaanee_192kbps",
+      "bitrate": "192kbps"
+    },
+    {
+      "reciter_key": 67,
+      "name": "Yasser_Ad-Dussary",
+      "subfolder": "Yasser_Ad-Dussary_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 68,
+      "name": "Nasser_Alqatami",
+      "subfolder": "Nasser_Alqatami_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 69,
+      "name": "Ali_Hajjaj_AlSuesy",
+      "subfolder": "Ali_Hajjaj_AlSuesy_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 70,
+      "name": "Sahl_Yassin",
+      "subfolder": "Sahl_Yassin_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 71,
+      "name": "Ahmed Ibn Ali Al Ajamy",
+      "subfolder": "ahmed_ibn_ali_al_ajamy_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 72,
+      "name": "Besim Korkut (Bosnian)",
+      "subfolder": "translations/besim_korkut_ajet_po_ajet",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 73,
+      "name": "Aziz Alili",
+      "subfolder": "aziz_alili_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 74,
+      "name": "Yaser Salamah",
+      "subfolder": "Yaser_Salamah_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 75,
+      "name": "Akram Al Alaqimy",
+      "subfolder": "Akram_AlAlaqimy_128kbps",
+      "bitrate": "128kbps"
+    },
+    {
+      "reciter_key": 76,
+      "name": "Ali Jaber",
+      "subfolder": "Ali_Jaber_64kbps",
+      "bitrate": "64kbps"
+    },
+    {
+      "reciter_key": 77,
+      "name": "Fares Abbad",
+      "subfolder": "Fares_Abbad_64kbps",
+      "bitrate": "64kbps"
+    },
+    {
+      "reciter_key": 78,
+      "name": "Farhat Hashmi (Urdu word for word translation)",
+      "subfolder": "translations/urdu_farhat_hashmi",
+      "bitrate": "32kbps"
+    },
+    {
+      "reciter_key": 79,
+      "name": "Ayman Sowaid",
+      "subfolder": "Ayman_Sowaid_64kbps",
+      "bitrate": "64kbps"
+    }
+  ],
+  "quran_com_reciters": [
+    {
+      "id": 1,
+      "reciter_name": "AbdulBaset AbdulSamad",
+      "translated_name": "AbdulBaset AbdulSamad",
+      "style": null
+    },
+    {
+      "id": 2,
+      "reciter_name": "AbdulBaset AbdulSamad",
+      "translated_name": "AbdulBaset AbdulSamad",
+      "style": null
+    },
+    {
+      "id": 3,
+      "reciter_name": "Abdur-Rahman as-Sudais",
+      "translated_name": "Abdur-Rahman as-Sudais",
+      "style": null
+    },
+    {
+      "id": 4,
+      "reciter_name": "Abu Bakr al-Shatri",
+      "translated_name": "Abu Bakr al-Shatri",
+      "style": null
+    },
+    {
+      "id": 5,
+      "reciter_name": "Hani ar-Rifai",
+      "translated_name": "Hani ar-Rifai",
+      "style": null
+    },
+    {
+      "id": 6,
+      "reciter_name": "Mahmoud Khalil Al-Husary",
+      "translated_name": "Mahmoud Khalil Al-Husary",
+      "style": null
+    },
+    {
+      "id": 7,
+      "reciter_name": "Mishari Rashid al-`Afasy",
+      "translated_name": "Mishari Rashid al-`Afasy",
+      "style": null
+    },
+    {
+      "id": 8,
+      "reciter_name": "Mohamed Siddiq al-Minshawi",
+      "translated_name": "Mohamed Siddiq al-Minshawi",
+      "style": null
+    },
+    {
+      "id": 9,
+      "reciter_name": "Mohamed Siddiq al-Minshawi",
+      "translated_name": "Mohamed Siddiq al-Minshawi",
+      "style": null
+    },
+    {
+      "id": 10,
+      "reciter_name": "Sa`ud ash-Shuraym",
+      "translated_name": "Sa`ud ash-Shuraym",
+      "style": null
+    },
+    {
+      "id": 11,
+      "reciter_name": "Mohamed al-Tablawi",
+      "translated_name": "Mohamed al-Tablawi",
+      "style": null
+    },
+    {
+      "id": 12,
+      "reciter_name": "Mahmoud Khalil Al-Husary",
+      "translated_name": "Mahmoud Khalil Al-Husary",
+      "style": null
     }
   ]
 }

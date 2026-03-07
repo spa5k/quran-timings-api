@@ -45,9 +45,7 @@ class NemoAligner:
             "--device {device} --out {output_json}"
         )
         self.command_template = (
-            command_template
-            or os.getenv("QAD_NEMO_ALIGN_CMD")
-            or default_runner_cmd
+            command_template or os.getenv("QAD_NEMO_ALIGN_CMD") or default_runner_cmd
         )
 
     def align(
@@ -96,8 +94,7 @@ class NemoAligner:
 
             if not output_json.exists():
                 raise AlignmentError(
-                    "NeMo command completed but did not produce output file: "
-                    f"{output_json}"
+                    f"NeMo command completed but did not produce output file: {output_json}"
                 )
 
             payload = orjson.loads(output_json.read_bytes())
@@ -151,9 +148,7 @@ def _normalize_nemo_output(
             raw_match_score
             if raw_match_score is not None
             else (
-                float(fuzz.ratio(canon.text_norm, sample_text_norm))
-                if sample_text_norm
-                else None
+                float(fuzz.ratio(canon.text_norm, sample_text_norm)) if sample_text_norm else None
             )
         )
         sample_origin = safe_get(sample, "alignment_origin")
@@ -187,6 +182,7 @@ def _normalize_nemo_output(
 
     return mapped
 
+
 def _resolve_device(device: str) -> str:
     if device in {"cpu", "cuda"}:
         return device
@@ -196,6 +192,7 @@ def _resolve_device(device: str) -> str:
         return "cuda" if torch.cuda.is_available() else "cpu"
     except Exception:
         return "cpu"
+
 
 def _distributed_slot(duration_s: float, count: int, idx: int) -> tuple[float, float]:
     if count <= 0:

@@ -8,8 +8,9 @@ from .types import EngineAvailabilityPolicy, EngineOption, PipelineError
 
 @runtime_checkable
 class EngineProtocol(Protocol):
-    def align(self, *, audio_wav_path: str, canonical_words: list, audio_duration_s: float, device: str):
-        ...
+    def align(
+        self, *, audio_wav_path: str, canonical_words: list, audio_duration_s: float, device: str
+    ): ...
 
 
 @dataclass(slots=True)
@@ -83,7 +84,10 @@ class EngineRegistry:
             )
 
         if not available:
-            details = "; ".join(f"{name}={reason}" for name, reason in unavailable.items()) or "none available"
+            details = (
+                "; ".join(f"{name}={reason}" for name, reason in unavailable.items())
+                or "none available"
+            )
             raise PipelineError(f"no_available_engines: {details}")
 
         selected_requested = requested_engine
@@ -103,7 +107,9 @@ class EngineRegistry:
             try:
                 is_available = bool(available_fn())
             except Exception as exc:  # pragma: no cover
-                return RegisteredEngine(name=name, instance=engine, available=False, reason=str(exc))
+                return RegisteredEngine(
+                    name=name, instance=engine, available=False, reason=str(exc)
+                )
             if not is_available:
                 reason = ""
                 if callable(availability_error_fn):

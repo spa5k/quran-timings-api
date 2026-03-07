@@ -10,8 +10,7 @@ from quran_audio_data.corpus_builder import DEFAULT_SOURCE_URL, build_canonical_
 def parse_args() -> ArgumentParser:
     parser = ArgumentParser(
         description=(
-            "Build canonical Quran text snapshot in project schema from "
-            "ara-quranuthmanienc source"
+            "Build canonical Quran text snapshot in project schema from ara-quranuthmanienc source"
         )
     )
     parser.add_argument("--source-url", default=DEFAULT_SOURCE_URL)

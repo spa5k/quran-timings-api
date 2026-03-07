@@ -50,7 +50,9 @@ def doctor_gpu() -> dict[str, Any]:
             text=True,
         )
         if proc.returncode == 0:
-            report["nvidia_smi"] = [line.strip() for line in proc.stdout.splitlines() if line.strip()]
+            report["nvidia_smi"] = [
+                line.strip() for line in proc.stdout.splitlines() if line.strip()
+            ]
         else:
             report["nvidia_smi_error"] = proc.stderr.strip()
 

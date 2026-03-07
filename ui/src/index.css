@@ -5,8 +5,13 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100%;
-  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", sans-serif;
+  font-family:
+    "IBM Plex Sans",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
   line-height: 1.35;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -57,4 +62,3 @@ select {
 ::selection {
   background: rgba(15, 122, 88, 0.22);
 }
-

@@ -37,19 +37,17 @@ export default function DiagnosticsDrawer({
   return (
     <section className={`drawer ${open ? "is-open" : ""}`}>
       <button type="button" className="drawer__toggle" onClick={onToggle}>
-        <span className="drawer__toggleTitle">Diagnostics</span>
-        <span className="drawer__toggleMeta">
-          {open ? "Close" : "Open"} panel
-        </span>
+        <span className="drawer__toggleTitle">Diagnostics Report</span>
+        <span className="drawer__toggleMeta">{open ? "Close" : "Open"} report</span>
       </button>
 
       {open ? (
         <div className="drawer__body">
           <header className="drawer__head">
             <div>
-              <h2 className="drawer__h">Data Diagnostics</h2>
+              <h2 className="drawer__h">Timing Diagnostics</h2>
               <p className="drawer__sub">
-                QC coverage, source fit, drift, and timing distribution.
+                QC coverage, source fit, drift, and duration distribution.
               </p>
             </div>
             <div className="drawer__sources" aria-label="Supervision sources">
@@ -60,28 +58,32 @@ export default function DiagnosticsDrawer({
                   </span>
                 ))
               ) : (
-                <span className="chip chip--idle">No sources attached</span>
+                <span className="chip chip--idle">No reference sources</span>
               )}
             </div>
           </header>
 
           <div className="kpiRow">
             <Kpi
-              label="QC Cover"
+              label="QC Coverage"
               value={formatPercent(qc?.coverage)}
               sub={qc?.monotonic === false ? "Non-monotonic" : "Monotonic"}
               tone={qc?.coverageTone}
             />
             <Kpi
-              label="Src Match"
+              label="Source Match"
               value={formatPercent(source?.coverage)}
               sub={`${source?.matchedWords ?? 0} matched`}
               tone={source?.coverageTone}
             />
             <Kpi
-              label="Alerts"
+              label="Warnings"
               value={String(qc?.warnings ?? 0)}
-              sub={(qc?.reasonCodes ?? []).length ? `${(qc?.reasonCodes ?? []).length} codes` : "Clean"}
+              sub={
+                (qc?.reasonCodes ?? []).length
+                  ? `${(qc?.reasonCodes ?? []).length} codes`
+                  : "No warnings"
+              }
               tone={qc?.warningTone}
             />
             <Kpi
@@ -96,10 +98,8 @@ export default function DiagnosticsDrawer({
             <div className="diagGrid">
               <article className="card card--ink card--span2">
                 <header className="card__head">
-                  <h3 className="card__h">Pipeline Matrix</h3>
-                  <span className="tag tag--mono">
-                    {qc?.monotonic === false ? "ERR" : "OK"}
-                  </span>
+                  <h3 className="card__h">Pipeline Summary</h3>
+                  <span className="tag tag--mono">{qc?.monotonic === false ? "ERR" : "OK"}</span>
                 </header>
                 <div className="matrix">
                   <div className="matrix__col">
@@ -200,7 +200,9 @@ export default function DiagnosticsDrawer({
                       </div>
                       <div className="kv">
                         <span>Shift</span>
-                        <strong>{formatDeltaMs(Number(everyayah.stitchEval.start_offset_s) * 1000)}</strong>
+                        <strong>
+                          {formatDeltaMs(Number(everyayah.stitchEval.start_offset_s) * 1000)}
+                        </strong>
                       </div>
                     </div>
 
@@ -216,14 +218,31 @@ export default function DiagnosticsDrawer({
                           return (
                             <div key={`diff-${row.ayah}`} className="driftRow">
                               <div className="driftRow__title">
-                                Ayah {row.ayah} <span className={`toneText toneText--${rowTone}`}>{formatMs(row.maxAbsBoundaryMs)}</span>
+                                Ayah {row.ayah}{" "}
+                                <span className={`toneText toneText--${rowTone}`}>
+                                  {formatMs(row.maxAbsBoundaryMs)}
+                                </span>
                               </div>
                               <div className="driftRow__bars">
-                                <div className={`bar bar--${rowTone}`} style={{ "--w": `${Math.min(100, (row.absStartMs / 1200) * 100)}%` }}>
-                                  <span>{formatDeltaMs(row.delta_start_ms)} <em>S</em></span>
+                                <div
+                                  className={`bar bar--${rowTone}`}
+                                  style={{
+                                    "--w": `${Math.min(100, (row.absStartMs / 1200) * 100)}%`,
+                                  }}
+                                >
+                                  <span>
+                                    {formatDeltaMs(row.delta_start_ms)} <em>S</em>
+                                  </span>
                                 </div>
-                                <div className={`bar bar--${rowTone}`} style={{ "--w": `${Math.min(100, (row.absEndMs / 1200) * 100)}%` }}>
-                                  <span>{formatDeltaMs(row.delta_end_ms)} <em>E</em></span>
+                                <div
+                                  className={`bar bar--${rowTone}`}
+                                  style={{
+                                    "--w": `${Math.min(100, (row.absEndMs / 1200) * 100)}%`,
+                                  }}
+                                >
+                                  <span>
+                                    {formatDeltaMs(row.delta_end_ms)} <em>E</em>
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -231,17 +250,19 @@ export default function DiagnosticsDrawer({
                         })}
                       </div>
                     ) : (
-                      <p className="muted">No drift rows.</p>
+                      <p className="muted">No ayah drift rows available.</p>
                     )}
                   </div>
                 ) : (
-                  <p className="muted">No EveryAyah stitch evaluation present.</p>
+                  <p className="muted">
+                    EveryAyah stitch evaluation is unavailable for this surah.
+                  </p>
                 )}
               </article>
 
               <article className="card card--ink">
                 <header className="card__head">
-                  <h3 className="card__h">Candidate Rank</h3>
+                  <h3 className="card__h">Candidate Scores</h3>
                 </header>
                 {(candidates?.entries ?? []).length ? (
                   <div className="cand">
@@ -261,7 +282,7 @@ export default function DiagnosticsDrawer({
                     ))}
                   </div>
                 ) : (
-                  <p className="muted">No candidate score map found.</p>
+                  <p className="muted">No candidate score map was found in metadata.</p>
                 )}
 
                 {(pipeline?.passTrace ?? []).length ? (
@@ -277,7 +298,7 @@ export default function DiagnosticsDrawer({
             </div>
           ) : (
             <div className="placeholder">
-              Select a reciter/surah with a populated timing payload to render diagnostics.
+              Choose a reciter and surah with timing payloads to render diagnostics.
             </div>
           )}
         </div>

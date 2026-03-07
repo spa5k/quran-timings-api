@@ -22,7 +22,7 @@ class ReciterMapping:
     qcom_word_supervision_supported: bool
 
 
-DEFAULT_RECITER_CATALOG_PATH = Path("data/reciter_catalog.json")
+DEFAULT_RECITER_CATALOG_PATH = Path("data/reciters.json")
 
 # Resolved maps (defaults + optional catalog overrides).
 EVERYAYAH_SUBFOLDER_BY_RECITER: dict[str, str] = dict(EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT)
@@ -58,7 +58,7 @@ def _load_catalog_overrides(
     if not isinstance(payload, dict):
         return everyayah_map, qcom_map, unsupported, enabled, False
 
-    configured = payload.get("configured_reciters")
+    configured = payload.get("reciters")
     if not isinstance(configured, list):
         return everyayah_map, qcom_map, unsupported, enabled, False
 
@@ -66,21 +66,27 @@ def _load_catalog_overrides(
     for item in configured:
         if not isinstance(item, dict):
             continue
-        reciter_id = str(item.get("manifest_reciter_id") or "").strip().lower()
+        reciter_id = str(item.get("slug") or "").strip().lower()
         if not reciter_id:
             continue
         has_entries = True
 
-        everyayah_section = item.get("everyayah") if isinstance(item.get("everyayah"), dict) else {}
+        source = item.get("source") if isinstance(item.get("source"), dict) else {}
+        everyayah_section = (
+            source.get("everyayah") if isinstance(source.get("everyayah"), dict) else {}
+        )
         subfolder = everyayah_section.get("subfolder")
         if isinstance(subfolder, str) and subfolder.strip():
             everyayah_map[reciter_id] = subfolder.strip()
         elif reciter_id in everyayah_map:
             del everyayah_map[reciter_id]
 
-        quran_section = item.get("quran_com") if isinstance(item.get("quran_com"), dict) else {}
+        quran_section = source.get("quran_com") if isinstance(source.get("quran_com"), dict) else {}
         qcom_id = _to_int(quran_section.get("recitation_id"))
-        qcom_supported = bool(item.get("qcom_word_supervision_supported"))
+        capabilities = (
+            item.get("capabilities") if isinstance(item.get("capabilities"), dict) else {}
+        )
+        qcom_supported = bool(capabilities.get("word_by_word"))
         if qcom_supported and qcom_id is not None:
             qcom_map[reciter_id] = qcom_id
             unsupported.discard(reciter_id)
@@ -94,7 +100,7 @@ def _load_catalog_overrides(
         for item in configured:
             if not isinstance(item, dict):
                 continue
-            reciter_id = str(item.get("manifest_reciter_id") or "").strip().lower()
+            reciter_id = str(item.get("slug") or "").strip().lower()
             if reciter_id and bool(item.get("enabled")):
                 enabled.add(reciter_id)
 
@@ -129,7 +135,9 @@ def is_qcom_word_supervision_supported(
     *,
     catalog_path: str | Path | None = None,
 ) -> bool:
-    return resolve_reciter_mapping(reciter_id, catalog_path=catalog_path).qcom_word_supervision_supported
+    return resolve_reciter_mapping(
+        reciter_id, catalog_path=catalog_path
+    ).qcom_word_supervision_supported
 
 
 def is_reciter_enabled(
@@ -152,4 +160,3 @@ __all__ = [
     "is_qcom_word_supervision_supported",
     "is_reciter_enabled",
 ]
-

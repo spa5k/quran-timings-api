@@ -43,7 +43,9 @@ def main() -> int:
     parser.add_argument("--ui-data-dir", type=Path, default=Path("ui/public/data"))
     parser.add_argument("--ui-catalog", type=Path, default=Path("ui/public/data/catalog.json"))
     parser.add_argument("--dist-data-dir", type=Path, default=Path("ui/dist/data"))
-    parser.add_argument("--sync-every", type=int, default=25, help="Sync UI every N completed tasks.")
+    parser.add_argument(
+        "--sync-every", type=int, default=25, help="Sync UI every N completed tasks."
+    )
     parser.add_argument("--text-data", type=Path, default=None)
     parser.add_argument("--cache-dir", type=Path, default=Path(".cache/timings/v3"))
     parser.add_argument("--report", type=Path, default=Path("runs/s055_084_ui/report.json"))
@@ -250,7 +252,9 @@ def _load_ui_reciters(ui_catalog_path: Path) -> list[str]:
     return sorted(set(out))
 
 
-def _enable_reciters_in_catalog(catalog: dict[str, Any], reciter_ids: list[str]) -> tuple[bool, list[str]]:
+def _enable_reciters_in_catalog(
+    catalog: dict[str, Any], reciter_ids: list[str]
+) -> tuple[bool, list[str]]:
     configured = catalog.get("configured_reciters")
     if not isinstance(configured, list):
         raise ValueError("reciter catalog missing configured_reciters")
@@ -274,7 +278,9 @@ def _enable_reciters_in_catalog(catalog: dict[str, Any], reciter_ids: list[str])
             entry["enabled"] = True
             changed = True
 
-    enabled_ids = sorted({rid for rid, entry in configured_by_id.items() if bool(entry.get("enabled"))})
+    enabled_ids = sorted(
+        {rid for rid, entry in configured_by_id.items() if bool(entry.get("enabled"))}
+    )
     if catalog.get("enabled_manifest_reciters") != enabled_ids:
         catalog["enabled_manifest_reciters"] = enabled_ids
         changed = True
@@ -285,7 +291,9 @@ def _enable_reciters_in_catalog(catalog: dict[str, Any], reciter_ids: list[str])
         catalog["counts"] = counts
         changed = True
     counts["configured_reciters"] = len(configured)
-    counts["configured_enabled"] = sum(1 for item in configured if isinstance(item, dict) and bool(item.get("enabled")))
+    counts["configured_enabled"] = sum(
+        1 for item in configured if isinstance(item, dict) and bool(item.get("enabled"))
+    )
 
     return changed, missing
 

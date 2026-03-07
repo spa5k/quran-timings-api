@@ -10,7 +10,11 @@ import quran_audio_data.benchmark_data as benchmark_data
 def test_parse_everyayah_reciters() -> None:
     catalog = {
         "ayahCount": [1] * 114,
-        "1": {"subfolder": "Abdul_Basit_Murattal_64kbps", "name": "Abdul Basit", "bitrate": "64kbps"},
+        "1": {
+            "subfolder": "Abdul_Basit_Murattal_64kbps",
+            "name": "Abdul Basit",
+            "bitrate": "64kbps",
+        },
         "2": {"subfolder": "Hudhaify_128kbps", "name": "Hudhaify", "bitrate": "128kbps"},
     }
 
@@ -138,7 +142,9 @@ def test_prepare_benchmark_data_resume_uses_existing_reference(tmp_path, monkeyp
         if url == benchmark_data.EVERYAYAH_RECITATIONS_URL:
             return catalog
         if url.startswith("https://api.quran.com/api/v4/verses/by_key/"):
-            raise AssertionError("Quran.com should not be called when resuming with existing reference")
+            raise AssertionError(
+                "Quran.com should not be called when resuming with existing reference"
+            )
         raise AssertionError(f"Unexpected URL: {url}")
 
     monkeypatch.setattr(benchmark_data, "get_json_with_retry", fake_get)

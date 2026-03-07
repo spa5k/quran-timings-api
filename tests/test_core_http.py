@@ -6,7 +6,9 @@ from quran_audio_data.core import http as core_http
 
 
 class _FakeResponse:
-    def __init__(self, *, status_code: int, payload: dict | None = None, content: bytes = b"") -> None:
+    def __init__(
+        self, *, status_code: int, payload: dict | None = None, content: bytes = b""
+    ) -> None:
         self.status_code = status_code
         self._payload = payload or {}
         self.content = content

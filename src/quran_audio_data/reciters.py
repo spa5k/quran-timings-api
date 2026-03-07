@@ -13,7 +13,7 @@ from quran_audio_data.supervision.everyayah import fetch_catalog as fetch_everya
 from quran_audio_data.supervision.qcom_audio import fetch_recitation_catalog
 
 
-DEFAULT_RECITERS_PATH = Path("data/reciters.json")
+DEFAULT_RECITERS_PATH = Path("data/detect_reciters.json")
 QURANICAUDIO_HOME_URL = "https://quranicaudio.com"
 
 _QURANICAUDIO_QARI_PATTERN = re.compile(
@@ -311,9 +311,7 @@ def prefill_registry_from_sources(
             }
 
     source_rows = (
-        fetch_quranicaudio_reciters()
-        + fetch_everyayah_reciters()
-        + fetch_quran_com_reciters()
+        fetch_quranicaudio_reciters() + fetch_everyayah_reciters() + fetch_quran_com_reciters()
     )
     for item in source_rows:
         rid = normalize_reciter_id(item["id"])

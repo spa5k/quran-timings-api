@@ -38,18 +38,18 @@ export default function SegmentLedger({
     <section className="ledger" aria-label="Ayah timeline">
       <header className="ledger__head">
         <div className="ledger__title">
-          <h2 className="ledger__h">Ayah Ledger</h2>
+          <h2 className="ledger__h">Ayah Timeline</h2>
           <div className="ledger__meta">
-            <span className="tag tag--mono">{ayahs.length} rows</span>
+            <span className="tag tag--mono">{ayahs.length} ayahs</span>
             {hasSourceComparison ? (
-              <span className="tag tag--good">EveryAyah diff</span>
+              <span className="tag tag--good">EveryAyah drift</span>
             ) : (
-              <span className="tag tag--dim">No ref diff</span>
+              <span className="tag tag--dim">No reference drift</span>
             )}
           </div>
         </div>
         <label className="ledger__search">
-          <span className="ledger__searchLabel">Filter</span>
+          <span className="ledger__searchLabel">Find ayah</span>
           <input
             className="input"
             value={query}
@@ -70,9 +70,7 @@ export default function SegmentLedger({
             const sourceStart = asFiniteNumber(sourceAyahRow?.ref_start_s);
             const sourceEnd = asFiniteNumber(sourceAyahRow?.ref_end_s);
             const hasSourceTimes =
-              sourceStart !== null &&
-              sourceEnd !== null &&
-              !(sourceStart === 0 && sourceEnd === 0);
+              sourceStart !== null && sourceEnd !== null && !(sourceStart === 0 && sourceEnd === 0);
             const sourceDeltaStartMs = asFiniteNumber(sourceAyahRow?.delta_start_ms);
             const sourceDeltaEndMs = asFiniteNumber(sourceAyahRow?.delta_end_ms);
 
@@ -81,22 +79,20 @@ export default function SegmentLedger({
                 type="button"
                 key={`ayah-${ayah.ayah}`}
                 role="listitem"
-                className={`row ${isActive ? "is-active" : ""} ${
-                  isFocus ? "is-focus" : ""
-                }`}
+                className={`row ${isActive ? "is-active" : ""} ${isFocus ? "is-focus" : ""}`}
                 aria-current={isActive ? "true" : undefined}
                 onClick={() => onPlayAyah?.(ayah)}
               >
                 <div className="row__top">
                   <div className="row__title">Ayah {ayah.ayah}</div>
                   <div className="row__badge" aria-hidden={!isActive}>
-                    {isActive ? "LIVE" : ""}
+                    {isActive ? "PLAYING" : ""}
                   </div>
                 </div>
 
                 <div className={`row__times ${hasSourceTimes ? "has-ref" : ""}`}>
-                  <div className="row__line">
-                    <span className="row__k">Our</span>
+                  <div className={`row__line ${hasSourceTimes ? "" : "row__line--solo"}`}>
+                    {hasSourceTimes ? <span className="row__k">API</span> : null}
                     <span className="row__v">
                       {formatStamp(ayah.start_s)} <span aria-hidden="true">→</span>{" "}
                       {formatStamp(ayah.end_s)}

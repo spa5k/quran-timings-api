@@ -104,9 +104,7 @@ export function parseSourceRef(value) {
     const shapeToken = parts.find((item) => item.startsWith("shape="));
     const shape = shapeToken ? shapeToken.slice("shape=".length) : "";
     const sourceLabel =
-      sourceType === "qcom_chapter"
-        ? "Quran.com chapter timestamps"
-        : "Quran.com verse segments";
+      sourceType === "qcom_chapter" ? "Quran.com chapter timestamps" : "Quran.com verse segments";
     const bits = [sourceLabel];
     if (recitation) {
       bits.push(`Recitation ${recitation}`);
@@ -133,27 +131,16 @@ export function percentile(values, p) {
     return null;
   }
   const sorted = [...values].sort((a, b) => a - b);
-  const rank = Math.min(
-    sorted.length - 1,
-    Math.max(0, Math.ceil((p / 100) * sorted.length) - 1),
-  );
+  const rank = Math.min(sorted.length - 1, Math.max(0, Math.ceil((p / 100) * sorted.length) - 1));
   return sorted[rank];
 }
 
 export function findSegmentIndexByTime(
   segments,
   timeS,
-  {
-    tolerance = TIMING_EPSILON_S,
-    holdInGap = false,
-    moveToNextInGap = false,
-  } = {},
+  { tolerance = TIMING_EPSILON_S, holdInGap = false, moveToNextInGap = false } = {},
 ) {
-  if (
-    !Array.isArray(segments) ||
-    segments.length === 0 ||
-    !Number.isFinite(timeS)
-  ) {
+  if (!Array.isArray(segments) || segments.length === 0 || !Number.isFinite(timeS)) {
     return -1;
   }
 
@@ -177,10 +164,7 @@ export function findSegmentIndexByTime(
   }
 
   const current = segments[candidate];
-  if (
-    timeS >= current.start_s - tolerance &&
-    timeS <= current.end_s + tolerance
-  ) {
+  if (timeS >= current.start_s - tolerance && timeS <= current.end_s + tolerance) {
     return candidate;
   }
 
@@ -196,4 +180,3 @@ export function findSegmentIndexByTime(
 
   return -1;
 }
-

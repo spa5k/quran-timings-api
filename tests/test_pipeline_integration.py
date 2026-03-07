@@ -55,7 +55,15 @@ class _AlwaysAvailableMFA:
                     engine_candidate="mfa",
                 )
             )
-        ayahs = [AyahTiming(surah=canonical_words[0].surah, ayah=canonical_words[0].ayah, start_s=0.0, end_s=1.0, source="aligned")]
+        ayahs = [
+            AyahTiming(
+                surah=canonical_words[0].surah,
+                ayah=canonical_words[0].ayah,
+                start_s=0.0,
+                end_s=1.0,
+                source="aligned",
+            )
+        ]
         return AlignmentOutput(
             ayahs=ayahs,
             words=words,
@@ -128,7 +136,15 @@ def _write_manifest(path: Path, rows: list[dict[str, str]]) -> None:
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(
             fh,
-            fieldnames=["audio_path", "reciter_id", "surah", "ayah", "source_url", "sha256", "language"],
+            fieldnames=[
+                "audio_path",
+                "reciter_id",
+                "surah",
+                "ayah",
+                "source_url",
+                "sha256",
+                "language",
+            ],
         )
         writer.writeheader()
         writer.writerows(rows)
@@ -180,7 +196,11 @@ def _build_existing_payload(store: QuranTextStore, *, surah: int, ayah: int | No
     return {
         "schema_version": "v1",
         "audio": {"path": "n/a", "duration_s": 1.0, "sample_rate": 16000, "channels": 1},
-        "meta": {"reciter_id": "test", "surah": surah, "input_mode": "ayah_file" if ayah else "full_surah"},
+        "meta": {
+            "reciter_id": "test",
+            "surah": surah,
+            "input_mode": "ayah_file" if ayah else "full_surah",
+        },
         "engine": {"name": "existing", "model": "cache", "device": "n/a", "fallback_used": False},
         "ayahs": ayahs,
         "words": words,

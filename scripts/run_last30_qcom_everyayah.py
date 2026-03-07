@@ -53,23 +53,31 @@ class BatchResult:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run last-30-surah batch for 10 Quran.com + 10 EveryAyah reciters.")
+    parser = argparse.ArgumentParser(
+        description="Run last-30-surah batch for 10 Quran.com + 10 EveryAyah reciters."
+    )
     parser.add_argument("--catalog", type=Path, default=Path("data/reciter_catalog.json"))
     parser.add_argument("--out-root", type=Path, default=Path("runs/last30_qcom_everyayah"))
     parser.add_argument("--ui-data-dir", type=Path, default=Path("ui/public/data"))
     parser.add_argument("--ui-catalog", type=Path, default=Path("ui/public/data/catalog.json"))
     parser.add_argument("--dist-data-dir", type=Path, default=Path("ui/dist/data"))
-    parser.add_argument("--sync-every", type=int, default=25, help="Sync UI every N completed items.")
+    parser.add_argument(
+        "--sync-every", type=int, default=25, help="Sync UI every N completed items."
+    )
     parser.add_argument("--text-data", type=Path, default=None)
     parser.add_argument("--cache-dir", type=Path, default=Path(".cache"))
-    parser.add_argument("--report", type=Path, default=Path("runs/last30_qcom_everyayah/report.json"))
+    parser.add_argument(
+        "--report", type=Path, default=Path("runs/last30_qcom_everyayah/report.json")
+    )
     args = parser.parse_args()
 
     catalog = _load_catalog(args.catalog)
     _upsert_selected_reciters(catalog)
     _save_catalog(args.catalog, catalog)
 
-    selected_reciters = [item[0] for item in QCOM_RECITERS] + [item[0] for item in EVERYAYAH_RECITERS]
+    selected_reciters = [item[0] for item in QCOM_RECITERS] + [
+        item[0] for item in EVERYAYAH_RECITERS
+    ]
     tasks = [(reciter_id, surah) for reciter_id in selected_reciters for surah in SURAHS_LAST_30]
     total = len(tasks)
     print(f"[batch] reciters={len(selected_reciters)} surahs={len(SURAHS_LAST_30)} tasks={total}")
@@ -293,7 +301,9 @@ def _upsert_selected_reciters(catalog: dict[str, Any]) -> None:
         selected_ids.add(manifest_id)
         eya_meta = by_subfolder.get(subfolder, {})
         display_name = str(eya_meta.get("name") or subfolder).strip()
-        reciter_key = eya_meta.get("reciter_key") if isinstance(eya_meta.get("reciter_key"), int) else None
+        reciter_key = (
+            eya_meta.get("reciter_key") if isinstance(eya_meta.get("reciter_key"), int) else None
+        )
         entry = configured_by_id.get(manifest_id, {})
         entry.update(
             {
@@ -302,7 +312,11 @@ def _upsert_selected_reciters(catalog: dict[str, Any]) -> None:
                 "check_type": "ayah_by_ayah",
                 "checks": {"ayah_by_ayah": True, "word_by_word": False},
                 "sources": {"everyayah": True, "quran_com": False},
-                "everyayah": {"subfolder": subfolder, "reciter_key": reciter_key, "name": display_name},
+                "everyayah": {
+                    "subfolder": subfolder,
+                    "reciter_key": reciter_key,
+                    "name": display_name,
+                },
                 "quran_com": {"recitation_id": None, "name": None},
                 "qcom_word_supervision_supported": False,
             }
@@ -310,7 +324,9 @@ def _upsert_selected_reciters(catalog: dict[str, Any]) -> None:
         configured_by_id[manifest_id] = entry
 
     # Keep previous configured entries, but ensure selected set is enabled.
-    configured_out = sorted(configured_by_id.values(), key=lambda item: str(item.get("manifest_reciter_id") or ""))
+    configured_out = sorted(
+        configured_by_id.values(), key=lambda item: str(item.get("manifest_reciter_id") or "")
+    )
     catalog["configured_reciters"] = configured_out
 
     enabled = {

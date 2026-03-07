@@ -54,7 +54,9 @@ def _as_float(value: Any) -> float | None:
         return None
 
 
-def _extract_key_and_words(payload: dict[str, Any], file_path: Path) -> list[tuple[tuple[str, int, int], list[dict[str, Any]]]]:
+def _extract_key_and_words(
+    payload: dict[str, Any], file_path: Path
+) -> list[tuple[tuple[str, int, int], list[dict[str, Any]]]]:
     words = payload.get("words")
     if not isinstance(words, list) or not words:
         return []
@@ -204,10 +206,7 @@ def evaluate_predictions(
         "passes_targets": (
             summary_metrics.median_abs_error_ms <= 50.0
             and summary_metrics.p95_abs_error_ms <= 120.0
-            and all(
-                metrics["median_abs_error_ms"] <= 65.0
-                for metrics in per_reciter.values()
-            )
+            and all(metrics["median_abs_error_ms"] <= 65.0 for metrics in per_reciter.values())
         ),
     }
 
@@ -224,7 +223,9 @@ def _collect_prediction_metadata(path: str | Path) -> dict[str, Any]:
     segment_source_type_counter: dict[str, int] = defaultdict(int)
 
     for file_path in files:
-        if file_path.name.endswith("_qc_report.json") or file_path.name.endswith("_text_audit.json"):
+        if file_path.name.endswith("_qc_report.json") or file_path.name.endswith(
+            "_text_audit.json"
+        ):
             continue
         try:
             payload = orjson.loads(file_path.read_bytes())
@@ -238,7 +239,11 @@ def _collect_prediction_metadata(path: str | Path) -> dict[str, Any]:
             if reciter_id:
                 reciters.add(reciter_id)
 
-        for source in payload.get("supervision_sources", []) if isinstance(payload.get("supervision_sources"), list) else []:
+        for source in (
+            payload.get("supervision_sources", [])
+            if isinstance(payload.get("supervision_sources"), list)
+            else []
+        ):
             source_key = str(source)
             supervision_source_counter[source_key] += 1
             if "shape=3_field" in source_key:
@@ -349,16 +354,16 @@ def evaluate_bakeoff(
     unsupported_predictions = _filter_dataset_by_support(predictions, supported=False)
     unsupported_reference = _filter_dataset_by_support(reference, supported=False)
 
-    supported_eval = _evaluate_on_datasets(predictions=supported_predictions, reference=supported_reference)
-    unsupported_eval = _evaluate_on_datasets(predictions=unsupported_predictions, reference=unsupported_reference)
+    supported_eval = _evaluate_on_datasets(
+        predictions=supported_predictions, reference=supported_reference
+    )
+    unsupported_eval = _evaluate_on_datasets(
+        predictions=unsupported_predictions, reference=unsupported_reference
+    )
 
     metadata = _collect_prediction_metadata(pred_dir)
-    supported_reciters = sorted(
-        {reciter_id for (reciter_id, _, _) in supported_reference}
-    )
-    unsupported_reciters = sorted(
-        {reciter_id for (reciter_id, _, _) in unsupported_reference}
-    )
+    supported_reciters = sorted({reciter_id for (reciter_id, _, _) in supported_reference})
+    unsupported_reciters = sorted({reciter_id for (reciter_id, _, _) in unsupported_reference})
 
     return {
         "overall": overall,

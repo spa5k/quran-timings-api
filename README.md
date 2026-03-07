@@ -3,11 +3,13 @@
 Batch Quran recitation timing extraction CLI.
 
 It produces:
+
 - Ayah-level timestamps
 - Word-level timestamps
 - JSON + CSV outputs
 
 Pipeline policy:
+
 1. Always run strict multi-pass model alignment.
 2. Use existing timings as priors only (never final output).
 3. Fuse external supervision from EveryAyah/Quran.com when available.
@@ -15,6 +17,7 @@ Pipeline policy:
 ## Current status
 
 This implementation is production-structured and test-covered, with a practical alignment adapter setup:
+
 - Primary engine wrapper: `NemoAligner` (default: NeMo CTC forced alignment runner)
 - Fallback engine: `WhisperXFallbackAligner`
 - Existing-source resolver: cache + remote template adapters
@@ -82,12 +85,14 @@ This writes `data/quran_text_uthmani_v1.json` in the pipeline's canonical schema
 ## Manifest format
 
 CSV required columns:
+
 - `audio_path`
 - `reciter_id`
 - `surah`
 - `ayah` (empty means full-surah input)
 
 Optional columns:
+
 - `source_url`
 - `sha256`
 - `language` (defaults to `ar`)
@@ -109,61 +114,85 @@ audio_path,reciter_id,surah,ayah,source_url,sha256,language
 uv run qad --help
 ```
 
-Only one public command is exposed: `qad detect`.
+Main commands:
 
-### Run mode (default)
+- `qad detect` (single URL/manual reciter workflow; legacy utility)
+- `qad sync-reciters` (build `data/reciters.json`)
+- `qad list-reciters` (inspect configured reciters/capabilities)
+- `qad run-surah` (single reciter+surah pipeline run)
+- `qad build-api` (interactive API build + UI sync)
+
+### Sync Reciter Index
 
 ```bash
-uv run qad detect \
-  --audio-url https://download.quranicaudio.com/quran/abdullaah_3awwaad_al-juhaynee/001.mp3 \
-  --reciter-id quranicaudio_abdullaah_3awwaad_al_juhaynee \
+uv run qad sync-reciters
+```
+
+Writes/updates the public reciter contract at:
+
+- `data/reciters.json`
+
+Optional:
+
+```bash
+uv run qad sync-reciters \
+  --enabled-reciters abdurrahmaan_as-sudays,sa3ood_al-shuraym
+```
+
+### List Reciters
+
+```bash
+uv run qad list-reciters
+```
+
+Enabled only:
+
+```bash
+uv run qad list-reciters --enabled-only
+```
+
+### Run One Reciter + Surah (Debug Path)
+
+```bash
+uv run qad run-surah \
+  --reciter-id abdurrahmaan_as-sudays \
   --surah 1
 ```
 
-Required:
-- `--audio-url <url>`
-- `--reciter-id <id>`
-- `--surah <1..114>`
-
-Optional:
-- `--ayah <n>` (if omitted, input is treated as full-surah audio)
-- `--out-root runs/detect`
-- `--cache-dir .cache/timings/v3`
-- `--text-data data/quran_text_uthmani_v1.json`
-
-No automatic surah/ayah detection is performed. You must pass `--surah` and optionally `--ayah`.
-
-Reciter checks in run mode:
-- Source of truth: `data/reciters.json` only
-- Prefilled from:
-  - Quranicaudio (`quranicaudio.com`)
-  - EveryAyah (`everyayah.com`)
-  - Quran.com (`api.quran.com`)
- - Prefilled IDs are source-scoped slugs, for example:
-  - `quranicaudio_abdullaah_3awwaad_al_juhaynee`
-  - `everyayah_abdurrahmaan_as_sudais_192kbps`
-  - `quran_com_7`
-- Unknown reciter:
-  - Interactive shell: prompts inline to create it, then continues.
-  - Non-interactive shell: exits with a setup command example.
-
-### Setup mode (create/update reciter)
+### Build Public API Data (Interactive)
 
 ```bash
-uv run qad detect \
-  --setup-reciter \
-  --reciter-id quranicaudio_abdullaah_3awwaad_al_juhaynee \
-  --reciter-name "Abdullaah 3awwaad Al-Juhaynee" \
-  --source quranicaudio \
-  --notes "Main download.quranicaudio.com reciter slug"
+uv run qad build-api
 ```
 
-Optional fields (`--reciter-name`, `--source`, `--notes`) are prompted in interactive mode when omitted.
+Interactive flow:
 
-### List mode
+- Optional reciter refresh from EveryAyah + Quran.com
+- Enabled-first reciter selection (can toggle to all configured)
+- Surah selection (`all`, range, or CSV)
+- Preview of `to_run` vs `skipped_existing`
+- Skip existing surah API files unless `--force`
+- Export split API files into `data/api`
+- Sync to `ui/public/data` (and optionally `ui/dist/data`)
+
+Non-interactive example:
 
 ```bash
-uv run qad detect --list-reciters
+uv run qad build-api \
+  --no-interactive \
+  --reciters abdurrahmaan_as-sudays,sa3ood_al-shuraym \
+  --surahs 55-84 \
+  --runs-root runs \
+  --out-root runs/api_build \
+  --api-root data/api \
+  --ui-data-dir ui/public/data \
+  --force
+```
+
+Export-only (no new runs; just rebuild/sync API payloads from existing run artifacts):
+
+```bash
+uv run qad build-api --export-only --no-interactive
 ```
 
 ## NeMo aligner wiring
@@ -175,6 +204,7 @@ uv run qad detect --list-reciters
 So no env var is required for the default path.
 
 Default alignment behavior is quality-first:
+
 - Uses NeMo CTC forced alignment (reference-text constrained)
 - For full-surah files, runs multi-pass ayah-level refinement on weak segments
 - Uses increasing overlap windows per pass before finalizing timestamps
@@ -186,6 +216,7 @@ export QAD_NEMO_ALIGN_CMD='python /path/to/your_nemo_aligner.py --audio {audio_w
 ```
 
 Template placeholders supported:
+
 - `{audio_wav}`
 - `{transcript_txt}`
 - `{output_json}`
@@ -199,6 +230,7 @@ If NeMo is unavailable or fails, pipeline can fall back to WhisperX.
 ## Engine lineup
 
 The strict v3 pipeline runs these candidates for fusion:
+
 - `nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0`
 - `nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0`
 - WhisperX Arabic aligner
@@ -206,6 +238,7 @@ The strict v3 pipeline runs these candidates for fusion:
 ## Output files
 
 Per input row:
+
 - `<stem>.json`
 - `<stem>_ayah.csv`
 - `<stem>_words.csv`
@@ -213,12 +246,50 @@ Per input row:
 - `<stem>_text_audit.json`
 
 `<stem>` format:
+
 - `reciter_sNNN_full` for full-surah rows
 - `reciter_sNNN_aNNN` for ayah rows
 
 Repository policy:
+
 - Generated artifacts are not stored in git (`runs/`, `benchmarks/generated/`, `ui/public/data/` are rebuildable).
 - Regenerate as needed using `qad detect`.
+
+## Public API Data Contract
+
+Canonical source-of-truth files:
+
+- `data/reciters.json`
+- `data/api/reciters/{slug}/metadata.json`
+- `data/api/reciters/{slug}/surahs/{surah}/metadata.json`
+- `data/api/reciters/{slug}/surahs/{surah}/timings.json`
+
+Audio policy:
+
+- API export is link-only for audio.
+- No audio binaries are copied to `data/api` or `ui/public/data`.
+- Surah metadata (`schema_version: v2`) exposes `audio.primary_asset`, `audio.fallback_order`, and `audio.assets`.
+- Asset kinds:
+  - `direct` (playable surah URL)
+  - `resolver` (API endpoint + `resolve_json_path`)
+  - `template` (ayah URL template)
+- Ayah-level timings include `audio_asset`, `audio_key`, and `audio_url` when resolvable.
+
+Build-time UI copy target:
+
+- `ui/public/data`
+
+`ui/package.json` now includes a `prebuild` step (`ui/scripts/prepare-api-data.mjs`) that copies:
+
+- `data/api/**` -> `ui/public/data/**`
+- `data/reciters.json` -> `ui/public/data/reciters.json`
+
+The UI reads exactly the same contract paths served to API consumers:
+
+- `/data/reciters.json`
+- `/data/reciters/{slug}/metadata.json`
+- `/data/reciters/{slug}/surahs/{surah}/metadata.json`
+- `/data/reciters/{slug}/surahs/{surah}/timings.json`
 
 ## Tests
 
@@ -227,6 +298,7 @@ uv run --extra dev pytest -q
 ```
 
 Current suite covers:
+
 - Arabic normalization/token-boundary behavior
 - Deterministic canonical word indexing
 - External timing validation rejection

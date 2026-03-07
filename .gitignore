@@ -18,6 +18,7 @@ benchmarks/generated/*
 !benchmarks/generated/.gitkeep
 ui/public/data/*
 !ui/public/data/.gitkeep
+node_modules/
 ui/node_modules/
 ui/dist/
 # Byte-compiled / optimized / DLL files

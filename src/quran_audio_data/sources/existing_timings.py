@@ -106,7 +106,9 @@ class ExistingTimingResolver:
     ) -> list[tuple[str, Any | None]]:
         candidates: list[tuple[str, Any | None]] = []
 
-        for file_path in self._local_cache_candidates(reciter_id=reciter_id, surah=surah, ayah=ayah):
+        for file_path in self._local_cache_candidates(
+            reciter_id=reciter_id, surah=surah, ayah=ayah
+        ):
             payload = _read_json_file(file_path)
             if payload is not None:
                 candidates.append((f"cache:{file_path}", payload))
@@ -121,7 +123,9 @@ class ExistingTimingResolver:
 
         return candidates
 
-    def _local_cache_candidates(self, *, reciter_id: str, surah: int, ayah: int | None) -> list[Path]:
+    def _local_cache_candidates(
+        self, *, reciter_id: str, surah: int, ayah: int | None
+    ) -> list[Path]:
         paths: list[Path] = []
         reciter_dir = self.cache_dir / reciter_id
 
@@ -148,10 +152,7 @@ def _normalize_prior_payload(
     if not isinstance(words_payload, list):
         return None
 
-    canonical_by_key = {
-        (word.ayah, word.word_index_in_ayah): word
-        for word in canonical_words
-    }
+    canonical_by_key = {(word.ayah, word.word_index_in_ayah): word for word in canonical_words}
 
     words: list[WordTiming] = []
     for raw in words_payload:
@@ -170,7 +171,9 @@ def _normalize_prior_payload(
             continue
 
         origin_raw = str(raw.get("alignment_origin") or "native")
-        alignment_origin = origin_raw if origin_raw in {"native", "interpolated", "distributed"} else "native"
+        alignment_origin = (
+            origin_raw if origin_raw in {"native", "interpolated", "distributed"} else "native"
+        )
 
         words.append(
             WordTiming(
@@ -293,11 +296,7 @@ def validate_external_timing(
         elif require_lexical_scores:
             warnings.append("missing_lexical_scores")
 
-    ok = (
-        len(warnings) == 0
-        and len(words) == expected_word_count
-        and monotonic
-    )
+    ok = len(warnings) == 0 and len(words) == expected_word_count and monotonic
     return ExternalValidationResult(ok=ok, warnings=warnings)
 
 

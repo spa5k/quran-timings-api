@@ -26,7 +26,9 @@ class ManifestRowModel(BaseModel):
             raise ValueError("value is required")
         return text
 
-    @field_validator("source_url", "sha256", "riwaya", "text_variant", "reference_split", mode="before")
+    @field_validator(
+        "source_url", "sha256", "riwaya", "text_variant", "reference_split", mode="before"
+    )
     @classmethod
     def _strip_optional_text(cls, value: Any) -> str | None:
         text = str(value).strip() if value is not None else ""

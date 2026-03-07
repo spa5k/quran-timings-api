@@ -508,9 +508,7 @@ def _decode_onnx_audio(
         return ""
     inputs = session.get_inputs()
     if len(inputs) < 2:
-        raise RuntimeError(
-            f"expected at least 2 ONNX inputs (features,length), got {len(inputs)}"
-        )
+        raise RuntimeError(f"expected at least 2 ONNX inputs (features,length), got {len(inputs)}")
 
     features_batched = features.astype(np.float32, copy=False)[np.newaxis, :, :]
     length = np.array([time_frames], dtype=np.int64)
@@ -725,9 +723,7 @@ def _compute_nemo_mel_features(audio: np.ndarray) -> np.ndarray:
         center=False,
     )
     mel = np.log(mel + 1e-5)
-    mel = (mel - mel.mean(axis=1, keepdims=True)) / (
-        mel.std(axis=1, keepdims=True) + 1e-10
-    )
+    mel = (mel - mel.mean(axis=1, keepdims=True)) / (mel.std(axis=1, keepdims=True) + 1e-10)
     return mel.astype(np.float32, copy=False)
 
 
@@ -765,9 +761,7 @@ def _parse_quran_payload(payload: object) -> list[VerseReference]:
                         continue
                     text_norm = normalize_arabic(str(text or ""))
                     if text_norm:
-                        refs.append(
-                            VerseReference(surah=surah, ayah=ayah, text_norm=text_norm)
-                        )
+                        refs.append(VerseReference(surah=surah, ayah=ayah, text_norm=text_norm))
 
         for key, value in payload.items():
             if ":" not in str(key):
@@ -787,10 +781,7 @@ def _parse_quran_payload(payload: object) -> list[VerseReference]:
             if not isinstance(row, dict):
                 continue
             surah = _coerce_int(
-                row.get("surah")
-                or row.get("sura")
-                or row.get("chapter")
-                or row.get("chapter_id")
+                row.get("surah") or row.get("sura") or row.get("chapter") or row.get("chapter_id")
             )
             ayah = _coerce_int(
                 row.get("ayah")

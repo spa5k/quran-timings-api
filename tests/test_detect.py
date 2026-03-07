@@ -124,9 +124,7 @@ def test_load_quran_references_supports_keyed_payload(tmp_path) -> None:
 
     # fallback store is still required by function signature, but should not be used here.
     text_path = tmp_path / "fallback_text.json"
-    text_path.write_bytes(
-        orjson.dumps({"surahs": {"1": {"1": "x"}}})
-    )
+    text_path.write_bytes(orjson.dumps({"surahs": {"1": {"1": "x"}}}))
     store = QuranTextStore(text_path)
 
     refs = load_quran_references(text_store=store, quran_path=quran_path)

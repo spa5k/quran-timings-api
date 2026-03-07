@@ -60,7 +60,9 @@ def test_reciter_exists(tmp_path) -> None:
 
 
 def test_normalize_reciter_id() -> None:
-    assert normalize_reciter_id(" Abdullaah/3awwaad-Al Juhaynee ") == "abdullaah_3awwaad_al_juhaynee"
+    assert (
+        normalize_reciter_id(" Abdullaah/3awwaad-Al Juhaynee ") == "abdullaah_3awwaad_al_juhaynee"
+    )
 
 
 def test_source_scoped_reciter_id() -> None:
