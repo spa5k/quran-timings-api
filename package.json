@@ -4,15 +4,15 @@
   "private": true,
   "description": "Batch Quran recitation timing extraction CLI.",
   "keywords": [],
-  "homepage": "https://github.com/spa5k/quran-word-sync#readme",
+  "homepage": "https://github.com/spa5k/quran-timings-api#readme",
   "bugs": {
-    "url": "https://github.com/spa5k/quran-word-sync/issues"
+    "url": "https://github.com/spa5k/quran-timings-api/issues"
   },
   "license": "ISC",
   "author": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spa5k/quran-word-sync.git"
+    "url": "git+https://github.com/spa5k/quran-timings-api.git"
   },
   "scripts": {
     "fmt": "npm run fmt:js && npm run fmt:py",
