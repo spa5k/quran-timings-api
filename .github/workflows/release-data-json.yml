@@ -2,12 +2,6 @@ name: Release Data JSON
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "data/**/*.json"
-      - ".github/workflows/release-data-json.yml"
 
 permissions:
   contents: write
@@ -39,11 +33,11 @@ jobs:
             exit 1
           fi
 
-          SHORT_SHA="${GITHUB_SHA::7}"
-          TS="$(date -u +%Y%m%d%H%M%S)"
-          TAG="data-${TS}-${SHORT_SHA}"
-          ZIP="quran-data-json-${TS}-${SHORT_SHA}.zip"
-          TAR="quran-data-json-${TS}-${SHORT_SHA}.tar.gz"
+          TS="$(date -u +%Y%m%d%H)"
+          VERSION="data-${TS}"
+          TAG="${VERSION}"
+          ZIP="quran-data-json-${VERSION}.zip"
+          TAR="quran-data-json-${VERSION}.tar.gz"
 
           (
             cd release
@@ -53,6 +47,7 @@ jobs:
 
           {
             echo "count=${COUNT}"
+            echo "version=${VERSION}"
             echo "tag=${TAG}"
             echo "zip=${ZIP}"
             echo "tar=${TAR}"
@@ -66,6 +61,7 @@ jobs:
           body: |
             Automated release of JSON files from `data/`.
 
+            - Version: ${{ steps.bundle.outputs.version }}
             - File count: ${{ steps.bundle.outputs.count }}
             - Commit: ${{ github.sha }}
           files: |
