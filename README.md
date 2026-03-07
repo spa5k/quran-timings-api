@@ -56,6 +56,11 @@ cd quran-timings-api
 
 Then upload/serve the `data/` folder from your own static hosting (Nginx, Cloudflare R2, S3, Vercel static, etc.).
 
+### Cloudflare Worker build note
+
+For the `ui/` Cloudflare Worker setup, the build pipeline automatically syncs repo `data/` API files into `ui/public/data` during build (`prepare-api-data.mjs`).  
+This now runs via npm lifecycle hooks and Wrangler build command, so `wrangler dev` / `wrangler deploy` include fresh data without a manual copy step.
+
 ### Endpoints
 
 1. `/reciters.json`  
