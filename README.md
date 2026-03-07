@@ -38,6 +38,24 @@ Base URLs:
 - GitHub Raw: `https://raw.githubusercontent.com/spa5k/quran-timings-api/main/data`
 - GitLoaf: `https://gitloaf.com/cdn/spa5k/quran-timings-api/main/data`
 
+### Self-hosting (recommended)
+
+You can and should download `data/api` and host it yourself (instead of depending only on public CDNs).
+
+Required files to host:
+
+- `data/reciters.json`
+- `data/api/**`
+
+Quick start:
+
+```bash
+git clone --depth 1 https://github.com/spa5k/quran-timings-api.git
+cd quran-timings-api
+```
+
+Then upload/serve the `data/` folder from your own static hosting (Nginx, Cloudflare R2, S3, Vercel static, etc.).
+
 ### Endpoints
 
 1. `/reciters.json`  

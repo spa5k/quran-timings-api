@@ -1,0 +1,73 @@
+name: Release Data JSON
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/**/*.json"
+      - ".github/workflows/release-data-json.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  release-data-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Build JSON bundle
+        id: bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p release/data
+          rsync -av --prune-empty-dirs \
+            --include="*/" \
+            --include="*.json" \
+            --exclude="*" \
+            data/ release/data/
+
+          COUNT="$(find release/data -type f -name '*.json' | wc -l | tr -d ' ')"
+          if [ "$COUNT" = "0" ]; then
+            echo "No JSON files found under data/"
+            exit 1
+          fi
+
+          SHORT_SHA="${GITHUB_SHA::7}"
+          TS="$(date -u +%Y%m%d%H%M%S)"
+          TAG="data-${TS}-${SHORT_SHA}"
+          ZIP="quran-data-json-${TS}-${SHORT_SHA}.zip"
+          TAR="quran-data-json-${TS}-${SHORT_SHA}.tar.gz"
+
+          (
+            cd release
+            zip -r "../${ZIP}" data > /dev/null
+            tar -czf "../${TAR}" data
+          )
+
+          {
+            echo "count=${COUNT}"
+            echo "tag=${TAG}"
+            echo "zip=${ZIP}"
+            echo "tar=${TAR}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          tag_name: ${{ steps.bundle.outputs.tag }}
+          name: Data JSON ${{ steps.bundle.outputs.tag }}
+          body: |
+            Automated release of JSON files from `data/`.
+
+            - File count: ${{ steps.bundle.outputs.count }}
+            - Commit: ${{ github.sha }}
+          files: |
+            ${{ steps.bundle.outputs.zip }}
+            ${{ steps.bundle.outputs.tar }}
