@@ -1,0 +1,86 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "qcom_mishari_alafasy",
+    "name": "qcom_mishari_alafasy"
+  },
+  "surah": {
+    "number": 81,
+    "title": "Surah 81",
+    "ayah_count": 29,
+    "word_count": 104
+  },
+  "audio": {
+    "granularity": "surah",
+    "primary_asset": "surah_direct",
+    "fallback_order": [
+      "qcom_surah"
+    ],
+    "assets": {
+      "surah_direct": {
+        "provider": "quranicaudio",
+        "level": "surah",
+        "kind": "direct",
+        "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/81.mp3"
+      },
+      "qcom_surah": {
+        "provider": "quran_com",
+        "level": "surah",
+        "kind": "resolver",
+        "url": "https://api.quran.com/api/v4/chapter_recitations/7/81",
+        "resolve_json_path": "$.audio_file.audio_url"
+      }
+    },
+    "duration_s": 126.25086167800454,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [
+      "boundary_refinement_applied"
+    ],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.004713392436037136,
+    "quantization_step_ms": 535.0000000000001,
+    "everyayah_stitch_eval": null
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": [
+        "nemo",
+        "whisperx",
+        "mfa"
+      ]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 198.35319359601382,
+      "mfa": 197.61727720526375
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [
+      "qcom:qcom_chapter:7:shape=3_field"
+    ],
+    "segment_source_type": "qcom_chapter"
+  },
+  "timings_endpoint": "/data/reciters/qcom_mishari_alafasy/surahs/81/timings.json",
+  "updated_at": "2026-03-07T02:41:26.110990+00:00"
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "eya_nasser_alqatami",
+    "name": "eya_nasser_alqatami"
+  },
+  "surah": {
+    "number": 102,
+    "title": "Surah 102",
+    "ayah_count": 8,
+    "word_count": 28
+  },
+  "audio": {
+    "granularity": "ayah",
+    "primary_asset": "everyayah_ayah",
+    "fallback_order": [],
+    "assets": {
+      "everyayah_ayah": {
+        "provider": "everyayah",
+        "level": "ayah",
+        "kind": "template",
+        "template": "https://everyayah.com/data/Nasser_Alqatami_128kbps/102{ayah:03d}.mp3"
+      }
+    },
+    "duration_s": 50.28360544217687,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": false,
+    "warnings": [
+      "Speech/audio end mismatch ratio 0.056 exceeds 0.040",
+      "qc_failed_after_rescue_keep_best"
+    ],
+    "reason_codes": [
+      "duration_mismatch",
+      "qc_failed_keep_best"
+    ],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.05587194861888151,
+    "quantization_step_ms": 640.0000000000006,
+    "everyayah_stitch_eval": {
+      "expected_ayahs": 8,
+      "predicted_ayahs": 8,
+      "matched_ayahs": 8,
+      "coverage_vs_reference": 1.0,
+      "start_error_median_ms": 125.625,
+      "end_error_median_ms": 2230.509,
+      "boundary_error_median_ms": 515.933,
+      "boundary_error_p95_ms": 3520.157,
+      "boundary_hit_rate_20ms": 0.0625,
+      "boundary_hit_rate_50ms": 0.125,
+      "boundary_hit_rate_80ms": 0.25,
+      "start_offset_s": 0.125625,
+      "offset_normalized_boundary_error_median_ms": 498.25,
+      "offset_normalized_boundary_error_p95_ms": 3645.782,
+      "offset_normalized_hit_rate_20ms": 0.0,
+      "offset_normalized_hit_rate_50ms": 0.125,
+      "offset_normalized_hit_rate_80ms": 0.1875,
+      "ayah_differences": [
+        {
+          "ayah": 1,
+          "pred_start_s": 0.08,
+          "pred_end_s": 1.76,
+          "ref_start_s": 0.0,
+          "ref_end_s": 1.989,
+          "delta_start_ms": 80.0,
+          "delta_end_ms": -228.75,
+          "abs_start_ms": 80.0,
+          "abs_end_ms": 228.75,
+          "norm_delta_start_ms": -45.625,
+          "norm_delta_end_ms": -354.375,
+          "norm_abs_start_ms": 45.625,
+          "norm_abs_end_ms": 354.375
+        },
+        {
+          "ayah": 2,
+          "pred_start_s": 2.16,
+          "pred_end_s": 4.16,
+          "ref_start_s": 1.989,
+          "ref_end_s": 8.695,
+          "delta_start_ms": 171.25,
+          "delta_end_ms": -4534.813,
+          "abs_start_ms": 171.25,
+          "abs_end_ms": 4534.813,
+          "norm_delta_start_ms": 45.625,
+          "norm_delta_end_ms": -4660.438,
+          "norm_abs_start_ms": 45.625,
+          "norm_abs_end_ms": 4660.438
+        },
+        {
+          "ayah": 3,
+          "pred_start_s": 8.72,
+          "pred_end_s": 11.76,
+          "ref_start_s": 8.695,
+          "ref_end_s": 13.472,
+          "delta_start_ms": 25.187,
+          "delta_end_ms": -1712.251,
+          "abs_start_ms": 25.187,
+          "abs_end_ms": 1712.251,
+          "norm_delta_start_ms": -100.438,
+          "norm_delta_end_ms": -1837.876,
+          "norm_abs_start_ms": 100.438,
+          "norm_abs_end_ms": 1837.876
+        },
+        {
+          "ayah": 4,
+          "pred_start_s": 14.24,
+          "pred_end_s": 19.76,
+          "ref_start_s": 13.472,
+          "ref_end_s": 22.576,
+          "delta_start_ms": 767.749,
+          "delta_end_ms": -2816.064,
+          "abs_start_ms": 767.749,
+          "abs_end_ms": 2816.064,
+          "norm_delta_start_ms": 642.124,
+          "norm_delta_end_ms": -2941.689,
+          "norm_abs_start_ms": 642.124,
+          "norm_abs_end_ms": 2941.689
+        },
+        {
+          "ayah": 5,
+          "pred_start_s": 22.64,
+          "pred_end_s": 26.56,
+          "ref_start_s": 22.576,
+          "ref_end_s": 29.205,
+          "delta_start_ms": 63.936,
+          "delta_end_ms": -2645.134,
+          "abs_start_ms": 63.936,
+          "abs_end_ms": 2645.134,
+          "norm_delta_start_ms": -61.689,
+          "norm_delta_end_ms": -2770.759,
+          "norm_abs_start_ms": 61.689,
+          "norm_abs_end_ms": 2770.759
+        },
+        {
+          "ayah": 6,
+          "pred_start_s": 29.2,
+          "pred_end_s": 31.92,
+          "ref_start_s": 29.205,
+          "ref_end_s": 33.227,
+          "delta_start_ms": -5.134,
+          "delta_end_ms": -1306.759,
+          "abs_start_ms": 5.134,
+          "abs_end_ms": 1306.759,
+          "norm_delta_start_ms": -130.759,
+          "norm_delta_end_ms": -1432.384,
+          "norm_abs_start_ms": 130.759,
+          "norm_abs_end_ms": 1432.384
+        },
+        {
+          "ayah": 7,
+          "pred_start_s": 33.44,
+          "pred_end_s": 38.56,
+          "ref_start_s": 33.227,
+          "ref_end_s": 40.376,
+          "delta_start_ms": 213.241,
+          "delta_end_ms": -1815.884,
+          "abs_start_ms": 213.241,
+          "abs_end_ms": 1815.884,
+          "norm_delta_start_ms": 87.616,
+          "norm_delta_end_ms": -1941.509,
+          "norm_abs_start_ms": 87.616,
+          "norm_abs_end_ms": 1941.509
+        },
+        {
+          "ayah": 8,
+          "pred_start_s": 40.64,
+          "pred_end_s": 47.04,
+          "ref_start_s": 40.376,
+          "ref_end_s": 50.222,
+          "delta_start_ms": 264.116,
+          "delta_end_ms": -3181.938,
+          "abs_start_ms": 264.116,
+          "abs_end_ms": 3181.938,
+          "norm_delta_start_ms": 138.491,
+          "norm_delta_end_ms": -3307.563,
+          "norm_abs_start_ms": 138.491,
+          "norm_abs_end_ms": 3307.563
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "engine": {
+      "name": "nemo",
+      "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+      "device": "cpu",
+      "fallback_used": false,
+      "attempted": [
+        "nemo",
+        "whisperx",
+        "mfa"
+      ]
+    },
+    "selected_candidate_engine": "nemo",
+    "candidate_scores": {
+      "nemo": 67.13497399762736,
+      "mfa": 67.13497399762736
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [
+      "everyayah:subfolder=Nasser_Alqatami_128kbps:surah=102:scope=full_surah"
+    ],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/eya_nasser_alqatami/surahs/102/timings.json",
+  "updated_at": "2026-03-07T01:31:08.507339+00:00"
+}

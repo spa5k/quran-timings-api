@@ -1,11 +1,11 @@
 {
   "schema_version": "v1",
-  "generated_at": "2026-03-06T19:05:21.460674+00:00",
+  "generated_at": "2026-03-07T09:06:27.319405+00:00",
   "counts": {
     "everyayah_source_reciters": 79,
     "quran_com_source_reciters": 12,
-    "configured_reciters": 6,
-    "enabled_reciters": 6
+    "configured_reciters": 16,
+    "enabled_reciters": 16
   },
   "sources": {
     "everyayah_catalog_url": "https://everyayah.com/data/recitations.js",
@@ -13,27 +13,208 @@
   },
   "reciters": [
     {
-      "slug": "eya_nasser_alqatami",
-      "name": "eya_nasser_alqatami",
+      "slug": "eya_abdul_basit_mujawwad",
+      "name": "Abdul Basit Mujawwad",
       "enabled": true,
-      "check_type": "model_only",
+      "check_type": "ayah_by_ayah",
       "capabilities": {
-        "ayah_by_ayah": false,
+        "ayah_by_ayah": true,
         "word_by_word": false
       },
       "source": {
         "everyayah": {
-          "subfolder": null,
-          "reciter_key": null,
-          "name": null
+          "subfolder": "Abdul_Basit_Mujawwad_128kbps",
+          "reciter_key": 3,
+          "name": "Abdul Basit Mujawwad"
         },
         "quran_com": {
           "recitation_id": null,
           "name": null
         }
       },
-      "surahs_available": [90, 110, 111, 112, 113, 114],
-      "surah_count": 6,
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdul_basit_mujawwad/metadata.json"
+      }
+    },
+    {
+      "slug": "eya_abdul_basit_murattal",
+      "name": "Abdul Basit Murattal",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdul_Basit_Murattal_64kbps",
+          "reciter_key": 1,
+          "name": "Abdul Basit Murattal"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdul_basit_murattal/metadata.json"
+      }
+    },
+    {
+      "slug": "eya_abdullah_basfar",
+      "name": "Abdullah Basfar",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdullah_Basfar_32kbps",
+          "reciter_key": 4,
+          "name": "Abdullah Basfar"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdullah_basfar/metadata.json"
+      }
+    },
+    {
+      "slug": "eya_abdulsamad_quranexplorer_com",
+      "name": "AbdulSamad QuranExplorer.Com",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "AbdulSamad_64kbps_QuranExplorer.Com",
+          "reciter_key": 9,
+          "name": "AbdulSamad QuranExplorer.Com"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdulsamad_quranexplorer_com/metadata.json"
+      }
+    },
+    {
+      "slug": "eya_abdurrahmaan_as_sudais",
+      "name": "Abdurrahmaan As-Sudais",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdurrahmaan_As-Sudais_64kbps",
+          "reciter_key": 7,
+          "name": "Abdurrahmaan As-Sudais"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdurrahmaan_as_sudais/metadata.json"
+      }
+    },
+    {
+      "slug": "eya_nasser_alqatami",
+      "name": "eya_nasser_alqatami",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Nasser_Alqatami_128kbps",
+          "reciter_key": 68,
+          "name": "Nasser_Alqatami"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        }
+      },
+      "surahs_available": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 50,
       "endpoints": {
         "metadata": "/data/reciters/eya_nasser_alqatami/metadata.json"
       }
@@ -42,24 +223,75 @@
       "slug": "eya_salah_al_budair",
       "name": "eya_salah_al_budair",
       "enabled": true,
-      "check_type": "model_only",
+      "check_type": "ayah_by_ayah",
       "capabilities": {
-        "ayah_by_ayah": false,
+        "ayah_by_ayah": true,
         "word_by_word": false
       },
       "source": {
         "everyayah": {
-          "subfolder": null,
-          "reciter_key": null,
-          "name": null
+          "subfolder": "Salah_Al_Budair_128kbps",
+          "reciter_key": 54,
+          "name": "Salah Al Budair"
         },
         "quran_com": {
           "recitation_id": null,
           "name": null
         }
       },
-      "surahs_available": [90, 110, 111, 112, 113, 114],
-      "surah_count": 6,
+      "surahs_available": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 50,
       "endpoints": {
         "metadata": "/data/reciters/eya_salah_al_budair/metadata.json"
       }
@@ -87,17 +319,68 @@
       "endpoints": {
         "metadata": "/data/reciters/muhsin_al_qasim/metadata.json"
       },
-      "surahs_available": [110, 111, 112, 113, 114],
-      "surah_count": 5
+      "surahs_available": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 50
     },
     {
-      "slug": "qcom_husary",
-      "name": "qcom_husary",
+      "slug": "qcom_abdulbaset_abdulsamad",
+      "name": "AbdulBaset AbdulSamad",
       "enabled": true,
-      "check_type": "model_only",
+      "check_type": "word_by_word",
       "capabilities": {
         "ayah_by_ayah": false,
-        "word_by_word": false
+        "word_by_word": true
       },
       "source": {
         "everyayah": {
@@ -106,24 +389,267 @@
           "name": null
         },
         "quran_com": {
-          "recitation_id": null,
-          "name": null
+          "recitation_id": 1,
+          "name": "AbdulBaset AbdulSamad"
         }
       },
-      "surahs_available": [90, 110, 111, 112, 113, 114],
-      "surah_count": 6,
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_abdulbaset_abdulsamad/metadata.json"
+      }
+    },
+    {
+      "slug": "qcom_abdur_rahman_as_sudais",
+      "name": "Abdur-Rahman as-Sudais",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 3,
+          "name": "Abdur-Rahman as-Sudais"
+        }
+      },
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_abdur_rahman_as_sudais/metadata.json"
+      }
+    },
+    {
+      "slug": "qcom_abu_bakr_al_shatri",
+      "name": "Abu Bakr al-Shatri",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 4,
+          "name": "Abu Bakr al-Shatri"
+        }
+      },
+      "surahs_available": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 30,
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_abu_bakr_al_shatri/metadata.json"
+      }
+    },
+    {
+      "slug": "qcom_hani_ar_rifai",
+      "name": "Hani ar-Rifai",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 5,
+          "name": "Hani ar-Rifai"
+        }
+      },
+      "surahs_available": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 30,
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_hani_ar_rifai/metadata.json"
+      }
+    },
+    {
+      "slug": "qcom_husary",
+      "name": "qcom_husary",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 6,
+          "name": "Mahmoud Khalil Al-Husary"
+        }
+      },
+      "surahs_available": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 50,
       "endpoints": {
         "metadata": "/data/reciters/qcom_husary/metadata.json"
+      }
+    },
+    {
+      "slug": "qcom_mahmoud_khalil_al_husary",
+      "name": "Mahmoud Khalil Al-Husary",
+      "enabled": true,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 6,
+          "name": "Mahmoud Khalil Al-Husary"
+        }
+      },
+      "surahs_available": [],
+      "surah_count": 0,
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_mahmoud_khalil_al_husary/metadata.json"
       }
     },
     {
       "slug": "qcom_mishari_alafasy",
       "name": "qcom_mishari_alafasy",
       "enabled": true,
-      "check_type": "model_only",
+      "check_type": "word_by_word",
       "capabilities": {
         "ayah_by_ayah": false,
-        "word_by_word": false
+        "word_by_word": true
       },
       "source": {
         "everyayah": {
@@ -132,12 +658,63 @@
           "name": null
         },
         "quran_com": {
-          "recitation_id": null,
-          "name": null
+          "recitation_id": 7,
+          "name": "Mishari Rashid al-`Afasy"
         }
       },
-      "surahs_available": [90, 110, 111, 112, 113, 114],
-      "surah_count": 6,
+      "surahs_available": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 50,
       "endpoints": {
         "metadata": "/data/reciters/qcom_mishari_alafasy/metadata.json"
       }
@@ -165,8 +742,60 @@
       "endpoints": {
         "metadata": "/data/reciters/yasser_ad-dussary/metadata.json"
       },
-      "surahs_available": [110, 111, 112, 113, 114],
-      "surah_count": 5
+      "surahs_available": [
+        2,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "surah_count": 51
     }
   ],
   "everyayah_reciters": [

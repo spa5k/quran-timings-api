@@ -30,7 +30,9 @@
     "coverage": 1.0,
     "monotonic": true,
     "duration_match": true,
-    "warnings": ["boundary_refinement_applied"],
+    "warnings": [
+      "boundary_refinement_applied"
+    ],
     "reason_codes": [],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,
@@ -111,7 +113,11 @@
       "model": "ayah-wise",
       "device": "cpu",
       "fallback_used": true,
-      "attempted": ["nemo", "whisperx", "mfa"]
+      "attempted": [
+        "nemo",
+        "whisperx",
+        "mfa"
+      ]
     },
     "selected_candidate_engine": "ensemble",
     "candidate_scores": {
@@ -132,5 +138,5 @@
     "segment_source_type": "none"
   },
   "timings_endpoint": "/data/reciters/yasser_ad-dussary/surahs/110/timings.json",
-  "updated_at": "2026-03-06T13:15:01.180964+00:00"
+  "updated_at": "2026-03-07T03:08:18.682387+00:00"
 }

@@ -99,18 +99,26 @@ curl -s https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/recite
 
 ## Available Reciters
 
-Snapshot below is from `data/reciters.json` generated on `2026-03-06`.
+Snapshot below is from `data/reciters.json` generated on `2026-03-07`.
 
-### Enabled reciters in the current API dataset
+To see the latest enabled set at any time:
 
-| Slug                   | Name                 | Check Type     | EveryAyah Subfolder         | Quran.com Recitation ID | Surahs Available            |
-| ---------------------- | -------------------- | -------------- | --------------------------- | ----------------------- | --------------------------- |
-| `eya_nasser_alqatami`  | eya_nasser_alqatami  | `model_only`   | -                           | -                       | 90, 110, 111, 112, 113, 114 |
-| `eya_salah_al_budair`  | eya_salah_al_budair  | `model_only`   | -                           | -                       | 90, 110, 111, 112, 113, 114 |
-| `muhsin_al_qasim`      | Muhsin Al Qasim      | `ayah_by_ayah` | `Muhsin_Al_Qasim_192kbps`   | -                       | 110, 111, 112, 113, 114     |
-| `qcom_husary`          | qcom_husary          | `model_only`   | -                           | -                       | 90, 110, 111, 112, 113, 114 |
-| `qcom_mishari_alafasy` | qcom_mishari_alafasy | `model_only`   | -                           | -                       | 90, 110, 111, 112, 113, 114 |
-| `yasser_ad-dussary`    | Yasser_Ad-Dussary    | `ayah_by_ayah` | `Yasser_Ad-Dussary_128kbps` | -                       | 110, 111, 112, 113, 114     |
+```bash
+uv run qad list-reciters --enabled-only
+```
+
+### Newly enabled reciters (added on 2026-03-07)
+
+- `qcom_abdulbaset_abdulsamad`
+- `qcom_abdur_rahman_as_sudais`
+- `qcom_abu_bakr_al_shatri`
+- `qcom_hani_ar_rifai`
+- `qcom_mahmoud_khalil_al_husary`
+- `eya_abdul_basit_murattal`
+- `eya_abdul_basit_mujawwad`
+- `eya_abdullah_basfar`
+- `eya_abdurrahmaan_as_sudais`
+- `eya_abdulsamad_quranexplorer_com`
 
 ### Source coverage and rollout
 
@@ -167,6 +175,7 @@ uv run qad build-api
 
 Use `detect` when you already have a direct audio URL + surah number.
 Use `run-surah` when you want the catalog-driven reciter/surah job.
+Use `build-api` to publish/copy run outputs from `runs/` into `data/api/` and update `data/reciters.json`.
 
 Non-interactive API build example:
 
@@ -217,6 +226,8 @@ uv run qad run-surah --reciter-id <reciter_slug> --surah <1-114>
 ```bash
 uv run qad build-api --export-only --no-interactive
 ```
+
+This publish step is required: run outputs are written to `runs/` first, then `build-api` copies them into `data/api/`.
 
 4. Open a PR with updated files under:
 
