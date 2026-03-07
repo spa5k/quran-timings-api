@@ -161,8 +161,12 @@ qad --help
 uv run qad sync-reciters
 uv run qad list-reciters --enabled-only
 uv run qad run-surah --reciter-id yasser_ad-dussary --surah 114
+uv run qad detect --audio-url <https_audio_url> --reciter-id yasser_ad-dussary --surah 114
 uv run qad build-api
 ```
+
+Use `detect` when you already have a direct audio URL + surah number.
+Use `run-surah` when you want the catalog-driven reciter/surah job.
 
 Non-interactive API build example:
 
@@ -194,7 +198,15 @@ Contributions for new or improved timings are welcome.
 uv run qad sync-reciters
 ```
 
-2. Run timing generation for target reciter/surah:
+2. Run timing generation for target reciter/surah.
+
+If you generally work from direct audio URLs + surah number, use `detect`:
+
+```bash
+uv run qad detect --audio-url <https_audio_url> --reciter-id <reciter_slug> --surah <1-114>
+```
+
+If you want the catalog-aware workflow, use `run-surah`:
 
 ```bash
 uv run qad run-surah --reciter-id <reciter_slug> --surah <1-114>

@@ -143,8 +143,10 @@ export function usePlaybackController({
 
     const audio = audioRef.current;
     if (audio) {
-      audio.currentTime = 0;
       audio.pause();
+      audio.currentTime = 0;
+      audio.removeAttribute("src");
+      audio.load();
     }
   }, [audioRef, firstAyahWithAudio?.start_s, sessionKey]);
 
