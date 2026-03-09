@@ -1,21 +1,83 @@
 {
   "schema_version": "v1",
-  "generated_at": "2026-03-07T09:06:27.319405+00:00",
+  "generated_at": "2026-03-09T19:08:51.837736+00:00",
   "counts": {
     "everyayah_source_reciters": 79,
     "quran_com_source_reciters": 12,
-    "configured_reciters": 16,
-    "enabled_reciters": 16
+    "quranicaudio_source_reciters": 110,
+    "configured_reciters": 198,
+    "enabled_reciters": 3
   },
   "sources": {
     "everyayah_catalog_url": "https://everyayah.com/data/recitations.js",
-    "quran_com_recitations_url": "https://api.quran.com/api/v4/resources/recitations?language=en"
+    "quran_com_recitations_url": "https://api.quran.com/api/v4/resources/recitations?language=en",
+    "quranicaudio_catalog_url": "https://quranicaudio.com"
   },
   "reciters": [
     {
-      "slug": "eya_abdul_basit_mujawwad",
+      "slug": "abdul_basit_murattal_64kbps",
+      "name": "AbdulBaset AbdulSamad",
+      "enabled": false,
+      "check_type": "both",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdul_Basit_Murattal_64kbps",
+          "reciter_key": 1,
+          "name": "Abdul Basit Murattal"
+        },
+        "quran_com": {
+          "recitation_id": 2,
+          "name": "AbdulBaset AbdulSamad"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/abdul_basit_murattal_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "abdurrahmaan_as-sudays",
+      "name": "Abdur-Rahman as-Sudais",
+      "enabled": false,
+      "check_type": "both",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdurrahmaan_As-Sudais_192kbps",
+          "reciter_key": 8,
+          "name": "Abdurrahmaan As-Sudais"
+        },
+        "quran_com": {
+          "recitation_id": 3,
+          "name": "Abdur-Rahman as-Sudais"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/abdurrahmaan_as-sudays/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_abdul_basit_mujawwad_128kbps",
       "name": "Abdul Basit Mujawwad",
-      "enabled": true,
+      "enabled": false,
       "check_type": "ayah_by_ayah",
       "capabilities": {
         "ayah_by_ayah": true,
@@ -30,18 +92,22 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [],
-      "surah_count": 0,
       "endpoints": {
-        "metadata": "/data/reciters/eya_abdul_basit_mujawwad/metadata.json"
-      }
+        "metadata": "/data/reciters/eya_abdul_basit_mujawwad_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
-      "slug": "eya_abdul_basit_murattal",
+      "slug": "eya_abdul_basit_murattal_192kbps",
       "name": "Abdul Basit Murattal",
-      "enabled": true,
+      "enabled": false,
       "check_type": "ayah_by_ayah",
       "capabilities": {
         "ayah_by_ayah": true,
@@ -49,25 +115,89 @@
       },
       "source": {
         "everyayah": {
-          "subfolder": "Abdul_Basit_Murattal_64kbps",
-          "reciter_key": 1,
+          "subfolder": "Abdul_Basit_Murattal_192kbps",
+          "reciter_key": 2,
           "name": "Abdul Basit Murattal"
         },
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [],
-      "surah_count": 0,
       "endpoints": {
-        "metadata": "/data/reciters/eya_abdul_basit_murattal/metadata.json"
-      }
+        "metadata": "/data/reciters/eya_abdul_basit_murattal_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
-      "slug": "eya_abdullah_basfar",
+      "slug": "eya_abdullaah_3awwaad_al_juhaynee_128kbps",
+      "name": "Abdullaah 3awwaad Al-Juhaynee",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdullaah_3awwaad_Al-Juhaynee_128kbps",
+          "reciter_key": 53,
+          "name": "Abdullaah 3awwaad Al-Juhaynee"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdullaah_3awwaad_al_juhaynee_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_abdullah_basfar_192kbps",
       "name": "Abdullah Basfar",
-      "enabled": true,
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdullah_Basfar_192kbps",
+          "reciter_key": 6,
+          "name": "Abdullah Basfar"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdullah_basfar_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_abdullah_basfar_32kbps",
+      "name": "Abdullah Basfar",
+      "enabled": false,
       "check_type": "ayah_by_ayah",
       "capabilities": {
         "ayah_by_ayah": true,
@@ -82,18 +212,82 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [],
-      "surah_count": 0,
       "endpoints": {
-        "metadata": "/data/reciters/eya_abdullah_basfar/metadata.json"
-      }
+        "metadata": "/data/reciters/eya_abdullah_basfar_32kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
-      "slug": "eya_abdulsamad_quranexplorer_com",
+      "slug": "eya_abdullah_basfar_64kbps",
+      "name": "Abdullah Basfar",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdullah_Basfar_64kbps",
+          "reciter_key": 5,
+          "name": "Abdullah Basfar"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdullah_basfar_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_abdullah_matroud_128kbps",
+      "name": "Abdullah Matroud",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdullah_Matroud_128kbps",
+          "reciter_key": 55,
+          "name": "Abdullah Matroud"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdullah_matroud_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_abdulsamad_64kbps_quranexplorer_com",
       "name": "AbdulSamad QuranExplorer.Com",
-      "enabled": true,
+      "enabled": false,
       "check_type": "ayah_by_ayah",
       "capabilities": {
         "ayah_by_ayah": true,
@@ -108,18 +302,22 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [],
-      "surah_count": 0,
       "endpoints": {
-        "metadata": "/data/reciters/eya_abdulsamad_quranexplorer_com/metadata.json"
-      }
+        "metadata": "/data/reciters/eya_abdulsamad_64kbps_quranexplorer_com/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
-      "slug": "eya_abdurrahmaan_as_sudais",
+      "slug": "eya_abdurrahmaan_as_sudais_64kbps",
       "name": "Abdurrahmaan As-Sudais",
-      "enabled": true,
+      "enabled": false,
       "check_type": "ayah_by_ayah",
       "capabilities": {
         "ayah_by_ayah": true,
@@ -134,18 +332,1492 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [],
-      "surah_count": 0,
       "endpoints": {
-        "metadata": "/data/reciters/eya_abdurrahmaan_as_sudais/metadata.json"
-      }
+        "metadata": "/data/reciters/eya_abdurrahmaan_as_sudais_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
-      "slug": "eya_nasser_alqatami",
-      "name": "eya_nasser_alqatami",
-      "enabled": true,
+      "slug": "eya_abu_bakr_ash_shaatree_128kbps",
+      "name": "Abu Bakr Ash-Shaatree",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abu_Bakr_Ash-Shaatree_128kbps",
+          "reciter_key": 11,
+          "name": "Abu Bakr Ash-Shaatree"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abu_bakr_ash_shaatree_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_abu_bakr_ash_shaatree_64kbps",
+      "name": "Abu Bakr Ash-Shaatree",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abu_Bakr_Ash-Shaatree_64kbps",
+          "reciter_key": 10,
+          "name": "Abu Bakr Ash-Shaatree"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abu_bakr_ash_shaatree_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ahmed_ibn_ali_al_ajamy_128kbps",
+      "name": "Ahmed Ibn Ali Al Ajamy",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "ahmed_ibn_ali_al_ajamy_128kbps",
+          "reciter_key": 71,
+          "name": "Ahmed Ibn Ali Al Ajamy"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ahmed_ibn_ali_al_ajamy_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ahmed_ibn_ali_al_ajamy_128kbps_ketaballah_net",
+      "name": "Ahmed ibn Ali al-Ajamy KetabAllah.Net",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ahmed_ibn_Ali_al-Ajamy_128kbps_ketaballah.net",
+          "reciter_key": 13,
+          "name": "Ahmed ibn Ali al-Ajamy KetabAllah.Net"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ahmed_ibn_ali_al_ajamy_128kbps_ketaballah_net/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ahmed_ibn_ali_al_ajamy_64kbps_quranexplorer_com",
+      "name": "Ahmed ibn Ali al-Ajamy QuranExplorer.Com",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ahmed_ibn_Ali_al-Ajamy_64kbps_QuranExplorer.Com",
+          "reciter_key": 12,
+          "name": "Ahmed ibn Ali al-Ajamy QuranExplorer.Com"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ahmed_ibn_ali_al_ajamy_64kbps_quranexplorer_com/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ahmed_neana_128kbps",
+      "name": "Ahmed Neana",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ahmed_Neana_128kbps",
+          "reciter_key": 56,
+          "name": "Ahmed Neana"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ahmed_neana_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_akram_alalaqimy_128kbps",
+      "name": "Akram Al Alaqimy",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Akram_AlAlaqimy_128kbps",
+          "reciter_key": 75,
+          "name": "Akram Al Alaqimy"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_akram_alalaqimy_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_alafasy_128kbps",
+      "name": "Alafasy",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Alafasy_128kbps",
+          "reciter_key": 15,
+          "name": "Alafasy"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_alafasy_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_alafasy_64kbps",
+      "name": "Alafasy",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Alafasy_64kbps",
+          "reciter_key": 14,
+          "name": "Alafasy"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_alafasy_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ali_hajjaj_alsuesy_128kbps",
+      "name": "Ali_Hajjaj_AlSuesy",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ali_Hajjaj_AlSuesy_128kbps",
+          "reciter_key": 69,
+          "name": "Ali_Hajjaj_AlSuesy"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ali_hajjaj_alsuesy_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ali_jaber_64kbps",
+      "name": "Ali Jaber",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ali_Jaber_64kbps",
+          "reciter_key": 76,
+          "name": "Ali Jaber"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ali_jaber_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ayman_sowaid_64kbps",
+      "name": "Ayman Sowaid",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ayman_Sowaid_64kbps",
+          "reciter_key": 79,
+          "name": "Ayman Sowaid"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ayman_sowaid_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_aziz_alili_128kbps",
+      "name": "Aziz Alili",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "aziz_alili_128kbps",
+          "reciter_key": 73,
+          "name": "Aziz Alili"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_aziz_alili_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_english_sahih_intnl_ibrahim_walk_192kbps",
+      "name": "(English) Translated by Sahih International Recited by Ibrahim Walk",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "English/Sahih_Intnl_Ibrahim_Walk_192kbps",
+          "reciter_key": 45,
+          "name": "(English) Translated by Sahih International Recited by Ibrahim Walk"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_english_sahih_intnl_ibrahim_walk_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_fares_abbad_64kbps",
+      "name": "Fares Abbad",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Fares_Abbad_64kbps",
+          "reciter_key": 77,
+          "name": "Fares Abbad"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_fares_abbad_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ghamadi_40kbps",
+      "name": "Ghamadi",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ghamadi_40kbps",
+          "reciter_key": 16,
+          "name": "Ghamadi"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ghamadi_40kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_hani_rifai_192kbps",
+      "name": "Hani Rifai",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Hani_Rifai_192kbps",
+          "reciter_key": 18,
+          "name": "Hani Rifai"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_hani_rifai_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_hani_rifai_64kbps",
+      "name": "Hani Rifai",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Hani_Rifai_64kbps",
+          "reciter_key": 17,
+          "name": "Hani Rifai"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_hani_rifai_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_hudhaify_128kbps",
+      "name": "Hudhaify",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Hudhaify_128kbps",
+          "reciter_key": 25,
+          "name": "Hudhaify"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_hudhaify_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_hudhaify_32kbps",
+      "name": "Hudhaify",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Hudhaify_32kbps",
+          "reciter_key": 23,
+          "name": "Hudhaify"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_hudhaify_32kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_hudhaify_64kbps",
+      "name": "Hudhaify",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Hudhaify_64kbps",
+          "reciter_key": 24,
+          "name": "Hudhaify"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_hudhaify_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_husary_128kbps",
+      "name": "Husary",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Husary_128kbps",
+          "reciter_key": 20,
+          "name": "Husary"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_husary_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_husary_128kbps_mujawwad",
+      "name": "Husary Mujawwad",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Husary_128kbps_Mujawwad",
+          "reciter_key": 22,
+          "name": "Husary Mujawwad"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_husary_128kbps_mujawwad/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_husary_64kbps",
+      "name": "Husary",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Husary_64kbps",
+          "reciter_key": 19,
+          "name": "Husary"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_husary_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_husary_muallim_128kbps",
+      "name": "Husary (Muallim)",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Husary_Muallim_128kbps",
+          "reciter_key": 65,
+          "name": "Husary (Muallim)"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_husary_muallim_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_husary_mujawwad_64kbps",
+      "name": "Husary Mujawwad",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Husary_Mujawwad_64kbps",
+          "reciter_key": 21,
+          "name": "Husary Mujawwad"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_husary_mujawwad_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ibrahim_akhdar_32kbps",
+      "name": "Ibrahim Akhdar",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ibrahim_Akhdar_32kbps",
+          "reciter_key": 26,
+          "name": "Ibrahim Akhdar"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ibrahim_akhdar_32kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_ibrahim_akhdar_64kbps",
+      "name": "Ibrahim Akhdar",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Ibrahim_Akhdar_64kbps",
+          "reciter_key": 27,
+          "name": "Ibrahim Akhdar"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_ibrahim_akhdar_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_karim_mansoori_40kbps",
+      "name": "Karim Mansoori (Iran)",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Karim_Mansoori_40kbps",
+          "reciter_key": 64,
+          "name": "Karim Mansoori (Iran)"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_karim_mansoori_40kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_khaalid_abdullaah_al_qahtaanee_192kbps",
+      "name": "Khalid Abdullah al-Qahtanee",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Khaalid_Abdullaah_al-Qahtaanee_192kbps",
+          "reciter_key": 66,
+          "name": "Khalid Abdullah al-Qahtanee"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_khaalid_abdullaah_al_qahtaanee_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_khalefa_al_tunaiji_64kbps",
+      "name": "Khalefa Al-Tunaiji",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "khalefa_al_tunaiji_64kbps",
+          "reciter_key": 58,
+          "name": "Khalefa Al-Tunaiji"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_khalefa_al_tunaiji_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_maher_almuaiqly_64kbps",
+      "name": "Maher Al Muaiqly",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Maher_AlMuaiqly_64kbps",
+          "reciter_key": 28,
+          "name": "Maher Al Muaiqly"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_maher_almuaiqly_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_maheralmuaiqly128kbps",
+      "name": "Maher Al Muaiqly",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "MaherAlMuaiqly128kbps",
+          "reciter_key": 29,
+          "name": "Maher Al Muaiqly"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_maheralmuaiqly128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_mahmoud_ali_al_banna_32kbps",
+      "name": "Mahmoud Ali Al-Banna",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "mahmoud_ali_al_banna_32kbps",
+          "reciter_key": 59,
+          "name": "Mahmoud Ali Al-Banna"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_mahmoud_ali_al_banna_32kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_menshawi_16kbps",
+      "name": "Menshawi",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Menshawi_16kbps",
+          "reciter_key": 30,
+          "name": "Menshawi"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_menshawi_16kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_menshawi_32kbps",
+      "name": "Menshawi",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Menshawi_32kbps",
+          "reciter_key": 31,
+          "name": "Menshawi"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_menshawi_32kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_minshawy_mujawwad_192kbps",
+      "name": "Minshawy Mujawwad",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Minshawy_Mujawwad_192kbps",
+          "reciter_key": 33,
+          "name": "Minshawy Mujawwad"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_minshawy_mujawwad_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_minshawy_mujawwad_64kbps",
+      "name": "Minshawy Mujawwad",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Minshawy_Mujawwad_64kbps",
+          "reciter_key": 32,
+          "name": "Minshawy Mujawwad"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_minshawy_mujawwad_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_minshawy_murattal_128kbps",
+      "name": "Minshawy Murattal",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Minshawy_Murattal_128kbps",
+          "reciter_key": 34,
+          "name": "Minshawy Murattal"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_minshawy_murattal_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_mohammad_al_tablaway_128kbps",
+      "name": "Mohammad al Tablaway",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Mohammad_al_Tablaway_128kbps",
+          "reciter_key": 36,
+          "name": "Mohammad al Tablaway"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_mohammad_al_tablaway_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_mohammad_al_tablaway_64kbps",
+      "name": "Mohammad al Tablaway",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Mohammad_al_Tablaway_64kbps",
+          "reciter_key": 35,
+          "name": "Mohammad al Tablaway"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_mohammad_al_tablaway_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_muhammad_abdulkareem_128kbps",
+      "name": "Muhammad AbdulKareem",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhammad_AbdulKareem_128kbps",
+          "reciter_key": 57,
+          "name": "Muhammad AbdulKareem"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_muhammad_abdulkareem_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_muhammad_ayyoub_128kbps",
+      "name": "Muhammad Ayyoub",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhammad_Ayyoub_128kbps",
+          "reciter_key": 37,
+          "name": "Muhammad Ayyoub"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_muhammad_ayyoub_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_muhammad_ayyoub_32kbps",
+      "name": "Muhammad Ayyoub",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhammad_Ayyoub_32kbps",
+          "reciter_key": 39,
+          "name": "Muhammad Ayyoub"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_muhammad_ayyoub_32kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_muhammad_ayyoub_64kbps",
+      "name": "Muhammad Ayyoub",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhammad_Ayyoub_64kbps",
+          "reciter_key": 38,
+          "name": "Muhammad Ayyoub"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_muhammad_ayyoub_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_muhammad_jibreel_128kbps",
+      "name": "Muhammad Jibreel",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhammad_Jibreel_128kbps",
+          "reciter_key": 41,
+          "name": "Muhammad Jibreel"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_muhammad_jibreel_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_muhammad_jibreel_64kbps",
+      "name": "Muhammad Jibreel",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhammad_Jibreel_64kbps",
+          "reciter_key": 40,
+          "name": "Muhammad Jibreel"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_muhammad_jibreel_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_multilanguage_basfar_walk_192kbps",
+      "name": "MultiLanguage/Basfar Walk",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "MultiLanguage/Basfar_Walk_192kbps",
+          "reciter_key": 46,
+          "name": "MultiLanguage/Basfar Walk"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_multilanguage_basfar_walk_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_mustafa_ismail_48kbps",
+      "name": "Mustafa Ismail",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Mustafa_Ismail_48kbps",
+          "reciter_key": 42,
+          "name": "Mustafa Ismail"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_mustafa_ismail_48kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_nasser_alqatami_128kbps",
+      "name": "Nasser_Alqatami",
+      "enabled": false,
       "check_type": "ayah_by_ayah",
       "capabilities": {
         "ayah_by_ayah": true,
@@ -160,69 +1832,112 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 50,
       "endpoints": {
-        "metadata": "/data/reciters/eya_nasser_alqatami/metadata.json"
-      }
+        "metadata": "/data/reciters/eya_nasser_alqatami_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
-      "slug": "eya_salah_al_budair",
-      "name": "eya_salah_al_budair",
-      "enabled": true,
+      "slug": "eya_parhizgar_48kbps",
+      "name": "Parhizgar_64Kbps",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Parhizgar_48kbps",
+          "reciter_key": 49,
+          "name": "Parhizgar_64Kbps"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_parhizgar_48kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_sahl_yassin_128kbps",
+      "name": "Sahl_Yassin",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Sahl_Yassin_128kbps",
+          "reciter_key": 70,
+          "name": "Sahl_Yassin"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_sahl_yassin_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_salaah_abdulrahman_bukhatir_128kbps",
+      "name": "Salaah AbdulRahman Bukhatir",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Salaah_AbdulRahman_Bukhatir_128kbps",
+          "reciter_key": 51,
+          "name": "Salaah AbdulRahman Bukhatir"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_salaah_abdulrahman_bukhatir_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_salah_al_budair_128kbps",
+      "name": "Salah Al Budair",
+      "enabled": false,
       "check_type": "ayah_by_ayah",
       "capabilities": {
         "ayah_by_ayah": true,
@@ -237,64 +1952,347 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 50,
       "endpoints": {
-        "metadata": "/data/reciters/eya_salah_al_budair/metadata.json"
-      }
+        "metadata": "/data/reciters/eya_salah_al_budair_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_saood_ash_shuraym_64kbps",
+      "name": "Saood bin Ibraaheem Ash-Shuraym",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Saood_ash-Shuraym_64kbps",
+          "reciter_key": 43,
+          "name": "Saood bin Ibraaheem Ash-Shuraym"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_saood_ash_shuraym_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_translations_azerbaijani_balayev",
+      "name": "Balayev",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "translations/azerbaijani/balayev",
+          "reciter_key": 50,
+          "name": "Balayev"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_translations_azerbaijani_balayev/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_translations_besim_korkut_ajet_po_ajet",
+      "name": "Besim Korkut (Bosnian)",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "translations/besim_korkut_ajet_po_ajet",
+          "reciter_key": 72,
+          "name": "Besim Korkut (Bosnian)"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_translations_besim_korkut_ajet_po_ajet/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_translations_fooladvand_hedayatfar_40kbps",
+      "name": "(Persian) Translated by Fooladvand Recited by Hedayatfar",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "translations/Fooladvand_Hedayatfar_40Kbps",
+          "reciter_key": 48,
+          "name": "(Persian) Translated by Fooladvand Recited by Hedayatfar"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_translations_fooladvand_hedayatfar_40kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_translations_makarem_kabiri_16kbps",
+      "name": "(Persian) Translated by Makarem Recited by Kabiri",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "translations/Makarem_Kabiri_16Kbps",
+          "reciter_key": 47,
+          "name": "(Persian) Translated by Makarem Recited by Kabiri"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_translations_makarem_kabiri_16kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_translations_urdu_farhat_hashmi",
+      "name": "Farhat Hashmi (Urdu word for word translation)",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "translations/urdu_farhat_hashmi",
+          "reciter_key": 78,
+          "name": "Farhat Hashmi (Urdu word for word translation)"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_translations_urdu_farhat_hashmi/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_translations_urdu_shamshad_ali_khan_46kbps",
+      "name": "(Urdu) Shamshad Ali Khan",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "translations/urdu_shamshad_ali_khan_46kbps",
+          "reciter_key": 63,
+          "name": "(Urdu) Shamshad Ali Khan"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_translations_urdu_shamshad_ali_khan_46kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_warsh_warsh_abdul_basit_128kbps",
+      "name": "(Warsh) Abdul Basit",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "warsh/warsh_Abdul_Basit_128kbps",
+          "reciter_key": 62,
+          "name": "(Warsh) Abdul Basit"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_warsh_warsh_abdul_basit_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_warsh_warsh_ibrahim_aldosary_128kbps",
+      "name": "(Warsh) Ibrahim Al-Dosary",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "warsh/warsh_ibrahim_aldosary_128kbps",
+          "reciter_key": 60,
+          "name": "(Warsh) Ibrahim Al-Dosary"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_warsh_warsh_ibrahim_aldosary_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_warsh_warsh_yassin_al_jazaery_64kbps",
+      "name": "(Warsh) Yassin Al-Jazaery",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "warsh/warsh_yassin_al_jazaery_64kbps",
+          "reciter_key": 61,
+          "name": "(Warsh) Yassin Al-Jazaery"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_warsh_warsh_yassin_al_jazaery_64kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_yaser_salamah_128kbps",
+      "name": "Yaser Salamah",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Yaser_Salamah_128kbps",
+          "reciter_key": 74,
+          "name": "Yaser Salamah"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_yaser_salamah_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
       "slug": "muhsin_al_qasim",
@@ -314,69 +2312,22 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
       "endpoints": {
         "metadata": "/data/reciters/muhsin_al_qasim/metadata.json"
       },
-      "surahs_available": [
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 50
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
       "slug": "qcom_abdulbaset_abdulsamad",
       "name": "AbdulBaset AbdulSamad",
-      "enabled": true,
+      "enabled": false,
       "check_type": "word_by_word",
       "capabilities": {
         "ayah_by_ayah": false,
@@ -391,44 +2342,22 @@
         "quran_com": {
           "recitation_id": 1,
           "name": "AbdulBaset AbdulSamad"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [],
-      "surah_count": 0,
       "endpoints": {
         "metadata": "/data/reciters/qcom_abdulbaset_abdulsamad/metadata.json"
-      }
-    },
-    {
-      "slug": "qcom_abdur_rahman_as_sudais",
-      "name": "Abdur-Rahman as-Sudais",
-      "enabled": true,
-      "check_type": "word_by_word",
-      "capabilities": {
-        "ayah_by_ayah": false,
-        "word_by_word": true
-      },
-      "source": {
-        "everyayah": {
-          "subfolder": null,
-          "reciter_key": null,
-          "name": null
-        },
-        "quran_com": {
-          "recitation_id": 3,
-          "name": "Abdur-Rahman as-Sudais"
-        }
       },
       "surahs_available": [],
-      "surah_count": 0,
-      "endpoints": {
-        "metadata": "/data/reciters/qcom_abdur_rahman_as_sudais/metadata.json"
-      }
+      "surah_count": 0
     },
     {
       "slug": "qcom_abu_bakr_al_shatri",
       "name": "Abu Bakr al-Shatri",
-      "enabled": true,
+      "enabled": false,
       "check_type": "word_by_word",
       "capabilities": {
         "ayah_by_ayah": false,
@@ -443,49 +2372,22 @@
         "quran_com": {
           "recitation_id": 4,
           "name": "Abu Bakr al-Shatri"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 30,
       "endpoints": {
         "metadata": "/data/reciters/qcom_abu_bakr_al_shatri/metadata.json"
-      }
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
       "slug": "qcom_hani_ar_rifai",
       "name": "Hani ar-Rifai",
-      "enabled": true,
+      "enabled": false,
       "check_type": "word_by_word",
       "capabilities": {
         "ayah_by_ayah": false,
@@ -500,126 +2402,22 @@
         "quran_com": {
           "recitation_id": 5,
           "name": "Hani ar-Rifai"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 30,
       "endpoints": {
         "metadata": "/data/reciters/qcom_hani_ar_rifai/metadata.json"
-      }
-    },
-    {
-      "slug": "qcom_husary",
-      "name": "qcom_husary",
-      "enabled": true,
-      "check_type": "word_by_word",
-      "capabilities": {
-        "ayah_by_ayah": false,
-        "word_by_word": true
       },
-      "source": {
-        "everyayah": {
-          "subfolder": null,
-          "reciter_key": null,
-          "name": null
-        },
-        "quran_com": {
-          "recitation_id": 6,
-          "name": "Mahmoud Khalil Al-Husary"
-        }
-      },
-      "surahs_available": [
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 50,
-      "endpoints": {
-        "metadata": "/data/reciters/qcom_husary/metadata.json"
-      }
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
       "slug": "qcom_mahmoud_khalil_al_husary",
       "name": "Mahmoud Khalil Al-Husary",
-      "enabled": true,
+      "enabled": false,
       "check_type": "word_by_word",
       "capabilities": {
         "ayah_by_ayah": false,
@@ -634,18 +2432,52 @@
         "quran_com": {
           "recitation_id": 6,
           "name": "Mahmoud Khalil Al-Husary"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [],
-      "surah_count": 0,
       "endpoints": {
         "metadata": "/data/reciters/qcom_mahmoud_khalil_al_husary/metadata.json"
-      }
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
-      "slug": "qcom_mishari_alafasy",
-      "name": "qcom_mishari_alafasy",
-      "enabled": true,
+      "slug": "qcom_mahmoud_khalil_al_husary_12",
+      "name": "Mahmoud Khalil Al-Husary",
+      "enabled": false,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 12,
+          "name": "Mahmoud Khalil Al-Husary"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_mahmoud_khalil_al_husary_12/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "qcom_mishari_rashid_al_afasy",
+      "name": "Mishari Rashid al-`Afasy",
+      "enabled": false,
       "check_type": "word_by_word",
       "capabilities": {
         "ayah_by_ayah": false,
@@ -660,64 +2492,3437 @@
         "quran_com": {
           "recitation_id": 7,
           "name": "Mishari Rashid al-`Afasy"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
-      "surahs_available": [
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 50,
       "endpoints": {
-        "metadata": "/data/reciters/qcom_mishari_alafasy/metadata.json"
-      }
+        "metadata": "/data/reciters/qcom_mishari_rashid_al_afasy/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "qcom_mohamed_al_tablawi",
+      "name": "Mohamed al-Tablawi",
+      "enabled": false,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 11,
+          "name": "Mohamed al-Tablawi"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_mohamed_al_tablawi/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "qcom_mohamed_siddiq_al_minshawi",
+      "name": "Mohamed Siddiq al-Minshawi",
+      "enabled": false,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 8,
+          "name": "Mohamed Siddiq al-Minshawi"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_mohamed_siddiq_al_minshawi/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "qcom_mohamed_siddiq_al_minshawi_9",
+      "name": "Mohamed Siddiq al-Minshawi",
+      "enabled": false,
+      "check_type": "word_by_word",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": 9,
+          "name": "Mohamed Siddiq al-Minshawi"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/qcom_mohamed_siddiq_al_minshawi_9/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdul_basit_murattal",
+      "name": "AbdulBaset AbdulSamad [Murattal]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdul_basit_murattal",
+          "name": "AbdulBaset AbdulSamad [Murattal]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdul_basit_murattal/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdul_muhsin_alqasim",
+      "name": "AbdulMuhsin al-Qasim",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdul_muhsin_alqasim",
+          "name": "AbdulMuhsin al-Qasim"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdul_muhsin_alqasim/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdulazeez_al_ahmad",
+      "name": "AbdulAzeez al-Ahmad",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdulazeez_al-ahmad",
+          "name": "AbdulAzeez al-Ahmad"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdulazeez_al_ahmad/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdulbaset_mujawwad",
+      "name": "AbdulBaset AbdulSamad [Mujawwad]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdulbaset_mujawwad",
+          "name": "AbdulBaset AbdulSamad [Mujawwad]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdulbaset_mujawwad/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdulbaset_warsh",
+      "name": "AbdulBaset AbdulSamad [Warsh]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdulbaset_warsh",
+          "name": "AbdulBaset AbdulSamad [Warsh]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdulbaset_warsh/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdulbaset_with_naeem_sultan_pickthall",
+      "name": "AbdulBaset AbdulSamad with Naeem Sultan [Pickthall Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdulbaset_with_naeem_sultan_pickthall",
+          "name": "AbdulBaset AbdulSamad with Naeem Sultan [Pickthall Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdulbaset_with_naeem_sultan_pickthall/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdulbasit_w_ibrahim_walk_si",
+      "name": "AbdulBaset AbdulSamad with Ibrahim Walk [Saheeh Intl Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdulbasit_w_ibrahim_walk_si",
+          "name": "AbdulBaset AbdulSamad with Ibrahim Walk [Saheeh Intl Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdulbasit_w_ibrahim_walk_si/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdullaah_3awwaad_al_juhaynee",
+      "name": "Abdullah Awad al-Juhani",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdullaah_3awwaad_al-juhaynee",
+          "name": "Abdullah Awad al-Juhani"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdullaah_3awwaad_al_juhaynee/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdullaah_alee_jaabir",
+      "name": "Abdullah Ali Jabir [Taraweeh]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdullaah_alee_jaabir",
+          "name": "Abdullah Ali Jabir [Taraweeh]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdullaah_alee_jaabir/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdullaah_alee_jaabir_studio",
+      "name": "Abdullah Ali Jabir",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdullaah_alee_jaabir_studio",
+          "name": "Abdullah Ali Jabir"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdullaah_alee_jaabir_studio/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdullaah_basfar",
+      "name": "Abdullah Basfar",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdullaah_basfar",
+          "name": "Abdullah Basfar"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdullaah_basfar/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdullah_basfar_w_ibrahim_walk_si",
+      "name": "Abdullah Basfar with Ibrahim Walk [Saheeh Intl Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdullah_basfar_w_ibrahim_walk_si",
+          "name": "Abdullah Basfar with Ibrahim Walk [Saheeh Intl Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdullah_basfar_w_ibrahim_walk_si/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdulrazaq_bin_abtan_al_dulaimi",
+      "name": "Abdur-Razaq bin Abtan al-Dulaimi [Mujawwad]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdulrazaq_bin_abtan_al_dulaimi",
+          "name": "Abdur-Razaq bin Abtan al-Dulaimi [Mujawwad]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdulrazaq_bin_abtan_al_dulaimi/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdulwadood_haneef",
+      "name": "AbdulWadud Haneef",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdulwadood_haneef",
+          "name": "AbdulWadud Haneef"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdulwadood_haneef/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdurrahmaan_as_sudays",
+      "name": "Abdur-Rahman as-Sudais",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdurrahmaan_as-sudays",
+          "name": "Abdur-Rahman as-Sudais"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdurrahmaan_as_sudays/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdurrashid_sufi_khalaf_3an_7amza_recitation",
+      "name": "Abdur-Rashid Sufi [Khalaf]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdurrashid_sufi_-_khalaf_3an_7amza_recitation",
+          "name": "Abdur-Rashid Sufi [Khalaf]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdurrashid_sufi_khalaf_3an_7amza_recitation/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdurrashid_sufi_soosi_2020",
+      "name": "Abdur-Rashid Sufi [Soosi, 2020]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdurrashid_sufi_soosi_2020",
+          "name": "Abdur-Rashid Sufi [Soosi, 2020]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdurrashid_sufi_soosi_2020/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abdurrashid_sufi_soosi_rec",
+      "name": "Abdur-Rashid Sufi [Soosi]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abdurrashid_sufi_soosi_rec",
+          "name": "Abdur-Rashid Sufi [Soosi]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abdurrashid_sufi_soosi_rec/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_abu_bakr_ash_shaatree",
+      "name": "Abu Bakr al-Shatri",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "abu_bakr_ash-shaatree",
+          "name": "Abu Bakr al-Shatri"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_abu_bakr_ash_shaatree/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_ahmed_ibn_3ali_al_3ajamy",
+      "name": "Ahmed ibn Ali al-Ajmy",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "ahmed_ibn_3ali_al-3ajamy",
+          "name": "Ahmed ibn Ali al-Ajmy"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_ahmed_ibn_3ali_al_3ajamy/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_alhusaynee_al3azazee_with_children",
+      "name": "Al-Hussayni Al-'Azazy (with Children)",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "alhusaynee_al3azazee_with_children",
+          "name": "Al-Hussayni Al-'Azazy (with Children)"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_alhusaynee_al3azazee_with_children/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_ali_jaber",
+      "name": "Abdullah Ali Jabir",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "ali_jaber",
+          "name": "Abdullah Ali Jabir"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_ali_jaber/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_aziz_alili",
+      "name": "Aziz Alili",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "aziz_alili",
+          "name": "Aziz Alili"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_aziz_alili/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_dr_shawqy_7amed_mujawwad",
+      "name": "Dr. Shawqy Hamed [Mujawwad]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "dr.shawqy_7amed/mujawwad",
+          "name": "Dr. Shawqy Hamed [Mujawwad]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_dr_shawqy_7amed_mujawwad/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_dr_shawqy_7amed_murattal",
+      "name": "Dr. Shawqy Hamed [Murattal]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "dr.shawqy_7amed/murattal",
+          "name": "Dr. Shawqy Hamed [Murattal]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_dr_shawqy_7amed_murattal/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_fares",
+      "name": "Fares Abbad",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "fares",
+          "name": "Fares Abbad"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_fares/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_hamad_sinan",
+      "name": "Hamad Sinan",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "hamad_sinan",
+          "name": "Hamad Sinan"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_hamad_sinan/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_hatem_farid_collection",
+      "name": "Hatem Farid",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "hatem_farid/collection",
+          "name": "Hatem Farid"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_hatem_farid_collection/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_hatem_farid_taraweeh1430",
+      "name": "Hatem Farid - Taraweeh 1430",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "hatem_farid/taraweeh1430",
+          "name": "Hatem Farid - Taraweeh 1430"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_hatem_farid_taraweeh1430/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_hatem_farid_taraweeh1432",
+      "name": "Hatem Farid - Taraweeh 1432",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "hatem_farid/taraweeh1432",
+          "name": "Hatem Farid - Taraweeh 1432"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_hatem_farid_taraweeh1432/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_hatem_farid_taraweeh1433",
+      "name": "Hatem Farid - Taraweeh 1433",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "hatem_farid/taraweeh1433",
+          "name": "Hatem Farid - Taraweeh 1433"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_hatem_farid_taraweeh1433/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_hatem_farid_taraweeh1434",
+      "name": "Hatem Farid - Taraweeh 1434",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "hatem_farid/taraweeh1434",
+          "name": "Hatem Farid - Taraweeh 1434"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_hatem_farid_taraweeh1434/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_husary_muallim",
+      "name": "Mahmoud Khaleel Al-Husary (Muallam)",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "husary_muallim",
+          "name": "Mahmoud Khaleel Al-Husary (Muallam)"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_husary_muallim/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_husary_muallim_kids_repeat",
+      "name": "Mahmoud Khaleel Al-Husary (with Children)",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "husary_muallim_kids_repeat",
+          "name": "Mahmoud Khaleel Al-Husary (with Children)"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_husary_muallim_kids_repeat/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_huthayfi",
+      "name": "Ali Abdur-Rahman al-Huthaify",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "huthayfi",
+          "name": "Ali Abdur-Rahman al-Huthaify"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_huthayfi/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_imad_zuhair_hafez",
+      "name": "Imad Zuhair Hafez",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "imad_zuhair_hafez",
+          "name": "Imad Zuhair Hafez"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_imad_zuhair_hafez/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_jibreen",
+      "name": "Ibrahim Al-Jibrin",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "jibreen",
+          "name": "Ibrahim Al-Jibrin"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_jibreen/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_jibreen_jibreen_1426_1427",
+      "name": "Ibrahim Al-Jibreen [1426-1427]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "jibreen/jibreen_1426-1427",
+          "name": "Ibrahim Al-Jibreen [1426-1427]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_jibreen_jibreen_1426_1427/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_khaalid_al_qahtaanee",
+      "name": "Khalid al-Qahtani",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "khaalid_al-qahtaanee",
+          "name": "Khalid al-Qahtani"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_khaalid_al_qahtaanee/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_khayat",
+      "name": "Abdullah Khayat",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "khayat",
+          "name": "Abdullah Khayat"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_khayat/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1419",
+      "name": "Madinah Taraweeh 1419",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1419",
+          "name": "Madinah Taraweeh 1419"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1419/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1423",
+      "name": "Madinah Taraweeh 1423",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1423",
+          "name": "Madinah Taraweeh 1423"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1423/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1426",
+      "name": "Madinah Taraweeh 1426",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1426",
+          "name": "Madinah Taraweeh 1426"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1426/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1427",
+      "name": "Madinah Taraweeh 1427",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1427",
+          "name": "Madinah Taraweeh 1427"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1427/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1428",
+      "name": "Madinah Taraweeh 1428",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1428",
+          "name": "Madinah Taraweeh 1428"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1428/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1434",
+      "name": "Madinah Taraweeh 1434",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1434",
+          "name": "Madinah Taraweeh 1434"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1434/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1436",
+      "name": "Madinah Taraweeh 1436",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1436",
+          "name": "Madinah Taraweeh 1436"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1436/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1437",
+      "name": "Madinah Taraweeh 1437",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1437",
+          "name": "Madinah Taraweeh 1437"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1437/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1439",
+      "name": "Madinah Taraweeh 1439",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1439",
+          "name": "Madinah Taraweeh 1439"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1439/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1440",
+      "name": "Madinah Taraweeh 1440",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1440",
+          "name": "Madinah Taraweeh 1440"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1440/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1441",
+      "name": "Madinah Taraweeh 1441",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1441",
+          "name": "Madinah Taraweeh 1441"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1441/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_madinah_1442",
+      "name": "Madinah Taraweeh 1442",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "madinah_1442",
+          "name": "Madinah Taraweeh 1442"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_madinah_1442/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_maher_256",
+      "name": "Maher al-Muaiqly",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "maher_256",
+          "name": "Maher al-Muaiqly"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_maher_256/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_maher_almu3aiqly_year1422_1423",
+      "name": "Maher al-Muaiqly [1422-1423]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "maher_almu3aiqly/year1422-1423",
+          "name": "Maher al-Muaiqly [1422-1423]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_maher_almu3aiqly_year1422_1423/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_maher_almu3aiqly_year1424_1425",
+      "name": "Maher al-Muaiqly [Assorted]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "maher_almu3aiqly/year1424-1425",
+          "name": "Maher al-Muaiqly [Assorted]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_maher_almu3aiqly_year1424_1425/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_maher_almu3aiqly_year1440",
+      "name": "Maher al-Muaiqly",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "maher_almu3aiqly/year1440",
+          "name": "Maher al-Muaiqly"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_maher_almu3aiqly_year1440/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mahmood_khaleel_al_husaree",
+      "name": "Mahmoud Khaleel Al-Husary",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mahmood_khaleel_al-husaree",
+          "name": "Mahmoud Khaleel Al-Husary"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mahmood_khaleel_al_husaree/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mahmood_khaleel_al_husaree_doori",
+      "name": "Mahmoud Khalil Al-Husary [Doori]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mahmood_khaleel_al-husaree_doori",
+          "name": "Mahmoud Khalil Al-Husary [Doori]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mahmood_khaleel_al_husaree_doori/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1424",
+      "name": "Makkah Taraweeh 1424",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1424",
+          "name": "Makkah Taraweeh 1424"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1424/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1425",
+      "name": "Makkah Taraweeh 1425",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1425",
+          "name": "Makkah Taraweeh 1425"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1425/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1426",
+      "name": "Makkah Taraweeh 1426",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1426",
+          "name": "Makkah Taraweeh 1426"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1426/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1427",
+      "name": "Makkah Taraweeh 1427",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1427",
+          "name": "Makkah Taraweeh 1427"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1427/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1428",
+      "name": "Makkah Taraweeh 1428",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1428",
+          "name": "Makkah Taraweeh 1428"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1428/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1429",
+      "name": "Makkah Taraweeh 1429",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1429",
+          "name": "Makkah Taraweeh 1429"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1429/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1431",
+      "name": "Makkah Taraweeh 1431",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1431",
+          "name": "Makkah Taraweeh 1431"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1431/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1432",
+      "name": "Makkah Taraweeh 1432",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1432",
+          "name": "Makkah Taraweeh 1432"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1432/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1433",
+      "name": "Makkah Taraweeh 1433",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1433",
+          "name": "Makkah Taraweeh 1433"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1433/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1438",
+      "name": "Makkah Taraweeh 1438",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1438",
+          "name": "Makkah Taraweeh 1438"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1438/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1439",
+      "name": "Makkah Taraweeh 1439",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1439",
+          "name": "Makkah Taraweeh 1439"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1439/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1440",
+      "name": "Makkah Taraweeh 1440",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1440",
+          "name": "Makkah Taraweeh 1440"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1440/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1441",
+      "name": "Makkah Taraweeh 1441",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1441",
+          "name": "Makkah Taraweeh 1441"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1441/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_makkah_1442",
+      "name": "Makkah Taraweeh 1442",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "makkah_1442",
+          "name": "Makkah Taraweeh 1442"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_makkah_1442/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mehysni",
+      "name": "Muhammad al-Mehysni",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mehysni",
+          "name": "Muhammad al-Mehysni"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mehysni/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_minshawi_mujawwad",
+      "name": "Muhammad Siddiq al-Minshawi [Mujawwad]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "minshawi_mujawwad",
+          "name": "Muhammad Siddiq al-Minshawi [Mujawwad]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_minshawi_mujawwad/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mishaari_california",
+      "name": "Mishari al-`Afasy - Taraweeh 1430",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mishaari_california",
+          "name": "Mishari al-`Afasy - Taraweeh 1430"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mishaari_california/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mishaari_raashid_al_3afaasee",
+      "name": "Mishari Rashid al-`Afasy",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mishaari_raashid_al_3afaasee",
+          "name": "Mishari Rashid al-`Afasy"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mishaari_raashid_al_3afaasee/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mishaari_w_ibrahim_walk_si",
+      "name": "Mishari ibn Rashid al-`Afasy with Ibrahim Walk [Saheeh Intl Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mishaari_w_ibrahim_walk_si",
+          "name": "Mishari ibn Rashid al-`Afasy with Ibrahim Walk [Saheeh Intl Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mishaari_w_ibrahim_walk_si/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mishaari_with_saabir_mkhan",
+      "name": "Mishari ibn Rashid al-`Afasy with Saabir [Muhsin Khan Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mishaari_with_saabir_mkhan",
+          "name": "Mishari ibn Rashid al-`Afasy with Saabir [Muhsin Khan Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mishaari_with_saabir_mkhan/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mohammad_altablawi",
+      "name": "Mohammad Al-Tablawi",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mohammad_altablawi",
+          "name": "Mohammad Al-Tablawi"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mohammad_altablawi/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mostafa_ismaeel",
+      "name": "Mostafa Ismaeel",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mostafa_ismaeel",
+          "name": "Mostafa Ismaeel"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mostafa_ismaeel/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mu7ammad_7assan",
+      "name": "Muhammad Hassan",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mu7ammad_7assan",
+          "name": "Muhammad Hassan"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mu7ammad_7assan/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_muhammad_abdulkareem",
+      "name": "Muhammad Abdul-Kareem",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "muhammad_abdulkareem",
+          "name": "Muhammad Abdul-Kareem"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_muhammad_abdulkareem/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_muhammad_alhaidan",
+      "name": "Muhammad al-Luhaidan",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "muhammad_alhaidan",
+          "name": "Muhammad al-Luhaidan"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_muhammad_alhaidan/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_muhammad_ayub_and_mikaal_waters",
+      "name": "Muhammad Ayyub with Mikaal Waters [Muhsin Khan Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "muhammad_ayub_and_mikaal_waters",
+          "name": "Muhammad Ayyub with Mikaal Waters [Muhsin Khan Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_muhammad_ayub_and_mikaal_waters/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_muhammad_ayyoob",
+      "name": "Muhammad Ayyoob",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "muhammad_ayyoob",
+          "name": "Muhammad Ayyoob"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_muhammad_ayyoob/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_muhammad_jibreel_complete",
+      "name": "Muhammad Jibreel",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "muhammad_jibreel/complete",
+          "name": "Muhammad Jibreel"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_muhammad_jibreel_complete/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_muhammad_jibreel_hidayah",
+      "name": "Muhammad Jibreel (Partial)",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "muhammad_jibreel/hidayah",
+          "name": "Muhammad Jibreel (Partial)"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_muhammad_jibreel_hidayah/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_muhammad_siddeeq_al_minshaawee",
+      "name": "Muhammad Siddiq al-Minshawi",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "muhammad_siddeeq_al-minshaawee",
+          "name": "Muhammad Siddiq al-Minshawi"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_muhammad_siddeeq_al_minshaawee/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_mustafa_al3azzawi",
+      "name": "Mustafa al-`Azawi",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "mustafa_al3azzawi",
+          "name": "Mustafa al-`Azawi"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_mustafa_al3azzawi/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_nabil_rifa3i",
+      "name": "Nabil ar-Rifai",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "nabil_rifa3i",
+          "name": "Nabil ar-Rifai"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_nabil_rifa3i/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_noreen_siddiq",
+      "name": "Noreen Siddiq [ad-Doori an Abi Amr]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "noreen_siddiq",
+          "name": "Noreen Siddiq [ad-Doori an Abi Amr]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_noreen_siddiq/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_rifai",
+      "name": "Hani ar-Rifai",
+      "enabled": true,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "rifai",
+          "name": "Hani ar-Rifai"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_rifai/metadata.json"
+      },
+      "surahs_available": [100],
+      "surah_count": 1
+    },
+    {
+      "slug": "quranicaudio_sa3d_al_ghaamidi_complete",
+      "name": "Saad al-Ghamdi",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sa3d_al-ghaamidi/complete",
+          "name": "Saad al-Ghamdi"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sa3d_al_ghaamidi_complete/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sa3d_al_ghaamidi_hidayah",
+      "name": "Saad al-Ghamdi (Partial)",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sa3d_al-ghaamidi/hidayah",
+          "name": "Saad al-Ghamdi (Partial)"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sa3d_al_ghaamidi_hidayah/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sa3ood_al_shuraym",
+      "name": "Sa`ud ash-Shuraym",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sa3ood_al-shuraym",
+          "name": "Sa`ud ash-Shuraym"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sa3ood_al_shuraym/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sa3ood_al_shuraym_older",
+      "name": "Sa`ud ash-Shuraym [older recitation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sa3ood_al-shuraym/older",
+          "name": "Sa`ud ash-Shuraym [older recitation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sa3ood_al_shuraym_older/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sadaqat_ali",
+      "name": "Sadaqat `Ali",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sadaqat_ali",
+          "name": "Sadaqat `Ali"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sadaqat_ali/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sahl_yaaseen",
+      "name": "Sahl Yasin",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sahl_yaaseen",
+          "name": "Sahl Yasin"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sahl_yaaseen/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_salaah_bukhaatir",
+      "name": "Salah Bukhatir",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "salaah_bukhaatir",
+          "name": "Salah Bukhatir"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_salaah_bukhaatir/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_salah_alhashim",
+      "name": "Salah Al-Hashim",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "salah_alhashim",
+          "name": "Salah Al-Hashim"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_salah_alhashim/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_salahbudair",
+      "name": "Salah al-Budair",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "salahbudair",
+          "name": "Salah al-Budair"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_salahbudair/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_saleh_al_taleb",
+      "name": "Saleh al Taleb",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "saleh_al_taleb",
+          "name": "Saleh al Taleb"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_saleh_al_taleb/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_shakir_qasami_with_english",
+      "name": "Shakir Qasami with Aslam Athar [Pickthall Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "shakir_qasami_with_english",
+          "name": "Shakir Qasami with Aslam Athar [Pickthall Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_shakir_qasami_with_english/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sodais_and_shuraim",
+      "name": "Sudais and Shuraym",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sodais_and_shuraim",
+          "name": "Sudais and Shuraym"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sodais_and_shuraim/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sodais_and_shuraim_older",
+      "name": "Sudais and Shuraym [older recitation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sodais_and_shuraim/older",
+          "name": "Sudais and Shuraym [older recitation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sodais_and_shuraim_older/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sudais_and_shuraim_with_urdu",
+      "name": "Sudais and Shuraym [Urdu Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sudais_and_shuraim_with_urdu",
+          "name": "Sudais and Shuraym [Urdu Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sudais_and_shuraim_with_urdu/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sudais_shuraim_and_english",
+      "name": "Sudais and Shuraym with Aslam Athar [Pickthall Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sudais_shuraim_and_english",
+          "name": "Sudais and Shuraym with Aslam Athar [Pickthall Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sudais_shuraim_and_english/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_sudais_shuraim_with_naeem_sultan_pickthall",
+      "name": "Sudais and Shuraym with Naeem Sultan [Pickthall Translation]",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "sudais_shuraim_with_naeem_sultan_pickthall",
+          "name": "Sudais and Shuraym with Naeem Sultan [Pickthall Translation]"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_sudais_shuraim_with_naeem_sultan_pickthall/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_tawfeeq_bin_saeed_as_sawaaigh",
+      "name": "Tawfeeq ibn Sa`id as-Sawa'igh",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "tawfeeq_bin_saeed-as-sawaaigh",
+          "name": "Tawfeeq ibn Sa`id as-Sawa'igh"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_tawfeeq_bin_saeed_as_sawaaigh/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "quranicaudio_thubaity",
+      "name": "AbdulBari ath-Thubaity",
+      "enabled": false,
+      "check_type": "model_only",
+      "capabilities": {
+        "ayah_by_ayah": false,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": "thubaity",
+          "name": "AbdulBari ath-Thubaity"
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/quranicaudio_thubaity/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "sa3ood_al-shuraym",
+      "name": "Sa`ud ash-Shuraym",
+      "enabled": false,
+      "check_type": "both",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": true
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Saood_ash-Shuraym_128kbps",
+          "reciter_key": 44,
+          "name": "Saood bin Ibraaheem Ash-Shuraym"
+        },
+        "quran_com": {
+          "recitation_id": 10,
+          "name": "Sa`ud ash-Shuraym"
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/sa3ood_al-shuraym/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
     },
     {
       "slug": "yasser_ad-dussary",
@@ -737,65 +5942,17 @@
         "quran_com": {
           "recitation_id": null,
           "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
         }
       },
       "endpoints": {
         "metadata": "/data/reciters/yasser_ad-dussary/metadata.json"
       },
-      "surahs_available": [
-        2,
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114
-      ],
-      "surah_count": 51
+      "surahs_available": [],
+      "surah_count": 0
     }
   ],
   "everyayah_reciters": [
@@ -1346,6 +6503,668 @@
       "reciter_name": "Mahmoud Khalil Al-Husary",
       "translated_name": "Mahmoud Khalil Al-Husary",
       "style": null
+    }
+  ],
+  "quranicaudio_reciters": [
+    {
+      "id": "quranicaudio_abdullaah_3awwaad_al_juhaynee",
+      "name": "Abdullah Awad al-Juhani",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=1; relative_path=abdullaah_3awwaad_al-juhaynee/"
+    },
+    {
+      "id": "quranicaudio_abdullaah_basfar",
+      "name": "Abdullah Basfar",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=2; relative_path=abdullaah_basfar/"
+    },
+    {
+      "id": "quranicaudio_abu_bakr_ash_shaatree",
+      "name": "Abu Bakr al-Shatri",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=3; relative_path=abu_bakr_ash-shaatree/"
+    },
+    {
+      "id": "quranicaudio_sa3ood_al_shuraym",
+      "name": "Sa`ud ash-Shuraym",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=4; relative_path=sa3ood_al-shuraym/"
+    },
+    {
+      "id": "quranicaudio_mishaari_raashid_al_3afaasee",
+      "name": "Mishari Rashid al-`Afasy",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=5; relative_path=mishaari_raashid_al_3afaasee/"
+    },
+    {
+      "id": "quranicaudio_muhammad_siddeeq_al_minshaawee",
+      "name": "Muhammad Siddiq al-Minshawi",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=6; relative_path=muhammad_siddeeq_al-minshaawee/"
+    },
+    {
+      "id": "quranicaudio_abdurrahmaan_as_sudays",
+      "name": "Abdur-Rahman as-Sudais",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=7; relative_path=abdurrahmaan_as-sudays/"
+    },
+    {
+      "id": "quranicaudio_huthayfi",
+      "name": "Ali Abdur-Rahman al-Huthaify",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=8; relative_path=huthayfi/"
+    },
+    {
+      "id": "quranicaudio_khaalid_al_qahtaanee",
+      "name": "Khalid al-Qahtani",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=9; relative_path=khaalid_al-qahtaanee/"
+    },
+    {
+      "id": "quranicaudio_nabil_rifa3i",
+      "name": "Nabil ar-Rifai",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=10; relative_path=nabil_rifa3i/"
+    },
+    {
+      "id": "quranicaudio_abdul_muhsin_alqasim",
+      "name": "AbdulMuhsin al-Qasim",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=11; relative_path=abdul_muhsin_alqasim/"
+    },
+    {
+      "id": "quranicaudio_muhammad_jibreel_complete",
+      "name": "Muhammad Jibreel",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=12; relative_path=muhammad_jibreel/complete/"
+    },
+    {
+      "id": "quranicaudio_sa3d_al_ghaamidi_complete",
+      "name": "Saad al-Ghamdi",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=13; relative_path=sa3d_al-ghaamidi/complete/"
+    },
+    {
+      "id": "quranicaudio_fares",
+      "name": "Fares Abbad",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=14; relative_path=fares/"
+    },
+    {
+      "id": "quranicaudio_thubaity",
+      "name": "AbdulBari ath-Thubaity",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=15; relative_path=thubaity/"
+    },
+    {
+      "id": "quranicaudio_mahmood_khaleel_al_husaree",
+      "name": "Mahmoud Khaleel Al-Husary",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=16; relative_path=mahmood_khaleel_al-husaree/"
+    },
+    {
+      "id": "quranicaudio_sahl_yaaseen",
+      "name": "Sahl Yasin",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=17; relative_path=sahl_yaaseen/"
+    },
+    {
+      "id": "quranicaudio_salaah_bukhaatir",
+      "name": "Salah Bukhatir",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=18; relative_path=salaah_bukhaatir/"
+    },
+    {
+      "id": "quranicaudio_ahmed_ibn_3ali_al_3ajamy",
+      "name": "Ahmed ibn Ali al-Ajmy",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=19; relative_path=ahmed_ibn_3ali_al-3ajamy/"
+    },
+    {
+      "id": "quranicaudio_sodais_and_shuraim",
+      "name": "Sudais and Shuraym",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=20; relative_path=sodais_and_shuraim/"
+    },
+    {
+      "id": "quranicaudio_abdulazeez_al_ahmad",
+      "name": "AbdulAzeez al-Ahmad",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=21; relative_path=abdulazeez_al-ahmad/"
+    },
+    {
+      "id": "quranicaudio_muhammad_ayyoob",
+      "name": "Muhammad Ayyoob",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=22; relative_path=muhammad_ayyoob/"
+    },
+    {
+      "id": "quranicaudio_tawfeeq_bin_saeed_as_sawaaigh",
+      "name": "Tawfeeq ibn Sa`id as-Sawa'igh",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=23; relative_path=tawfeeq_bin_saeed-as-sawaaigh/"
+    },
+    {
+      "id": "quranicaudio_abdullaah_alee_jaabir",
+      "name": "Abdullah Ali Jabir [Taraweeh]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=24; relative_path=abdullaah_alee_jaabir/"
+    },
+    {
+      "id": "quranicaudio_madinah_1419",
+      "name": "Madinah Taraweeh 1419",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=25; relative_path=madinah_1419/"
+    },
+    {
+      "id": "quranicaudio_mehysni",
+      "name": "Muhammad al-Mehysni",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=26; relative_path=mehysni/"
+    },
+    {
+      "id": "quranicaudio_rifai",
+      "name": "Hani ar-Rifai",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=27; relative_path=rifai/"
+    },
+    {
+      "id": "quranicaudio_jibreen",
+      "name": "Ibrahim Al-Jibrin",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=28; relative_path=jibreen/"
+    },
+    {
+      "id": "quranicaudio_makkah_1426",
+      "name": "Makkah Taraweeh 1426",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=29; relative_path=makkah_1426/"
+    },
+    {
+      "id": "quranicaudio_madinah_1426",
+      "name": "Madinah Taraweeh 1426",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=30; relative_path=madinah_1426/"
+    },
+    {
+      "id": "quranicaudio_sa3d_al_ghaamidi_hidayah",
+      "name": "Saad al-Ghamdi (Partial)",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=31; relative_path=sa3d_al-ghaamidi/hidayah/"
+    },
+    {
+      "id": "quranicaudio_muhammad_jibreel_hidayah",
+      "name": "Muhammad Jibreel (Partial)",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=32; relative_path=muhammad_jibreel/hidayah/"
+    },
+    {
+      "id": "quranicaudio_madinah_1427",
+      "name": "Madinah Taraweeh 1427",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=33; relative_path=madinah_1427/"
+    },
+    {
+      "id": "quranicaudio_makkah_1427",
+      "name": "Makkah Taraweeh 1427",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=34; relative_path=makkah_1427/"
+    },
+    {
+      "id": "quranicaudio_saleh_al_taleb",
+      "name": "Saleh al Taleb",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=35; relative_path=saleh_al_taleb/"
+    },
+    {
+      "id": "quranicaudio_sudais_shuraim_and_english",
+      "name": "Sudais and Shuraym with Aslam Athar [Pickthall Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=36; relative_path=sudais_shuraim_and_english/"
+    },
+    {
+      "id": "quranicaudio_abdul_basit_murattal",
+      "name": "AbdulBaset AbdulSamad [Murattal]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=37; relative_path=abdul_basit_murattal/"
+    },
+    {
+      "id": "quranicaudio_muhammad_ayub_and_mikaal_waters",
+      "name": "Muhammad Ayyub with Mikaal Waters [Muhsin Khan Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=39; relative_path=muhammad_ayub_and_mikaal_waters/"
+    },
+    {
+      "id": "quranicaudio_abdulwadood_haneef",
+      "name": "AbdulWadud Haneef",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=40; relative_path=abdulwadood_haneef/"
+    },
+    {
+      "id": "quranicaudio_minshawi_mujawwad",
+      "name": "Muhammad Siddiq al-Minshawi [Mujawwad]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=41; relative_path=minshawi_mujawwad/"
+    },
+    {
+      "id": "quranicaudio_shakir_qasami_with_english",
+      "name": "Shakir Qasami with Aslam Athar [Pickthall Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=42; relative_path=shakir_qasami_with_english/"
+    },
+    {
+      "id": "quranicaudio_salahbudair",
+      "name": "Salah al-Budair",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=43; relative_path=salahbudair/"
+    },
+    {
+      "id": "quranicaudio_aziz_alili",
+      "name": "Aziz Alili",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=44; relative_path=aziz_alili/"
+    },
+    {
+      "id": "quranicaudio_makkah_1425",
+      "name": "Makkah Taraweeh 1425",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=45; relative_path=makkah_1425/"
+    },
+    {
+      "id": "quranicaudio_madinah_1423",
+      "name": "Madinah Taraweeh 1423",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=46; relative_path=madinah_1423/"
+    },
+    {
+      "id": "quranicaudio_abdulbaset_with_naeem_sultan_pickthall",
+      "name": "AbdulBaset AbdulSamad with Naeem Sultan [Pickthall Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=47; relative_path=abdulbaset_with_naeem_sultan_pickthall/"
+    },
+    {
+      "id": "quranicaudio_sudais_shuraim_with_naeem_sultan_pickthall",
+      "name": "Sudais and Shuraym with Naeem Sultan [Pickthall Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=48; relative_path=sudais_shuraim_with_naeem_sultan_pickthall/"
+    },
+    {
+      "id": "quranicaudio_mishaari_with_saabir_mkhan",
+      "name": "Mishari ibn Rashid al-`Afasy with Saabir [Muhsin Khan Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=49; relative_path=mishaari_with_saabir_mkhan/"
+    },
+    {
+      "id": "quranicaudio_abdulbaset_mujawwad",
+      "name": "AbdulBaset AbdulSamad [Mujawwad]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=50; relative_path=abdulbaset_mujawwad/"
+    },
+    {
+      "id": "quranicaudio_maher_almu3aiqly_year1424_1425",
+      "name": "Maher al-Muaiqly [Assorted]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=51; relative_path=maher_almu3aiqly/year1424-1425/"
+    },
+    {
+      "id": "quranicaudio_maher_almu3aiqly_year1422_1423",
+      "name": "Maher al-Muaiqly [1422-1423]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=52; relative_path=maher_almu3aiqly/year1422-1423/"
+    },
+    {
+      "id": "quranicaudio_muhammad_alhaidan",
+      "name": "Muhammad al-Luhaidan",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=53; relative_path=muhammad_alhaidan/"
+    },
+    {
+      "id": "quranicaudio_abdulbaset_warsh",
+      "name": "AbdulBaset AbdulSamad [Warsh]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=54; relative_path=abdulbaset_warsh/"
+    },
+    {
+      "id": "quranicaudio_alhusaynee_al3azazee_with_children",
+      "name": "Al-Hussayni Al-'Azazy (with Children)",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=55; relative_path=alhusaynee_al3azazee_with_children/"
+    },
+    {
+      "id": "quranicaudio_jibreen_jibreen_1426_1427",
+      "name": "Ibrahim Al-Jibreen [1426-1427]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=56; relative_path=jibreen/jibreen_1426-1427/"
+    },
+    {
+      "id": "quranicaudio_abdulbasit_w_ibrahim_walk_si",
+      "name": "AbdulBaset AbdulSamad with Ibrahim Walk [Saheeh Intl Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=57; relative_path=abdulbasit_w_ibrahim_walk_si/"
+    },
+    {
+      "id": "quranicaudio_mishaari_w_ibrahim_walk_si",
+      "name": "Mishari ibn Rashid al-`Afasy with Ibrahim Walk [Saheeh Intl Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=58; relative_path=mishaari_w_ibrahim_walk_si/"
+    },
+    {
+      "id": "quranicaudio_makkah_1428",
+      "name": "Makkah Taraweeh 1428",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=59; relative_path=makkah_1428/"
+    },
+    {
+      "id": "quranicaudio_abdurrashid_sufi_soosi_rec",
+      "name": "Abdur-Rashid Sufi [Soosi]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=60; relative_path=abdurrashid_sufi_soosi_rec/"
+    },
+    {
+      "id": "quranicaudio_sadaqat_ali",
+      "name": "Sadaqat `Ali",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=61; relative_path=sadaqat_ali/"
+    },
+    {
+      "id": "quranicaudio_abdurrashid_sufi_khalaf_3an_7amza_recitation",
+      "name": "Abdur-Rashid Sufi [Khalaf]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=62; relative_path=abdurrashid_sufi_-_khalaf_3an_7amza_recitation/"
+    },
+    {
+      "id": "quranicaudio_makkah_1424",
+      "name": "Makkah Taraweeh 1424",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=63; relative_path=makkah_1424/"
+    },
+    {
+      "id": "quranicaudio_hamad_sinan",
+      "name": "Hamad Sinan",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=64; relative_path=hamad_sinan/"
+    },
+    {
+      "id": "quranicaudio_maher_256",
+      "name": "Maher al-Muaiqly",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=65; relative_path=maher_256/"
+    },
+    {
+      "id": "quranicaudio_abdullah_basfar_w_ibrahim_walk_si",
+      "name": "Abdullah Basfar with Ibrahim Walk [Saheeh Intl Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=66; relative_path=abdullah_basfar_w_ibrahim_walk_si/"
+    },
+    {
+      "id": "quranicaudio_sudais_and_shuraim_with_urdu",
+      "name": "Sudais and Shuraym [Urdu Translation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=67; relative_path=sudais_and_shuraim_with_urdu/"
+    },
+    {
+      "id": "quranicaudio_abdulrazaq_bin_abtan_al_dulaimi",
+      "name": "Abdur-Razaq bin Abtan al-Dulaimi [Mujawwad]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=68; relative_path=abdulrazaq_bin_abtan_al_dulaimi/"
+    },
+    {
+      "id": "quranicaudio_abdullaah_alee_jaabir_studio",
+      "name": "Abdullah Ali Jabir",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=69; relative_path=abdullaah_alee_jaabir_studio/"
+    },
+    {
+      "id": "quranicaudio_muhammad_abdulkareem",
+      "name": "Muhammad Abdul-Kareem",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=70; relative_path=muhammad_abdulkareem/"
+    },
+    {
+      "id": "quranicaudio_mustafa_al3azzawi",
+      "name": "Mustafa al-`Azawi",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=71; relative_path=mustafa_al3azzawi/"
+    },
+    {
+      "id": "quranicaudio_khayat",
+      "name": "Abdullah Khayat",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=72; relative_path=khayat/"
+    },
+    {
+      "id": "quranicaudio_madinah_1428",
+      "name": "Madinah Taraweeh 1428",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=73; relative_path=madinah_1428/"
+    },
+    {
+      "id": "quranicaudio_dr_shawqy_7amed_murattal",
+      "name": "Dr. Shawqy Hamed [Murattal]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=74; relative_path=dr.shawqy_7amed/murattal/"
+    },
+    {
+      "id": "quranicaudio_dr_shawqy_7amed_mujawwad",
+      "name": "Dr. Shawqy Hamed [Mujawwad]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=75; relative_path=dr.shawqy_7amed/mujawwad/"
+    },
+    {
+      "id": "quranicaudio_makkah_1429",
+      "name": "Makkah Taraweeh 1429",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=77; relative_path=makkah_1429/"
+    },
+    {
+      "id": "quranicaudio_mahmood_khaleel_al_husaree_doori",
+      "name": "Mahmoud Khalil Al-Husary [Doori]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=78; relative_path=mahmood_khaleel_al-husaree_doori/"
+    },
+    {
+      "id": "quranicaudio_mu7ammad_7assan",
+      "name": "Muhammad Hassan",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=79; relative_path=mu7ammad_7assan/"
+    },
+    {
+      "id": "quranicaudio_salah_alhashim",
+      "name": "Salah Al-Hashim",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=80; relative_path=salah_alhashim/"
+    },
+    {
+      "id": "quranicaudio_makkah_1431",
+      "name": "Makkah Taraweeh 1431",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=83; relative_path=makkah_1431/"
+    },
+    {
+      "id": "quranicaudio_hatem_farid_collection",
+      "name": "Hatem Farid",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=85; relative_path=hatem_farid/collection/"
+    },
+    {
+      "id": "quranicaudio_hatem_farid_taraweeh1432",
+      "name": "Hatem Farid - Taraweeh 1432",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=86; relative_path=hatem_farid/taraweeh1432/"
+    },
+    {
+      "id": "quranicaudio_mostafa_ismaeel",
+      "name": "Mostafa Ismaeel",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=88; relative_path=mostafa_ismaeel/"
+    },
+    {
+      "id": "quranicaudio_mohammad_altablawi",
+      "name": "Mohammad Al-Tablawi",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=91; relative_path=mohammad_altablawi/"
+    },
+    {
+      "id": "quranicaudio_imad_zuhair_hafez",
+      "name": "Imad Zuhair Hafez",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=93; relative_path=imad_zuhair_hafez/"
+    },
+    {
+      "id": "quranicaudio_makkah_1432",
+      "name": "Makkah Taraweeh 1432",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=94; relative_path=makkah_1432/"
+    },
+    {
+      "id": "quranicaudio_mishaari_california",
+      "name": "Mishari al-`Afasy - Taraweeh 1430",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=95; relative_path=mishaari_california/"
+    },
+    {
+      "id": "quranicaudio_hatem_farid_taraweeh1433",
+      "name": "Hatem Farid - Taraweeh 1433",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=96; relative_path=hatem_farid/taraweeh1433/"
+    },
+    {
+      "id": "quranicaudio_makkah_1433",
+      "name": "Makkah Taraweeh 1433",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=98; relative_path=makkah_1433/"
+    },
+    {
+      "id": "quranicaudio_abdurrashid_sufi_soosi_2020",
+      "name": "Abdur-Rashid Sufi [Soosi, 2020]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=137; relative_path=abdurrashid_sufi_soosi_2020/"
+    },
+    {
+      "id": "quranicaudio_hatem_farid_taraweeh1430",
+      "name": "Hatem Farid - Taraweeh 1430",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=139; relative_path=hatem_farid/taraweeh1430/"
+    },
+    {
+      "id": "quranicaudio_hatem_farid_taraweeh1434",
+      "name": "Hatem Farid - Taraweeh 1434",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=140; relative_path=hatem_farid/taraweeh1434/"
+    },
+    {
+      "id": "quranicaudio_husary_muallim",
+      "name": "Mahmoud Khaleel Al-Husary (Muallam)",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=141; relative_path=husary_muallim/"
+    },
+    {
+      "id": "quranicaudio_husary_muallim_kids_repeat",
+      "name": "Mahmoud Khaleel Al-Husary (with Children)",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=142; relative_path=husary_muallim_kids_repeat/"
+    },
+    {
+      "id": "quranicaudio_madinah_1434",
+      "name": "Madinah Taraweeh 1434",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=143; relative_path=madinah_1434/"
+    },
+    {
+      "id": "quranicaudio_madinah_1436",
+      "name": "Madinah Taraweeh 1436",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=144; relative_path=madinah_1436/"
+    },
+    {
+      "id": "quranicaudio_madinah_1437",
+      "name": "Madinah Taraweeh 1437",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=145; relative_path=madinah_1437/"
+    },
+    {
+      "id": "quranicaudio_madinah_1439",
+      "name": "Madinah Taraweeh 1439",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=146; relative_path=madinah_1439/"
+    },
+    {
+      "id": "quranicaudio_madinah_1440",
+      "name": "Madinah Taraweeh 1440",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=147; relative_path=madinah_1440/"
+    },
+    {
+      "id": "quranicaudio_madinah_1441",
+      "name": "Madinah Taraweeh 1441",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=148; relative_path=madinah_1441/"
+    },
+    {
+      "id": "quranicaudio_madinah_1442",
+      "name": "Madinah Taraweeh 1442",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=149; relative_path=madinah_1442/"
+    },
+    {
+      "id": "quranicaudio_makkah_1438",
+      "name": "Makkah Taraweeh 1438",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=150; relative_path=makkah_1438/"
+    },
+    {
+      "id": "quranicaudio_makkah_1439",
+      "name": "Makkah Taraweeh 1439",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=151; relative_path=makkah_1439/"
+    },
+    {
+      "id": "quranicaudio_makkah_1440",
+      "name": "Makkah Taraweeh 1440",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=152; relative_path=makkah_1440/"
+    },
+    {
+      "id": "quranicaudio_makkah_1441",
+      "name": "Makkah Taraweeh 1441",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=153; relative_path=makkah_1441/"
+    },
+    {
+      "id": "quranicaudio_makkah_1442",
+      "name": "Makkah Taraweeh 1442",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=154; relative_path=makkah_1442/"
+    },
+    {
+      "id": "quranicaudio_noreen_siddiq",
+      "name": "Noreen Siddiq [ad-Doori an Abi Amr]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=155; relative_path=noreen_siddiq/"
+    },
+    {
+      "id": "quranicaudio_sa3ood_al_shuraym_older",
+      "name": "Sa`ud ash-Shuraym [older recitation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=156; relative_path=sa3ood_al-shuraym/older/"
+    },
+    {
+      "id": "quranicaudio_sodais_and_shuraim_older",
+      "name": "Sudais and Shuraym [older recitation]",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=157; relative_path=sodais_and_shuraim/older/"
+    },
+    {
+      "id": "quranicaudio_ali_jaber",
+      "name": "Abdullah Ali Jabir",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=158; relative_path=ali_jaber/"
+    },
+    {
+      "id": "quranicaudio_maher_almu3aiqly_year1440",
+      "name": "Maher al-Muaiqly",
+      "source": "quranicaudio",
+      "notes": "quranicaudio_id=159; relative_path=maher_almu3aiqly/year1440/"
     }
   ]
 }

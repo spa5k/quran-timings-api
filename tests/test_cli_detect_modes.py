@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -26,93 +27,27 @@ class _Summary:
     errors: list[str] = []
 
 
-def test_help_exposes_public_api_commands() -> None:
+def _build_export_summary() -> dict[str, object]:
+    return {
+        "keys_selected": 1,
+        "api": {"surah_changed": 1, "audio_copied": 0},
+        "reciters_index": {"changed": True},
+        "ui": {"copied": 1},
+        "dist": {"enabled": False, "copied": 0},
+    }
+
+
+def test_help_exposes_detect_only() -> None:
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
     assert "detect" in result.output
-    assert "run-surah" in result.output
     assert "sync-reciters" in result.output
-    assert "build-api" in result.output
+    assert "list-reciters" in result.output
+    assert "run-surah" not in result.output
+    assert "build-api" not in result.output
 
 
-def test_list_mode_reads_registry(tmp_path) -> None:
-    reciters_path = tmp_path / "reciters.json"
-    reciters_path.write_text(
-        (
-            "{\n"
-            '  "version": 1,\n'
-            '  "updated_at": "2026-03-06T00:00:00+00:00",\n'
-            '  "reciters": [\n'
-            "    {\n"
-            '      "id": "test_reciter",\n'
-            '      "name": "Test Reciter",\n'
-            '      "source": "custom",\n'
-            '      "notes": "",\n'
-            '      "created_at": "2026-03-06T00:00:00+00:00",\n'
-            '      "updated_at": "2026-03-06T00:00:00+00:00"\n'
-            "    }\n"
-            "  ]\n"
-            "}\n"
-        ),
-        encoding="utf-8",
-    )
-
-    result = runner.invoke(
-        app, ["detect", "--list-reciters", "--reciters-path", str(reciters_path)]
-    )
-    assert result.exit_code == 0
-    assert "test_reciter" in result.output
-
-
-def test_mode_conflict_fails() -> None:
-    result = runner.invoke(app, ["detect", "--setup-reciter", "--list-reciters"])
-    assert result.exit_code != 0
-    assert "cannot be used together" in result.output
-
-
-def test_setup_mode_writes_registry(tmp_path) -> None:
-    reciters_path = tmp_path / "reciters.json"
-    result = runner.invoke(
-        app,
-        [
-            "detect",
-            "--setup-reciter",
-            "--reciter-id",
-            "new_reciter",
-            "--reciter-name",
-            "New Reciter",
-            "--source",
-            "quranicaudio",
-            "--notes",
-            "note",
-            "--reciters-path",
-            str(reciters_path),
-        ],
-    )
-    assert result.exit_code == 0
-    payload = load_registry(reciters_path)
-    ids = [str(item.get("id")) for item in payload.get("reciters", [])]
-    assert "new_reciter" in ids
-
-
-def test_setup_mode_missing_optional_in_non_interactive_fails(tmp_path) -> None:
-    reciters_path = tmp_path / "reciters.json"
-    result = runner.invoke(
-        app,
-        [
-            "detect",
-            "--setup-reciter",
-            "--reciter-id",
-            "new_reciter",
-            "--reciters-path",
-            str(reciters_path),
-        ],
-    )
-    assert result.exit_code != 0
-    assert "--reciter-name" in result.output
-
-
-def test_run_mode_missing_required_flags_fails() -> None:
+def test_detect_missing_required_flags_fails_non_interactive() -> None:
     result = runner.invoke(
         app,
         [
@@ -124,14 +59,28 @@ def test_run_mode_missing_required_flags_fails() -> None:
         ],
     )
     assert result.exit_code != 0
-    assert "--reciter-id" in result.output
+    assert "requires --reciter-id, --surah, and --audio-url" in result.output
 
 
-def test_unknown_reciter_non_interactive_fails_with_setup_example(
+def test_detect_unknown_reciter_non_interactive_registers_and_publishes(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
-    monkeypatch.setattr(cli_module, "reciter_exists", lambda *args, **kwargs: False)
+    monkeypatch.setattr(cli_module, "get_bytes_with_retry", lambda **kwargs: b"fake-mp3")
+    monkeypatch.setattr(cli_module, "run_alignment_pipeline", lambda **kwargs: _Summary())
+
+    export_calls: list[dict[str, object]] = []
+
+    def _fake_export(**kwargs):
+        export_calls.append(kwargs)
+        return _build_export_summary()
+
+    monkeypatch.setattr(cli_module, "export_api_from_latest_runs", _fake_export)
+
+    out_root = tmp_path / "runs"
+    reciters_path = tmp_path / "detect_reciters.json"
+    catalog = tmp_path / "reciters.json"
+
     result = runner.invoke(
         app,
         [
@@ -143,23 +92,103 @@ def test_unknown_reciter_non_interactive_fails_with_setup_example(
             "--surah",
             "1",
             "--out-root",
-            str(tmp_path / "runs"),
+            str(out_root),
+            "--cache-dir",
+            str(tmp_path / "cache"),
+            "--reciters-path",
+            str(reciters_path),
+            "--catalog",
+            str(catalog),
+            "--api-root",
+            str(tmp_path / "api"),
+            "--ui-data-dir",
+            str(tmp_path / "ui"),
         ],
     )
-    assert result.exit_code != 0
-    assert "unknown reciter-id 'unknown_reciter'" in result.output
-    assert "--setup-reciter --reciter-id unknown_reciter" in result.output
+    assert result.exit_code == 0
+
+    payload = load_registry(reciters_path)
+    ids = [str(item.get("id")) for item in payload.get("reciters", [])]
+    assert "unknown_reciter" in ids
+
+    catalog_payload = json.loads(catalog.read_text(encoding="utf-8"))
+    assert catalog_payload["reciters"][0]["slug"] == "unknown_reciter"
+    assert catalog_payload["reciters"][0]["enabled"] is True
+
+    manifests = list(out_root.glob("**/manifest.csv"))
+    assert len(manifests) == 1
+    assert "unknown_reciter" in manifests[0].read_text(encoding="utf-8")
+
+    assert len(export_calls) == 1
+    assert export_calls[0]["runs_root"] == out_root
+    assert export_calls[0]["include_reciters"] == {"unknown_reciter"}
+    assert export_calls[0]["include_surahs"] == {1}
+    assert export_calls[0]["prune_ui"] is False
 
 
-def test_run_mode_known_reciter_executes_pipeline(
+def test_detect_without_params_runs_interactive_flow(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
-    monkeypatch.setattr(cli_module, "reciter_exists", lambda *args, **kwargs: True)
+    monkeypatch.setattr(cli_module, "_is_interactive_tty", lambda: True)
     monkeypatch.setattr(cli_module, "get_bytes_with_retry", lambda **kwargs: b"fake-mp3")
     monkeypatch.setattr(cli_module, "run_alignment_pipeline", lambda **kwargs: _Summary())
 
-    out_root = tmp_path / "runs"
+    export_calls: list[dict[str, object]] = []
+
+    def _fake_export(**kwargs):
+        export_calls.append(kwargs)
+        return _build_export_summary()
+
+    monkeypatch.setattr(cli_module, "export_api_from_latest_runs", _fake_export)
+
+    reciters_path = tmp_path / "detect_reciters.json"
+    catalog = tmp_path / "reciters.json"
+
+    result = runner.invoke(
+        app,
+        [
+            "detect",
+            "--out-root",
+            str(tmp_path / "runs"),
+            "--cache-dir",
+            str(tmp_path / "cache"),
+            "--reciters-path",
+            str(reciters_path),
+            "--catalog",
+            str(catalog),
+            "--api-root",
+            str(tmp_path / "api"),
+            "--ui-data-dir",
+            str(tmp_path / "ui"),
+        ],
+        input="\ninteractive_reciter\nInteractive Reciter\ncustom\n\n114\n\nhttps://example.com/114.mp3\n",
+    )
+
+    assert result.exit_code == 0
+    payload = load_registry(reciters_path)
+    ids = [str(item.get("id")) for item in payload.get("reciters", [])]
+    assert "interactive_reciter" in ids
+    assert len(export_calls) == 1
+    assert export_calls[0]["include_reciters"] == {"interactive_reciter"}
+    assert export_calls[0]["include_surahs"] == {114}
+
+
+def test_detect_ayah_run_skips_publish(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    monkeypatch.setattr(cli_module, "get_bytes_with_retry", lambda **kwargs: b"fake-mp3")
+    monkeypatch.setattr(cli_module, "run_alignment_pipeline", lambda **kwargs: _Summary())
+
+    called = {"count": 0}
+
+    def _fake_export(**kwargs):
+        called["count"] += 1
+        return _build_export_summary()
+
+    monkeypatch.setattr(cli_module, "export_api_from_latest_runs", _fake_export)
+
     result = runner.invoke(
         app,
         [
@@ -167,157 +196,149 @@ def test_run_mode_known_reciter_executes_pipeline(
             "--audio-url",
             "https://example.com/001.mp3",
             "--reciter-id",
-            "known_reciter",
+            "ayah_clip_reciter",
             "--surah",
             "1",
+            "--ayah",
+            "1",
             "--out-root",
-            str(out_root),
+            str(tmp_path / "runs"),
             "--cache-dir",
             str(tmp_path / "cache"),
+            "--reciters-path",
+            str(tmp_path / "detect_reciters.json"),
+            "--catalog",
+            str(tmp_path / "reciters.json"),
+            "--api-root",
+            str(tmp_path / "api"),
+            "--ui-data-dir",
+            str(tmp_path / "ui"),
         ],
     )
+
     assert result.exit_code == 0
-    manifests = list(out_root.glob("**/manifest.csv"))
-    assert len(manifests) == 1
-    manifest_text = manifests[0].read_text(encoding="utf-8")
-    assert "known_reciter" in manifest_text
-    assert ",1," in manifest_text
+    assert called["count"] == 0
+    assert "Ayah-only runs are not auto-published" in result.output
 
 
-def _build_api_summary() -> dict[str, object]:
-    return {
-        "keys_selected": 0,
-        "api": {"surah_changed": 0, "audio_copied": 0},
-        "reciters_index": {"changed": False},
-        "ui": {"copied": 0},
-        "dist": {"enabled": False, "copied": 0},
-    }
+def test_detect_known_catalog_reciter_preserves_catalog_slug_and_skips_detect_registry_write(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    monkeypatch.setattr(cli_module, "get_bytes_with_retry", lambda **kwargs: b"fake-mp3")
+    monkeypatch.setattr(cli_module, "run_alignment_pipeline", lambda **kwargs: _Summary())
+    monkeypatch.setattr(
+        cli_module, "export_api_from_latest_runs", lambda **kwargs: _build_export_summary()
+    )
 
-
-def _write_public_catalog(path: Path) -> None:
-    path.write_text(
-        (
-            "{\n"
-            '  "schema_version": "v1",\n'
-            '  "generated_at": "2026-03-06T00:00:00+00:00",\n'
-            '  "counts": {"configured_reciters": 1, "enabled_reciters": 1},\n'
-            '  "sources": {},\n'
-            '  "reciters": [\n'
-            "    {\n"
-            '      "slug": "reciter-1",\n'
-            '      "name": "Reciter One",\n'
-            '      "enabled": true,\n'
-            '      "check_type": "word_by_word",\n'
-            '      "capabilities": {"ayah_by_ayah": false, "word_by_word": true},\n'
-            '      "source": {\n'
-            '        "everyayah": {"subfolder": null, "reciter_key": null, "name": null},\n'
-            '        "quran_com": {"recitation_id": 3, "name": "Reciter One"}\n'
-            "      },\n"
-            '      "endpoints": {"metadata": "/data/reciters/reciter-1/metadata.json"},\n'
-            '      "surahs_available": [],\n'
-            '      "surah_count": 0\n'
-            "    }\n"
-            "  ]\n"
-            "}\n"
+    reciters_path = tmp_path / "detect_reciters.json"
+    catalog = tmp_path / "reciters.json"
+    catalog.write_text(
+        json.dumps(
+            {
+                "schema_version": "v1",
+                "generated_at": "2026-03-10T00:00:00+00:00",
+                "counts": {
+                    "everyayah_source_reciters": 0,
+                    "quran_com_source_reciters": 1,
+                    "quranicaudio_source_reciters": 0,
+                    "configured_reciters": 1,
+                    "enabled_reciters": 1,
+                },
+                "sources": {},
+                "reciters": [
+                    {
+                        "slug": "yasser_ad-dussary",
+                        "name": "Yasser Ad-Dussary",
+                        "enabled": True,
+                        "check_type": "word_by_word",
+                        "capabilities": {"ayah_by_ayah": False, "word_by_word": True},
+                        "source": {
+                            "everyayah": {"subfolder": None, "reciter_key": None, "name": None},
+                            "quran_com": {"recitation_id": 10, "name": "Yasser Ad-Dussary"},
+                            "quranicaudio": {"path": None, "name": None},
+                        },
+                        "surahs_available": [],
+                        "surah_count": 0,
+                        "endpoints": {"metadata": "/data/reciters/yasser_ad-dussary/metadata.json"},
+                    }
+                ],
+            },
+            indent=2,
         ),
         encoding="utf-8",
     )
 
-
-def test_build_api_skips_existing_surah_files_without_force(
-    monkeypatch: pytest.MonkeyPatch,
-    tmp_path: Path,
-) -> None:
-    catalog = tmp_path / "reciters.json"
-    _write_public_catalog(catalog)
-
-    api_root = tmp_path / "api"
-    target = api_root / "reciters" / "reciter-1" / "surahs" / "1"
-    target.mkdir(parents=True, exist_ok=True)
-    (target / "metadata.json").write_text("{}", encoding="utf-8")
-    (target / "timings.json").write_text("{}", encoding="utf-8")
-
-    calls: list[tuple[str, int]] = []
-
-    def _fake_run_surah_for_reciter(*, reciter_id, surah, **kwargs):
-        calls.append((reciter_id, surah))
-        return {}
-
-    monkeypatch.setattr(cli_module, "run_surah_for_reciter", _fake_run_surah_for_reciter)
-    monkeypatch.setattr(
-        cli_module, "export_api_from_latest_runs", lambda **kwargs: _build_api_summary()
-    )
-
     result = runner.invoke(
         app,
         [
-            "build-api",
-            "--no-interactive",
+            "detect",
+            "--audio-url",
+            "https://example.com/114.mp3",
+            "--reciter-id",
+            "yasser_ad-dussary",
+            "--surah",
+            "114",
+            "--out-root",
+            str(tmp_path / "runs"),
+            "--cache-dir",
+            str(tmp_path / "cache"),
+            "--reciters-path",
+            str(reciters_path),
             "--catalog",
             str(catalog),
-            "--reciters",
-            "reciter-1",
-            "--surahs",
-            "1",
             "--api-root",
-            str(api_root),
-            "--runs-root",
-            str(tmp_path / "runs"),
-            "--out-root",
-            str(tmp_path / "out"),
-            "--no-sync-dist",
-            "--no-prune-ui",
+            str(tmp_path / "api"),
+            "--ui-data-dir",
+            str(tmp_path / "ui"),
         ],
     )
+
     assert result.exit_code == 0
-    assert calls == []
+    assert not reciters_path.exists()
+    assert "yasser_ad-dussary" in result.output
+    assert "yasser_ad_dussary" not in result.output
 
 
-def test_build_api_force_rebuilds_selected_pair(
-    monkeypatch: pytest.MonkeyPatch,
-    tmp_path: Path,
-) -> None:
+def test_list_reciters_reads_catalog(tmp_path: Path) -> None:
     catalog = tmp_path / "reciters.json"
-    _write_public_catalog(catalog)
-
-    api_root = tmp_path / "api"
-    target = api_root / "reciters" / "reciter-1" / "surahs" / "1"
-    target.mkdir(parents=True, exist_ok=True)
-    (target / "metadata.json").write_text("{}", encoding="utf-8")
-    (target / "timings.json").write_text("{}", encoding="utf-8")
-
-    calls: list[tuple[str, int]] = []
-
-    def _fake_run_surah_for_reciter(*, reciter_id, surah, **kwargs):
-        calls.append((reciter_id, surah))
-        return {}
-
-    monkeypatch.setattr(cli_module, "run_surah_for_reciter", _fake_run_surah_for_reciter)
-    monkeypatch.setattr(
-        cli_module, "export_api_from_latest_runs", lambda **kwargs: _build_api_summary()
+    catalog.write_text(
+        json.dumps(
+            {
+                "schema_version": "v1",
+                "generated_at": "2026-03-10T00:00:00+00:00",
+                "counts": {
+                    "everyayah_source_reciters": 0,
+                    "quran_com_source_reciters": 0,
+                    "quranicaudio_source_reciters": 0,
+                    "configured_reciters": 1,
+                    "enabled_reciters": 1,
+                },
+                "sources": {},
+                "reciters": [
+                    {
+                        "slug": "test_reciter",
+                        "name": "Test Reciter",
+                        "enabled": True,
+                        "check_type": "model_only",
+                        "capabilities": {"ayah_by_ayah": False, "word_by_word": False},
+                        "source": {
+                            "everyayah": {"subfolder": None, "reciter_key": None, "name": None},
+                            "quran_com": {"recitation_id": None, "name": None},
+                            "quranicaudio": {"path": None, "name": None},
+                        },
+                        "surahs_available": [1],
+                        "surah_count": 1,
+                        "endpoints": {"metadata": "/data/reciters/test_reciter/metadata.json"},
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
     )
 
-    result = runner.invoke(
-        app,
-        [
-            "build-api",
-            "--no-interactive",
-            "--catalog",
-            str(catalog),
-            "--reciters",
-            "reciter-1",
-            "--surahs",
-            "1",
-            "--api-root",
-            str(api_root),
-            "--runs-root",
-            str(tmp_path / "runs"),
-            "--out-root",
-            str(tmp_path / "out"),
-            "--force",
-            "--no-sync-dist",
-            "--no-prune-ui",
-        ],
-    )
+    result = runner.invoke(app, ["list-reciters", "--catalog", str(catalog)])
     assert result.exit_code == 0
-    assert calls == [("reciter-1", 1)]
+    assert "Configured Reciters" in result.output
+    assert "List Summary" in result.output

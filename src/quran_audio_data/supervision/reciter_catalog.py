@@ -2,9 +2,13 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from pathlib import Path
+import re
 from typing import Any
+import unicodedata
 
 import orjson
+
+from quran_audio_data.reciters import fetch_quranicaudio_reciters
 
 from .everyayah import fetch_catalog as fetch_everyayah_catalog
 from .qcom_audio import fetch_recitation_catalog
@@ -17,6 +21,14 @@ from .reciter_defaults import (
 
 
 DEFAULT_RECITER_CATALOG_PATH = Path("data/reciters.json")
+
+
+def _slugify(value: str) -> str:
+    raw = unicodedata.normalize("NFKD", str(value or "").strip().lower())
+    raw = "".join(ch for ch in raw if not unicodedata.combining(ch))
+    raw = re.sub(r"[^a-z0-9]+", "_", raw)
+    raw = re.sub(r"_+", "_", raw).strip("_")
+    return raw or "reciter"
 
 
 def _parse_everyayah_catalog(payload: dict[str, Any]) -> list[dict[str, Any]]:
@@ -69,93 +81,146 @@ def _parse_qcom_catalog(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return out
 
 
-def _build_configured_reciters(
+def _empty_reciter_row(
+    *,
+    slug: str,
+    name: str,
+    enabled_reciters: set[str],
+) -> dict[str, Any]:
+    return {
+        "slug": slug,
+        "name": name,
+        "enabled": slug in enabled_reciters,
+        "check_type": "model_only",
+        "capabilities": {
+            "ayah_by_ayah": False,
+            "word_by_word": False,
+        },
+        "source": {
+            "everyayah": {"subfolder": None, "reciter_key": None, "name": None},
+            "quran_com": {"recitation_id": None, "name": None},
+            "quranicaudio": {"path": None, "name": None},
+        },
+        "endpoints": {
+            "metadata": f"/data/reciters/{slug}/metadata.json",
+        },
+        "surahs_available": [],
+        "surah_count": 0,
+    }
+
+
+def _finalize_check_type(row: dict[str, Any]) -> None:
+    capabilities = row.get("capabilities") if isinstance(row.get("capabilities"), dict) else {}
+    ayah_by_ayah = bool(capabilities.get("ayah_by_ayah"))
+    word_by_word = bool(capabilities.get("word_by_word"))
+    if ayah_by_ayah and word_by_word:
+        row["check_type"] = "both"
+    elif ayah_by_ayah:
+        row["check_type"] = "ayah_by_ayah"
+    elif word_by_word:
+        row["check_type"] = "word_by_word"
+    else:
+        row["check_type"] = "model_only"
+
+
+def _build_source_reciters(
     *,
     enabled_reciters: set[str],
     everyayah_reciters: list[dict[str, Any]],
     qcom_reciters: list[dict[str, Any]],
+    quranicaudio_reciters: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    by_subfolder = {
-        str(item.get("subfolder")): item
-        for item in everyayah_reciters
-        if isinstance(item.get("subfolder"), str)
+    default_slug_by_subfolder = {
+        subfolder: slug
+        for slug, subfolder in EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT.items()
+        if subfolder
     }
-    by_qcom_id = {
-        int(item["id"]): item for item in qcom_reciters if isinstance(item.get("id"), int)
+    default_slug_by_qcom_id = {
+        int(recitation_id): slug
+        for slug, recitation_id in QCOM_RECITATION_ID_BY_RECITER_DEFAULT.items()
+        if recitation_id is not None
     }
 
-    configured_ids = sorted(
-        set(EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT)
-        | set(QCOM_RECITATION_ID_BY_RECITER_DEFAULT)
-        | set(UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT)
-    )
+    rows_by_slug: dict[str, dict[str, Any]] = {}
 
-    out: list[dict[str, Any]] = []
-    for reciter_id in configured_ids:
-        everyayah_subfolder = EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT.get(reciter_id)
-        qcom_recitation_id = QCOM_RECITATION_ID_BY_RECITER_DEFAULT.get(reciter_id)
-        qcom_word_supervision_supported = (
-            reciter_id not in UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT
-            and qcom_recitation_id is not None
-        )
+    for item in everyayah_reciters:
+        subfolder = str(item.get("subfolder") or "").strip()
+        if not subfolder:
+            continue
+        slug = default_slug_by_subfolder.get(subfolder) or f"eya_{_slugify(subfolder)}"
+        name = str(item.get("name") or subfolder).strip() or subfolder
+        row = rows_by_slug.get(slug)
+        if row is None:
+            row = _empty_reciter_row(slug=slug, name=name, enabled_reciters=enabled_reciters)
+            rows_by_slug[slug] = row
+        row["name"] = name or row["name"]
+        row["enabled"] = bool(row.get("enabled")) or slug in enabled_reciters
+        row["capabilities"]["ayah_by_ayah"] = True
+        row["source"]["everyayah"] = {
+            "subfolder": subfolder,
+            "reciter_key": item.get("reciter_key")
+            if isinstance(item.get("reciter_key"), int)
+            else None,
+            "name": name,
+        }
 
-        ayah_by_ayah = everyayah_subfolder is not None
-        word_by_word = qcom_word_supervision_supported
-        if ayah_by_ayah and word_by_word:
-            check_type = "both"
-        elif ayah_by_ayah:
-            check_type = "ayah_by_ayah"
-        elif word_by_word:
-            check_type = "word_by_word"
-        else:
-            check_type = "model_only"
+    seen_qcom_slugs: dict[str, int] = {}
+    for item in qcom_reciters:
+        recitation_id = item.get("id")
+        if not isinstance(recitation_id, int):
+            continue
+        label = str(
+            item.get("translated_name") or item.get("reciter_name") or recitation_id
+        ).strip()
+        base_slug = default_slug_by_qcom_id.get(recitation_id) or f"qcom_{_slugify(label)}"
+        slug = base_slug
+        if slug in rows_by_slug:
+            existing_qcom = (
+                rows_by_slug[slug].get("source", {}).get("quran_com", {}).get("recitation_id")
+                if isinstance(rows_by_slug[slug].get("source"), dict)
+                else None
+            )
+            if existing_qcom not in {None, recitation_id}:
+                slug = f"{base_slug}_{recitation_id}"
+        if slug in seen_qcom_slugs and seen_qcom_slugs[slug] != recitation_id:
+            slug = f"{base_slug}_{recitation_id}"
+        seen_qcom_slugs[slug] = recitation_id
 
-        everyayah_meta = by_subfolder.get(everyayah_subfolder) if everyayah_subfolder else None
-        qcom_meta = by_qcom_id.get(qcom_recitation_id) if qcom_recitation_id else None
-        reciter_name = (
-            str(
-                (qcom_meta.get("translated_name") if qcom_meta else None)
-                or (qcom_meta.get("reciter_name") if qcom_meta else None)
-                or (everyayah_meta.get("name") if everyayah_meta else None)
-                or reciter_id
-            ).strip()
-            or reciter_id
-        )
-        out.append(
-            {
-                "slug": reciter_id,
-                "name": reciter_name,
-                "enabled": reciter_id in enabled_reciters,
-                "check_type": check_type,
-                "capabilities": {
-                    "ayah_by_ayah": ayah_by_ayah,
-                    "word_by_word": word_by_word,
-                },
-                "source": {
-                    "everyayah": {
-                        "subfolder": everyayah_subfolder,
-                        "reciter_key": everyayah_meta.get("reciter_key")
-                        if everyayah_meta
-                        else None,
-                        "name": everyayah_meta.get("name") if everyayah_meta else None,
-                    },
-                    "quran_com": {
-                        "recitation_id": qcom_recitation_id,
-                        "name": (
-                            qcom_meta.get("translated_name") or qcom_meta.get("reciter_name")
-                            if qcom_meta
-                            else None
-                        ),
-                    },
-                },
-                "endpoints": {
-                    "metadata": f"/data/reciters/{reciter_id}/metadata.json",
-                },
-                "surahs_available": [],
-                "surah_count": 0,
-            }
-        )
-    out.sort(key=lambda item: str(item.get("slug") or ""))
+        row = rows_by_slug.get(slug)
+        if row is None:
+            row = _empty_reciter_row(slug=slug, name=label, enabled_reciters=enabled_reciters)
+            rows_by_slug[slug] = row
+        row["name"] = label or row["name"]
+        row["enabled"] = bool(row.get("enabled")) or slug in enabled_reciters
+        row["capabilities"]["word_by_word"] = slug not in UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT
+        row["source"]["quran_com"] = {
+            "recitation_id": recitation_id,
+            "name": label,
+        }
+
+    for item in quranicaudio_reciters:
+        slug = str(item.get("id") or "").strip().lower()
+        if not slug:
+            continue
+        name = str(item.get("name") or slug).strip() or slug
+        notes = str(item.get("notes") or "").strip()
+        relative_path = None
+        if "relative_path=" in notes:
+            relative_path = notes.split("relative_path=", 1)[1].strip().rstrip("/")
+        row = rows_by_slug.get(slug)
+        if row is None:
+            row = _empty_reciter_row(slug=slug, name=name, enabled_reciters=enabled_reciters)
+            rows_by_slug[slug] = row
+        row["enabled"] = bool(row.get("enabled")) or slug in enabled_reciters
+        row["source"]["quranicaudio"] = {
+            "path": relative_path,
+            "name": name,
+        }
+
+    for row in rows_by_slug.values():
+        _finalize_check_type(row)
+
+    out = sorted(rows_by_slug.values(), key=lambda item: str(item.get("slug") or ""))
     return out
 
 
@@ -173,10 +238,12 @@ def build_reciter_catalog_payload(
 
     everyayah_reciters = _parse_everyayah_catalog(everyayah_payload)
     qcom_reciters = _parse_qcom_catalog(qcom_payload)
-    configured = _build_configured_reciters(
+    quranicaudio_reciters = fetch_quranicaudio_reciters()
+    configured = _build_source_reciters(
         enabled_reciters=enabled,
         everyayah_reciters=everyayah_reciters,
         qcom_reciters=qcom_reciters,
+        quranicaudio_reciters=quranicaudio_reciters,
     )
 
     return {
@@ -185,17 +252,20 @@ def build_reciter_catalog_payload(
         "counts": {
             "everyayah_source_reciters": len(everyayah_reciters),
             "quran_com_source_reciters": len(qcom_reciters),
+            "quranicaudio_source_reciters": len(quranicaudio_reciters),
             "configured_reciters": len(configured),
             "enabled_reciters": sum(1 for item in configured if item.get("enabled")),
         },
         "sources": {
             "everyayah_catalog_url": "https://everyayah.com/data/recitations.js",
             "quran_com_recitations_url": "https://api.quran.com/api/v4/resources/recitations?language=en",
+            "quranicaudio_catalog_url": "https://quranicaudio.com",
         },
         "reciters": configured,
         # Keep source catalogs for tooling that inspects external mapping pools.
         "everyayah_reciters": everyayah_reciters,
         "quran_com_reciters": qcom_reciters,
+        "quranicaudio_reciters": quranicaudio_reciters,
     }
 
 

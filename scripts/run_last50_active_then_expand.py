@@ -80,7 +80,9 @@ def _ensure_reciter_fields(reciter: dict[str, Any]) -> None:
 
 
 def _set_check_type(reciter: dict[str, Any]) -> None:
-    capabilities = reciter.get("capabilities") if isinstance(reciter.get("capabilities"), dict) else {}
+    capabilities = (
+        reciter.get("capabilities") if isinstance(reciter.get("capabilities"), dict) else {}
+    )
     ayah_by_ayah = bool(capabilities.get("ayah_by_ayah"))
     word_by_word = bool(capabilities.get("word_by_word"))
     if ayah_by_ayah and word_by_word:
@@ -158,8 +160,12 @@ def _hydrate_active_reciter_mappings(catalog: dict[str, Any]) -> list[str]:
         if isinstance(alias_subfolder, str) and alias_subfolder in everyayah_by_subfolder:
             row = everyayah_by_subfolder[alias_subfolder]
             everyayah["subfolder"] = alias_subfolder
-            everyayah["reciter_key"] = row.get("reciter_key") if isinstance(row.get("reciter_key"), int) else None
-            everyayah["name"] = row.get("name") if isinstance(row.get("name"), str) else alias_subfolder
+            everyayah["reciter_key"] = (
+                row.get("reciter_key") if isinstance(row.get("reciter_key"), int) else None
+            )
+            everyayah["name"] = (
+                row.get("name") if isinstance(row.get("name"), str) else alias_subfolder
+            )
             reciter["capabilities"]["ayah_by_ayah"] = True
             changed = True
         elif slug.startswith("eya_") and slug in everyayah_by_slug:
@@ -167,8 +173,12 @@ def _hydrate_active_reciter_mappings(catalog: dict[str, Any]) -> list[str]:
             subfolder = row.get("subfolder")
             if isinstance(subfolder, str) and subfolder.strip():
                 everyayah["subfolder"] = subfolder.strip()
-                everyayah["reciter_key"] = row.get("reciter_key") if isinstance(row.get("reciter_key"), int) else None
-                everyayah["name"] = row.get("name") if isinstance(row.get("name"), str) else subfolder.strip()
+                everyayah["reciter_key"] = (
+                    row.get("reciter_key") if isinstance(row.get("reciter_key"), int) else None
+                )
+                everyayah["name"] = (
+                    row.get("name") if isinstance(row.get("name"), str) else subfolder.strip()
+                )
                 reciter["capabilities"]["ayah_by_ayah"] = True
                 changed = True
 
@@ -176,7 +186,9 @@ def _hydrate_active_reciter_mappings(catalog: dict[str, Any]) -> list[str]:
         if isinstance(alias_qcom_id, int) and alias_qcom_id in qcom_by_id:
             row = qcom_by_id[alias_qcom_id]
             quran_com["recitation_id"] = alias_qcom_id
-            quran_com["name"] = row.get("translated_name") or row.get("reciter_name") or str(alias_qcom_id)
+            quran_com["name"] = (
+                row.get("translated_name") or row.get("reciter_name") or str(alias_qcom_id)
+            )
             reciter["capabilities"]["word_by_word"] = True
             changed = True
         elif slug.startswith("qcom_") and slug in qcom_by_slug:
@@ -184,7 +196,9 @@ def _hydrate_active_reciter_mappings(catalog: dict[str, Any]) -> list[str]:
             recitation_id = row.get("id")
             if isinstance(recitation_id, int):
                 quran_com["recitation_id"] = recitation_id
-                quran_com["name"] = row.get("translated_name") or row.get("reciter_name") or str(recitation_id)
+                quran_com["name"] = (
+                    row.get("translated_name") or row.get("reciter_name") or str(recitation_id)
+                )
                 reciter["capabilities"]["word_by_word"] = True
                 changed = True
 
@@ -268,7 +282,9 @@ def _create_everyayah_entry(row: dict[str, Any]) -> dict[str, Any] | None:
         "source": {
             "everyayah": {
                 "subfolder": subfolder.strip(),
-                "reciter_key": row.get("reciter_key") if isinstance(row.get("reciter_key"), int) else None,
+                "reciter_key": row.get("reciter_key")
+                if isinstance(row.get("reciter_key"), int)
+                else None,
                 "name": display_name,
             },
             "quran_com": {
@@ -299,9 +315,7 @@ def _expand_catalog_reciters(
         raise ValueError("catalog is missing everyayah_reciters/quran_com_reciters source pools")
 
     existing_slugs = {
-        str(item.get("slug") or "").strip().lower()
-        for item in reciters
-        if isinstance(item, dict)
+        str(item.get("slug") or "").strip().lower() for item in reciters if isinstance(item, dict)
     }
     added: list[str] = []
 
@@ -424,7 +438,9 @@ def main() -> int:
         {
             str(item.get("slug") or "").strip().lower()
             for item in reciters
-            if isinstance(item, dict) and bool(item.get("enabled")) and str(item.get("slug") or "").strip()
+            if isinstance(item, dict)
+            and bool(item.get("enabled"))
+            and str(item.get("slug") or "").strip()
         }
     )
     if not active_reciters:

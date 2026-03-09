@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import csv
+from datetime import datetime, timezone
 import hashlib
-import re
+import json
 import sys
 from pathlib import Path
 from typing import Annotated, Any
@@ -13,21 +14,18 @@ from rich.table import Table
 import typer
 
 from quran_audio_data.core.http import get_bytes_with_retry
-from quran_audio_data.core.parsing import parse_csv_strings
 from quran_audio_data.core.settings import get_settings
 from quran_audio_data.pipeline import run_alignment_pipeline
 from quran_audio_data.reciters import (
     DEFAULT_RECITERS_PATH,
+    get_reciter,
     list_reciters,
     normalize_reciter_id,
     reciter_exists,
     upsert_reciter,
 )
-from quran_audio_data.surah_runner import run_surah_for_reciter
 from quran_audio_data.supervision import (
     DEFAULT_RECITER_CATALOG_PATH,
-    get_configured_reciter_entry,
-    is_reciter_enabled,
     read_reciter_catalog,
     write_reciter_catalog,
 )
@@ -41,6 +39,10 @@ app = typer.Typer(help="Quran audio timing extraction CLI")
 @app.callback()
 def _main() -> None:
     """Quran audio timing extraction CLI."""
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat()
 
 
 def _print_key_values(title: str, values: dict[str, Any]) -> None:
@@ -60,22 +62,6 @@ def _print_errors(errors: list[str]) -> None:
         console.print(f"- {error}")
 
 
-def _ensure_mode_guard(
-    *,
-    setup_reciter: bool,
-    list_reciters_mode: bool,
-) -> None:
-    if setup_reciter and list_reciters_mode:
-        raise typer.BadParameter("--setup-reciter and --list-reciters cannot be used together.")
-
-
-def _setup_example(reciter_id: str) -> str:
-    return (
-        f"qad detect --setup-reciter --reciter-id {reciter_id} "
-        f'--reciter-name "{reciter_id.replace("_", " ").title()}" --source custom'
-    )
-
-
 def _is_interactive_tty() -> bool:
     return sys.stdin.isatty()
 
@@ -86,342 +72,46 @@ def _prompt_setup_values(
     reciter_name: str | None,
     source: str | None,
     notes: str | None,
-    interactive_only: bool = True,
+    interactive_only: bool,
 ) -> tuple[str, str, str]:
     name_value = (reciter_name or "").strip()
     source_value = (source or "").strip()
     notes_value = "" if notes is None else notes.strip()
-    interactive = _is_interactive_tty()
 
     if not name_value:
-        if interactive and interactive_only:
+        if interactive_only and _is_interactive_tty():
             name_value = typer.prompt(
                 "Reciter name",
                 default=reciter_id.replace("_", " ").title(),
             ).strip()
-        elif interactive_only:
-            raise typer.BadParameter("setup mode requires --reciter-name in non-interactive mode.")
         else:
             name_value = reciter_id.replace("_", " ").title()
 
     if not source_value:
-        if interactive and interactive_only:
-            source_value = typer.prompt(
-                "Source label",
-                default="custom",
-            ).strip()
-        elif interactive_only:
-            raise typer.BadParameter("setup mode requires --source in non-interactive mode.")
+        if interactive_only and _is_interactive_tty():
+            source_value = typer.prompt("Source label", default="custom").strip()
         else:
             source_value = "custom"
 
-    if notes is None and interactive and interactive_only:
+    if notes is None and interactive_only and _is_interactive_tty():
         notes_value = typer.prompt("Notes (optional)", default="", show_default=False).strip()
 
     return name_value, source_value, notes_value
 
 
-def _handle_list_mode(*, reciters_path: Path) -> None:
-    rows = list_reciters(reciters_path)
-    if not rows:
-        _print_key_values(
-            "Reciters",
-            {
-                "count": 0,
-                "registry_path": reciters_path,
-                "hint": "Use `qad detect --setup-reciter --reciter-id ...` to add one.",
-            },
-        )
-        return
-
-    table = Table(title="Configured Reciters")
-    table.add_column("id")
-    table.add_column("name")
-    table.add_column("source")
-    table.add_column("notes")
-    table.add_column("updated_at")
-    for item in rows:
-        table.add_row(
-            str(item.get("id") or ""),
-            str(item.get("name") or ""),
-            str(item.get("source") or ""),
-            str(item.get("notes") or "-"),
-            str(item.get("updated_at") or ""),
-        )
-    console.print(table)
-    _print_key_values(
-        "List Summary",
-        {
-            "count": len(rows),
-            "registry_path": reciters_path,
-        },
-    )
-
-
-def _handle_setup_mode(
-    *,
-    reciter_id: str | None,
-    reciter_name: str | None,
-    source: str | None,
-    notes: str | None,
-    reciters_path: Path,
-) -> None:
-    if not reciter_id:
-        raise typer.BadParameter("--setup-reciter requires --reciter-id.")
-    normalized = normalize_reciter_id(reciter_id)
-    name_value, source_value, notes_value = _prompt_setup_values(
-        reciter_id=normalized,
-        reciter_name=reciter_name,
-        source=source,
-        notes=notes,
-        interactive_only=True,
-    )
-    row = upsert_reciter(
-        reciter_id=normalized,
-        name=name_value,
-        source=source_value,
-        notes=notes_value,
-        path=reciters_path,
-    )
-    _print_key_values(
-        "Reciter Setup",
-        {
-            "reciter_id": row["id"],
-            "name": row["name"],
-            "source": row["source"],
-            "notes": row["notes"] or "-",
-            "registry_path": reciters_path,
-        },
-    )
-
-
-@app.command("detect")
-def detect_cmd(
-    audio_url: Annotated[
-        str | None,
-        typer.Option("--audio-url", help="Public audio URL to align."),
-    ] = None,
-    reciter_id: Annotated[
-        str | None,
-        typer.Option("--reciter-id", help="Configured reciter ID."),
-    ] = None,
-    surah: Annotated[int | None, typer.Option("--surah", min=1, max=114)] = None,
-    ayah: Annotated[int | None, typer.Option("--ayah", min=1)] = None,
-    setup_reciter: Annotated[
-        bool,
-        typer.Option("--setup-reciter", help="Create or update reciter metadata."),
-    ] = False,
-    list_reciters_mode: Annotated[
-        bool,
-        typer.Option("--list-reciters", help="List configured reciter IDs."),
-    ] = False,
-    reciter_name: Annotated[str | None, typer.Option("--reciter-name")] = None,
-    source: Annotated[str | None, typer.Option("--source")] = None,
-    notes: Annotated[str | None, typer.Option("--notes")] = None,
-    out_root: Annotated[Path, typer.Option("--out-root")] = Path("runs/detect"),
-    text_data: Annotated[Path | None, typer.Option("--text-data")] = None,
-    cache_dir: Annotated[Path, typer.Option("--cache-dir")] = Path(get_settings().cache_dir),
-    reciters_path: Annotated[
-        Path,
-        typer.Option("--reciters-path", hidden=True),
-    ] = DEFAULT_RECITERS_PATH,
-) -> None:
-    """Single-command Quran timing workflow: run, setup reciter, or list reciters."""
-
-    _ensure_mode_guard(setup_reciter=setup_reciter, list_reciters_mode=list_reciters_mode)
-
-    if list_reciters_mode:
-        if any(
-            value is not None
-            for value in (audio_url, reciter_id, surah, ayah, reciter_name, source, notes)
-        ):
-            raise typer.BadParameter("--list-reciters cannot be combined with run/setup flags.")
-        _handle_list_mode(reciters_path=reciters_path)
-        return
-
-    if setup_reciter:
-        if any(value is not None for value in (audio_url, surah, ayah)):
-            raise typer.BadParameter(
-                "--setup-reciter cannot be combined with run flags (--audio-url/--surah/--ayah)."
-            )
-        _handle_setup_mode(
-            reciter_id=reciter_id,
-            reciter_name=reciter_name,
-            source=source,
-            notes=notes,
-            reciters_path=reciters_path,
-        )
-        return
-
-    if reciter_name is not None or source is not None or notes is not None:
-        raise typer.BadParameter(
-            "run mode does not use --reciter-name/--source/--notes. Use --setup-reciter instead."
-        )
-
-    if audio_url is None:
-        raise typer.BadParameter("run mode requires --audio-url.")
-    if reciter_id is None:
-        raise typer.BadParameter("run mode requires --reciter-id.")
-    if surah is None:
-        raise typer.BadParameter("run mode requires --surah.")
-    if ayah is not None and surah is None:
-        raise typer.BadParameter("--ayah requires --surah.")
-
-    url = audio_url.strip()
-    if not url.startswith(("http://", "https://")):
-        raise typer.BadParameter("--audio-url must start with http:// or https://")
-
-    resolved_id = normalize_reciter_id(reciter_id)
-    reciter_known = reciter_exists(
-        resolved_id,
-        path=reciters_path,
-    )
-    if not reciter_known:
-        if _is_interactive_tty():
-            create_now = typer.confirm(
-                f"Reciter '{resolved_id}' is unknown. Create it now?",
-                default=True,
-            )
-            if create_now:
-                name_value, source_value, notes_value = _prompt_setup_values(
-                    reciter_id=resolved_id,
-                    reciter_name=None,
-                    source=None,
-                    notes=None,
-                    interactive_only=True,
-                )
-                upsert_reciter(
-                    reciter_id=resolved_id,
-                    name=name_value,
-                    source=source_value,
-                    notes=notes_value,
-                    path=reciters_path,
-                )
-                _print_key_values(
-                    "Reciter Setup",
-                    {
-                        "reciter_id": resolved_id,
-                        "name": name_value,
-                        "source": source_value,
-                        "notes": notes_value or "-",
-                        "registry_path": reciters_path,
-                    },
-                )
-            else:
-                raise typer.BadParameter(
-                    f"unknown reciter-id '{resolved_id}'. Setup first: {_setup_example(resolved_id)}"
-                )
-        else:
-            raise typer.BadParameter(
-                f"unknown reciter-id '{resolved_id}'. Setup first: {_setup_example(resolved_id)}"
-            )
-
-    out_root.mkdir(parents=True, exist_ok=True)
-
-    parsed_path = Path(urlparse(url).path)
-    suffix = parsed_path.suffix.lower() if parsed_path.suffix else ".mp3"
-    if suffix not in {".mp3", ".wav", ".flac", ".m4a", ".ogg", ".opus", ".aac"}:
-        suffix = ".mp3"
-
-    row_surah = int(surah)
-    row_ayah = ayah
-
-    run_key_hint = f"s{row_surah:03d}"
-    url_hash = hashlib.sha256(url.encode("utf-8")).hexdigest()[:10]
-    run_dir = out_root / f"{resolved_id}_{run_key_hint}_{url_hash}"
-    input_dir = run_dir / "input"
-    audio_dir = input_dir / "audio"
-    output_dir = run_dir / "outputs"
-    input_dir.mkdir(parents=True, exist_ok=True)
-    audio_dir.mkdir(parents=True, exist_ok=True)
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    audio_path = audio_dir / f"{resolved_id}_input{suffix}"
-    audio_bytes = get_bytes_with_retry(url=url, timeout_s=30.0, retries=8, retry_backoff_s=1.0)
-    audio_path.write_bytes(audio_bytes)
-    audio_sha = hashlib.sha256(audio_bytes).hexdigest()
-
-    manifest_path = input_dir / "manifest.csv"
-    with manifest_path.open("w", newline="", encoding="utf-8") as fh:
-        writer = csv.DictWriter(
-            fh,
-            fieldnames=[
-                "audio_path",
-                "reciter_id",
-                "surah",
-                "ayah",
-                "source_url",
-                "sha256",
-                "language",
-                "riwaya",
-                "text_variant",
-                "reference_split",
-            ],
-        )
-        writer.writeheader()
-        writer.writerow(
-            {
-                "audio_path": str(audio_path),
-                "reciter_id": resolved_id,
-                "surah": str(row_surah),
-                "ayah": "" if row_ayah is None else str(row_ayah),
-                "source_url": url,
-                "sha256": audio_sha,
-                "language": "ar",
-                "riwaya": "",
-                "text_variant": "",
-                "reference_split": "detect",
-            }
-        )
-
-    _print_key_values(
-        "Detect Setup",
-        {
-            "audio_url": url,
-            "reciter_id": resolved_id,
-            "surah": row_surah,
-            "ayah": row_ayah if row_ayah is not None else "full",
-            "input_mode": "ayah_file" if row_ayah is not None else "full_surah",
-            "downloaded_audio": str(audio_path),
-            "manifest": str(manifest_path),
-        },
-    )
-
-    summary = run_alignment_pipeline(
-        manifest_path=manifest_path,
-        out_dir=output_dir,
-        engine="nemo",
-        multi_engine=["nemo", "mfa", "whisperx"],
-        accuracy_mode="strict",
-        availability_policy="best_effort",
-        device="auto",
-        text_data=text_data,
-        cache_dir=cache_dir,
-        enable_remote=True,
-    )
-
-    _print_key_values(
-        "Detect Alignment Summary",
-        {
-            "schema_version": summary.schema_version,
-            "total": summary.total,
-            "succeeded": summary.succeeded,
-            "failed": summary.failed,
-            "aligned": summary.aligned,
-            "fallback": summary.fallback_used,
-            "priors_used": summary.priors_used,
-            "elapsed_s": f"{summary.elapsed_s:.2f}",
-            "attempted_engines": ",".join(summary.attempted_engines),
-            "output_dir": str(output_dir),
-        },
-    )
-    _print_errors(summary.errors)
-    if summary.errors:
-        raise typer.Exit(code=1)
-
-
 def _normalize_catalog_slug(value: str) -> str:
     return str(value or "").strip().lower()
+
+
+def _catalog_source_label(item: dict[str, Any]) -> str:
+    source = item.get("source") if isinstance(item.get("source"), dict) else {}
+    everyayah = source.get("everyayah") if isinstance(source.get("everyayah"), dict) else {}
+    quran_com = source.get("quran_com") if isinstance(source.get("quran_com"), dict) else {}
+    if everyayah.get("subfolder"):
+        return "everyayah"
+    if quran_com.get("recitation_id"):
+        return "quran.com"
+    return "catalog"
 
 
 def _load_public_reciters(catalog_path: Path) -> list[dict[str, Any]]:
@@ -434,82 +124,327 @@ def _load_public_reciters(catalog_path: Path) -> list[dict[str, Any]]:
     return [item for item in reciters if isinstance(item, dict)]
 
 
-def _prompt_selected_reciters(reciters: list[dict[str, Any]]) -> list[str]:
-    show_all = typer.confirm("Show all configured reciters?", default=False)
-    visible = reciters if show_all else [item for item in reciters if bool(item.get("enabled"))]
-    if not visible:
-        visible = reciters
+def _default_catalog_payload() -> dict[str, Any]:
+    return {
+        "schema_version": "v1",
+        "generated_at": _utc_now(),
+        "counts": {
+            "everyayah_source_reciters": 0,
+            "quran_com_source_reciters": 0,
+            "quranicaudio_source_reciters": 0,
+            "configured_reciters": 0,
+            "enabled_reciters": 0,
+        },
+        "sources": {},
+        "reciters": [],
+    }
 
-    table = Table(title="Reciter Selection")
-    table.add_column("#")
-    table.add_column("slug")
-    table.add_column("enabled")
-    table.add_column("name")
-    table.add_column("check_type")
-    for idx, item in enumerate(visible, start=1):
-        table.add_row(
-            str(idx),
-            str(item.get("slug") or ""),
-            str(bool(item.get("enabled"))),
-            str(item.get("name") or ""),
-            str(item.get("check_type") or ""),
-        )
-    console.print(table)
 
-    raw = typer.prompt(
-        "Select reciters by comma-separated slug or index (empty = all shown)",
-        default="",
-    ).strip()
-    if not raw:
-        return sorted(
-            {_normalize_catalog_slug(item.get("slug")) for item in visible if item.get("slug")}
-        )
+def _write_catalog_payload(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    parts = [chunk.strip() for chunk in raw.split(",") if chunk.strip()]
-    by_index = {idx: item for idx, item in enumerate(visible, start=1)}
-    selected: set[str] = set()
-    for part in parts:
-        if part.isdigit():
-            item = by_index.get(int(part))
-            if item and item.get("slug"):
-                selected.add(_normalize_catalog_slug(item["slug"]))
+
+def _upsert_public_catalog_reciter(
+    *,
+    catalog_path: Path,
+    reciter_id: str,
+    reciter_name: str,
+) -> None:
+    payload = read_reciter_catalog(catalog_path) or _default_catalog_payload()
+    reciters = payload.get("reciters")
+    if not isinstance(reciters, list):
+        reciters = []
+        payload["reciters"] = reciters
+
+    key = _normalize_catalog_slug(reciter_id)
+    row: dict[str, Any] | None = None
+    for item in reciters:
+        if not isinstance(item, dict):
             continue
-        selected.add(_normalize_catalog_slug(part))
-    return sorted(selected)
+        if _normalize_catalog_slug(item.get("slug") or "") == key:
+            row = item
+            break
 
+    if row is None:
+        row = {
+            "slug": key,
+            "name": reciter_name or key,
+            "enabled": True,
+            "check_type": "model_only",
+            "capabilities": {
+                "ayah_by_ayah": False,
+                "word_by_word": False,
+            },
+            "source": {
+                "everyayah": {"subfolder": None, "reciter_key": None, "name": None},
+                "quran_com": {"recitation_id": None, "name": None},
+                "quranicaudio": {"path": None, "name": None},
+            },
+            "surahs_available": [],
+            "surah_count": 0,
+            "endpoints": {"metadata": f"/data/reciters/{key}/metadata.json"},
+        }
+        reciters.append(row)
+    else:
+        if reciter_name and (not row.get("name") or str(row.get("name")).strip().lower() == key):
+            row["name"] = reciter_name
+        row["enabled"] = True
+        row["endpoints"] = {"metadata": f"/data/reciters/{key}/metadata.json"}
+        if not isinstance(row.get("capabilities"), dict):
+            row["capabilities"] = {"ayah_by_ayah": False, "word_by_word": False}
+        if not isinstance(row.get("source"), dict):
+            row["source"] = {
+                "everyayah": {"subfolder": None, "reciter_key": None, "name": None},
+                "quran_com": {"recitation_id": None, "name": None},
+                "quranicaudio": {"path": None, "name": None},
+            }
+        row["check_type"] = str(row.get("check_type") or "model_only")
 
-_SURAH_RANGE_RE = re.compile(r"^(?P<start>\d{1,3})-(?P<end>\d{1,3})$")
-
-
-def _parse_surah_selection(raw: str) -> list[int]:
-    value = raw.strip().lower()
-    if value == "all":
-        return list(range(1, 115))
-
-    range_match = _SURAH_RANGE_RE.fullmatch(value)
-    if range_match:
-        start = int(range_match.group("start"))
-        end = int(range_match.group("end"))
-        if start < 1 or end > 114 or start > end:
-            raise typer.BadParameter(f"invalid surah range: {raw}")
-        return list(range(start, end + 1))
-
-    parts = parse_csv_strings(raw)
-    if not parts:
-        raise typer.BadParameter("surah selection cannot be empty")
-    values = sorted({int(part) for part in parts})
-    for surah in values:
-        if surah < 1 or surah > 114:
-            raise typer.BadParameter(f"surah out of range: {surah}")
-    return values
-
-
-def _prompt_surah_selection() -> list[int]:
-    raw = typer.prompt(
-        "Surahs to process: all, range (e.g. 55-84), or csv list (e.g. 1,2,112)",
-        default="all",
+    reciters.sort(key=lambda item: str(item.get("slug") or ""))
+    counts = payload.get("counts")
+    if not isinstance(counts, dict):
+        counts = {}
+        payload["counts"] = counts
+    counts["configured_reciters"] = len(reciters)
+    counts["enabled_reciters"] = sum(
+        1 for item in reciters if isinstance(item, dict) and bool(item.get("enabled"))
     )
-    return _parse_surah_selection(raw)
+    payload["generated_at"] = _utc_now()
+    _write_catalog_payload(catalog_path, payload)
+
+
+def _build_detect_choices(
+    *,
+    reciters_path: Path,
+    catalog_path: Path,
+) -> list[dict[str, str]]:
+    merged: dict[str, dict[str, str]] = {}
+
+    for item in _load_public_reciters(catalog_path):
+        slug = _normalize_catalog_slug(item.get("slug") or "")
+        if not slug:
+            continue
+        merged[slug] = {
+            "id": slug,
+            "name": str(item.get("name") or slug).strip() or slug,
+            "source": _catalog_source_label(item),
+            "notes": "",
+        }
+
+    for item in list_reciters(reciters_path):
+        if not isinstance(item, dict):
+            continue
+        slug = _normalize_catalog_slug(item.get("id") or "")
+        if not slug:
+            continue
+        merged[slug] = {
+            "id": slug,
+            "name": str(item.get("name") or slug).strip() or slug,
+            "source": str(item.get("source") or "custom").strip() or "custom",
+            "notes": str(item.get("notes") or "").strip(),
+        }
+
+    return [merged[key] for key in sorted(merged)]
+
+
+def _find_catalog_reciter(
+    *,
+    catalog_path: Path,
+    reciter_id: str,
+) -> dict[str, Any] | None:
+    key = _normalize_catalog_slug(reciter_id)
+    if not key:
+        return None
+    for item in _load_public_reciters(catalog_path):
+        if _normalize_catalog_slug(item.get("slug") or "") == key:
+            return item
+    return None
+
+
+def _prompt_detect_reciter(
+    *,
+    reciters_path: Path,
+    catalog_path: Path,
+) -> tuple[str, str, str, str]:
+    choices = _build_detect_choices(reciters_path=reciters_path, catalog_path=catalog_path)
+    if choices:
+        table = Table(title="Reciter Selection")
+        table.add_column("#")
+        table.add_column("id")
+        table.add_column("name")
+        table.add_column("source")
+        for index, item in enumerate(choices, start=1):
+            table.add_row(str(index), item["id"], item["name"], item["source"])
+        console.print(table)
+
+    raw = typer.prompt(
+        "Reciter (index, slug, or type 'new')",
+        default="new" if not choices else "",
+    ).strip()
+
+    if raw.isdigit():
+        index = int(raw) - 1
+        if 0 <= index < len(choices):
+            choice = choices[index]
+            return choice["id"], choice["name"], choice["source"], choice["notes"]
+
+    normalized = _normalize_catalog_slug(raw)
+    if normalized and normalized not in {"new", "add"}:
+        for choice in choices:
+            if choice["id"] == normalized:
+                return choice["id"], choice["name"], choice["source"], choice["notes"]
+
+    seed = None if normalized in {"", "new", "add"} else raw
+    reciter_id = normalize_reciter_id(typer.prompt("Reciter ID", default=seed or "").strip())
+    reciter_name, source, notes = _prompt_setup_values(
+        reciter_id=reciter_id,
+        reciter_name=None,
+        source=None,
+        notes=None,
+        interactive_only=True,
+    )
+    return reciter_id, reciter_name, source, notes
+
+
+def _prompt_surah(value: int | None) -> int:
+    if value is not None:
+        if value < 1 or value > 114:
+            raise typer.BadParameter("--surah must be between 1 and 114.")
+        return int(value)
+    prompted = int(typer.prompt("Surah (1-114)", default=1))
+    if prompted < 1 or prompted > 114:
+        raise typer.BadParameter("--surah must be between 1 and 114.")
+    return prompted
+
+
+def _prompt_ayah(value: int | None) -> int | None:
+    if value is not None:
+        if value < 1:
+            raise typer.BadParameter("--ayah must be >= 1.")
+        return int(value)
+    raw = typer.prompt("Ayah (blank = full surah)", default="", show_default=False).strip()
+    if not raw:
+        return None
+    ayah_value = int(raw)
+    if ayah_value < 1:
+        raise typer.BadParameter("--ayah must be >= 1.")
+    return ayah_value
+
+
+def _prompt_audio_url(value: str | None) -> str:
+    url = (value or "").strip()
+    if not url:
+        url = typer.prompt("Audio URL").strip()
+    if not url.startswith(("http://", "https://")):
+        raise typer.BadParameter("--audio-url must start with http:// or https://")
+    return url
+
+
+def _collect_detect_inputs(
+    *,
+    audio_url: str | None,
+    reciter_id: str | None,
+    surah: int | None,
+    ayah: int | None,
+    reciter_name: str | None,
+    source: str | None,
+    notes: str | None,
+    reciters_path: Path,
+    catalog_path: Path,
+) -> tuple[str, str, str, str, str, int, int | None]:
+    interactive = _is_interactive_tty()
+
+    chosen_id = (reciter_id or "").strip()
+    chosen_name = (reciter_name or "").strip()
+    chosen_source = (source or "").strip()
+    chosen_notes = notes
+
+    if not chosen_id and not interactive:
+        raise typer.BadParameter(
+            "detect requires --reciter-id, --surah, and --audio-url unless you run it interactively."
+        )
+
+    if not chosen_id:
+        chosen_id, chosen_name, chosen_source, chosen_notes_value = _prompt_detect_reciter(
+            reciters_path=reciters_path,
+            catalog_path=catalog_path,
+        )
+        chosen_notes = chosen_notes_value
+
+    catalog_entry = _find_catalog_reciter(catalog_path=catalog_path, reciter_id=chosen_id)
+    resolved_id = str(catalog_entry.get("slug") or "").strip() if catalog_entry else ""
+    if not resolved_id:
+        resolved_id = normalize_reciter_id(chosen_id)
+
+    existing = None if catalog_entry is not None else get_reciter(resolved_id, path=reciters_path)
+
+    if catalog_entry is not None:
+        if not chosen_name:
+            chosen_name = str(catalog_entry.get("name") or resolved_id).strip()
+        if not chosen_source:
+            chosen_source = _catalog_source_label(catalog_entry)
+        if chosen_notes is None:
+            chosen_notes = ""
+    elif existing is not None:
+        if not chosen_name:
+            chosen_name = str(existing.get("name") or resolved_id).strip()
+        if not chosen_source:
+            chosen_source = str(existing.get("source") or "custom").strip() or "custom"
+        if chosen_notes is None:
+            chosen_notes = str(existing.get("notes") or "").strip()
+    else:
+        chosen_name, chosen_source, chosen_notes_value = _prompt_setup_values(
+            reciter_id=resolved_id,
+            reciter_name=chosen_name or None,
+            source=chosen_source or None,
+            notes=chosen_notes,
+            interactive_only=interactive,
+        )
+        chosen_notes = chosen_notes_value
+
+    run_surah = _prompt_surah(surah if surah is not None else None) if interactive else int(surah)
+    if not interactive and (surah is None or audio_url is None):
+        raise typer.BadParameter(
+            "detect requires --reciter-id, --surah, and --audio-url unless you run it interactively."
+        )
+    run_ayah = _prompt_ayah(ayah) if interactive else ayah
+    run_audio_url = _prompt_audio_url(audio_url)
+
+    return (
+        resolved_id,
+        chosen_name or resolved_id.replace("_", " ").title(),
+        chosen_source or "custom",
+        "" if chosen_notes is None else chosen_notes.strip(),
+        run_audio_url,
+        run_surah,
+        run_ayah,
+    )
+
+
+def _publish_detect_run(
+    *,
+    out_root: Path,
+    reciter_id: str,
+    surah: int,
+    catalog_path: Path,
+    api_root: Path,
+    ui_data_dir: Path,
+    dist_data_dir: Path,
+    sync_dist: bool,
+) -> dict[str, Any]:
+    return export_api_from_latest_runs(
+        runs_root=out_root,
+        api_root=api_root,
+        reciters_index_path=catalog_path,
+        ui_data_dir=ui_data_dir,
+        dist_data_dir=dist_data_dir,
+        sync_dist=sync_dist,
+        prune_ui=False,
+        dry_run=False,
+        include_reciters={reciter_id},
+        include_surahs={surah},
+    )
 
 
 @app.command("sync-reciters")
@@ -523,18 +458,20 @@ def sync_reciters_cmd(
         ),
     ] = None,
 ) -> None:
-    """Fetch EveryAyah + Quran.com reciters and write public reciters index."""
+    """Fetch EveryAyah, Quran.com, and Quranicaudio reciters into the public index."""
 
     enabled_set: set[str] | None = None
     if enabled_reciters is not None:
         enabled_set = {
-            _normalize_catalog_slug(item) for item in (parse_csv_strings(enabled_reciters) or [])
+            _normalize_catalog_slug(item)
+            for item in str(enabled_reciters).split(",")
+            if _normalize_catalog_slug(item)
         }
     else:
         existing = _load_public_reciters(out)
         if existing:
             enabled_set = {
-                _normalize_catalog_slug(item.get("slug"))
+                _normalize_catalog_slug(item.get("slug") or "")
                 for item in existing
                 if bool(item.get("enabled")) and item.get("slug")
             }
@@ -549,6 +486,7 @@ def sync_reciters_cmd(
             "enabled_reciters": counts.get("enabled_reciters", 0),
             "everyayah_source_reciters": counts.get("everyayah_source_reciters", 0),
             "quran_com_source_reciters": counts.get("quran_com_source_reciters", 0),
+            "quranicaudio_source_reciters": counts.get("quranicaudio_source_reciters", 0),
         },
     )
 
@@ -602,249 +540,215 @@ def list_catalog_reciters_cmd(
     _print_key_values("List Summary", {"rows": rows, "catalog": str(catalog)})
 
 
-@app.command("run-surah")
-def run_surah_cmd(
-    reciter_id: Annotated[str, typer.Option("--reciter-id")],
-    surah: Annotated[int, typer.Option("--surah", min=1, max=114)],
-    out_root: Annotated[Path, typer.Option("--out-root")] = Path("runs/surah_runs"),
-    catalog: Annotated[Path, typer.Option("--catalog")] = DEFAULT_RECITER_CATALOG_PATH,
+@app.command("detect")
+def detect_cmd(
+    audio_url: Annotated[
+        str | None,
+        typer.Option("--audio-url", help="Public audio URL to align."),
+    ] = None,
+    reciter_id: Annotated[
+        str | None,
+        typer.Option("--reciter-id", help="Reciter slug."),
+    ] = None,
+    surah: Annotated[int | None, typer.Option("--surah", min=1, max=114)] = None,
+    ayah: Annotated[int | None, typer.Option("--ayah", min=1)] = None,
+    reciter_name: Annotated[
+        str | None,
+        typer.Option("--reciter-name", help="Optional display name for a new reciter."),
+    ] = None,
+    source: Annotated[
+        str | None,
+        typer.Option("--source", help="Optional source label for a new reciter."),
+    ] = None,
+    notes: Annotated[
+        str | None,
+        typer.Option("--notes", help="Optional notes for a new reciter."),
+    ] = None,
+    out_root: Annotated[Path, typer.Option("--out-root")] = Path("runs/detect"),
     text_data: Annotated[Path | None, typer.Option("--text-data")] = None,
     cache_dir: Annotated[Path, typer.Option("--cache-dir")] = Path(get_settings().cache_dir),
+    catalog: Annotated[Path, typer.Option("--catalog")] = DEFAULT_RECITER_CATALOG_PATH,
+    reciters_path: Annotated[
+        Path,
+        typer.Option("--reciters-path", hidden=True),
+    ] = DEFAULT_RECITERS_PATH,
+    api_root: Annotated[Path, typer.Option("--api-root", hidden=True)] = Path("data/api"),
+    ui_data_dir: Annotated[Path, typer.Option("--ui-data-dir", hidden=True)] = Path(
+        "ui/public/data"
+    ),
+    dist_data_dir: Annotated[Path, typer.Option("--dist-data-dir", hidden=True)] = Path(
+        "ui/dist/data"
+    ),
+    sync_dist: Annotated[bool, typer.Option("--sync-dist/--no-sync-dist", hidden=True)] = False,
 ) -> None:
-    """Run one reciter+surah pipeline job (debugging/verification path)."""
+    """Run alignment for one recitation and publish full-surah results into `data/api`."""
 
-    normalized_reciter = _normalize_catalog_slug(reciter_id)
-    if not is_reciter_enabled(normalized_reciter, catalog_path=catalog):
-        raise typer.BadParameter(
-            f"reciter is not enabled: {normalized_reciter}. "
-            f"Enable it first in {catalog} (or use `qad sync-reciters --enabled-reciters ...`)."
-        )
-
-    entry = get_configured_reciter_entry(normalized_reciter, catalog_path=catalog) or {}
-    source = entry.get("source") if isinstance(entry.get("source"), dict) else {}
-    everyayah = source.get("everyayah") if isinstance(source.get("everyayah"), dict) else {}
-    quran_com = source.get("quran_com") if isinstance(source.get("quran_com"), dict) else {}
-    capabilities = entry.get("capabilities") if isinstance(entry.get("capabilities"), dict) else {}
-    _print_key_values(
-        "Run Setup",
-        {
-            "reciter_id": normalized_reciter,
-            "surah": surah,
-            "enabled": is_reciter_enabled(normalized_reciter, catalog_path=catalog),
-            "check_type": entry.get("check_type") or "unknown",
-            "ayah_by_ayah": bool(capabilities.get("ayah_by_ayah")),
-            "word_by_word": bool(capabilities.get("word_by_word")),
-            "everyayah_subfolder": everyayah.get("subfolder") or "-",
-            "quran_com_recitation_id": quran_com.get("recitation_id") or "-",
-        },
-    )
-
-    summary = run_surah_for_reciter(
-        reciter_id=normalized_reciter,
+    (
+        resolved_id,
+        resolved_name,
+        resolved_source,
+        resolved_notes,
+        url,
+        row_surah,
+        row_ayah,
+    ) = _collect_detect_inputs(
+        audio_url=audio_url,
+        reciter_id=reciter_id,
         surah=surah,
-        out_root=out_root,
-        text_data=text_data,
-        cache_dir=cache_dir,
+        ayah=ayah,
+        reciter_name=reciter_name,
+        source=source,
+        notes=notes,
+        reciters_path=reciters_path,
         catalog_path=catalog,
     )
-    paths = summary.get("paths") if isinstance(summary.get("paths"), dict) else {}
-    pipeline = summary.get("pipeline") if isinstance(summary.get("pipeline"), dict) else {}
-    quality = summary.get("quality") if isinstance(summary.get("quality"), dict) else {}
-    _print_key_values(
-        "Run Summary",
-        {
-            "summary_path": paths.get("summary_path", ""),
-            "output_dir": paths.get("output_dir", ""),
-            "succeeded": pipeline.get("succeeded", 0),
-            "failed": pipeline.get("failed", 0),
-            "fallback_used": pipeline.get("fallback_used", 0),
-            "avg_coverage": f"{float(quality.get('avg_coverage', 0.0)):.4f}",
-            "min_coverage": f"{float(quality.get('min_coverage', 0.0)):.4f}",
-        },
+
+    catalog_entry = _find_catalog_reciter(catalog_path=catalog, reciter_id=resolved_id)
+    if catalog_entry is None and not reciter_exists(resolved_id, path=reciters_path):
+        upsert_reciter(
+            reciter_id=resolved_id,
+            name=resolved_name,
+            source=resolved_source,
+            notes=resolved_notes,
+            path=reciters_path,
+        )
+    _upsert_public_catalog_reciter(
+        catalog_path=catalog,
+        reciter_id=resolved_id,
+        reciter_name=resolved_name,
     )
 
+    out_root.mkdir(parents=True, exist_ok=True)
 
-@app.command("build-api")
-def build_api_cmd(
-    reciters: Annotated[
-        str | None,
-        typer.Option(
-            "--reciters", help="Comma-separated reciter slugs. Interactive prompt if omitted."
-        ),
-    ] = None,
-    surahs: Annotated[
-        str | None,
-        typer.Option("--surahs", help="all, range (e.g. 55-84), or csv list (e.g. 1,2,112)."),
-    ] = None,
-    force: Annotated[bool, typer.Option("--force/--no-force")] = False,
-    refresh_reciters: Annotated[
-        bool | None,
-        typer.Option(
-            "--refresh-reciters/--no-refresh-reciters",
-            help="Refresh reciter catalog from sources before selecting reciters.",
-        ),
-    ] = None,
-    interactive: Annotated[bool, typer.Option("--interactive/--no-interactive")] = True,
-    export_only: Annotated[
-        bool,
-        typer.Option(
-            "--export-only/--run-and-export",
-            help="Skip running jobs and only export/sync API files.",
-        ),
-    ] = False,
-    catalog: Annotated[Path, typer.Option("--catalog")] = DEFAULT_RECITER_CATALOG_PATH,
-    runs_root: Annotated[Path, typer.Option("--runs-root")] = Path("runs"),
-    out_root: Annotated[Path, typer.Option("--out-root")] = Path("runs/api_build"),
-    api_root: Annotated[Path, typer.Option("--api-root")] = Path("data/api"),
-    ui_data_dir: Annotated[Path, typer.Option("--ui-data-dir")] = Path("ui/public/data"),
-    dist_data_dir: Annotated[Path, typer.Option("--dist-data-dir")] = Path("ui/dist/data"),
-    sync_dist: Annotated[bool, typer.Option("--sync-dist/--no-sync-dist")] = False,
-    prune_ui: Annotated[bool, typer.Option("--prune-ui/--no-prune-ui")] = True,
-    text_data: Annotated[Path | None, typer.Option("--text-data")] = None,
-    cache_dir: Annotated[Path, typer.Option("--cache-dir")] = Path(get_settings().cache_dir),
-) -> None:
-    """Interactive API build command: run selected reciter/surah jobs, then export `/data/reciters/*` endpoints."""
+    parsed_path = Path(urlparse(url).path)
+    suffix = parsed_path.suffix.lower() if parsed_path.suffix else ".mp3"
+    if suffix not in {".mp3", ".wav", ".flac", ".m4a", ".ogg", ".opus", ".aac"}:
+        suffix = ".mp3"
 
-    use_interactive = interactive and _is_interactive_tty()
+    run_key_hint = f"s{row_surah:03d}"
+    url_hash = hashlib.sha256(url.encode("utf-8")).hexdigest()[:10]
+    run_dir = out_root / f"{resolved_id}_{run_key_hint}_{url_hash}"
+    input_dir = run_dir / "input"
+    audio_dir = input_dir / "audio"
+    output_dir = run_dir / "outputs"
+    input_dir.mkdir(parents=True, exist_ok=True)
+    audio_dir.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    if not catalog.exists():
-        payload = write_reciter_catalog(path=catalog, enabled_reciters=None)
-        _print_key_values(
-            "Reciter Catalog Bootstrap",
+    audio_path = audio_dir / f"{resolved_id}_input{suffix}"
+    audio_bytes = get_bytes_with_retry(url=url, timeout_s=30.0, retries=8, retry_backoff_s=1.0)
+    audio_path.write_bytes(audio_bytes)
+    audio_sha = hashlib.sha256(audio_bytes).hexdigest()
+
+    manifest_path = input_dir / "manifest.csv"
+    with manifest_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=[
+                "audio_path",
+                "reciter_id",
+                "surah",
+                "ayah",
+                "source_url",
+                "sha256",
+                "language",
+                "riwaya",
+                "text_variant",
+                "reference_split",
+            ],
+        )
+        writer.writeheader()
+        writer.writerow(
             {
-                "catalog": catalog,
-                "configured_reciters": payload.get("counts", {}).get("configured_reciters", 0),
-                "enabled_reciters": payload.get("counts", {}).get("enabled_reciters", 0),
-            },
-        )
-
-    should_refresh = refresh_reciters
-    if should_refresh is None and use_interactive:
-        should_refresh = typer.confirm(
-            "Refresh reciters from EveryAyah + Quran.com first?", default=False
-        )
-    should_refresh = bool(should_refresh)
-    if should_refresh:
-        existing = _load_public_reciters(catalog)
-        enabled_set = {
-            _normalize_catalog_slug(item.get("slug"))
-            for item in existing
-            if bool(item.get("enabled")) and item.get("slug")
-        }
-        write_reciter_catalog(path=catalog, enabled_reciters=enabled_set or None)
-
-    reciter_rows = _load_public_reciters(catalog)
-    if not reciter_rows:
-        raise typer.BadParameter(f"catalog has no reciters: {catalog}")
-
-    if reciters is not None:
-        selected_reciters = sorted(
-            {_normalize_catalog_slug(item) for item in (parse_csv_strings(reciters) or [])}
-        )
-    elif use_interactive:
-        selected_reciters = _prompt_selected_reciters(reciter_rows)
-    else:
-        selected_reciters = sorted(
-            {
-                _normalize_catalog_slug(item.get("slug"))
-                for item in reciter_rows
-                if bool(item.get("enabled")) and item.get("slug")
+                "audio_path": str(audio_path),
+                "reciter_id": resolved_id,
+                "surah": str(row_surah),
+                "ayah": "" if row_ayah is None else str(row_ayah),
+                "source_url": url,
+                "sha256": audio_sha,
+                "language": "ar",
+                "riwaya": "",
+                "text_variant": "",
+                "reference_split": "detect",
             }
         )
 
-    if not selected_reciters:
-        raise typer.BadParameter("no reciters selected")
-
-    known_slugs = {
-        _normalize_catalog_slug(item.get("slug")) for item in reciter_rows if item.get("slug")
-    }
-    unknown = [item for item in selected_reciters if item not in known_slugs]
-    if unknown:
-        raise typer.BadParameter(f"unknown reciters: {', '.join(unknown)}")
-
-    if surahs is not None:
-        selected_surahs = _parse_surah_selection(surahs)
-    elif use_interactive:
-        selected_surahs = _prompt_surah_selection()
-    else:
-        selected_surahs = list(range(1, 115))
-
-    tasks = [(reciter_id, surah) for reciter_id in selected_reciters for surah in selected_surahs]
-    to_run: list[tuple[str, int]] = []
-    skipped = 0
-    for reciter_id, surah in tasks:
-        metadata_path = api_root / "reciters" / reciter_id / "surahs" / str(surah) / "metadata.json"
-        timings_path = api_root / "reciters" / reciter_id / "surahs" / str(surah) / "timings.json"
-        if not force and metadata_path.exists() and timings_path.exists():
-            skipped += 1
-            continue
-        to_run.append((reciter_id, surah))
-
     _print_key_values(
-        "Build Preview",
+        "Detect Setup",
         {
-            "selected_reciters": len(selected_reciters),
-            "selected_surahs": len(selected_surahs),
-            "selected_pairs": len(tasks),
-            "to_run": 0 if export_only else len(to_run),
-            "skipped_existing": skipped if not force else 0,
-            "force": force,
-            "runs_root": runs_root,
-            "out_root": out_root,
-            "api_root": api_root,
+            "audio_url": url,
+            "reciter_id": resolved_id,
+            "reciter_name": resolved_name,
+            "surah": row_surah,
+            "ayah": row_ayah if row_ayah is not None else "full",
+            "input_mode": "ayah_file" if row_ayah is not None else "full_surah",
+            "downloaded_audio": str(audio_path),
+            "manifest": str(manifest_path),
         },
     )
 
-    if use_interactive and not typer.confirm("Continue?", default=True):
-        raise typer.Exit(code=0)
-
-    failures: list[str] = []
-    if not export_only:
-        out_root.mkdir(parents=True, exist_ok=True)
-        total = len(to_run)
-        for idx, (reciter_id, surah) in enumerate(to_run, start=1):
-            console.print(f"[{idx}/{total}] run {reciter_id} surah={surah}")
-            try:
-                run_surah_for_reciter(
-                    reciter_id=reciter_id,
-                    surah=surah,
-                    out_root=out_root,
-                    text_data=text_data,
-                    cache_dir=cache_dir,
-                    catalog_path=catalog,
-                )
-            except Exception as exc:
-                failures.append(f"{reciter_id}:{surah}: {exc}")
-
-    export_summary = export_api_from_latest_runs(
-        runs_root=runs_root,
-        api_root=api_root,
-        reciters_index_path=catalog,
-        ui_data_dir=ui_data_dir,
-        dist_data_dir=dist_data_dir,
-        sync_dist=sync_dist,
-        prune_ui=prune_ui,
-        dry_run=False,
-        include_reciters=set(selected_reciters),
-        include_surahs=set(selected_surahs),
+    summary = run_alignment_pipeline(
+        manifest_path=manifest_path,
+        out_dir=output_dir,
+        engine="nemo",
+        multi_engine=["nemo", "mfa", "whisperx"],
+        accuracy_mode="strict",
+        availability_policy="best_effort",
+        device="auto",
+        text_data=text_data,
+        cache_dir=cache_dir,
+        enable_remote=True,
     )
 
     _print_key_values(
-        "API Export Summary",
+        "Detect Alignment Summary",
+        {
+            "schema_version": summary.schema_version,
+            "total": summary.total,
+            "succeeded": summary.succeeded,
+            "failed": summary.failed,
+            "aligned": summary.aligned,
+            "fallback": summary.fallback_used,
+            "priors_used": summary.priors_used,
+            "elapsed_s": f"{summary.elapsed_s:.2f}",
+            "attempted_engines": ",".join(summary.attempted_engines),
+            "output_dir": str(output_dir),
+        },
+    )
+    _print_errors(summary.errors)
+    if summary.errors:
+        raise typer.Exit(code=1)
+
+    if row_ayah is not None:
+        console.print(
+            "[yellow]Ayah-only runs are not auto-published because `/data/api` is surah-level.[/yellow]"
+        )
+        return
+
+    export_summary = _publish_detect_run(
+        out_root=out_root,
+        reciter_id=resolved_id,
+        surah=row_surah,
+        catalog_path=catalog,
+        api_root=api_root,
+        ui_data_dir=ui_data_dir,
+        dist_data_dir=dist_data_dir,
+        sync_dist=sync_dist,
+    )
+    _print_key_values(
+        "Detect Publish Summary",
         {
             "keys_selected": export_summary["keys_selected"],
             "surah_changed": export_summary["api"]["surah_changed"],
-            "audio_copied": export_summary["api"]["audio_copied"],
             "reciters_index_changed": export_summary["reciters_index"]["changed"],
             "ui_copied": export_summary["ui"]["copied"],
             "dist_copied": export_summary["dist"]["copied"]
             if export_summary["dist"]["enabled"]
             else 0,
+            "api_root": api_root,
+            "catalog": catalog,
         },
     )
-    _print_errors(failures)
-    if failures:
-        raise typer.Exit(code=1)
 
 
 if __name__ == "__main__":

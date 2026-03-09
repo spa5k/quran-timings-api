@@ -31,6 +31,18 @@ def test_write_reciter_catalog_merges_sources(tmp_path, monkeypatch) -> None:
     monkeypatch.setattr(
         reciter_catalog, "fetch_recitation_catalog", lambda language="en": qcom_payload
     )
+    monkeypatch.setattr(
+        reciter_catalog,
+        "fetch_quranicaudio_reciters",
+        lambda: [
+            {
+                "id": "qa_test_reciter",
+                "name": "QA Test Reciter",
+                "source": "quranicaudio",
+                "notes": "relative_path=qa/test",
+            }
+        ],
+    )
 
     output_path = tmp_path / "reciter_catalog.json"
     payload = reciter_catalog.write_reciter_catalog(
@@ -42,6 +54,7 @@ def test_write_reciter_catalog_merges_sources(tmp_path, monkeypatch) -> None:
     loaded = orjson.loads(output_path.read_bytes())
     assert payload["counts"]["everyayah_source_reciters"] == 1
     assert payload["counts"]["quran_com_source_reciters"] == 1
+    assert payload["counts"]["quranicaudio_source_reciters"] == 1
     assert loaded["counts"]["enabled_reciters"] >= 1
     assert isinstance(loaded["reciters"], list)
 
@@ -53,6 +66,13 @@ def test_write_reciter_catalog_merges_sources(tmp_path, monkeypatch) -> None:
     assert entry["enabled"] is True
     assert entry["check_type"] in {"both", "ayah_by_ayah", "word_by_word", "model_only"}
     assert str(entry.get("slug")) == "abdul_basit_murattal_64kbps"
+
+    quranicaudio_entry = reciter_catalog.get_configured_reciter_entry(
+        "qa_test_reciter",
+        catalog_path=output_path,
+    )
+    assert quranicaudio_entry is not None
+    assert quranicaudio_entry["source"]["quranicaudio"]["path"] == "qa/test"
 
 
 def test_read_reciter_catalog_invalid_returns_none(tmp_path) -> None:

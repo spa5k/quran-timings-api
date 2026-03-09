@@ -34,10 +34,7 @@
       "Speech/audio end mismatch ratio 0.072 exceeds 0.040",
       "qc_failed_after_rescue_keep_best"
     ],
-    "reason_codes": [
-      "duration_mismatch",
-      "qc_failed_keep_best"
-    ],
+    "reason_codes": ["duration_mismatch", "qc_failed_keep_best"],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,
     "interpolated_ratio": 0.0,
@@ -147,11 +144,7 @@
       "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
       "device": "cpu",
       "fallback_used": false,
-      "attempted": [
-        "nemo",
-        "whisperx",
-        "mfa"
-      ]
+      "attempted": ["nemo", "whisperx", "mfa"]
     },
     "selected_candidate_engine": "nemo",
     "candidate_scores": {

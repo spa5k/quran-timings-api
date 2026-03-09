@@ -13,9 +13,7 @@
   "audio": {
     "granularity": "surah",
     "primary_asset": "surah_direct",
-    "fallback_order": [
-      "qcom_surah"
-    ],
+    "fallback_order": ["qcom_surah"],
     "assets": {
       "surah_direct": {
         "provider": "quranicaudio",
@@ -43,10 +41,7 @@
       "Speech/audio end mismatch ratio 0.101 exceeds 0.040",
       "qc_failed_after_rescue_keep_best"
     ],
-    "reason_codes": [
-      "duration_mismatch",
-      "qc_failed_keep_best"
-    ],
+    "reason_codes": ["duration_mismatch", "qc_failed_keep_best"],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,
     "interpolated_ratio": 0.0,
@@ -61,11 +56,7 @@
       "model": "nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0",
       "device": "cpu",
       "fallback_used": false,
-      "attempted": [
-        "nemo",
-        "whisperx",
-        "mfa"
-      ]
+      "attempted": ["nemo", "whisperx", "mfa"]
     },
     "selected_candidate_engine": "mfa",
     "candidate_scores": {
@@ -80,9 +71,7 @@
       "E_boundary_refinement",
       "F_qc_gates_and_rescue"
     ],
-    "supervision_sources": [
-      "qcom:qcom_chapter:7:shape=3_field"
-    ],
+    "supervision_sources": ["qcom:qcom_chapter:7:shape=3_field"],
     "segment_source_type": "qcom_chapter"
   },
   "timings_endpoint": "/data/reciters/qcom_mishari_alafasy/surahs/82/timings.json",

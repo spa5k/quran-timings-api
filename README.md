@@ -101,12 +101,6 @@ curl -s https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/recite
 
 Snapshot below is from `data/reciters.json` generated on `2026-03-07`.
 
-To see the latest enabled set at any time:
-
-```bash
-uv run qad list-reciters --enabled-only
-```
-
 ### Newly enabled reciters (added on 2026-03-07)
 
 - `qcom_abdulbaset_abdulsamad`
@@ -168,73 +162,62 @@ qad --help
 ```bash
 uv run qad sync-reciters
 uv run qad list-reciters --enabled-only
-uv run qad run-surah --reciter-id yasser_ad-dussary --surah 114
+uv run qad detect
 uv run qad detect --audio-url <https_audio_url> --reciter-id yasser_ad-dussary --surah 114
-uv run qad build-api
 ```
 
-Use `detect` when you already have a direct audio URL + surah number.
-Use `run-surah` when you want the catalog-driven reciter/surah job.
-Use `build-api` to publish/copy run outputs from `runs/` into `data/api/` and update `data/reciters.json`.
+Use `sync-reciters` to refresh the public reciter catalog from EveryAyah and Quran.com.
+Use `list-reciters` to inspect the current catalog and enabled set.
+Running `uv run qad detect` with no flags opens an interactive prompt to choose or add a reciter, enter the surah, optional ayah, and the audio URL.
+Running `detect` for a full surah automatically updates `data/api/` and `data/reciters.json`.
+Ayah-only clips stay as local detect runs and are not published into the surah-level API contract.
 
-Non-interactive API build example:
-
-```bash
-uv run qad build-api \
-  --no-interactive \
-  --reciters yasser_ad-dussary,muhsin_al_qasim \
-  --surahs 110-114 \
-  --runs-root runs \
-  --out-root runs/api_build \
-  --api-root data/api \
-  --ui-data-dir ui/public/data \
-  --force
-```
-
-Export-only (reuse existing run artifacts):
+Non-interactive full-surah example:
 
 ```bash
-uv run qad build-api --export-only --no-interactive
+uv run qad detect \
+  --reciter-id yasser_ad-dussary \
+  --surah 114 \
+  --audio-url <https_audio_url>
 ```
 
 ## Contribute Your Timings
 
 Contributions for new or improved timings are welcome.
 
-1. Refresh reciter catalog:
+1. Refresh the public reciter catalog if needed:
 
 ```bash
 uv run qad sync-reciters
 ```
 
-2. Run timing generation for target reciter/surah.
+2. Review available reciters if needed:
 
-If you generally work from direct audio URLs + surah number, use `detect`:
+```bash
+uv run qad list-reciters --enabled-only
+```
+
+3. Start the interactive detect flow and enter the reciter, surah, optional ayah, and audio URL.
+
+```bash
+uv run qad detect
+```
+
+If you want to skip prompts, run `detect` directly:
 
 ```bash
 uv run qad detect --audio-url <https_audio_url> --reciter-id <reciter_slug> --surah <1-114>
 ```
 
-If you want the catalog-aware workflow, use `run-surah`:
+4. Full-surah detect runs publish automatically into `data/api/` and update `data/reciters.json`.
+   Ayah-only detect runs stay under `runs/detect/` and do not overwrite the surah API.
 
-```bash
-uv run qad run-surah --reciter-id <reciter_slug> --surah <1-114>
-```
-
-3. Export API artifacts:
-
-```bash
-uv run qad build-api --export-only --no-interactive
-```
-
-This publish step is required: run outputs are written to `runs/` first, then `build-api` copies them into `data/api/`.
-
-4. Open a PR with updated files under:
+5. Open a PR with updated files under:
 
 - `data/api/reciters/...`
 - `data/reciters.json` (if reciter metadata changed)
 
-5. Include what changed in the PR description:
+6. Include what changed in the PR description:
 
 - Reciter slug(s)
 - Surah number(s)

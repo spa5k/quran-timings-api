@@ -30,9 +30,7 @@
     "coverage": 1.0,
     "monotonic": true,
     "duration_match": true,
-    "warnings": [
-      "boundary_refinement_applied"
-    ],
+    "warnings": ["boundary_refinement_applied"],
     "reason_codes": [],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,
@@ -323,11 +321,7 @@
       "model": "ayah-wise",
       "device": "cpu",
       "fallback_used": true,
-      "attempted": [
-        "nemo",
-        "whisperx",
-        "mfa"
-      ]
+      "attempted": ["nemo", "whisperx", "mfa"]
     },
     "selected_candidate_engine": "ensemble",
     "candidate_scores": {

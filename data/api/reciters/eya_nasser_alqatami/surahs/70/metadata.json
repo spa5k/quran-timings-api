@@ -30,9 +30,7 @@
     "coverage": 1.0,
     "monotonic": true,
     "duration_match": true,
-    "warnings": [
-      "boundary_refinement_rejected"
-    ],
+    "warnings": ["boundary_refinement_rejected"],
     "reason_codes": [],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,

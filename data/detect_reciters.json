@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-09T18:54:54.195986+00:00",
+  "reciters": [
+    {
+      "id": "random_smoke_reciter_20260310",
+      "name": "Random Smoke Reciter",
+      "source": "custom",
+      "notes": "",
+      "created_at": "2026-03-09T18:54:54.195986+00:00",
+      "updated_at": "2026-03-09T18:54:54.195986+00:00"
+    },
+    {
+      "id": "yasser_ad_dussary",
+      "name": "Yasser Ad Dussary",
+      "source": "custom",
+      "notes": "",
+      "created_at": "2026-03-09T18:54:20.349041+00:00",
+      "updated_at": "2026-03-09T18:54:20.349041+00:00"
+    }
+  ]
+}

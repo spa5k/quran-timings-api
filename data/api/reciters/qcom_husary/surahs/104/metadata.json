@@ -13,9 +13,7 @@
   "audio": {
     "granularity": "surah",
     "primary_asset": "surah_direct",
-    "fallback_order": [
-      "qcom_surah"
-    ],
+    "fallback_order": ["qcom_surah"],
     "assets": {
       "surah_direct": {
         "provider": "quranicaudio",
@@ -39,9 +37,7 @@
     "coverage": 1.0,
     "monotonic": true,
     "duration_match": true,
-    "warnings": [
-      "boundary_refinement_applied"
-    ],
+    "warnings": ["boundary_refinement_applied"],
     "reason_codes": [],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,
@@ -57,11 +53,7 @@
       "model": "ayah-wise",
       "device": "cpu",
       "fallback_used": true,
-      "attempted": [
-        "nemo",
-        "whisperx",
-        "mfa"
-      ]
+      "attempted": ["nemo", "whisperx", "mfa"]
     },
     "selected_candidate_engine": "ensemble",
     "candidate_scores": {
@@ -76,9 +68,7 @@
       "E_boundary_refinement",
       "F_qc_gates_and_rescue"
     ],
-    "supervision_sources": [
-      "qcom:qcom_chapter:6:shape=3_field"
-    ],
+    "supervision_sources": ["qcom:qcom_chapter:6:shape=3_field"],
     "segment_source_type": "qcom_chapter"
   },
   "timings_endpoint": "/data/reciters/qcom_husary/surahs/104/timings.json",

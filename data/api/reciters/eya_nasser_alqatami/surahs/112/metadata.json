@@ -30,9 +30,7 @@
     "coverage": 1.0,
     "monotonic": true,
     "duration_match": true,
-    "warnings": [
-      "qc_rescue_selected"
-    ],
+    "warnings": ["qc_rescue_selected"],
     "reason_codes": [],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,
@@ -128,11 +126,7 @@
       "model": "nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0",
       "device": "cpu",
       "fallback_used": false,
-      "attempted": [
-        "nemo",
-        "whisperx",
-        "mfa"
-      ]
+      "attempted": ["nemo", "whisperx", "mfa"]
     },
     "selected_candidate_engine": "mfa",
     "candidate_scores": {
