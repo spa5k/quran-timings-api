@@ -1,0 +1,361 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "eya_yasser_ad_dussary_128kbps",
+  "surah": 102,
+  "ayahs": [
+    {
+      "surah": 102,
+      "ayah": 1,
+      "start_s": 0.16,
+      "end_s": 2.32,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "001",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102001.mp3"
+    },
+    {
+      "surah": 102,
+      "ayah": 2,
+      "start_s": 3.2,
+      "end_s": 5.84,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "002",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102002.mp3"
+    },
+    {
+      "surah": 102,
+      "ayah": 3,
+      "start_s": 6.640000000000001,
+      "end_s": 9.200000000000001,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "003",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102003.mp3"
+    },
+    {
+      "surah": 102,
+      "ayah": 4,
+      "start_s": 11.84,
+      "end_s": 15.200000000000001,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "004",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102004.mp3"
+    },
+    {
+      "surah": 102,
+      "ayah": 5,
+      "start_s": 17.36,
+      "end_s": 21.36,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "005",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102005.mp3"
+    },
+    {
+      "surah": 102,
+      "ayah": 6,
+      "start_s": 23.04,
+      "end_s": 25.84,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "006",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102006.mp3"
+    },
+    {
+      "surah": 102,
+      "ayah": 7,
+      "start_s": 26.72,
+      "end_s": 31.12,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "007",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102007.mp3"
+    },
+    {
+      "surah": 102,
+      "ayah": 8,
+      "start_s": 33.04,
+      "end_s": 38.96,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "008",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/102008.mp3"
+    }
+  ],
+  "words": [
+    {
+      "surah": 102,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَلۡهَىٰكُمُ",
+      "text_norm": "الهيكم",
+      "start_s": 0.16,
+      "end_s": 1.04
+    },
+    {
+      "surah": 102,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلتَّكَاثُرُ",
+      "text_norm": "التكاثر",
+      "start_s": 1.52,
+      "end_s": 2.32
+    },
+    {
+      "surah": 102,
+      "ayah": 2,
+      "word_index_global": 3,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "حَتَّىٰ",
+      "text_norm": "حتي",
+      "start_s": 3.2,
+      "end_s": 3.52
+    },
+    {
+      "surah": 102,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "زُرۡتُمُ",
+      "text_norm": "زرتم",
+      "start_s": 4.0,
+      "end_s": 4.8
+    },
+    {
+      "surah": 102,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡمَقَابِرَ",
+      "text_norm": "المقابر",
+      "start_s": 5.04,
+      "end_s": 5.84
+    },
+    {
+      "surah": 102,
+      "ayah": 3,
+      "word_index_global": 6,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "كَلَّا",
+      "text_norm": "كلا",
+      "start_s": 6.640000000000001,
+      "end_s": 7.12
+    },
+    {
+      "surah": 102,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "سَوۡفَ",
+      "text_norm": "سوف",
+      "start_s": 7.5200000000000005,
+      "end_s": 7.6000000000000005
+    },
+    {
+      "surah": 102,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "تَعۡلَمُونَ",
+      "text_norm": "تعلمون",
+      "start_s": 8.24,
+      "end_s": 9.200000000000001
+    },
+    {
+      "surah": 102,
+      "ayah": 4,
+      "word_index_global": 9,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ثُمَّ",
+      "text_norm": "ثم",
+      "start_s": 11.84,
+      "end_s": 11.92
+    },
+    {
+      "surah": 102,
+      "ayah": 4,
+      "word_index_global": 10,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "كَلَّا",
+      "text_norm": "كلا",
+      "start_s": 12.64,
+      "end_s": 13.120000000000001
+    },
+    {
+      "surah": 102,
+      "ayah": 4,
+      "word_index_global": 11,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "سَوۡفَ",
+      "text_norm": "سوف",
+      "start_s": 13.6,
+      "end_s": 13.68
+    },
+    {
+      "surah": 102,
+      "ayah": 4,
+      "word_index_global": 12,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "تَعۡلَمُونَ",
+      "text_norm": "تعلمون",
+      "start_s": 14.32,
+      "end_s": 15.200000000000001
+    },
+    {
+      "surah": 102,
+      "ayah": 5,
+      "word_index_global": 13,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "كَلَّا",
+      "text_norm": "كلا",
+      "start_s": 17.36,
+      "end_s": 17.84
+    },
+    {
+      "surah": 102,
+      "ayah": 5,
+      "word_index_global": 14,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لَوۡ",
+      "text_norm": "لو",
+      "start_s": 18.240000000000002,
+      "end_s": 18.32
+    },
+    {
+      "surah": 102,
+      "ayah": 5,
+      "word_index_global": 15,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "تَعۡلَمُونَ",
+      "text_norm": "تعلمون",
+      "start_s": 18.72,
+      "end_s": 19.6
+    },
+    {
+      "surah": 102,
+      "ayah": 5,
+      "word_index_global": 16,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "عِلۡمَ",
+      "text_norm": "علم",
+      "start_s": 19.84,
+      "end_s": 19.92
+    },
+    {
+      "surah": 102,
+      "ayah": 5,
+      "word_index_global": 17,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلۡیَقِینِ",
+      "text_norm": "اليقين",
+      "start_s": 20.56,
+      "end_s": 21.36
+    },
+    {
+      "surah": 102,
+      "ayah": 6,
+      "word_index_global": 18,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لَتَرَوُنَّ",
+      "text_norm": "لترون",
+      "start_s": 23.04,
+      "end_s": 24.16
+    },
+    {
+      "surah": 102,
+      "ayah": 6,
+      "word_index_global": 19,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡجَحِیمَ",
+      "text_norm": "الجحيم",
+      "start_s": 25.12,
+      "end_s": 25.84
+    },
+    {
+      "surah": 102,
+      "ayah": 7,
+      "word_index_global": 20,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ثُمَّ",
+      "text_norm": "ثم",
+      "start_s": 26.72,
+      "end_s": 26.8
+    },
+    {
+      "surah": 102,
+      "ayah": 7,
+      "word_index_global": 21,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لَتَرَوُنَّهَا",
+      "text_norm": "لترونها",
+      "start_s": 27.44,
+      "end_s": 29.12
+    },
+    {
+      "surah": 102,
+      "ayah": 7,
+      "word_index_global": 22,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَیۡنَ",
+      "text_norm": "عين",
+      "start_s": 29.6,
+      "end_s": 30.0
+    },
+    {
+      "surah": 102,
+      "ayah": 7,
+      "word_index_global": 23,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡیَقِینِ",
+      "text_norm": "اليقين",
+      "start_s": 30.32,
+      "end_s": 31.12
+    },
+    {
+      "surah": 102,
+      "ayah": 8,
+      "word_index_global": 24,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ثُمَّ",
+      "text_norm": "ثم",
+      "start_s": 33.04,
+      "end_s": 33.12
+    },
+    {
+      "surah": 102,
+      "ayah": 8,
+      "word_index_global": 25,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لَتُسۡءَلُنَّ",
+      "text_norm": "لتسءلن",
+      "start_s": 33.76,
+      "end_s": 35.12
+    },
+    {
+      "surah": 102,
+      "ayah": 8,
+      "word_index_global": 26,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "یَوۡمَئِذٍ",
+      "text_norm": "يوميذ",
+      "start_s": 35.76,
+      "end_s": 36.96
+    },
+    {
+      "surah": 102,
+      "ayah": 8,
+      "word_index_global": 27,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "عَنِ",
+      "text_norm": "عن",
+      "start_s": 37.36,
+      "end_s": 37.44
+    },
+    {
+      "surah": 102,
+      "ayah": 8,
+      "word_index_global": 28,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلنَّعِیمِ",
+      "text_norm": "النعيم",
+      "start_s": 38.24,
+      "end_s": 38.96
+    }
+  ]
+}

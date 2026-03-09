@@ -37,7 +37,7 @@
     "coverage": 1.0,
     "monotonic": true,
     "duration_match": true,
-    "warnings": ["boundary_refinement_applied"],
+    "warnings": [],
     "reason_codes": [],
     "zero_or_negative_ratio": 0.0,
     "median_confidence": null,
@@ -45,7 +45,7 @@
     "lexical_match_ratio": 1.0,
     "speech_end_delta_ratio": 0.002947923857799502,
     "quantization_step_ms": 370.000000000001,
-    "everyayah_stitch_eval": null
+    "boundary_refine_method": "librosa"
   },
   "provenance": {
     "engine": {

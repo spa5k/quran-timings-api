@@ -1,0 +1,182 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "eya_muhsin_al_qasim_192kbps",
+    "name": "Muhsin Al Qasim"
+  },
+  "surah": {
+    "number": 114,
+    "title": "Surah 114",
+    "ayah_count": 6,
+    "word_count": 20
+  },
+  "audio": {
+    "granularity": "ayah",
+    "primary_asset": "everyayah_ayah",
+    "fallback_order": [],
+    "assets": {
+      "everyayah_ayah": {
+        "provider": "everyayah",
+        "level": "ayah",
+        "kind": "template",
+        "template": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/114{ayah:03d}.mp3"
+      }
+    },
+    "duration_s": 22.479433106575964,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.017626308634932943,
+    "quantization_step_ms": 577.5000000000008,
+    "boundary_refine_method": "librosa",
+    "everyayah_stitch_eval": {
+      "expected_ayahs": 6,
+      "predicted_ayahs": 6,
+      "matched_ayahs": 6,
+      "coverage_vs_reference": 1.0,
+      "start_error_median_ms": 60.812,
+      "end_error_median_ms": 998.479,
+      "boundary_error_median_ms": 468.354,
+      "boundary_error_p95_ms": 1448.417,
+      "boundary_hit_rate_20ms": 0.166667,
+      "boundary_hit_rate_50ms": 0.166667,
+      "boundary_hit_rate_80ms": 0.333333,
+      "start_offset_s": -0.009208,
+      "offset_normalized_boundary_error_median_ms": 459.146,
+      "offset_normalized_boundary_error_p95_ms": 1439.209,
+      "offset_normalized_hit_rate_20ms": 0.166667,
+      "offset_normalized_hit_rate_50ms": 0.166667,
+      "offset_normalized_hit_rate_80ms": 0.333333,
+      "ayah_differences": [
+        {
+          "ayah": 1,
+          "pred_start_s": 0.0,
+          "pred_end_s": 2.2,
+          "ref_start_s": 0.0,
+          "ref_end_s": 3.218,
+          "delta_start_ms": 0.0,
+          "delta_end_ms": -1018.417,
+          "abs_start_ms": 0.0,
+          "abs_end_ms": 1018.417,
+          "norm_delta_start_ms": 9.208,
+          "norm_delta_end_ms": -1009.208,
+          "norm_abs_start_ms": 9.208,
+          "norm_abs_end_ms": 1009.208
+        },
+        {
+          "ayah": 2,
+          "pred_start_s": 3.2,
+          "pred_end_s": 4.335,
+          "ref_start_s": 3.218,
+          "ref_end_s": 5.314,
+          "delta_start_ms": -18.417,
+          "delta_end_ms": -978.542,
+          "abs_start_ms": 18.417,
+          "abs_end_ms": 978.542,
+          "norm_delta_start_ms": -9.208,
+          "norm_delta_end_ms": -969.334,
+          "norm_abs_start_ms": 9.208,
+          "norm_abs_end_ms": 969.334
+        },
+        {
+          "ayah": 3,
+          "pred_start_s": 5.2,
+          "pred_end_s": 6.82,
+          "ref_start_s": 5.314,
+          "ref_end_s": 8.297,
+          "delta_start_ms": -113.542,
+          "delta_end_ms": -1476.834,
+          "abs_start_ms": 113.542,
+          "abs_end_ms": 1476.834,
+          "norm_delta_start_ms": -104.334,
+          "norm_delta_end_ms": -1467.626,
+          "norm_abs_start_ms": 104.334,
+          "norm_abs_end_ms": 1467.626
+        },
+        {
+          "ayah": 4,
+          "pred_start_s": 8.355,
+          "pred_end_s": 12.49,
+          "ref_start_s": 8.297,
+          "ref_end_s": 13.292,
+          "delta_start_ms": 58.166,
+          "delta_end_ms": -801.542,
+          "abs_start_ms": 58.166,
+          "abs_end_ms": 801.542,
+          "norm_delta_start_ms": 67.374,
+          "norm_delta_end_ms": -792.333,
+          "norm_abs_start_ms": 67.374,
+          "norm_abs_end_ms": 792.333
+        },
+        {
+          "ayah": 5,
+          "pred_start_s": 13.355,
+          "pred_end_s": 16.835,
+          "ref_start_s": 13.292,
+          "ref_end_s": 18.26,
+          "delta_start_ms": 63.458,
+          "delta_end_ms": -1425.167,
+          "abs_start_ms": 63.458,
+          "abs_end_ms": 1425.167,
+          "norm_delta_start_ms": 72.667,
+          "norm_delta_end_ms": -1415.958,
+          "norm_abs_start_ms": 72.667,
+          "norm_abs_end_ms": 1415.958
+        },
+        {
+          "ayah": 6,
+          "pred_start_s": 18.125,
+          "pred_end_s": 21.635,
+          "ref_start_s": 18.26,
+          "ref_end_s": 22.523,
+          "delta_start_ms": -135.167,
+          "delta_end_ms": -888.459,
+          "abs_start_ms": 135.167,
+          "abs_end_ms": 888.459,
+          "norm_delta_start_ms": -125.958,
+          "norm_delta_end_ms": -879.25,
+          "norm_abs_start_ms": 125.958,
+          "norm_abs_end_ms": 879.25
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "whisperx", "mfa"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 177.25759611318753,
+      "mfa": 177.0759693618374
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [
+      "everyayah:subfolder=Muhsin_Al_Qasim_192kbps:surah=114:scope=full_surah"
+    ],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/eya_muhsin_al_qasim_192kbps/surahs/114/timings.json",
+  "updated_at": "2026-03-09T19:55:12.748944+00:00"
+}

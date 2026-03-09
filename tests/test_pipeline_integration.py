@@ -529,6 +529,7 @@ def test_strict_mode_multi_engine_prefers_higher_quality_candidate(tmp_path, mon
     assert summary.fallback_used == 1
     payload = orjson.loads((out_dir / "strict_reciter_s001_a001.json").read_bytes())
     assert payload["engine"]["name"] == "ensemble"
+    assert payload["engine"]["fallback_used"] is True
     assert all(word["engine_candidate"] == "whisperx" for word in payload["words"])
 
 
@@ -742,7 +743,8 @@ def test_strict_mode_rejects_bad_refinement_and_keeps_original(tmp_path, monkeyp
     assert summary.succeeded == 1
     payload = orjson.loads((out_dir / "strict_refine_reciter_s001_a001.json").read_bytes())
     assert payload["qc"]["zero_or_negative_ratio"] == 0.0
-    assert "boundary_refinement_rejected" in payload["qc"]["warnings"]
+    assert "boundary_refinement_rejected" not in payload["qc"]["warnings"]
+    assert payload["qc"]["boundary_refine_method"] == "none"
 
 
 def test_ayah_cache_write_does_not_overwrite_surah_cache(tmp_path) -> None:

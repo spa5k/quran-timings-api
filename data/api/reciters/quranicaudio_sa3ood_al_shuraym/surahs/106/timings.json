@@ -1,0 +1,203 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "quranicaudio_sa3ood_al_shuraym",
+  "surah": 106,
+  "ayahs": [
+    {
+      "surah": 106,
+      "ayah": 1,
+      "start_s": 2.68,
+      "end_s": 4.325
+    },
+    {
+      "surah": 106,
+      "ayah": 2,
+      "start_s": 5.1,
+      "end_s": 8.8
+    },
+    {
+      "surah": 106,
+      "ayah": 3,
+      "start_s": 9.125,
+      "end_s": 11.65
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "start_s": 12.88,
+      "end_s": 18.48
+    }
+  ],
+  "words": [
+    {
+      "surah": 106,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لِإِیلَـٰفِ",
+      "text_norm": "لايلف",
+      "start_s": 2.68,
+      "end_s": 3.44
+    },
+    {
+      "surah": 106,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "قُرَیۡشٍ",
+      "text_norm": "قريش",
+      "start_s": 3.6,
+      "end_s": 4.325
+    },
+    {
+      "surah": 106,
+      "ayah": 2,
+      "word_index_global": 3,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِۦلَـٰفِهِمۡ",
+      "text_norm": "الفهم",
+      "start_s": 5.1,
+      "end_s": 5.405
+    },
+    {
+      "surah": 106,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "رِحۡلَةَ",
+      "text_norm": "رحلة",
+      "start_s": 5.705,
+      "end_s": 5.995
+    },
+    {
+      "surah": 106,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلشِّتَاۤءِ",
+      "text_norm": "الشتاء",
+      "start_s": 6.29,
+      "end_s": 7.7
+    },
+    {
+      "surah": 106,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "وَٱلصَّیۡفِ",
+      "text_norm": "والصيف",
+      "start_s": 7.905,
+      "end_s": 8.8
+    },
+    {
+      "surah": 106,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَلۡیَعۡبُدُوا۟",
+      "text_norm": "فليعبدوا",
+      "start_s": 9.125,
+      "end_s": 10.445
+    },
+    {
+      "surah": 106,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "رَبَّ",
+      "text_norm": "رب",
+      "start_s": 10.445,
+      "end_s": 10.68
+    },
+    {
+      "surah": 106,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "هَـٰذَا",
+      "text_norm": "هذا",
+      "start_s": 10.935,
+      "end_s": 11.23
+    },
+    {
+      "surah": 106,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡبَیۡتِ",
+      "text_norm": "البيت",
+      "start_s": 11.63,
+      "end_s": 11.65
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "word_index_global": 11,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ٱلَّذِیۤ",
+      "text_norm": "الذي",
+      "start_s": 12.88,
+      "end_s": 12.9
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "word_index_global": 12,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَطۡعَمَهُم",
+      "text_norm": "اطعمهم",
+      "start_s": 13.475,
+      "end_s": 14.445
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "word_index_global": 13,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مِّن",
+      "text_norm": "من",
+      "start_s": 14.65,
+      "end_s": 14.71
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "word_index_global": 14,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "جُوعࣲ",
+      "text_norm": "جوع",
+      "start_s": 15.355,
+      "end_s": 15.875
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "word_index_global": 15,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "وَءَامَنَهُم",
+      "text_norm": "وءامنهم",
+      "start_s": 16.125,
+      "end_s": 17.26
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "word_index_global": 16,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "مِّنۡ",
+      "text_norm": "من",
+      "start_s": 17.495,
+      "end_s": 17.515
+    },
+    {
+      "surah": 106,
+      "ayah": 4,
+      "word_index_global": 17,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "خَوۡفِۭ",
+      "text_norm": "خوف",
+      "start_s": 17.935,
+      "end_s": 18.48
+    }
+  ]
+}

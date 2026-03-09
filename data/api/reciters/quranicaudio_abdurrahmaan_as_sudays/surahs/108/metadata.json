@@ -1,0 +1,62 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "quranicaudio_abdurrahmaan_as_sudays",
+    "name": "Abdur-Rahman as-Sudais"
+  },
+  "surah": {
+    "number": 108,
+    "title": "Surah 108",
+    "ayah_count": 3,
+    "word_count": 10
+  },
+  "audio": {
+    "granularity": "none",
+    "primary_asset": null,
+    "fallback_order": [],
+    "assets": {},
+    "duration_s": 17.348639455782312,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.030637105615787558,
+    "quantization_step_ms": 595.0000000000007,
+    "boundary_refine_method": "librosa"
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "mfa", "whisperx"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 143.7270069435985,
+      "mfa": 143.97064197831648
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/quranicaudio_abdurrahmaan_as_sudays/surahs/108/timings.json",
+  "updated_at": "2026-03-06T09:15:54.902628+00:00"
+}

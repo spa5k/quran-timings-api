@@ -1,10 +1,10 @@
 {
   "schema_version": "v2",
-  "updated_at": "2026-03-07T09:06:27.321581+00:00",
+  "updated_at": "2026-03-09T19:34:05.091224+00:00",
   "reciter": {
     "slug": "qcom_abu_bakr_al_shatri",
     "name": "Abu Bakr al-Shatri",
-    "enabled": true,
+    "enabled": false,
     "check_type": "word_by_word",
     "capabilities": {
       "ayah_by_ayah": false,
@@ -19,6 +19,10 @@
       "quran_com": {
         "recitation_id": 4,
         "name": "Abu Bakr al-Shatri"
+      },
+      "quranicaudio": {
+        "path": null,
+        "name": null
       }
     },
     "endpoints": {

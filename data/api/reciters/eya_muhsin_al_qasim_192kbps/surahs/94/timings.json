@@ -1,0 +1,351 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "eya_muhsin_al_qasim_192kbps",
+  "surah": 94,
+  "ayahs": [
+    {
+      "surah": 94,
+      "ayah": 1,
+      "start_s": 0.06,
+      "end_s": 2.28,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "001",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094001.mp3"
+    },
+    {
+      "surah": 94,
+      "ayah": 2,
+      "start_s": 2.52,
+      "end_s": 5.08,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "002",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094002.mp3"
+    },
+    {
+      "surah": 94,
+      "ayah": 3,
+      "start_s": 5.32,
+      "end_s": 8.52,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "003",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094003.mp3"
+    },
+    {
+      "surah": 94,
+      "ayah": 4,
+      "start_s": 8.625,
+      "end_s": 11.045,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "004",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094004.mp3"
+    },
+    {
+      "surah": 94,
+      "ayah": 5,
+      "start_s": 11.36,
+      "end_s": 14.04,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "005",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094005.mp3"
+    },
+    {
+      "surah": 94,
+      "ayah": 6,
+      "start_s": 14.365,
+      "end_s": 16.985,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "006",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094006.mp3"
+    },
+    {
+      "surah": 94,
+      "ayah": 7,
+      "start_s": 17.32,
+      "end_s": 20.105,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "007",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094007.mp3"
+    },
+    {
+      "surah": 94,
+      "ayah": 8,
+      "start_s": 20.825,
+      "end_s": 22.76,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "008",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/094008.mp3"
+    }
+  ],
+  "words": [
+    {
+      "surah": 94,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَلَمۡ",
+      "text_norm": "الم",
+      "start_s": 0.06,
+      "end_s": 0.125
+    },
+    {
+      "surah": 94,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "نَشۡرَحۡ",
+      "text_norm": "نشرح",
+      "start_s": 0.49,
+      "end_s": 1.18
+    },
+    {
+      "surah": 94,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "لَكَ",
+      "text_norm": "لك",
+      "start_s": 1.18,
+      "end_s": 1.465
+    },
+    {
+      "surah": 94,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "صَدۡرَكَ",
+      "text_norm": "صدرك",
+      "start_s": 1.68,
+      "end_s": 2.28
+    },
+    {
+      "surah": 94,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَوَضَعۡنَا",
+      "text_norm": "ووضعنا",
+      "start_s": 2.52,
+      "end_s": 3.515
+    },
+    {
+      "surah": 94,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "عَنكَ",
+      "text_norm": "عنك",
+      "start_s": 3.735,
+      "end_s": 4.325
+    },
+    {
+      "surah": 94,
+      "ayah": 2,
+      "word_index_global": 7,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وِزۡرَكَ",
+      "text_norm": "وزرك",
+      "start_s": 4.36,
+      "end_s": 5.08
+    },
+    {
+      "surah": 94,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ٱلَّذِیۤ",
+      "text_norm": "الذي",
+      "start_s": 5.32,
+      "end_s": 5.47
+    },
+    {
+      "surah": 94,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنقَضَ",
+      "text_norm": "انقض",
+      "start_s": 6.675,
+      "end_s": 7.52
+    },
+    {
+      "surah": 94,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ظَهۡرَكَ",
+      "text_norm": "ظهرك",
+      "start_s": 7.755,
+      "end_s": 8.52
+    },
+    {
+      "surah": 94,
+      "ayah": 4,
+      "word_index_global": 11,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَرَفَعۡنَا",
+      "text_norm": "ورفعنا",
+      "start_s": 8.625,
+      "end_s": 9.48
+    },
+    {
+      "surah": 94,
+      "ayah": 4,
+      "word_index_global": 12,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لَكَ",
+      "text_norm": "لك",
+      "start_s": 9.83,
+      "end_s": 10.025
+    },
+    {
+      "surah": 94,
+      "ayah": 4,
+      "word_index_global": 13,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ذِكۡرَكَ",
+      "text_norm": "ذكرك",
+      "start_s": 10.43,
+      "end_s": 11.045
+    },
+    {
+      "surah": 94,
+      "ayah": 5,
+      "word_index_global": 14,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَإِنَّ",
+      "text_norm": "فان",
+      "start_s": 11.36,
+      "end_s": 11.875
+    },
+    {
+      "surah": 94,
+      "ayah": 5,
+      "word_index_global": 15,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "مَعَ",
+      "text_norm": "مع",
+      "start_s": 12.325,
+      "end_s": 12.344999999999999
+    },
+    {
+      "surah": 94,
+      "ayah": 5,
+      "word_index_global": 16,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡعُسۡرِ",
+      "text_norm": "العسر",
+      "start_s": 12.65,
+      "end_s": 13.09
+    },
+    {
+      "surah": 94,
+      "ayah": 5,
+      "word_index_global": 17,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "یُسۡرًا",
+      "text_norm": "يسرا",
+      "start_s": 13.165,
+      "end_s": 14.04
+    },
+    {
+      "surah": 94,
+      "ayah": 6,
+      "word_index_global": 18,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّ",
+      "text_norm": "ان",
+      "start_s": 14.365,
+      "end_s": 14.545
+    },
+    {
+      "surah": 94,
+      "ayah": 6,
+      "word_index_global": 19,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "مَعَ",
+      "text_norm": "مع",
+      "start_s": 15.235,
+      "end_s": 15.254999999999999
+    },
+    {
+      "surah": 94,
+      "ayah": 6,
+      "word_index_global": 20,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡعُسۡرِ",
+      "text_norm": "العسر",
+      "start_s": 15.56,
+      "end_s": 15.88
+    },
+    {
+      "surah": 94,
+      "ayah": 6,
+      "word_index_global": 21,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "یُسۡرࣰا",
+      "text_norm": "يسرا",
+      "start_s": 16.24,
+      "end_s": 16.985
+    },
+    {
+      "surah": 94,
+      "ayah": 7,
+      "word_index_global": 22,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَإِذَا",
+      "text_norm": "فاذا",
+      "start_s": 17.32,
+      "end_s": 17.995
+    },
+    {
+      "surah": 94,
+      "ayah": 7,
+      "word_index_global": 23,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "فَرَغۡتَ",
+      "text_norm": "فرغت",
+      "start_s": 18.12,
+      "end_s": 18.625
+    },
+    {
+      "surah": 94,
+      "ayah": 7,
+      "word_index_global": 24,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فَٱنصَبۡ",
+      "text_norm": "فانصب",
+      "start_s": 18.83,
+      "end_s": 20.105
+    },
+    {
+      "surah": 94,
+      "ayah": 8,
+      "word_index_global": 25,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَإِلَىٰ",
+      "text_norm": "والي",
+      "start_s": 20.825,
+      "end_s": 21.295
+    },
+    {
+      "surah": 94,
+      "ayah": 8,
+      "word_index_global": 26,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "رَبِّكَ",
+      "text_norm": "ربك",
+      "start_s": 21.505,
+      "end_s": 22.13
+    },
+    {
+      "surah": 94,
+      "ayah": 8,
+      "word_index_global": 27,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فَٱرۡغَب",
+      "text_norm": "فارغب",
+      "start_s": 22.395,
+      "end_s": 22.76
+    }
+  ]
+}

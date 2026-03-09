@@ -449,11 +449,9 @@ def _process_row(
             thresholds=thresholds,
         ):
             result = refined_result
-            result.qc.warnings.append("boundary_refinement_applied")
         else:
             result = selected_before_refinement
             result.qc.boundary_refine_method = "none"
-            result.qc.warnings.append("boundary_refinement_rejected")
     else:
         result.qc.boundary_refine_method = "none"
 
@@ -488,6 +486,7 @@ def _process_row(
     result.pass_trace = list(pass_trace)
     result.selected_candidate_engine = result.engine.name
     result.candidate_scores = candidate_scores
+    result.engine.fallback_used = fallback_used
 
     write_cache_result(row=row, result=result, cache_root=cache_dir)
 

@@ -1,0 +1,269 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "qcom_mohamed_al_tablawi",
+  "surah": 111,
+  "ayahs": [
+    {
+      "surah": 111,
+      "ayah": 1,
+      "start_s": 4.845,
+      "end_s": 9.725
+    },
+    {
+      "surah": 111,
+      "ayah": 2,
+      "start_s": 10.445,
+      "end_s": 15.16
+    },
+    {
+      "surah": 111,
+      "ayah": 3,
+      "start_s": 15.77,
+      "end_s": 19.035
+    },
+    {
+      "surah": 111,
+      "ayah": 4,
+      "start_s": 19.25,
+      "end_s": 23.125
+    },
+    {
+      "surah": 111,
+      "ayah": 5,
+      "start_s": 23.4,
+      "end_s": 27.685
+    }
+  ],
+  "words": [
+    {
+      "surah": 111,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "تَبَّتۡ",
+      "text_norm": "تبت",
+      "start_s": 4.845,
+      "end_s": 5.155
+    },
+    {
+      "surah": 111,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَدَاۤ",
+      "text_norm": "يدا",
+      "start_s": 5.56,
+      "end_s": 5.88
+    },
+    {
+      "surah": 111,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "أَبِی",
+      "text_norm": "ابي",
+      "start_s": 7.32,
+      "end_s": 7.555
+    },
+    {
+      "surah": 111,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "لَهَبࣲ",
+      "text_norm": "لهب",
+      "start_s": 7.885,
+      "end_s": 8.285
+    },
+    {
+      "surah": 111,
+      "ayah": 1,
+      "word_index_global": 5,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "وَتَبَّ",
+      "text_norm": "وتب",
+      "start_s": 9.05,
+      "end_s": 9.725
+    },
+    {
+      "surah": 111,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مَاۤ",
+      "text_norm": "ما",
+      "start_s": 10.445,
+      "end_s": 10.75
+    },
+    {
+      "surah": 111,
+      "ayah": 2,
+      "word_index_global": 7,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَغۡنَىٰ",
+      "text_norm": "اغني",
+      "start_s": 12.185,
+      "end_s": 12.605
+    },
+    {
+      "surah": 111,
+      "ayah": 2,
+      "word_index_global": 8,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَنۡهُ",
+      "text_norm": "عنه",
+      "start_s": 13.025,
+      "end_s": 13.235
+    },
+    {
+      "surah": 111,
+      "ayah": 2,
+      "word_index_global": 9,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَالُهُۥ",
+      "text_norm": "ماله",
+      "start_s": 13.405,
+      "end_s": 13.99
+    },
+    {
+      "surah": 111,
+      "ayah": 2,
+      "word_index_global": 10,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "وَمَا",
+      "text_norm": "وما",
+      "start_s": 14.205,
+      "end_s": 14.495
+    },
+    {
+      "surah": 111,
+      "ayah": 2,
+      "word_index_global": 11,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "كَسَبَ",
+      "text_norm": "كسب",
+      "start_s": 14.94,
+      "end_s": 15.16
+    },
+    {
+      "surah": 111,
+      "ayah": 3,
+      "word_index_global": 12,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "سَیَصۡلَىٰ",
+      "text_norm": "سيصلي",
+      "start_s": 15.77,
+      "end_s": 16.675
+    },
+    {
+      "surah": 111,
+      "ayah": 3,
+      "word_index_global": 13,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "نَارࣰا",
+      "text_norm": "نارا",
+      "start_s": 16.675,
+      "end_s": 17.26
+    },
+    {
+      "surah": 111,
+      "ayah": 3,
+      "word_index_global": 14,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ذَاتَ",
+      "text_norm": "ذات",
+      "start_s": 17.79,
+      "end_s": 18.13
+    },
+    {
+      "surah": 111,
+      "ayah": 3,
+      "word_index_global": 15,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "لَهَبࣲ",
+      "text_norm": "لهب",
+      "start_s": 18.41,
+      "end_s": 19.035
+    },
+    {
+      "surah": 111,
+      "ayah": 4,
+      "word_index_global": 16,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَٱمۡرَأَتُهُۥ",
+      "text_norm": "وامراته",
+      "start_s": 19.25,
+      "end_s": 20.31
+    },
+    {
+      "surah": 111,
+      "ayah": 4,
+      "word_index_global": 17,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "حَمَّالَةَ",
+      "text_norm": "حمالة",
+      "start_s": 20.705,
+      "end_s": 22.12
+    },
+    {
+      "surah": 111,
+      "ayah": 4,
+      "word_index_global": 18,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡحَطَبِ",
+      "text_norm": "الحطب",
+      "start_s": 22.48,
+      "end_s": 23.125
+    },
+    {
+      "surah": 111,
+      "ayah": 5,
+      "word_index_global": 19,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فِی",
+      "text_norm": "في",
+      "start_s": 23.4,
+      "end_s": 23.48
+    },
+    {
+      "surah": 111,
+      "ayah": 5,
+      "word_index_global": 20,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "جِیدِهَا",
+      "text_norm": "جيدها",
+      "start_s": 23.815,
+      "end_s": 24.45
+    },
+    {
+      "surah": 111,
+      "ayah": 5,
+      "word_index_global": 21,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "حَبۡلࣱ",
+      "text_norm": "حبل",
+      "start_s": 24.93,
+      "end_s": 25.62
+    },
+    {
+      "surah": 111,
+      "ayah": 5,
+      "word_index_global": 22,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مِّن",
+      "text_norm": "من",
+      "start_s": 26.04,
+      "end_s": 26.35
+    },
+    {
+      "surah": 111,
+      "ayah": 5,
+      "word_index_global": 23,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "مَّسَدِۭ",
+      "text_norm": "مسد",
+      "start_s": 27.045,
+      "end_s": 27.685
+    }
+  ]
+}

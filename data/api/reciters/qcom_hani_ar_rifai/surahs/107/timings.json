@@ -7,50 +7,43 @@
       "surah": 107,
       "ayah": 1,
       "start_s": 0.29290000000000005,
-      "end_s": 5.2804,
-      "source": "aligned"
+      "end_s": 5.2804
     },
     {
       "surah": 107,
       "ayah": 2,
       "start_s": 5.3247,
-      "end_s": 9.1282,
-      "source": "aligned"
+      "end_s": 9.1282
     },
     {
       "surah": 107,
       "ayah": 3,
       "start_s": 9.565100000000001,
-      "end_s": 14.0136,
-      "source": "aligned"
+      "end_s": 14.0136
     },
     {
       "surah": 107,
       "ayah": 4,
       "start_s": 14.6161,
-      "end_s": 17.278599999999997,
-      "source": "aligned"
+      "end_s": 17.278599999999997
     },
     {
       "surah": 107,
       "ayah": 5,
       "start_s": 17.6081,
-      "end_s": 22.4506,
-      "source": "aligned"
+      "end_s": 22.4506
     },
     {
       "surah": 107,
       "ayah": 6,
       "start_s": 22.7793,
-      "end_s": 25.9788,
-      "source": "aligned"
+      "end_s": 25.9788
     },
     {
       "surah": 107,
       "ayah": 7,
       "start_s": 26.5165,
-      "end_s": 29.951999999999998,
-      "source": "aligned"
+      "end_s": 29.951999999999998
     }
   ],
   "words": [
@@ -63,13 +56,8 @@
       "text_norm": "ارءيت",
       "start_s": 0.29290000000000005,
       "end_s": 1.9529,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 0.007,
-      "source_end_s": 1.967,
-      "source_provider": "quran_com"
+      "source_end_s": 1.967
     },
     {
       "surah": 107,
@@ -80,13 +68,8 @@
       "text_norm": "الذي",
       "start_s": 2.0249,
       "end_s": 2.6789,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 1.967,
-      "source_end_s": 2.867,
-      "source_provider": "quran_com"
+      "source_end_s": 2.867
     },
     {
       "surah": 107,
@@ -97,13 +80,8 @@
       "text_norm": "يكذب",
       "start_s": 2.8709,
       "end_s": 3.6719,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 2.867,
-      "source_end_s": 3.737,
-      "source_provider": "quran_com"
+      "source_end_s": 3.737
     },
     {
       "surah": 107,
@@ -114,13 +92,8 @@
       "text_norm": "بالدين",
       "start_s": 3.8399,
       "end_s": 5.2804,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 3.737,
-      "source_end_s": 5.452,
-      "source_provider": "quran_com"
+      "source_end_s": 5.452
     },
     {
       "surah": 107,
@@ -131,13 +104,8 @@
       "text_norm": "فذلك",
       "start_s": 5.3247,
       "end_s": 6.2087,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 5.241,
-      "source_end_s": 6.161,
-      "source_provider": "quran_com"
+      "source_end_s": 6.161
     },
     {
       "surah": 107,
@@ -148,13 +116,8 @@
       "text_norm": "الذي",
       "start_s": 6.3047,
       "end_s": 6.9867,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 6.161,
-      "source_end_s": 7.101,
-      "source_provider": "quran_com"
+      "source_end_s": 7.101
     },
     {
       "surah": 107,
@@ -165,13 +128,8 @@
       "text_norm": "يدع",
       "start_s": 7.178700000000001,
       "end_s": 7.8747,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 7.101,
-      "source_end_s": 7.821,
-      "source_provider": "quran_com"
+      "source_end_s": 7.821
     },
     {
       "surah": 107,
@@ -182,13 +140,8 @@
       "text_norm": "اليتيم",
       "start_s": 7.9707,
       "end_s": 9.1282,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 7.821,
-      "source_end_s": 9.166,
-      "source_provider": "quran_com"
+      "source_end_s": 9.166
     },
     {
       "surah": 107,
@@ -199,13 +152,8 @@
       "text_norm": "ولا",
       "start_s": 9.565100000000001,
       "end_s": 9.8971,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 9.413,
-      "source_end_s": 9.853,
-      "source_provider": "quran_com"
+      "source_end_s": 9.853
     },
     {
       "surah": 107,
@@ -216,13 +164,8 @@
       "text_norm": "يحض",
       "start_s": 10.0171,
       "end_s": 10.7691,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 9.853,
-      "source_end_s": 10.653,
-      "source_provider": "quran_com"
+      "source_end_s": 10.653
     },
     {
       "surah": 107,
@@ -233,13 +176,8 @@
       "text_norm": "علي",
       "start_s": 10.8651,
       "end_s": 11.3651,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 10.653,
-      "source_end_s": 11.333,
-      "source_provider": "quran_com"
+      "source_end_s": 11.333
     },
     {
       "surah": 107,
@@ -250,13 +188,8 @@
       "text_norm": "طعام",
       "start_s": 11.5091,
       "end_s": 12.373099999999999,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 11.333,
-      "source_end_s": 12.293,
-      "source_provider": "quran_com"
+      "source_end_s": 12.293
     },
     {
       "surah": 107,
@@ -267,13 +200,8 @@
       "text_norm": "المسكين",
       "start_s": 12.4691,
       "end_s": 14.0136,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 12.293,
-      "source_end_s": 14.088,
-      "source_provider": "quran_com"
+      "source_end_s": 14.088
     },
     {
       "surah": 107,
@@ -284,13 +212,8 @@
       "text_norm": "فويل",
       "start_s": 14.6161,
       "end_s": 15.4521,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 14.503,
-      "source_end_s": 15.423,
-      "source_provider": "quran_com"
+      "source_end_s": 15.423
     },
     {
       "surah": 107,
@@ -301,13 +224,8 @@
       "text_norm": "للمصلين",
       "start_s": 15.5481,
       "end_s": 17.278599999999997,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 15.423,
-      "source_end_s": 17.278,
-      "source_provider": "quran_com"
+      "source_end_s": 17.278
     },
     {
       "surah": 107,
@@ -318,13 +236,8 @@
       "text_norm": "الذين",
       "start_s": 17.6081,
       "end_s": 18.353099999999998,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 17.543,
-      "source_end_s": 18.573,
-      "source_provider": "quran_com"
+      "source_end_s": 18.573
     },
     {
       "surah": 107,
@@ -335,13 +248,8 @@
       "text_norm": "هم",
       "start_s": 18.5931,
       "end_s": 18.8791,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 18.573,
-      "source_end_s": 18.913,
-      "source_provider": "quran_com"
+      "source_end_s": 18.913
     },
     {
       "surah": 107,
@@ -352,13 +260,8 @@
       "text_norm": "عن",
       "start_s": 18.9751,
       "end_s": 19.4541,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 18.913,
-      "source_end_s": 19.563,
-      "source_provider": "quran_com"
+      "source_end_s": 19.563
     },
     {
       "surah": 107,
@@ -369,13 +272,8 @@
       "text_norm": "صلاتهم",
       "start_s": 19.5981,
       "end_s": 20.8031,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 19.563,
-      "source_end_s": 20.873,
-      "source_provider": "quran_com"
+      "source_end_s": 20.873
     },
     {
       "surah": 107,
@@ -386,13 +284,8 @@
       "text_norm": "ساهون",
       "start_s": 20.8991,
       "end_s": 22.4506,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 20.873,
-      "source_end_s": 22.678,
-      "source_provider": "quran_com"
+      "source_end_s": 22.678
     },
     {
       "surah": 107,
@@ -403,13 +296,8 @@
       "text_norm": "الذين",
       "start_s": 22.7793,
       "end_s": 23.6783,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 22.599,
-      "source_end_s": 23.849,
-      "source_provider": "quran_com"
+      "source_end_s": 23.849
     },
     {
       "surah": 107,
@@ -420,13 +308,8 @@
       "text_norm": "هم",
       "start_s": 23.8943,
       "end_s": 24.179299999999998,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 23.849,
-      "source_end_s": 24.119,
-      "source_provider": "quran_com"
+      "source_end_s": 24.119
     },
     {
       "surah": 107,
@@ -437,13 +320,8 @@
       "text_norm": "يراءون",
       "start_s": 24.2513,
       "end_s": 25.9788,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 24.119,
-      "source_end_s": 26.004,
-      "source_provider": "quran_com"
+      "source_end_s": 26.004
     },
     {
       "surah": 107,
@@ -454,13 +332,8 @@
       "text_norm": "ويمنعون",
       "start_s": 26.5165,
       "end_s": 27.6535,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 26.635,
-      "source_end_s": 27.745,
-      "source_provider": "quran_com"
+      "source_end_s": 27.745
     },
     {
       "surah": 107,
@@ -471,13 +344,8 @@
       "text_norm": "الماعون",
       "start_s": 27.7735,
       "end_s": 29.951999999999998,
-      "confidence": null,
-      "alignment_origin": "native",
-      "match_score": 100.0,
-      "engine_candidate": "nemo",
       "source_start_s": 27.745,
-      "source_end_s": 30.48,
-      "source_provider": "quran_com"
+      "source_end_s": 30.48
     }
   ]
 }

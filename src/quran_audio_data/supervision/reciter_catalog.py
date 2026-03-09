@@ -15,6 +15,7 @@ from .qcom_audio import fetch_recitation_catalog
 from .reciter_defaults import (
     DEFAULT_ENABLED_RECITERS,
     EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT,
+    LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT,
     QCOM_RECITATION_ID_BY_RECITER_DEFAULT,
     UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT,
 )
@@ -130,6 +131,9 @@ def _build_source_reciters(
     qcom_reciters: list[dict[str, Any]],
     quranicaudio_reciters: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
+    normalized_enabled_reciters = {
+        LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT.get(slug, slug) for slug in enabled_reciters
+    }
     default_slug_by_subfolder = {
         subfolder: slug
         for slug, subfolder in EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT.items()
@@ -151,10 +155,14 @@ def _build_source_reciters(
         name = str(item.get("name") or subfolder).strip() or subfolder
         row = rows_by_slug.get(slug)
         if row is None:
-            row = _empty_reciter_row(slug=slug, name=name, enabled_reciters=enabled_reciters)
+            row = _empty_reciter_row(
+                slug=slug,
+                name=name,
+                enabled_reciters=normalized_enabled_reciters,
+            )
             rows_by_slug[slug] = row
         row["name"] = name or row["name"]
-        row["enabled"] = bool(row.get("enabled")) or slug in enabled_reciters
+        row["enabled"] = bool(row.get("enabled")) or slug in normalized_enabled_reciters
         row["capabilities"]["ayah_by_ayah"] = True
         row["source"]["everyayah"] = {
             "subfolder": subfolder,
@@ -188,10 +196,14 @@ def _build_source_reciters(
 
         row = rows_by_slug.get(slug)
         if row is None:
-            row = _empty_reciter_row(slug=slug, name=label, enabled_reciters=enabled_reciters)
+            row = _empty_reciter_row(
+                slug=slug,
+                name=label,
+                enabled_reciters=normalized_enabled_reciters,
+            )
             rows_by_slug[slug] = row
         row["name"] = label or row["name"]
-        row["enabled"] = bool(row.get("enabled")) or slug in enabled_reciters
+        row["enabled"] = bool(row.get("enabled")) or slug in normalized_enabled_reciters
         row["capabilities"]["word_by_word"] = slug not in UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT
         row["source"]["quran_com"] = {
             "recitation_id": recitation_id,
@@ -209,9 +221,13 @@ def _build_source_reciters(
             relative_path = notes.split("relative_path=", 1)[1].strip().rstrip("/")
         row = rows_by_slug.get(slug)
         if row is None:
-            row = _empty_reciter_row(slug=slug, name=name, enabled_reciters=enabled_reciters)
+            row = _empty_reciter_row(
+                slug=slug,
+                name=name,
+                enabled_reciters=normalized_enabled_reciters,
+            )
             rows_by_slug[slug] = row
-        row["enabled"] = bool(row.get("enabled")) or slug in enabled_reciters
+        row["enabled"] = bool(row.get("enabled")) or slug in normalized_enabled_reciters
         row["source"]["quranicaudio"] = {
             "path": relative_path,
             "name": name,
@@ -310,11 +326,25 @@ def get_configured_reciter_entry(
         return None
 
     key = reciter_id.strip().lower()
+    alias_target = LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT.get(key)
+    reverse_alias = next(
+        (
+            legacy
+            for legacy, canonical in LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT.items()
+            if canonical == key
+        ),
+        None,
+    )
+    candidate_keys = [key]
+    if alias_target and alias_target not in candidate_keys:
+        candidate_keys.append(alias_target)
+    if reverse_alias and reverse_alias not in candidate_keys:
+        candidate_keys.append(reverse_alias)
     for item in configured:
         if not isinstance(item, dict):
             continue
         value = str(item.get("slug") or "").strip().lower()
-        if value == key:
+        if value in candidate_keys:
             return item
     return None
 

@@ -1,0 +1,245 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "quranicaudio_abdurrahmaan_as_sudays",
+  "surah": 114,
+  "ayahs": [
+    {
+      "surah": 114,
+      "ayah": 1,
+      "start_s": 4.125,
+      "end_s": 6.69
+    },
+    {
+      "surah": 114,
+      "ayah": 2,
+      "start_s": 7.56,
+      "end_s": 8.98
+    },
+    {
+      "surah": 114,
+      "ayah": 3,
+      "start_s": 9.64,
+      "end_s": 11.045
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "start_s": 13.455,
+      "end_s": 18.11
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "start_s": 19.5,
+      "end_s": 23.155
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "start_s": 24.31,
+      "end_s": 28.565
+    }
+  ],
+  "words": [
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلۡ",
+      "text_norm": "قل",
+      "start_s": 4.125,
+      "end_s": 4.325
+    },
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعُوذُ",
+      "text_norm": "اعوذ",
+      "start_s": 4.55,
+      "end_s": 5.225
+    },
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "بِرَبِّ",
+      "text_norm": "برب",
+      "start_s": 5.415,
+      "end_s": 5.96
+    },
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 6.6,
+      "end_s": 6.69
+    },
+    {
+      "surah": 114,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مَلِكِ",
+      "text_norm": "ملك",
+      "start_s": 7.56,
+      "end_s": 7.975
+    },
+    {
+      "surah": 114,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 8.86,
+      "end_s": 8.98
+    },
+    {
+      "surah": 114,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِلَـٰهِ",
+      "text_norm": "اله",
+      "start_s": 9.64,
+      "end_s": 10.51
+    },
+    {
+      "surah": 114,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 11.025,
+      "end_s": 11.045
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 9,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مِن",
+      "text_norm": "من",
+      "start_s": 13.455,
+      "end_s": 13.66
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 10,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَرِّ",
+      "text_norm": "شر",
+      "start_s": 14.16,
+      "end_s": 14.18
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 11,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡوَسۡوَاسِ",
+      "text_norm": "الوسواس",
+      "start_s": 15.015,
+      "end_s": 16.015
+    },
+    {
+      "surah": 114,
+      "ayah": 4,
+      "word_index_global": 12,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡخَنَّاسِ",
+      "text_norm": "الخناس",
+      "start_s": 16.35,
+      "end_s": 18.11
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 13,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ٱلَّذِی",
+      "text_norm": "الذي",
+      "start_s": 19.5,
+      "end_s": 19.52
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 14,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یُوَسۡوِسُ",
+      "text_norm": "يوسوس",
+      "start_s": 20.125,
+      "end_s": 21.06
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 15,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فِی",
+      "text_norm": "في",
+      "start_s": 21.305,
+      "end_s": 21.325
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 16,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "صُدُورِ",
+      "text_norm": "صدور",
+      "start_s": 21.75,
+      "end_s": 22.365
+    },
+    {
+      "surah": 114,
+      "ayah": 5,
+      "word_index_global": 17,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلنَّاسِ",
+      "text_norm": "الناس",
+      "start_s": 23.065,
+      "end_s": 23.155
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "word_index_global": 18,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مِنَ",
+      "text_norm": "من",
+      "start_s": 24.31,
+      "end_s": 24.33
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "word_index_global": 19,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡجِنَّةِ",
+      "text_norm": "الجنة",
+      "start_s": 25.0,
+      "end_s": 26.165
+    },
+    {
+      "surah": 114,
+      "ayah": 6,
+      "word_index_global": 20,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَٱلنَّاسِ",
+      "text_norm": "والناس",
+      "start_s": 26.66,
+      "end_s": 28.565
+    }
+  ]
+}

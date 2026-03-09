@@ -167,8 +167,11 @@ def test_detect_without_params_runs_interactive_flow(
 
     assert result.exit_code == 0
     payload = load_registry(reciters_path)
-    ids = [str(item.get("id")) for item in payload.get("reciters", [])]
+    rows = payload.get("reciters", [])
+    ids = [str(item.get("id")) for item in rows]
     assert "interactive_reciter" in ids
+    interactive_row = next(item for item in rows if str(item.get("id")) == "interactive_reciter")
+    assert interactive_row["name"] == "Interactive Reciter (custom)"
     assert len(export_calls) == 1
     assert export_calls[0]["include_reciters"] == {"interactive_reciter"}
     assert export_calls[0]["include_surahs"] == {114}
@@ -298,6 +301,90 @@ def test_detect_known_catalog_reciter_preserves_catalog_slug_and_skips_detect_re
     assert not reciters_path.exists()
     assert "yasser_ad-dussary" in result.output
     assert "yasser_ad_dussary" not in result.output
+
+
+def test_detect_legacy_everyayah_id_resolves_to_canonical_catalog_slug(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    monkeypatch.setattr(cli_module, "get_bytes_with_retry", lambda **kwargs: b"fake-mp3")
+    monkeypatch.setattr(cli_module, "run_alignment_pipeline", lambda **kwargs: _Summary())
+    monkeypatch.setattr(
+        cli_module, "export_api_from_latest_runs", lambda **kwargs: _build_export_summary()
+    )
+
+    reciters_path = tmp_path / "detect_reciters.json"
+    catalog = tmp_path / "reciters.json"
+    catalog.write_text(
+        json.dumps(
+            {
+                "schema_version": "v1",
+                "generated_at": "2026-03-10T00:00:00+00:00",
+                "counts": {
+                    "everyayah_source_reciters": 1,
+                    "quran_com_source_reciters": 0,
+                    "quranicaudio_source_reciters": 0,
+                    "configured_reciters": 1,
+                    "enabled_reciters": 1,
+                },
+                "sources": {},
+                "reciters": [
+                    {
+                        "slug": "eya_yasser_ad_dussary_128kbps",
+                        "name": "Yasser_Ad-Dussary",
+                        "enabled": True,
+                        "check_type": "ayah_by_ayah",
+                        "capabilities": {"ayah_by_ayah": True, "word_by_word": False},
+                        "source": {
+                            "everyayah": {
+                                "subfolder": "Yasser_Ad-Dussary_128kbps",
+                                "reciter_key": 67,
+                                "name": "Yasser_Ad-Dussary",
+                            },
+                            "quran_com": {"recitation_id": None, "name": None},
+                            "quranicaudio": {"path": None, "name": None},
+                        },
+                        "surahs_available": [],
+                        "surah_count": 0,
+                        "endpoints": {
+                            "metadata": "/data/reciters/eya_yasser_ad_dussary_128kbps/metadata.json"
+                        },
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(
+        app,
+        [
+            "detect",
+            "--audio-url",
+            "https://example.com/114.mp3",
+            "--reciter-id",
+            "yasser_ad-dussary",
+            "--surah",
+            "114",
+            "--out-root",
+            str(tmp_path / "runs"),
+            "--cache-dir",
+            str(tmp_path / "cache"),
+            "--reciters-path",
+            str(reciters_path),
+            "--catalog",
+            str(catalog),
+            "--api-root",
+            str(tmp_path / "api"),
+            "--ui-data-dir",
+            str(tmp_path / "ui"),
+        ],
+    )
+
+    assert result.exit_code == 0
+    assert not reciters_path.exists()
+    assert "eya_yasser_ad_dussary_128kbps" in result.output
 
 
 def test_list_reciters_reads_catalog(tmp_path: Path) -> None:

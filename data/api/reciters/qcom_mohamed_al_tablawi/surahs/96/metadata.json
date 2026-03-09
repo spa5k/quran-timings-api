@@ -1,0 +1,76 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "qcom_mohamed_al_tablawi",
+    "name": "Mohamed al-Tablawi"
+  },
+  "surah": {
+    "number": 96,
+    "title": "Surah 96",
+    "ayah_count": 19,
+    "word_count": 72
+  },
+  "audio": {
+    "granularity": "surah",
+    "primary_asset": "surah_direct",
+    "fallback_order": ["qcom_surah"],
+    "assets": {
+      "surah_direct": {
+        "provider": "quranicaudio",
+        "level": "surah",
+        "kind": "direct",
+        "url": "https://download.quranicaudio.com/quran/abdul_muhsin_alqasim/096.mp3"
+      },
+      "qcom_surah": {
+        "provider": "quran_com",
+        "level": "surah",
+        "kind": "resolver",
+        "url": "https://api.quran.com/api/v4/chapter_recitations/11/96",
+        "resolve_json_path": "$.audio_file.audio_url"
+      }
+    },
+    "duration_s": 72.5262358276644,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.0023290266830943897,
+    "quantization_step_ms": 404.9999999999994,
+    "boundary_refine_method": "librosa"
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "whisperx", "mfa"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 177.66830218808758,
+      "mfa": 177.61249623237134
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/qcom_mohamed_al_tablawi/surahs/96/timings.json",
+  "updated_at": "2026-03-01T01:02:38.510728+00:00"
+}

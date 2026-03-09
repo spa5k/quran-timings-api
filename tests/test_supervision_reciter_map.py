@@ -7,10 +7,19 @@ def test_supported_reciter_mapping_has_qcom_id() -> None:
     mapping = resolve_reciter_mapping("abdurrahmaan_as-sudays")
     assert mapping.qcom_word_supervision_supported is True
     assert mapping.qcom_recitation_id is not None
+    assert mapping.everyayah_subfolder == "Abdurrahmaan_As-Sudais_192kbps"
 
 
 def test_unsupported_reciter_branch_is_explicit() -> None:
     mapping = resolve_reciter_mapping("yasser_ad-dussary")
+    assert mapping.qcom_word_supervision_supported is False
+    assert mapping.qcom_recitation_id is None
+    assert mapping.everyayah_subfolder == "Yasser_Ad-Dussary_128kbps"
+
+
+def test_canonical_everyayah_reciter_mapping_is_source_scoped() -> None:
+    mapping = resolve_reciter_mapping("eya_abdurrahmaan_as_sudais_192kbps")
+    assert mapping.everyayah_subfolder == "Abdurrahmaan_As-Sudais_192kbps"
     assert mapping.qcom_word_supervision_supported is False
     assert mapping.qcom_recitation_id is None
 

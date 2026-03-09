@@ -1,0 +1,62 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "quranicaudio_abdullaah_3awwaad_al_juhaynee",
+    "name": "Abdullah Awad al-Juhani"
+  },
+  "surah": {
+    "number": 106,
+    "title": "Surah 106",
+    "ayah_count": 4,
+    "word_count": 17
+  },
+  "audio": {
+    "granularity": "none",
+    "primary_asset": null,
+    "fallback_order": [],
+    "assets": {},
+    "duration_s": 23.54968253968254,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.0008612086995748575,
+    "quantization_step_ms": 394.99999999999955,
+    "boundary_refine_method": "librosa"
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "mfa", "whisperx"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 144.95693956502126,
+      "mfa": 143.64325454868563
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/quranicaudio_abdullaah_3awwaad_al_juhaynee/surahs/106/timings.json",
+  "updated_at": "2026-03-06T09:12:37.949095+00:00"
+}

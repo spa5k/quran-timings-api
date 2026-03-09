@@ -1,0 +1,301 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "qcom_mohamed_al_tablawi",
+  "surah": 107,
+  "ayahs": [
+    {
+      "surah": 107,
+      "ayah": 1,
+      "start_s": 4.835,
+      "end_s": 8.28
+    },
+    {
+      "surah": 107,
+      "ayah": 2,
+      "start_s": 8.285,
+      "end_s": 11.54
+    },
+    {
+      "surah": 107,
+      "ayah": 3,
+      "start_s": 11.96,
+      "end_s": 15.325
+    },
+    {
+      "surah": 107,
+      "ayah": 4,
+      "start_s": 16.085,
+      "end_s": 18.03
+    },
+    {
+      "surah": 107,
+      "ayah": 5,
+      "start_s": 18.375,
+      "end_s": 22.18
+    },
+    {
+      "surah": 107,
+      "ayah": 6,
+      "start_s": 22.925,
+      "end_s": 25.4
+    },
+    {
+      "surah": 107,
+      "ayah": 7,
+      "start_s": 25.955,
+      "end_s": 27.915
+    }
+  ],
+  "words": [
+    {
+      "surah": 107,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَرَءَیۡتَ",
+      "text_norm": "ارءيت",
+      "start_s": 4.835,
+      "end_s": 5.56
+    },
+    {
+      "surah": 107,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلَّذِی",
+      "text_norm": "الذي",
+      "start_s": 5.83,
+      "end_s": 5.85
+    },
+    {
+      "surah": 107,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "یُكَذِّبُ",
+      "text_norm": "يكذب",
+      "start_s": 6.425,
+      "end_s": 6.985
+    },
+    {
+      "surah": 107,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "بِٱلدِّینِ",
+      "text_norm": "بالدين",
+      "start_s": 7.56,
+      "end_s": 8.28
+    },
+    {
+      "surah": 107,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَذَٰلِكَ",
+      "text_norm": "فذلك",
+      "start_s": 8.285,
+      "end_s": 9.025
+    },
+    {
+      "surah": 107,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلَّذِی",
+      "text_norm": "الذي",
+      "start_s": 9.19,
+      "end_s": 9.39
+    },
+    {
+      "surah": 107,
+      "ayah": 2,
+      "word_index_global": 7,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "یَدُعُّ",
+      "text_norm": "يدع",
+      "start_s": 9.77,
+      "end_s": 10.35
+    },
+    {
+      "surah": 107,
+      "ayah": 2,
+      "word_index_global": 8,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡیَتِیمَ",
+      "text_norm": "اليتيم",
+      "start_s": 10.635,
+      "end_s": 11.54
+    },
+    {
+      "surah": 107,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَا",
+      "text_norm": "ولا",
+      "start_s": 11.96,
+      "end_s": 12.21
+    },
+    {
+      "surah": 107,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَحُضُّ",
+      "text_norm": "يحض",
+      "start_s": 12.52,
+      "end_s": 12.945
+    },
+    {
+      "surah": 107,
+      "ayah": 3,
+      "word_index_global": 11,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَلَىٰ",
+      "text_norm": "علي",
+      "start_s": 13.46,
+      "end_s": 13.48
+    },
+    {
+      "surah": 107,
+      "ayah": 3,
+      "word_index_global": 12,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "طَعَامِ",
+      "text_norm": "طعام",
+      "start_s": 13.805,
+      "end_s": 14.48
+    },
+    {
+      "surah": 107,
+      "ayah": 3,
+      "word_index_global": 13,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلۡمِسۡكِینِ",
+      "text_norm": "المسكين",
+      "start_s": 14.535,
+      "end_s": 15.325
+    },
+    {
+      "surah": 107,
+      "ayah": 4,
+      "word_index_global": 14,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَوَیۡلࣱ",
+      "text_norm": "فويل",
+      "start_s": 16.085,
+      "end_s": 16.57
+    },
+    {
+      "surah": 107,
+      "ayah": 4,
+      "word_index_global": 15,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لِّلۡمُصَلِّینَ",
+      "text_norm": "للمصلين",
+      "start_s": 17.03,
+      "end_s": 18.03
+    },
+    {
+      "surah": 107,
+      "ayah": 5,
+      "word_index_global": 16,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ٱلَّذِینَ",
+      "text_norm": "الذين",
+      "start_s": 18.375,
+      "end_s": 18.44
+    },
+    {
+      "surah": 107,
+      "ayah": 5,
+      "word_index_global": 17,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "هُمۡ",
+      "text_norm": "هم",
+      "start_s": 19.12,
+      "end_s": 19.555
+    },
+    {
+      "surah": 107,
+      "ayah": 5,
+      "word_index_global": 18,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَن",
+      "text_norm": "عن",
+      "start_s": 19.56,
+      "end_s": 19.845
+    },
+    {
+      "surah": 107,
+      "ayah": 5,
+      "word_index_global": 19,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "صَلَاتِهِمۡ",
+      "text_norm": "صلاتهم",
+      "start_s": 20.39,
+      "end_s": 21.18
+    },
+    {
+      "surah": 107,
+      "ayah": 5,
+      "word_index_global": 20,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "سَاهُونَ",
+      "text_norm": "ساهون",
+      "start_s": 21.485,
+      "end_s": 22.18
+    },
+    {
+      "surah": 107,
+      "ayah": 6,
+      "word_index_global": 21,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ٱلَّذِینَ",
+      "text_norm": "الذين",
+      "start_s": 22.925,
+      "end_s": 23.015
+    },
+    {
+      "surah": 107,
+      "ayah": 6,
+      "word_index_global": 22,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "هُمۡ",
+      "text_norm": "هم",
+      "start_s": 23.805,
+      "end_s": 23.915
+    },
+    {
+      "surah": 107,
+      "ayah": 6,
+      "word_index_global": 23,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "یُرَاۤءُونَ",
+      "text_norm": "يراءون",
+      "start_s": 24.055,
+      "end_s": 25.4
+    },
+    {
+      "surah": 107,
+      "ayah": 7,
+      "word_index_global": 24,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَیَمۡنَعُونَ",
+      "text_norm": "ويمنعون",
+      "start_s": 25.955,
+      "end_s": 26.68
+    },
+    {
+      "surah": 107,
+      "ayah": 7,
+      "word_index_global": 25,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡمَاعُونَ",
+      "text_norm": "الماعون",
+      "start_s": 27.0,
+      "end_s": 27.915
+    }
+  ]
+}

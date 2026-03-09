@@ -1,0 +1,280 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "eya_abdurrahmaan_as_sudais_192kbps",
+    "name": "Abdurrahmaan As-Sudais"
+  },
+  "surah": {
+    "number": 66,
+    "title": "Surah 66",
+    "ayah_count": 12,
+    "word_count": 249
+  },
+  "audio": {
+    "granularity": "mixed",
+    "primary_asset": "qcom_surah",
+    "fallback_order": ["everyayah_ayah"],
+    "assets": {
+      "qcom_surah": {
+        "provider": "quran_com",
+        "level": "surah",
+        "kind": "resolver",
+        "url": "https://api.quran.com/api/v4/chapter_recitations/3/66",
+        "resolve_json_path": "$.audio_file.audio_url"
+      },
+      "everyayah_ayah": {
+        "provider": "everyayah",
+        "level": "ayah",
+        "kind": "template",
+        "template": "https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/066{ayah:03d}.mp3"
+      }
+    },
+    "duration_s": 278.0092290249433,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.0013271788754208422,
+    "quantization_step_ms": 474.999999999995,
+    "boundary_refine_method": "librosa",
+    "everyayah_stitch_eval": {
+      "expected_ayahs": 12,
+      "predicted_ayahs": 12,
+      "matched_ayahs": 12,
+      "coverage_vs_reference": 1.0,
+      "start_error_median_ms": 133.667,
+      "end_error_median_ms": 344.896,
+      "boundary_error_median_ms": 218.417,
+      "boundary_error_p95_ms": 772.423,
+      "boundary_hit_rate_20ms": 0.125,
+      "boundary_hit_rate_50ms": 0.125,
+      "boundary_hit_rate_80ms": 0.125,
+      "start_offset_s": 0.133667,
+      "offset_normalized_boundary_error_median_ms": 251.271,
+      "offset_normalized_boundary_error_p95_ms": 906.09,
+      "offset_normalized_hit_rate_20ms": 0.166667,
+      "offset_normalized_hit_rate_50ms": 0.291667,
+      "offset_normalized_hit_rate_80ms": 0.375,
+      "ayah_differences": [
+        {
+          "ayah": 1,
+          "pred_start_s": 0.15,
+          "pred_end_s": 11.295,
+          "ref_start_s": 0.0,
+          "ref_end_s": 11.598,
+          "delta_start_ms": 150.0,
+          "delta_end_ms": -303.375,
+          "abs_start_ms": 150.0,
+          "abs_end_ms": 303.375,
+          "norm_delta_start_ms": 16.333,
+          "norm_delta_end_ms": -437.042,
+          "norm_abs_start_ms": 16.333,
+          "norm_abs_end_ms": 437.042
+        },
+        {
+          "ayah": 2,
+          "pred_start_s": 11.73,
+          "pred_end_s": 20.215,
+          "ref_start_s": 11.598,
+          "ref_end_s": 20.454,
+          "delta_start_ms": 131.625,
+          "delta_end_ms": -238.875,
+          "abs_start_ms": 131.625,
+          "abs_end_ms": 238.875,
+          "norm_delta_start_ms": -2.042,
+          "norm_delta_end_ms": -372.542,
+          "norm_abs_start_ms": 2.042,
+          "norm_abs_end_ms": 372.542
+        },
+        {
+          "ayah": 3,
+          "pred_start_s": 20.465,
+          "pred_end_s": 45.445,
+          "ref_start_s": 20.454,
+          "ref_end_s": 45.714,
+          "delta_start_ms": 11.125,
+          "delta_end_ms": -269.292,
+          "abs_start_ms": 11.125,
+          "abs_end_ms": 269.292,
+          "norm_delta_start_ms": -122.542,
+          "norm_delta_end_ms": -402.959,
+          "norm_abs_start_ms": 122.542,
+          "norm_abs_end_ms": 402.959
+        },
+        {
+          "ayah": 4,
+          "pred_start_s": 45.85,
+          "pred_end_s": 66.56,
+          "ref_start_s": 45.714,
+          "ref_end_s": 66.873,
+          "delta_start_ms": 135.708,
+          "delta_end_ms": -313.459,
+          "abs_start_ms": 135.708,
+          "abs_end_ms": 313.459,
+          "norm_delta_start_ms": 2.041,
+          "norm_delta_end_ms": -447.125,
+          "norm_abs_start_ms": 2.041,
+          "norm_abs_end_ms": 447.125
+        },
+        {
+          "ayah": 5,
+          "pred_start_s": 67.06,
+          "pred_end_s": 94.84,
+          "ref_start_s": 66.873,
+          "ref_end_s": 95.216,
+          "delta_start_ms": 186.541,
+          "delta_end_ms": -376.334,
+          "abs_start_ms": 186.541,
+          "abs_end_ms": 376.334,
+          "norm_delta_start_ms": 52.875,
+          "norm_delta_end_ms": -510.001,
+          "norm_abs_start_ms": 52.875,
+          "norm_abs_end_ms": 510.001
+        },
+        {
+          "ayah": 6,
+          "pred_start_s": 95.22,
+          "pred_end_s": 120.68,
+          "ref_start_s": 95.216,
+          "ref_end_s": 121.182,
+          "delta_start_ms": 3.666,
+          "delta_end_ms": -502.042,
+          "abs_start_ms": 3.666,
+          "abs_end_ms": 502.042,
+          "norm_delta_start_ms": -130.001,
+          "norm_delta_end_ms": -635.708,
+          "norm_abs_start_ms": 130.001,
+          "norm_abs_end_ms": 635.708
+        },
+        {
+          "ayah": 7,
+          "pred_start_s": 121.285,
+          "pred_end_s": 132.05,
+          "ref_start_s": 121.182,
+          "ref_end_s": 132.702,
+          "delta_start_ms": 102.958,
+          "delta_end_ms": -652.042,
+          "abs_start_ms": 102.958,
+          "abs_end_ms": 652.042,
+          "norm_delta_start_ms": -30.709,
+          "norm_delta_end_ms": -785.708,
+          "norm_abs_start_ms": 30.709,
+          "norm_abs_end_ms": 785.708
+        },
+        {
+          "ayah": 8,
+          "pred_start_s": 132.9,
+          "pred_end_s": 189.43,
+          "ref_start_s": 132.702,
+          "ref_end_s": 190.224,
+          "delta_start_ms": 197.958,
+          "delta_end_ms": -793.667,
+          "abs_start_ms": 197.958,
+          "abs_end_ms": 793.667,
+          "norm_delta_start_ms": 64.291,
+          "norm_delta_end_ms": -927.334,
+          "norm_abs_start_ms": 64.291,
+          "norm_abs_end_ms": 927.334
+        },
+        {
+          "ayah": 9,
+          "pred_start_s": 190.38,
+          "pred_end_s": 204.13,
+          "ref_start_s": 190.224,
+          "ref_end_s": 204.539,
+          "delta_start_ms": 156.333,
+          "delta_end_ms": -408.792,
+          "abs_start_ms": 156.333,
+          "abs_end_ms": 408.792,
+          "norm_delta_start_ms": 22.666,
+          "norm_delta_end_ms": -542.459,
+          "norm_abs_start_ms": 22.666,
+          "norm_abs_end_ms": 542.459
+        },
+        {
+          "ayah": 10,
+          "pred_start_s": 204.55,
+          "pred_end_s": 232.345,
+          "ref_start_s": 204.539,
+          "ref_end_s": 232.62,
+          "delta_start_ms": 11.208,
+          "delta_end_ms": -275.417,
+          "abs_start_ms": 11.208,
+          "abs_end_ms": 275.417,
+          "norm_delta_start_ms": -122.458,
+          "norm_delta_end_ms": -409.084,
+          "norm_abs_start_ms": 122.458,
+          "norm_abs_end_ms": 409.084
+        },
+        {
+          "ayah": 11,
+          "pred_start_s": 232.775,
+          "pred_end_s": 257.59,
+          "ref_start_s": 232.62,
+          "ref_end_s": 257.855,
+          "delta_start_ms": 154.583,
+          "delta_end_ms": -264.709,
+          "abs_start_ms": 154.583,
+          "abs_end_ms": 264.709,
+          "norm_delta_start_ms": 20.916,
+          "norm_delta_end_ms": -398.376,
+          "norm_abs_start_ms": 20.916,
+          "norm_abs_end_ms": 398.376
+        },
+        {
+          "ayah": 12,
+          "pred_start_s": 257.98,
+          "pred_end_s": 277.1,
+          "ref_start_s": 257.855,
+          "ref_end_s": 278.021,
+          "delta_start_ms": 125.291,
+          "delta_end_ms": -921.251,
+          "abs_start_ms": 125.291,
+          "abs_end_ms": 921.251,
+          "norm_delta_start_ms": -8.375,
+          "norm_delta_end_ms": -1054.917,
+          "norm_abs_start_ms": 8.375,
+          "norm_abs_end_ms": 1054.917
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "whisperx", "mfa"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 199.93951585543934,
+      "mfa": 197.8244782646845
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [
+      "everyayah:subfolder=Abdurrahmaan_As-Sudais_192kbps:surah=66:scope=full_surah",
+      "qcom:qcom_chapter:3:shape=3_field"
+    ],
+    "segment_source_type": "qcom_chapter"
+  },
+  "timings_endpoint": "/data/reciters/eya_abdurrahmaan_as_sudais_192kbps/surahs/66/timings.json",
+  "updated_at": "2026-03-09T19:55:12.748944+00:00"
+}

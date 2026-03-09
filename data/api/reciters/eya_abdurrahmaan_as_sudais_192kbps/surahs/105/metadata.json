@@ -1,0 +1,175 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "eya_abdurrahmaan_as_sudais_192kbps",
+    "name": "Abdurrahmaan As-Sudais"
+  },
+  "surah": {
+    "number": 105,
+    "title": "Surah 105",
+    "ayah_count": 5,
+    "word_count": 23
+  },
+  "audio": {
+    "granularity": "mixed",
+    "primary_asset": "qcom_surah",
+    "fallback_order": ["everyayah_ayah"],
+    "assets": {
+      "qcom_surah": {
+        "provider": "quran_com",
+        "level": "surah",
+        "kind": "resolver",
+        "url": "https://api.quran.com/api/v4/chapter_recitations/3/105",
+        "resolve_json_path": "$.audio_file.audio_url"
+      },
+      "everyayah_ayah": {
+        "provider": "everyayah",
+        "level": "ayah",
+        "kind": "template",
+        "template": "https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/105{ayah:03d}.mp3"
+      }
+    },
+    "duration_s": 30.96922902494331,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.016608862806521536,
+    "quantization_step_ms": 495.0000000000001,
+    "boundary_refine_method": "librosa",
+    "everyayah_stitch_eval": {
+      "expected_ayahs": 5,
+      "predicted_ayahs": 5,
+      "matched_ayahs": 5,
+      "coverage_vs_reference": 1.0,
+      "start_error_median_ms": 20.291,
+      "end_error_median_ms": 504.709,
+      "boundary_error_median_ms": 285.0,
+      "boundary_error_p95_ms": 668.169,
+      "boundary_hit_rate_20ms": 0.2,
+      "boundary_hit_rate_50ms": 0.4,
+      "boundary_hit_rate_80ms": 0.4,
+      "start_offset_s": 0.020291,
+      "offset_normalized_boundary_error_median_ms": 285.0,
+      "offset_normalized_boundary_error_p95_ms": 688.46,
+      "offset_normalized_hit_rate_20ms": 0.3,
+      "offset_normalized_hit_rate_50ms": 0.4,
+      "offset_normalized_hit_rate_80ms": 0.5,
+      "ayah_differences": [
+        {
+          "ayah": 1,
+          "pred_start_s": 0.0,
+          "pred_end_s": 5.545,
+          "ref_start_s": 0.0,
+          "ref_end_s": 6.034,
+          "delta_start_ms": 0.0,
+          "delta_end_ms": -489.292,
+          "abs_start_ms": 0.0,
+          "abs_end_ms": 489.292,
+          "norm_delta_start_ms": -20.291,
+          "norm_delta_end_ms": -509.583,
+          "norm_abs_start_ms": 20.291,
+          "norm_abs_end_ms": 509.583
+        },
+        {
+          "ayah": 2,
+          "pred_start_s": 6.04,
+          "pred_end_s": 10.415,
+          "ref_start_s": 6.034,
+          "ref_end_s": 10.893,
+          "delta_start_ms": 5.708,
+          "delta_end_ms": -478.084,
+          "abs_start_ms": 5.708,
+          "abs_end_ms": 478.084,
+          "norm_delta_start_ms": -14.583,
+          "norm_delta_end_ms": -498.375,
+          "norm_abs_start_ms": 14.583,
+          "norm_abs_end_ms": 498.375
+        },
+        {
+          "ayah": 3,
+          "pred_start_s": 10.985,
+          "pred_end_s": 15.935,
+          "ref_start_s": 10.893,
+          "ref_end_s": 16.483,
+          "delta_start_ms": 91.916,
+          "delta_end_ms": -548.292,
+          "abs_start_ms": 91.916,
+          "abs_end_ms": 548.292,
+          "norm_delta_start_ms": 71.625,
+          "norm_delta_end_ms": -568.583,
+          "norm_abs_start_ms": 71.625,
+          "norm_abs_end_ms": 568.583
+        },
+        {
+          "ayah": 4,
+          "pred_start_s": 16.51,
+          "pred_end_s": 23.11,
+          "ref_start_s": 16.483,
+          "ref_end_s": 23.615,
+          "delta_start_ms": 26.708,
+          "delta_end_ms": -504.709,
+          "abs_start_ms": 26.708,
+          "abs_end_ms": 504.709,
+          "norm_delta_start_ms": 6.417,
+          "norm_delta_end_ms": -525.0,
+          "norm_abs_start_ms": 6.417,
+          "norm_abs_end_ms": 525.0
+        },
+        {
+          "ayah": 5,
+          "pred_start_s": 23.635,
+          "pred_end_s": 30.215,
+          "ref_start_s": 23.615,
+          "ref_end_s": 30.981,
+          "delta_start_ms": 20.291,
+          "delta_end_ms": -766.251,
+          "abs_start_ms": 20.291,
+          "abs_end_ms": 766.251,
+          "norm_delta_start_ms": 0.0,
+          "norm_delta_end_ms": -786.542,
+          "norm_abs_start_ms": 0.0,
+          "norm_abs_end_ms": 786.542
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "whisperx", "mfa"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 197.12589767246413,
+      "mfa": 196.95640714388054
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [
+      "everyayah:subfolder=Abdurrahmaan_As-Sudais_192kbps:surah=105:scope=full_surah",
+      "qcom:qcom_chapter:3:shape=3_field"
+    ],
+    "segment_source_type": "qcom_chapter"
+  },
+  "timings_endpoint": "/data/reciters/eya_abdurrahmaan_as_sudais_192kbps/surahs/105/timings.json",
+  "updated_at": "2026-03-09T19:55:12.748944+00:00"
+}

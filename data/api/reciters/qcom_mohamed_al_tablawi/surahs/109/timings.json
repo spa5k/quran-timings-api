@@ -1,0 +1,305 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "qcom_mohamed_al_tablawi",
+  "surah": 109,
+  "ayahs": [
+    {
+      "surah": 109,
+      "ayah": 1,
+      "start_s": 4.845,
+      "end_s": 8.41
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "start_s": 8.64,
+      "end_s": 11.585
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "start_s": 12.18,
+      "end_s": 17.715
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "start_s": 18.415,
+      "end_s": 23.615
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "start_s": 23.96,
+      "end_s": 29.475
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "start_s": 29.88,
+      "end_s": 32.325
+    }
+  ],
+  "words": [
+    {
+      "surah": 109,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلۡ",
+      "text_norm": "قل",
+      "start_s": 4.845,
+      "end_s": 4.864999999999999
+    },
+    {
+      "surah": 109,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَـٰۤأَیُّهَا",
+      "text_norm": "يايها",
+      "start_s": 5.48,
+      "end_s": 7.185
+    },
+    {
+      "surah": 109,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡكَـٰفِرُونَ",
+      "text_norm": "الكفرون",
+      "start_s": 7.395,
+      "end_s": 8.41
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لَاۤ",
+      "text_norm": "لا",
+      "start_s": 8.64,
+      "end_s": 8.92
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعۡبُدُ",
+      "text_norm": "اعبد",
+      "start_s": 9.575,
+      "end_s": 10.15
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مَا",
+      "text_norm": "ما",
+      "start_s": 10.325,
+      "end_s": 10.365
+    },
+    {
+      "surah": 109,
+      "ayah": 2,
+      "word_index_global": 7,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "تَعۡبُدُونَ",
+      "text_norm": "تعبدون",
+      "start_s": 10.735,
+      "end_s": 11.585
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَاۤ",
+      "text_norm": "ولا",
+      "start_s": 12.18,
+      "end_s": 12.2
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنتُمۡ",
+      "text_norm": "انتم",
+      "start_s": 13.405,
+      "end_s": 14.285
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَـٰبِدُونَ",
+      "text_norm": "عبدون",
+      "start_s": 14.525,
+      "end_s": 15.54
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 11,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَاۤ",
+      "text_norm": "ما",
+      "start_s": 15.745,
+      "end_s": 15.82
+    },
+    {
+      "surah": 109,
+      "ayah": 3,
+      "word_index_global": 12,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَعۡبُدُ",
+      "text_norm": "اعبد",
+      "start_s": 16.94,
+      "end_s": 17.715
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 13,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَاۤ",
+      "text_norm": "ولا",
+      "start_s": 18.415,
+      "end_s": 18.435
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 14,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنَا۠",
+      "text_norm": "انا",
+      "start_s": 19.92,
+      "end_s": 19.94
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 15,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَابِدࣱ",
+      "text_norm": "عابد",
+      "start_s": 20.295,
+      "end_s": 20.92
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 16,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَّا",
+      "text_norm": "ما",
+      "start_s": 21.98,
+      "end_s": 22.25
+    },
+    {
+      "surah": 109,
+      "ayah": 4,
+      "word_index_global": 17,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "عَبَدتُّمۡ",
+      "text_norm": "عبدتم",
+      "start_s": 22.63,
+      "end_s": 23.615
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 18,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَلَاۤ",
+      "text_norm": "ولا",
+      "start_s": 23.96,
+      "end_s": 23.98
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 19,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَنتُمۡ",
+      "text_norm": "انتم",
+      "start_s": 25.425,
+      "end_s": 26.39
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 20,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَـٰبِدُونَ",
+      "text_norm": "عبدون",
+      "start_s": 26.52,
+      "end_s": 27.52
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 21,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَاۤ",
+      "text_norm": "ما",
+      "start_s": 27.73,
+      "end_s": 27.8
+    },
+    {
+      "surah": 109,
+      "ayah": 5,
+      "word_index_global": 22,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَعۡبُدُ",
+      "text_norm": "اعبد",
+      "start_s": 28.865,
+      "end_s": 29.475
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 23,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لَكُمۡ",
+      "text_norm": "لكم",
+      "start_s": 29.88,
+      "end_s": 29.915
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 24,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "دِینُكُمۡ",
+      "text_norm": "دينكم",
+      "start_s": 30.305,
+      "end_s": 30.925
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 25,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَلِیَ",
+      "text_norm": "ولي",
+      "start_s": 31.455,
+      "end_s": 31.88
+    },
+    {
+      "surah": 109,
+      "ayah": 6,
+      "word_index_global": 26,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "دِینِ",
+      "text_norm": "دين",
+      "start_s": 31.915,
+      "end_s": 32.325
+    }
+  ]
+}

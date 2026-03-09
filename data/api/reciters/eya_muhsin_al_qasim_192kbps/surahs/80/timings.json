@@ -1,0 +1,1717 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "eya_muhsin_al_qasim_192kbps",
+  "surah": 80,
+  "ayahs": [
+    {
+      "surah": 80,
+      "ayah": 1,
+      "start_s": 0.235,
+      "end_s": 1.56,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "001",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080001.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 2,
+      "start_s": 2.84,
+      "end_s": 6.215,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "002",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080002.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 3,
+      "start_s": 6.555,
+      "end_s": 10.28,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "003",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080003.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 4,
+      "start_s": 11.135,
+      "end_s": 14.885,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "004",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080004.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 5,
+      "start_s": 15.86,
+      "end_s": 17.64,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "005",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080005.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 6,
+      "start_s": 18.065,
+      "end_s": 20.23,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "006",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080006.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 7,
+      "start_s": 20.92,
+      "end_s": 23.735,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "007",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080007.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 8,
+      "start_s": 24.36,
+      "end_s": 28.75,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "008",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080008.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 9,
+      "start_s": 28.835,
+      "end_s": 29.81,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "009",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080009.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 10,
+      "start_s": 30.245,
+      "end_s": 32.745,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "010",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080010.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 11,
+      "start_s": 33.205,
+      "end_s": 36.9,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "011",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080011.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 12,
+      "start_s": 37.15,
+      "end_s": 40.2,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "012",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080012.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 13,
+      "start_s": 40.595,
+      "end_s": 43.0,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "013",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080013.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 14,
+      "start_s": 43.165,
+      "end_s": 45.8,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "014",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080014.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 15,
+      "start_s": 45.885,
+      "end_s": 47.785,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "015",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080015.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 16,
+      "start_s": 47.835,
+      "end_s": 50.36,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "016",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080016.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 17,
+      "start_s": 50.405,
+      "end_s": 54.655,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "017",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080017.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 18,
+      "start_s": 54.94,
+      "end_s": 57.605,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "018",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080018.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 19,
+      "start_s": 57.805,
+      "end_s": 61.64,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "019",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080019.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 20,
+      "start_s": 61.815,
+      "end_s": 64.52,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "020",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080020.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 21,
+      "start_s": 64.8,
+      "end_s": 68.035,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "021",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080021.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 22,
+      "start_s": 68.12,
+      "end_s": 72.875,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "022",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080022.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 23,
+      "start_s": 73.02,
+      "end_s": 77.625,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "023",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080023.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 24,
+      "start_s": 77.925,
+      "end_s": 82.03,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "024",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080024.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 25,
+      "start_s": 82.28,
+      "end_s": 85.92,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "025",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080025.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 26,
+      "start_s": 86.77,
+      "end_s": 89.79,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "026",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080026.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 27,
+      "start_s": 90.575,
+      "end_s": 93.555,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "027",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080027.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 28,
+      "start_s": 93.99,
+      "end_s": 95.805,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "028",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080028.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 29,
+      "start_s": 96.435,
+      "end_s": 98.965,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "029",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080029.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 30,
+      "start_s": 99.64,
+      "end_s": 101.74,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "030",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080030.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 31,
+      "start_s": 102.595,
+      "end_s": 104.845,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "031",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080031.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 32,
+      "start_s": 105.58,
+      "end_s": 108.595,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "032",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080032.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 33,
+      "start_s": 109.33,
+      "end_s": 115.15,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "033",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080033.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 34,
+      "start_s": 115.48,
+      "end_s": 118.815,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "034",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080034.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 35,
+      "start_s": 119.08,
+      "end_s": 121.19,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "035",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080035.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 36,
+      "start_s": 121.64,
+      "end_s": 124.06,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "036",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080036.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 37,
+      "start_s": 124.32,
+      "end_s": 131.635,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "037",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080037.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 38,
+      "start_s": 131.92,
+      "end_s": 135.72,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "038",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080038.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 39,
+      "start_s": 135.805,
+      "end_s": 138.65,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "039",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080039.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 40,
+      "start_s": 138.92,
+      "end_s": 143.48,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "040",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080040.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 41,
+      "start_s": 143.575,
+      "end_s": 145.59,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "041",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080041.mp3"
+    },
+    {
+      "surah": 80,
+      "ayah": 42,
+      "start_s": 145.815,
+      "end_s": 150.2,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "042",
+      "audio_url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/080042.mp3"
+    }
+  ],
+  "words": [
+    {
+      "surah": 80,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "عَبَسَ",
+      "text_norm": "عبس",
+      "start_s": 0.235,
+      "end_s": 0.46
+    },
+    {
+      "surah": 80,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "وَتَوَلَّىٰۤ",
+      "text_norm": "وتولي",
+      "start_s": 0.83,
+      "end_s": 1.56
+    },
+    {
+      "surah": 80,
+      "ayah": 2,
+      "word_index_global": 3,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَن",
+      "text_norm": "ان",
+      "start_s": 2.84,
+      "end_s": 2.86
+    },
+    {
+      "surah": 80,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "جَاۤءَهُ",
+      "text_norm": "جاءه",
+      "start_s": 3.985,
+      "end_s": 5.55
+    },
+    {
+      "surah": 80,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡأَعۡمَىٰ",
+      "text_norm": "الاعمي",
+      "start_s": 5.73,
+      "end_s": 6.215
+    },
+    {
+      "surah": 80,
+      "ayah": 3,
+      "word_index_global": 6,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمَا",
+      "text_norm": "وما",
+      "start_s": 6.555,
+      "end_s": 6.76
+    },
+    {
+      "surah": 80,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یُدۡرِیكَ",
+      "text_norm": "يدريك",
+      "start_s": 7.12,
+      "end_s": 7.845
+    },
+    {
+      "surah": 80,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "لَعَلَّهُۥ",
+      "text_norm": "لعله",
+      "start_s": 8.035,
+      "end_s": 8.835
+    },
+    {
+      "surah": 80,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "یَزَّكَّىٰۤ",
+      "text_norm": "يزكي",
+      "start_s": 9.02,
+      "end_s": 10.28
+    },
+    {
+      "surah": 80,
+      "ayah": 4,
+      "word_index_global": 10,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَوۡ",
+      "text_norm": "او",
+      "start_s": 11.135,
+      "end_s": 11.155
+    },
+    {
+      "surah": 80,
+      "ayah": 4,
+      "word_index_global": 11,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَذَّكَّرُ",
+      "text_norm": "يذكر",
+      "start_s": 11.4,
+      "end_s": 12.145
+    },
+    {
+      "surah": 80,
+      "ayah": 4,
+      "word_index_global": 12,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فَتَنفَعَهُ",
+      "text_norm": "فتنفعه",
+      "start_s": 12.65,
+      "end_s": 14.12
+    },
+    {
+      "surah": 80,
+      "ayah": 4,
+      "word_index_global": 13,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلذِّكۡرَىٰۤ",
+      "text_norm": "الذكري",
+      "start_s": 14.2,
+      "end_s": 14.885
+    },
+    {
+      "surah": 80,
+      "ayah": 5,
+      "word_index_global": 14,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَمَّا",
+      "text_norm": "اما",
+      "start_s": 15.86,
+      "end_s": 16.08
+    },
+    {
+      "surah": 80,
+      "ayah": 5,
+      "word_index_global": 15,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "مَنِ",
+      "text_norm": "من",
+      "start_s": 16.71,
+      "end_s": 16.73
+    },
+    {
+      "surah": 80,
+      "ayah": 5,
+      "word_index_global": 16,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱسۡتَغۡنَىٰ",
+      "text_norm": "استغني",
+      "start_s": 17.22,
+      "end_s": 17.64
+    },
+    {
+      "surah": 80,
+      "ayah": 6,
+      "word_index_global": 17,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَأَنتَ",
+      "text_norm": "فانت",
+      "start_s": 18.065,
+      "end_s": 18.85
+    },
+    {
+      "surah": 80,
+      "ayah": 6,
+      "word_index_global": 18,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لَهُۥ",
+      "text_norm": "له",
+      "start_s": 19.055,
+      "end_s": 19.075
+    },
+    {
+      "surah": 80,
+      "ayah": 6,
+      "word_index_global": 19,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "تَصَدَّىٰ",
+      "text_norm": "تصدي",
+      "start_s": 19.585,
+      "end_s": 20.23
+    },
+    {
+      "surah": 80,
+      "ayah": 7,
+      "word_index_global": 20,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمَا",
+      "text_norm": "وما",
+      "start_s": 20.92,
+      "end_s": 20.945
+    },
+    {
+      "surah": 80,
+      "ayah": 7,
+      "word_index_global": 21,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "عَلَیۡكَ",
+      "text_norm": "عليك",
+      "start_s": 21.16,
+      "end_s": 21.415
+    },
+    {
+      "surah": 80,
+      "ayah": 7,
+      "word_index_global": 22,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "أَلَّا",
+      "text_norm": "الا",
+      "start_s": 22.075,
+      "end_s": 22.095
+    },
+    {
+      "surah": 80,
+      "ayah": 7,
+      "word_index_global": 23,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "یَزَّكَّىٰ",
+      "text_norm": "يزكي",
+      "start_s": 22.71,
+      "end_s": 23.735
+    },
+    {
+      "surah": 80,
+      "ayah": 8,
+      "word_index_global": 24,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَأَمَّا",
+      "text_norm": "واما",
+      "start_s": 24.36,
+      "end_s": 24.875
+    },
+    {
+      "surah": 80,
+      "ayah": 8,
+      "word_index_global": 25,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "مَن",
+      "text_norm": "من",
+      "start_s": 25.62,
+      "end_s": 25.64
+    },
+    {
+      "surah": 80,
+      "ayah": 8,
+      "word_index_global": 26,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "جَاۤءَكَ",
+      "text_norm": "جاءك",
+      "start_s": 26.445,
+      "end_s": 27.805
+    },
+    {
+      "surah": 80,
+      "ayah": 8,
+      "word_index_global": 27,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "یَسۡعَىٰ",
+      "text_norm": "يسعي",
+      "start_s": 28.055,
+      "end_s": 28.75
+    },
+    {
+      "surah": 80,
+      "ayah": 9,
+      "word_index_global": 28,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَهُوَ",
+      "text_norm": "وهو",
+      "start_s": 28.835,
+      "end_s": 28.855
+    },
+    {
+      "surah": 80,
+      "ayah": 9,
+      "word_index_global": 29,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَخۡشَىٰ",
+      "text_norm": "يخشي",
+      "start_s": 29.445,
+      "end_s": 29.81
+    },
+    {
+      "surah": 80,
+      "ayah": 10,
+      "word_index_global": 30,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَأَنتَ",
+      "text_norm": "فانت",
+      "start_s": 30.245,
+      "end_s": 31.13
+    },
+    {
+      "surah": 80,
+      "ayah": 10,
+      "word_index_global": 31,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "عَنۡهُ",
+      "text_norm": "عنه",
+      "start_s": 31.435,
+      "end_s": 31.775
+    },
+    {
+      "surah": 80,
+      "ayah": 10,
+      "word_index_global": 32,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "تَلَهَّىٰ",
+      "text_norm": "تلهي",
+      "start_s": 31.89,
+      "end_s": 32.745
+    },
+    {
+      "surah": 80,
+      "ayah": 11,
+      "word_index_global": 33,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "كَلَّاۤ",
+      "text_norm": "كلا",
+      "start_s": 33.205,
+      "end_s": 33.64
+    },
+    {
+      "surah": 80,
+      "ayah": 11,
+      "word_index_global": 34,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "إِنَّهَا",
+      "text_norm": "انها",
+      "start_s": 34.915,
+      "end_s": 35.755
+    },
+    {
+      "surah": 80,
+      "ayah": 11,
+      "word_index_global": 35,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "تَذۡكِرَةࣱ",
+      "text_norm": "تذكرة",
+      "start_s": 36.035,
+      "end_s": 36.9
+    },
+    {
+      "surah": 80,
+      "ayah": 12,
+      "word_index_global": 36,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَمَن",
+      "text_norm": "فمن",
+      "start_s": 37.15,
+      "end_s": 37.51
+    },
+    {
+      "surah": 80,
+      "ayah": 12,
+      "word_index_global": 37,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَاۤءَ",
+      "text_norm": "شاء",
+      "start_s": 38.15,
+      "end_s": 39.3
+    },
+    {
+      "surah": 80,
+      "ayah": 12,
+      "word_index_global": 38,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ذَكَرَهُۥ",
+      "text_norm": "ذكره",
+      "start_s": 39.76,
+      "end_s": 40.2
+    },
+    {
+      "surah": 80,
+      "ayah": 13,
+      "word_index_global": 39,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فِی",
+      "text_norm": "في",
+      "start_s": 40.595,
+      "end_s": 40.615
+    },
+    {
+      "surah": 80,
+      "ayah": 13,
+      "word_index_global": 40,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "صُحُفࣲ",
+      "text_norm": "صحف",
+      "start_s": 41.04,
+      "end_s": 41.545
+    },
+    {
+      "surah": 80,
+      "ayah": 13,
+      "word_index_global": 41,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مُّكَرَّمَةࣲ",
+      "text_norm": "مكرمة",
+      "start_s": 41.815,
+      "end_s": 43.0
+    },
+    {
+      "surah": 80,
+      "ayah": 14,
+      "word_index_global": 42,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مَّرۡفُوعَةࣲ",
+      "text_norm": "مرفوعة",
+      "start_s": 43.165,
+      "end_s": 44.065
+    },
+    {
+      "surah": 80,
+      "ayah": 14,
+      "word_index_global": 43,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "مُّطَهَّرَةِۭ",
+      "text_norm": "مطهرة",
+      "start_s": 44.615,
+      "end_s": 45.8
+    },
+    {
+      "surah": 80,
+      "ayah": 15,
+      "word_index_global": 44,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "بِأَیۡدِی",
+      "text_norm": "بايدي",
+      "start_s": 45.885,
+      "end_s": 46.535
+    },
+    {
+      "surah": 80,
+      "ayah": 15,
+      "word_index_global": 45,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "سَفَرَةࣲ",
+      "text_norm": "سفرة",
+      "start_s": 47.02,
+      "end_s": 47.785
+    },
+    {
+      "surah": 80,
+      "ayah": 16,
+      "word_index_global": 46,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "كِرَامِۭ",
+      "text_norm": "كرام",
+      "start_s": 47.835,
+      "end_s": 48.5
+    },
+    {
+      "surah": 80,
+      "ayah": 16,
+      "word_index_global": 47,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "بَرَرَةࣲ",
+      "text_norm": "بررة",
+      "start_s": 49.55,
+      "end_s": 50.36
+    },
+    {
+      "surah": 80,
+      "ayah": 17,
+      "word_index_global": 48,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُتِلَ",
+      "text_norm": "قتل",
+      "start_s": 50.405,
+      "end_s": 50.69
+    },
+    {
+      "surah": 80,
+      "ayah": 17,
+      "word_index_global": 49,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡإِنسَـٰنُ",
+      "text_norm": "الانسن",
+      "start_s": 51.245,
+      "end_s": 52.485
+    },
+    {
+      "surah": 80,
+      "ayah": 17,
+      "word_index_global": 50,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مَاۤ",
+      "text_norm": "ما",
+      "start_s": 52.735,
+      "end_s": 52.985
+    },
+    {
+      "surah": 80,
+      "ayah": 17,
+      "word_index_global": 51,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "أَكۡفَرَهُۥ",
+      "text_norm": "اكفره",
+      "start_s": 53.78,
+      "end_s": 54.655
+    },
+    {
+      "surah": 80,
+      "ayah": 18,
+      "word_index_global": 52,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مِنۡ",
+      "text_norm": "من",
+      "start_s": 54.94,
+      "end_s": 55.005
+    },
+    {
+      "surah": 80,
+      "ayah": 18,
+      "word_index_global": 53,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَیِّ",
+      "text_norm": "اي",
+      "start_s": 55.275,
+      "end_s": 55.535
+    },
+    {
+      "surah": 80,
+      "ayah": 18,
+      "word_index_global": 54,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "شَیۡءٍ",
+      "text_norm": "شيء",
+      "start_s": 55.97,
+      "end_s": 55.99
+    },
+    {
+      "surah": 80,
+      "ayah": 18,
+      "word_index_global": 55,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "خَلَقَهُۥ",
+      "text_norm": "خلقه",
+      "start_s": 56.79,
+      "end_s": 57.605
+    },
+    {
+      "surah": 80,
+      "ayah": 19,
+      "word_index_global": 56,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مِن",
+      "text_norm": "من",
+      "start_s": 57.805,
+      "end_s": 58.0
+    },
+    {
+      "surah": 80,
+      "ayah": 19,
+      "word_index_global": 57,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "نُّطۡفَةٍ",
+      "text_norm": "نطفة",
+      "start_s": 58.375,
+      "end_s": 59.145
+    },
+    {
+      "surah": 80,
+      "ayah": 19,
+      "word_index_global": 58,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "خَلَقَهُۥ",
+      "text_norm": "خلقه",
+      "start_s": 59.56,
+      "end_s": 60.235
+    },
+    {
+      "surah": 80,
+      "ayah": 19,
+      "word_index_global": 59,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "فَقَدَّرَهُۥ",
+      "text_norm": "فقدره",
+      "start_s": 60.485,
+      "end_s": 61.64
+    },
+    {
+      "surah": 80,
+      "ayah": 20,
+      "word_index_global": 60,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ثُمَّ",
+      "text_norm": "ثم",
+      "start_s": 61.815,
+      "end_s": 61.88
+    },
+    {
+      "surah": 80,
+      "ayah": 20,
+      "word_index_global": 61,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلسَّبِیلَ",
+      "text_norm": "السبيل",
+      "start_s": 62.75,
+      "end_s": 63.375
+    },
+    {
+      "surah": 80,
+      "ayah": 20,
+      "word_index_global": 62,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "یَسَّرَهُۥ",
+      "text_norm": "يسره",
+      "start_s": 63.72,
+      "end_s": 64.52
+    },
+    {
+      "surah": 80,
+      "ayah": 21,
+      "word_index_global": 63,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ثُمَّ",
+      "text_norm": "ثم",
+      "start_s": 64.8,
+      "end_s": 64.82
+    },
+    {
+      "surah": 80,
+      "ayah": 21,
+      "word_index_global": 64,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَمَاتَهُۥ",
+      "text_norm": "اماته",
+      "start_s": 65.705,
+      "end_s": 66.6
+    },
+    {
+      "surah": 80,
+      "ayah": 21,
+      "word_index_global": 65,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "فَأَقۡبَرَهُۥ",
+      "text_norm": "فاقبره",
+      "start_s": 66.885,
+      "end_s": 68.035
+    },
+    {
+      "surah": 80,
+      "ayah": 22,
+      "word_index_global": 66,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ثُمَّ",
+      "text_norm": "ثم",
+      "start_s": 68.12,
+      "end_s": 68.41
+    },
+    {
+      "surah": 80,
+      "ayah": 22,
+      "word_index_global": 67,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "إِذَا",
+      "text_norm": "اذا",
+      "start_s": 69.055,
+      "end_s": 69.56
+    },
+    {
+      "surah": 80,
+      "ayah": 22,
+      "word_index_global": 68,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "شَاۤءَ",
+      "text_norm": "شاء",
+      "start_s": 69.785,
+      "end_s": 71.355
+    },
+    {
+      "surah": 80,
+      "ayah": 22,
+      "word_index_global": 69,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "أَنشَرَهُۥ",
+      "text_norm": "انشره",
+      "start_s": 71.565,
+      "end_s": 72.875
+    },
+    {
+      "surah": 80,
+      "ayah": 23,
+      "word_index_global": 70,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "كَلَّا",
+      "text_norm": "كلا",
+      "start_s": 73.02,
+      "end_s": 73.485
+    },
+    {
+      "surah": 80,
+      "ayah": 23,
+      "word_index_global": 71,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لَمَّا",
+      "text_norm": "لما",
+      "start_s": 74.03,
+      "end_s": 74.05
+    },
+    {
+      "surah": 80,
+      "ayah": 23,
+      "word_index_global": 72,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "یَقۡضِ",
+      "text_norm": "يقض",
+      "start_s": 74.99,
+      "end_s": 75.45
+    },
+    {
+      "surah": 80,
+      "ayah": 23,
+      "word_index_global": 73,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مَاۤ",
+      "text_norm": "ما",
+      "start_s": 75.64,
+      "end_s": 75.835
+    },
+    {
+      "surah": 80,
+      "ayah": 23,
+      "word_index_global": 74,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَمَرَهُۥ",
+      "text_norm": "امره",
+      "start_s": 76.81,
+      "end_s": 77.625
+    },
+    {
+      "surah": 80,
+      "ayah": 24,
+      "word_index_global": 75,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَلۡیَنظُرِ",
+      "text_norm": "فلينظر",
+      "start_s": 77.925,
+      "end_s": 78.805
+    },
+    {
+      "surah": 80,
+      "ayah": 24,
+      "word_index_global": 76,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡإِنسَـٰنُ",
+      "text_norm": "الانسن",
+      "start_s": 79.33,
+      "end_s": 80.365
+    },
+    {
+      "surah": 80,
+      "ayah": 24,
+      "word_index_global": 77,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "إِلَىٰ",
+      "text_norm": "الي",
+      "start_s": 80.555,
+      "end_s": 81.08
+    },
+    {
+      "surah": 80,
+      "ayah": 24,
+      "word_index_global": 78,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "طَعَامِهِۦۤ",
+      "text_norm": "طعامه",
+      "start_s": 81.115,
+      "end_s": 82.03
+    },
+    {
+      "surah": 80,
+      "ayah": 25,
+      "word_index_global": 79,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أَنَّا",
+      "text_norm": "انا",
+      "start_s": 82.28,
+      "end_s": 82.975
+    },
+    {
+      "surah": 80,
+      "ayah": 25,
+      "word_index_global": 80,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "صَبَبۡنَا",
+      "text_norm": "صببنا",
+      "start_s": 83.41,
+      "end_s": 83.985
+    },
+    {
+      "surah": 80,
+      "ayah": 25,
+      "word_index_global": 81,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡمَاۤءَ",
+      "text_norm": "الماء",
+      "start_s": 84.4,
+      "end_s": 85.315
+    },
+    {
+      "surah": 80,
+      "ayah": 25,
+      "word_index_global": 82,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "صَبࣰّا",
+      "text_norm": "صبا",
+      "start_s": 85.58,
+      "end_s": 85.92
+    },
+    {
+      "surah": 80,
+      "ayah": 26,
+      "word_index_global": 83,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ثُمَّ",
+      "text_norm": "ثم",
+      "start_s": 86.77,
+      "end_s": 86.84
+    },
+    {
+      "surah": 80,
+      "ayah": 26,
+      "word_index_global": 84,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَقَقۡنَا",
+      "text_norm": "شققنا",
+      "start_s": 87.805,
+      "end_s": 88.61
+    },
+    {
+      "surah": 80,
+      "ayah": 26,
+      "word_index_global": 85,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡأَرۡضَ",
+      "text_norm": "الارض",
+      "start_s": 88.61,
+      "end_s": 89.2
+    },
+    {
+      "surah": 80,
+      "ayah": 26,
+      "word_index_global": 86,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "شَقࣰّا",
+      "text_norm": "شقا",
+      "start_s": 89.45,
+      "end_s": 89.79
+    },
+    {
+      "surah": 80,
+      "ayah": 27,
+      "word_index_global": 87,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَأَنۢبَتۡنَا",
+      "text_norm": "فانبتنا",
+      "start_s": 90.575,
+      "end_s": 92.12
+    },
+    {
+      "surah": 80,
+      "ayah": 27,
+      "word_index_global": 88,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "فِیهَا",
+      "text_norm": "فيها",
+      "start_s": 92.185,
+      "end_s": 92.205
+    },
+    {
+      "surah": 80,
+      "ayah": 27,
+      "word_index_global": 89,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "حَبࣰّا",
+      "text_norm": "حبا",
+      "start_s": 92.895,
+      "end_s": 93.555
+    },
+    {
+      "surah": 80,
+      "ayah": 28,
+      "word_index_global": 90,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَعِنَبࣰا",
+      "text_norm": "وعنبا",
+      "start_s": 93.99,
+      "end_s": 94.6
+    },
+    {
+      "surah": 80,
+      "ayah": 28,
+      "word_index_global": 91,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "وَقَضۡبࣰا",
+      "text_norm": "وقضبا",
+      "start_s": 95.08,
+      "end_s": 95.805
+    },
+    {
+      "surah": 80,
+      "ayah": 29,
+      "word_index_global": 92,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَزَیۡتُونࣰا",
+      "text_norm": "وزيتونا",
+      "start_s": 96.435,
+      "end_s": 97.765
+    },
+    {
+      "surah": 80,
+      "ayah": 29,
+      "word_index_global": 93,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "وَنَخۡلࣰا",
+      "text_norm": "ونخلا",
+      "start_s": 98.15,
+      "end_s": 98.965
+    },
+    {
+      "surah": 80,
+      "ayah": 30,
+      "word_index_global": 94,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَحَدَاۤئِقَ",
+      "text_norm": "وحدايق",
+      "start_s": 99.64,
+      "end_s": 100.86
+    },
+    {
+      "surah": 80,
+      "ayah": 30,
+      "word_index_global": 95,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "غُلۡبࣰا",
+      "text_norm": "غلبا",
+      "start_s": 101.305,
+      "end_s": 101.74
+    },
+    {
+      "surah": 80,
+      "ayah": 31,
+      "word_index_global": 96,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَفَـٰكِهَةࣰ",
+      "text_norm": "وفكهة",
+      "start_s": 102.595,
+      "end_s": 103.56
+    },
+    {
+      "surah": 80,
+      "ayah": 31,
+      "word_index_global": 97,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "وَأَبࣰّا",
+      "text_norm": "وابا",
+      "start_s": 104.34,
+      "end_s": 104.845
+    },
+    {
+      "surah": 80,
+      "ayah": 32,
+      "word_index_global": 98,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مَّتَـٰعࣰا",
+      "text_norm": "متعا",
+      "start_s": 105.58,
+      "end_s": 106.36
+    },
+    {
+      "surah": 80,
+      "ayah": 32,
+      "word_index_global": 99,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لَّكُمۡ",
+      "text_norm": "لكم",
+      "start_s": 106.56,
+      "end_s": 106.76
+    },
+    {
+      "surah": 80,
+      "ayah": 32,
+      "word_index_global": 100,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَلِأَنۡعَـٰمِكُمۡ",
+      "text_norm": "ولانعمكم",
+      "start_s": 107.095,
+      "end_s": 108.595
+    },
+    {
+      "surah": 80,
+      "ayah": 33,
+      "word_index_global": 101,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَإِذَا",
+      "text_norm": "فاذا",
+      "start_s": 109.33,
+      "end_s": 109.995
+    },
+    {
+      "surah": 80,
+      "ayah": 33,
+      "word_index_global": 102,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "جَاۤءَتِ",
+      "text_norm": "جاءت",
+      "start_s": 110.195,
+      "end_s": 111.795
+    },
+    {
+      "surah": 80,
+      "ayah": 33,
+      "word_index_global": 103,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلصَّاۤخَّةُ",
+      "text_norm": "الصاخة",
+      "start_s": 112.04,
+      "end_s": 115.15
+    },
+    {
+      "surah": 80,
+      "ayah": 34,
+      "word_index_global": 104,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "یَوۡمَ",
+      "text_norm": "يوم",
+      "start_s": 115.48,
+      "end_s": 115.56
+    },
+    {
+      "surah": 80,
+      "ayah": 34,
+      "word_index_global": 105,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَفِرُّ",
+      "text_norm": "يفر",
+      "start_s": 116.28,
+      "end_s": 116.35
+    },
+    {
+      "surah": 80,
+      "ayah": 34,
+      "word_index_global": 106,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡمَرۡءُ",
+      "text_norm": "المرء",
+      "start_s": 116.99,
+      "end_s": 117.485
+    },
+    {
+      "surah": 80,
+      "ayah": 34,
+      "word_index_global": 107,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "مِنۡ",
+      "text_norm": "من",
+      "start_s": 117.855,
+      "end_s": 117.955
+    },
+    {
+      "surah": 80,
+      "ayah": 34,
+      "word_index_global": 108,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "أَخِیهِ",
+      "text_norm": "اخيه",
+      "start_s": 118.2,
+      "end_s": 118.815
+    },
+    {
+      "surah": 80,
+      "ayah": 35,
+      "word_index_global": 109,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَأُمِّهِۦ",
+      "text_norm": "وامه",
+      "start_s": 119.08,
+      "end_s": 120.2
+    },
+    {
+      "surah": 80,
+      "ayah": 35,
+      "word_index_global": 110,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "وَأَبِیهِ",
+      "text_norm": "وابيه",
+      "start_s": 120.6,
+      "end_s": 121.19
+    },
+    {
+      "surah": 80,
+      "ayah": 36,
+      "word_index_global": 111,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَصَـٰحِبَتِهِۦ",
+      "text_norm": "وصحبته",
+      "start_s": 121.64,
+      "end_s": 122.89
+    },
+    {
+      "surah": 80,
+      "ayah": 36,
+      "word_index_global": 112,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "وَبَنِیهِ",
+      "text_norm": "وبنيه",
+      "start_s": 123.05,
+      "end_s": 124.06
+    },
+    {
+      "surah": 80,
+      "ayah": 37,
+      "word_index_global": 113,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "لِكُلِّ",
+      "text_norm": "لكل",
+      "start_s": 124.32,
+      "end_s": 124.87
+    },
+    {
+      "surah": 80,
+      "ayah": 37,
+      "word_index_global": 114,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱمۡرِئࣲ",
+      "text_norm": "امري",
+      "start_s": 125.315,
+      "end_s": 125.835
+    },
+    {
+      "surah": 80,
+      "ayah": 37,
+      "word_index_global": 115,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مِّنۡهُمۡ",
+      "text_norm": "منهم",
+      "start_s": 126.93,
+      "end_s": 127.72
+    },
+    {
+      "surah": 80,
+      "ayah": 37,
+      "word_index_global": 116,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "یَوۡمَئِذࣲ",
+      "text_norm": "يوميذ",
+      "start_s": 127.895,
+      "end_s": 128.85
+    },
+    {
+      "surah": 80,
+      "ayah": 37,
+      "word_index_global": 117,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "شَأۡنࣱ",
+      "text_norm": "شان",
+      "start_s": 129.62,
+      "end_s": 129.855
+    },
+    {
+      "surah": 80,
+      "ayah": 37,
+      "word_index_global": 118,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "یُغۡنِیهِ",
+      "text_norm": "يغنيه",
+      "start_s": 130.575,
+      "end_s": 131.635
+    },
+    {
+      "surah": 80,
+      "ayah": 38,
+      "word_index_global": 119,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وُجُوهࣱ",
+      "text_norm": "وجوه",
+      "start_s": 131.92,
+      "end_s": 132.74
+    },
+    {
+      "surah": 80,
+      "ayah": 38,
+      "word_index_global": 120,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَوۡمَئِذࣲ",
+      "text_norm": "يوميذ",
+      "start_s": 133.26,
+      "end_s": 134.12
+    },
+    {
+      "surah": 80,
+      "ayah": 38,
+      "word_index_global": 121,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مُّسۡفِرَةࣱ",
+      "text_norm": "مسفرة",
+      "start_s": 134.6,
+      "end_s": 135.72
+    },
+    {
+      "surah": 80,
+      "ayah": 39,
+      "word_index_global": 122,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "ضَاحِكَةࣱ",
+      "text_norm": "ضاحكة",
+      "start_s": 135.805,
+      "end_s": 136.72
+    },
+    {
+      "surah": 80,
+      "ayah": 39,
+      "word_index_global": 123,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "مُّسۡتَبۡشِرَةࣱ",
+      "text_norm": "مستبشرة",
+      "start_s": 137.335,
+      "end_s": 138.65
+    },
+    {
+      "surah": 80,
+      "ayah": 40,
+      "word_index_global": 124,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَوُجُوهࣱ",
+      "text_norm": "ووجوه",
+      "start_s": 138.92,
+      "end_s": 139.89
+    },
+    {
+      "surah": 80,
+      "ayah": 40,
+      "word_index_global": 125,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "یَوۡمَئِذٍ",
+      "text_norm": "يوميذ",
+      "start_s": 140.575,
+      "end_s": 141.48
+    },
+    {
+      "surah": 80,
+      "ayah": 40,
+      "word_index_global": 126,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "عَلَیۡهَا",
+      "text_norm": "عليها",
+      "start_s": 141.95,
+      "end_s": 141.97
+    },
+    {
+      "surah": 80,
+      "ayah": 40,
+      "word_index_global": 127,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "غَبَرَةࣱ",
+      "text_norm": "غبرة",
+      "start_s": 142.73,
+      "end_s": 143.48
+    },
+    {
+      "surah": 80,
+      "ayah": 41,
+      "word_index_global": 128,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "تَرۡهَقُهَا",
+      "text_norm": "ترهقها",
+      "start_s": 143.575,
+      "end_s": 144.61
+    },
+    {
+      "surah": 80,
+      "ayah": 41,
+      "word_index_global": 129,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "قَتَرَةٌ",
+      "text_norm": "قترة",
+      "start_s": 144.86,
+      "end_s": 145.59
+    },
+    {
+      "surah": 80,
+      "ayah": 42,
+      "word_index_global": 130,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "أُو۟لَـٰۤئِكَ",
+      "text_norm": "اوليك",
+      "start_s": 145.815,
+      "end_s": 147.585
+    },
+    {
+      "surah": 80,
+      "ayah": 42,
+      "word_index_global": 131,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "هُمُ",
+      "text_norm": "هم",
+      "start_s": 147.8,
+      "end_s": 148.12
+    },
+    {
+      "surah": 80,
+      "ayah": 42,
+      "word_index_global": 132,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡكَفَرَةُ",
+      "text_norm": "الكفرة",
+      "start_s": 148.345,
+      "end_s": 148.97
+    },
+    {
+      "surah": 80,
+      "ayah": 42,
+      "word_index_global": 133,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡفَجَرَةُ",
+      "text_norm": "الفجرة",
+      "start_s": 149.455,
+      "end_s": 150.2
+    }
+  ]
+}

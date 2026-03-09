@@ -9,6 +9,7 @@ import orjson
 from .reciter_defaults import (
     DEFAULT_ENABLED_RECITERS,
     EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT,
+    LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT,
     QCOM_RECITATION_ID_BY_RECITER_DEFAULT,
     UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT,
 )
@@ -28,6 +29,20 @@ DEFAULT_RECITER_CATALOG_PATH = Path("data/reciters.json")
 EVERYAYAH_SUBFOLDER_BY_RECITER: dict[str, str] = dict(EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT)
 QCOM_RECITATION_ID_BY_RECITER: dict[str, int] = dict(QCOM_RECITATION_ID_BY_RECITER_DEFAULT)
 UNSUPPORTED_QCOM_WORD_SUPERVISION: set[str] = set(UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT)
+_CANONICAL_EVERYAYAH_RECITER_ID_TO_LEGACY = {
+    canonical: legacy for legacy, canonical in LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT.items()
+}
+
+
+def _everyayah_lookup_keys(reciter_id: str) -> tuple[str, ...]:
+    keys: list[str] = [reciter_id]
+    alias_target = LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT.get(reciter_id)
+    legacy_alias = _CANONICAL_EVERYAYAH_RECITER_ID_TO_LEGACY.get(reciter_id)
+    if alias_target and alias_target not in keys:
+        keys.append(alias_target)
+    if legacy_alias and legacy_alias not in keys:
+        keys.append(legacy_alias)
+    return tuple(keys)
 
 
 def _to_int(value: Any) -> int | None:
@@ -114,17 +129,26 @@ def resolve_reciter_mapping(
 ) -> ReciterMapping:
     reciter_key = reciter_id.strip().lower()
     everyayah_map, qcom_map, unsupported, _, _ = _load_catalog_overrides(catalog_path)
-    if reciter_key in unsupported:
+    qcom_unsupported = reciter_key in unsupported
+    everyayah_subfolder = next(
+        (
+            everyayah_map[candidate]
+            for candidate in _everyayah_lookup_keys(reciter_key)
+            if candidate in everyayah_map
+        ),
+        None,
+    )
+    if qcom_unsupported:
         return ReciterMapping(
             manifest_reciter_id=reciter_id,
-            everyayah_subfolder=everyayah_map.get(reciter_key),
+            everyayah_subfolder=everyayah_subfolder,
             qcom_recitation_id=None,
             qcom_word_supervision_supported=False,
         )
 
     return ReciterMapping(
         manifest_reciter_id=reciter_id,
-        everyayah_subfolder=everyayah_map.get(reciter_key),
+        everyayah_subfolder=everyayah_subfolder,
         qcom_recitation_id=qcom_map.get(reciter_key),
         qcom_word_supervision_supported=reciter_key in qcom_map,
     )
@@ -147,7 +171,7 @@ def is_reciter_enabled(
 ) -> bool:
     key = reciter_id.strip().lower()
     _, _, _, enabled, _ = _load_catalog_overrides(catalog_path)
-    return key in enabled
+    return any(candidate in enabled for candidate in _everyayah_lookup_keys(key))
 
 
 __all__ = [

@@ -1,0 +1,127 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "qcom_mohamed_al_tablawi",
+  "surah": 108,
+  "ayahs": [
+    {
+      "surah": 108,
+      "ayah": 1,
+      "start_s": 5.005,
+      "end_s": 8.695
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "start_s": 9.265,
+      "end_s": 11.35
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "start_s": 12.07,
+      "end_s": 15.005
+    }
+  ],
+  "words": [
+    {
+      "surah": 108,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّاۤ",
+      "text_norm": "انا",
+      "start_s": 5.005,
+      "end_s": 5.67
+    },
+    {
+      "surah": 108,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعۡطَیۡنَـٰكَ",
+      "text_norm": "اعطينك",
+      "start_s": 6.73,
+      "end_s": 7.825
+    },
+    {
+      "surah": 108,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلۡكَوۡثَرَ",
+      "text_norm": "الكوثر",
+      "start_s": 8.25,
+      "end_s": 8.695
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "فَصَلِّ",
+      "text_norm": "فصل",
+      "start_s": 9.265,
+      "end_s": 9.605
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "لِرَبِّكَ",
+      "text_norm": "لربك",
+      "start_s": 9.985,
+      "end_s": 10.71
+    },
+    {
+      "surah": 108,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "وَٱنۡحَرۡ",
+      "text_norm": "وانحر",
+      "start_s": 11.08,
+      "end_s": 11.35
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّ",
+      "text_norm": "ان",
+      "start_s": 12.07,
+      "end_s": 12.09
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَانِئَكَ",
+      "text_norm": "شانيك",
+      "start_s": 12.965,
+      "end_s": 13.655
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "هُوَ",
+      "text_norm": "هو",
+      "start_s": 13.93,
+      "end_s": 13.95
+    },
+    {
+      "surah": 108,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡأَبۡتَرُ",
+      "text_norm": "الابتر",
+      "start_s": 14.535,
+      "end_s": 15.005
+    }
+  ]
+}

@@ -42,6 +42,17 @@ def source_scoped_reciter_id(source: str, value: str | int) -> str:
     return f"{source_key}_{value_key}"
 
 
+def format_reciter_name_with_source(name: str, source: str | None) -> str:
+    base_name = str(name or "").strip()
+    source_label = str(source or "").strip()
+    if not source_label:
+        return base_name
+    suffix = f" ({source_label})"
+    if base_name.lower().endswith(suffix.lower()):
+        return base_name
+    return f"{base_name}{suffix}" if base_name else source_label
+
+
 def _default_registry() -> dict[str, Any]:
     return {
         "version": 1,
@@ -142,7 +153,10 @@ def upsert_reciter(
 
     row = {
         "id": rid,
-        "name": str(name).strip() or rid.replace("_", " ").title(),
+        "name": format_reciter_name_with_source(
+            str(name).strip() or rid.replace("_", " ").title(),
+            str(source).strip() or "custom",
+        ),
         "source": str(source).strip() or "custom",
         "notes": str(notes or "").strip(),
         "created_at": created_at,
@@ -348,6 +362,7 @@ __all__ = [
     "fetch_everyayah_reciters",
     "fetch_quran_com_reciters",
     "fetch_quranicaudio_reciters",
+    "format_reciter_name_with_source",
     "get_reciter",
     "list_reciters",
     "load_registry",

@@ -1,0 +1,64 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "quranicaudio_abdurrahmaan_as_sudays",
+    "name": "Abdur-Rahman as-Sudais"
+  },
+  "surah": {
+    "number": 110,
+    "title": "Surah 110",
+    "ayah_count": 3,
+    "word_count": 19
+  },
+  "audio": {
+    "granularity": "none",
+    "primary_asset": null,
+    "fallback_order": [],
+    "assets": {},
+    "duration_s": 26.9202947845805,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": false,
+    "warnings": [
+      "Speech/audio end mismatch ratio 0.057 exceeds 0.040",
+      "qc_failed_after_rescue_keep_best"
+    ],
+    "reason_codes": ["duration_mismatch", "qc_failed_keep_best"],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.05728865274343725,
+    "quantization_step_ms": 480.00000000000045
+  },
+  "provenance": {
+    "engine": {
+      "name": "nemo",
+      "model": "nvidia/stt_ar_fastconformer_hybrid_large_pcd_v1.0",
+      "device": "cpu",
+      "fallback_used": false,
+      "attempted": ["nemo", "mfa", "whisperx"]
+    },
+    "selected_candidate_engine": "nemo",
+    "candidate_scores": {
+      "nemo": 58.05661999440708,
+      "mfa": 58.05661999440708
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/quranicaudio_abdurrahmaan_as_sudays/surahs/110/timings.json",
+  "updated_at": "2026-03-06T09:16:28.494223+00:00"
+}

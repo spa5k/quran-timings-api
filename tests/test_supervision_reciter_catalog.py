@@ -65,7 +65,7 @@ def test_write_reciter_catalog_merges_sources(tmp_path, monkeypatch) -> None:
     assert entry is not None
     assert entry["enabled"] is True
     assert entry["check_type"] in {"both", "ayah_by_ayah", "word_by_word", "model_only"}
-    assert str(entry.get("slug")) == "abdul_basit_murattal_64kbps"
+    assert str(entry.get("slug")) == "eya_abdul_basit_murattal_64kbps"
 
     quranicaudio_entry = reciter_catalog.get_configured_reciter_entry(
         "qa_test_reciter",
@@ -73,6 +73,13 @@ def test_write_reciter_catalog_merges_sources(tmp_path, monkeypatch) -> None:
     )
     assert quranicaudio_entry is not None
     assert quranicaudio_entry["source"]["quranicaudio"]["path"] == "qa/test"
+
+    canonical_entry = reciter_catalog.get_configured_reciter_entry(
+        "eya_abdul_basit_murattal_64kbps",
+        catalog_path=output_path,
+    )
+    assert canonical_entry is not None
+    assert canonical_entry["source"]["everyayah"]["subfolder"] == "Abdul_Basit_Murattal_64kbps"
 
 
 def test_read_reciter_catalog_invalid_returns_none(tmp_path) -> None:

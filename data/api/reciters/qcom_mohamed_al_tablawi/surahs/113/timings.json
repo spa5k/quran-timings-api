@@ -1,0 +1,269 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "qcom_mohamed_al_tablawi",
+  "surah": 113,
+  "ayahs": [
+    {
+      "surah": 113,
+      "ayah": 1,
+      "start_s": 5.055,
+      "end_s": 7.8
+    },
+    {
+      "surah": 113,
+      "ayah": 2,
+      "start_s": 8.125,
+      "end_s": 10.26
+    },
+    {
+      "surah": 113,
+      "ayah": 3,
+      "start_s": 11.16,
+      "end_s": 15.065
+    },
+    {
+      "surah": 113,
+      "ayah": 4,
+      "start_s": 15.495,
+      "end_s": 19.72
+    },
+    {
+      "surah": 113,
+      "ayah": 5,
+      "start_s": 20.585,
+      "end_s": 24.315
+    }
+  ],
+  "words": [
+    {
+      "surah": 113,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلۡ",
+      "text_norm": "قل",
+      "start_s": 5.055,
+      "end_s": 5.074999999999999
+    },
+    {
+      "surah": 113,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعُوذُ",
+      "text_norm": "اعوذ",
+      "start_s": 5.455,
+      "end_s": 6.175
+    },
+    {
+      "surah": 113,
+      "ayah": 1,
+      "word_index_global": 3,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "بِرَبِّ",
+      "text_norm": "برب",
+      "start_s": 6.175,
+      "end_s": 6.68
+    },
+    {
+      "surah": 113,
+      "ayah": 1,
+      "word_index_global": 4,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "ٱلۡفَلَقِ",
+      "text_norm": "الفلق",
+      "start_s": 7.145,
+      "end_s": 7.8
+    },
+    {
+      "surah": 113,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "مِن",
+      "text_norm": "من",
+      "start_s": 8.125,
+      "end_s": 8.22
+    },
+    {
+      "surah": 113,
+      "ayah": 2,
+      "word_index_global": 6,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَرِّ",
+      "text_norm": "شر",
+      "start_s": 9.185,
+      "end_s": 9.205
+    },
+    {
+      "surah": 113,
+      "ayah": 2,
+      "word_index_global": 7,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "مَا",
+      "text_norm": "ما",
+      "start_s": 9.8,
+      "end_s": 9.82
+    },
+    {
+      "surah": 113,
+      "ayah": 2,
+      "word_index_global": 8,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "خَلَقَ",
+      "text_norm": "خلق",
+      "start_s": 10.24,
+      "end_s": 10.26
+    },
+    {
+      "surah": 113,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمِن",
+      "text_norm": "ومن",
+      "start_s": 11.16,
+      "end_s": 11.44
+    },
+    {
+      "surah": 113,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَرِّ",
+      "text_norm": "شر",
+      "start_s": 12.205,
+      "end_s": 12.36
+    },
+    {
+      "surah": 113,
+      "ayah": 3,
+      "word_index_global": 11,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "غَاسِقٍ",
+      "text_norm": "غاسق",
+      "start_s": 12.765,
+      "end_s": 13.375
+    },
+    {
+      "surah": 113,
+      "ayah": 3,
+      "word_index_global": 12,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "إِذَا",
+      "text_norm": "اذا",
+      "start_s": 13.735,
+      "end_s": 13.975
+    },
+    {
+      "surah": 113,
+      "ayah": 3,
+      "word_index_global": 13,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "وَقَبَ",
+      "text_norm": "وقب",
+      "start_s": 14.385,
+      "end_s": 15.065
+    },
+    {
+      "surah": 113,
+      "ayah": 4,
+      "word_index_global": 14,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمِن",
+      "text_norm": "ومن",
+      "start_s": 15.495,
+      "end_s": 15.514999999999999
+    },
+    {
+      "surah": 113,
+      "ayah": 4,
+      "word_index_global": 15,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَرِّ",
+      "text_norm": "شر",
+      "start_s": 16.445,
+      "end_s": 16.465
+    },
+    {
+      "surah": 113,
+      "ayah": 4,
+      "word_index_global": 16,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ٱلنَّفَّـٰثَـٰتِ",
+      "text_norm": "النفثت",
+      "start_s": 17.425,
+      "end_s": 18.96
+    },
+    {
+      "surah": 113,
+      "ayah": 4,
+      "word_index_global": 17,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "فِی",
+      "text_norm": "في",
+      "start_s": 19.135,
+      "end_s": 19.155
+    },
+    {
+      "surah": 113,
+      "ayah": 4,
+      "word_index_global": 18,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلۡعُقَدِ",
+      "text_norm": "العقد",
+      "start_s": 19.34,
+      "end_s": 19.72
+    },
+    {
+      "surah": 113,
+      "ayah": 5,
+      "word_index_global": 19,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَمِن",
+      "text_norm": "ومن",
+      "start_s": 20.585,
+      "end_s": 20.74
+    },
+    {
+      "surah": 113,
+      "ayah": 5,
+      "word_index_global": 20,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "شَرِّ",
+      "text_norm": "شر",
+      "start_s": 21.455,
+      "end_s": 21.474999999999998
+    },
+    {
+      "surah": 113,
+      "ayah": 5,
+      "word_index_global": 21,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "حَاسِدٍ",
+      "text_norm": "حاسد",
+      "start_s": 22.125,
+      "end_s": 22.76
+    },
+    {
+      "surah": 113,
+      "ayah": 5,
+      "word_index_global": 22,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "إِذَا",
+      "text_norm": "اذا",
+      "start_s": 23.12,
+      "end_s": 23.64
+    },
+    {
+      "surah": 113,
+      "ayah": 5,
+      "word_index_global": 23,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "حَسَدَ",
+      "text_norm": "حسد",
+      "start_s": 23.835,
+      "end_s": 24.315
+    }
+  ]
+}

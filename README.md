@@ -73,19 +73,19 @@ This now runs via npm lifecycle hooks and Wrangler build command, so `wrangler d
    Reciter-level metadata + available surahs.
 
    Example:  
-   `https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/yasser_ad-dussary/metadata.json`
+   `https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/eya_yasser_ad_dussary_128kbps/metadata.json`
 
 3. `/api/reciters/{slug}/surahs/{surah}/metadata.json`  
    Surah-level metadata (counts, duration, audio contract).
 
    Example:  
-   `https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/yasser_ad-dussary/surahs/114/metadata.json`
+   `https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/eya_yasser_ad_dussary_128kbps/surahs/114/metadata.json`
 
 4. `/api/reciters/{slug}/surahs/{surah}/timings.json`  
    Ayah and word timing payload.
 
    Example:  
-   `https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/yasser_ad-dussary/surahs/114/timings.json`
+   `https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/eya_yasser_ad_dussary_128kbps/surahs/114/timings.json`
 
 ### Quick API usage
 
@@ -94,12 +94,62 @@ curl -s https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/reciters.j
 ```
 
 ```bash
-curl -s https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/muhsin_al_qasim/surahs/113/timings.json | jq '.ayahs[0]'
+curl -s https://cdn.jsdelivr.net/gh/spa5k/quran-timings-api@main/data/api/reciters/eya_muhsin_al_qasim_192kbps/surahs/113/timings.json | jq '.ayahs[0]'
+```
+
+### Sample `timings.json`
+
+Current `timings.json` payloads are intentionally lean:
+
+- `ayahs[]` keeps `surah`, `ayah`, `start_s`, `end_s`, and optional ayah audio fields
+- `words[]` keeps core word indexes, text, and timings
+
+Example from `data/api/reciters/eya_yasser_ad_dussary_128kbps/surahs/114/timings.json`:
+
+```json
+{
+  "schema_version": "v2",
+  "reciter_slug": "eya_yasser_ad_dussary_128kbps",
+  "surah": 114,
+  "ayahs": [
+    {
+      "surah": 114,
+      "ayah": 1,
+      "start_s": 0.0,
+      "end_s": 2.24,
+      "audio_asset": "everyayah_ayah",
+      "audio_key": "001",
+      "audio_url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/114001.mp3"
+    }
+  ],
+  "words": [
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "قُلۡ",
+      "text_norm": "قل",
+      "start_s": 0.0,
+      "end_s": 0.08
+    },
+    {
+      "surah": 114,
+      "ayah": 1,
+      "word_index_global": 2,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "أَعُوذُ",
+      "text_norm": "اعوذ",
+      "start_s": 0.4,
+      "end_s": 0.96
+    }
+  ]
+}
 ```
 
 ## Available Reciters
 
-Snapshot below is from `data/reciters.json` generated on `2026-03-07`.
+Snapshot below is from `data/reciters.json` generated on `2026-03-10`.
 
 ### Newly enabled reciters (added on 2026-03-07)
 
@@ -163,7 +213,7 @@ qad --help
 uv run qad sync-reciters
 uv run qad list-reciters --enabled-only
 uv run qad detect
-uv run qad detect --audio-url <https_audio_url> --reciter-id yasser_ad-dussary --surah 114
+uv run qad detect --audio-url <https_audio_url> --reciter-id eya_yasser_ad_dussary_128kbps --surah 114
 ```
 
 Use `sync-reciters` to refresh the public reciter catalog from EveryAyah and Quran.com.
@@ -176,7 +226,7 @@ Non-interactive full-surah example:
 
 ```bash
 uv run qad detect \
-  --reciter-id yasser_ad-dussary \
+  --reciter-id eya_yasser_ad_dussary_128kbps \
   --surah 114 \
   --audio-url <https_audio_url>
 ```

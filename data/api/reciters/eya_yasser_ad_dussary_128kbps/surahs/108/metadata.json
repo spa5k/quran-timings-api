@@ -1,0 +1,137 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "eya_yasser_ad_dussary_128kbps",
+    "name": "Yasser_Ad-Dussary"
+  },
+  "surah": {
+    "number": 108,
+    "title": "Surah 108",
+    "ayah_count": 3,
+    "word_count": 10
+  },
+  "audio": {
+    "granularity": "ayah",
+    "primary_asset": "everyayah_ayah",
+    "fallback_order": [],
+    "assets": {
+      "everyayah_ayah": {
+        "provider": "everyayah",
+        "level": "ayah",
+        "kind": "template",
+        "template": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/108{ayah:03d}.mp3"
+      }
+    },
+    "duration_s": 12.030453514739229,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.018551765409934067,
+    "quantization_step_ms": 582.5000000000005,
+    "boundary_refine_method": "librosa",
+    "everyayah_stitch_eval": {
+      "expected_ayahs": 3,
+      "predicted_ayahs": 3,
+      "matched_ayahs": 3,
+      "coverage_vs_reference": 1.0,
+      "start_error_median_ms": 169.375,
+      "end_error_median_ms": 586.5,
+      "boundary_error_median_ms": 382.812,
+      "boundary_error_p95_ms": 763.969,
+      "boundary_hit_rate_20ms": 0.0,
+      "boundary_hit_rate_50ms": 0.0,
+      "boundary_hit_rate_80ms": 0.0,
+      "start_offset_s": 0.169375,
+      "offset_normalized_boundary_error_median_ms": 493.75,
+      "offset_normalized_boundary_error_p95_ms": 933.344,
+      "offset_normalized_hit_rate_20ms": 0.166667,
+      "offset_normalized_hit_rate_50ms": 0.166667,
+      "offset_normalized_hit_rate_80ms": 0.166667,
+      "ayah_differences": [
+        {
+          "ayah": 1,
+          "pred_start_s": 0.26,
+          "pred_end_s": 4.54,
+          "ref_start_s": 0.0,
+          "ref_end_s": 5.363,
+          "delta_start_ms": 260.0,
+          "delta_end_ms": -823.125,
+          "abs_start_ms": 260.0,
+          "abs_end_ms": 823.125,
+          "norm_delta_start_ms": 90.625,
+          "norm_delta_end_ms": -992.5,
+          "norm_abs_start_ms": 90.625,
+          "norm_abs_end_ms": 992.5
+        },
+        {
+          "ayah": 2,
+          "pred_start_s": 5.22,
+          "pred_end_s": 7.53,
+          "ref_start_s": 5.363,
+          "ref_end_s": 8.036,
+          "delta_start_ms": -143.125,
+          "delta_end_ms": -505.625,
+          "abs_start_ms": 143.125,
+          "abs_end_ms": 505.625,
+          "norm_delta_start_ms": -312.5,
+          "norm_delta_end_ms": -675.0,
+          "norm_abs_start_ms": 312.5,
+          "norm_abs_end_ms": 675.0
+        },
+        {
+          "ayah": 3,
+          "pred_start_s": 8.205,
+          "pred_end_s": 11.48,
+          "ref_start_s": 8.036,
+          "ref_end_s": 12.066,
+          "delta_start_ms": 169.375,
+          "delta_end_ms": -586.5,
+          "abs_start_ms": 169.375,
+          "abs_end_ms": 586.5,
+          "norm_delta_start_ms": 0.0,
+          "norm_delta_end_ms": -755.875,
+          "norm_abs_start_ms": 0.0,
+          "norm_abs_end_ms": 755.875
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "whisperx", "mfa"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 176.58536376848764,
+      "mfa": 176.24339574249808
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [
+      "everyayah:subfolder=Yasser_Ad-Dussary_128kbps:surah=108:scope=full_surah"
+    ],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/eya_yasser_ad_dussary_128kbps/surahs/108/timings.json",
+  "updated_at": "2026-03-09T19:55:12.748944+00:00"
+}

@@ -1,11 +1,11 @@
 {
   "schema_version": "v1",
-  "generated_at": "2026-03-09T19:08:51.837736+00:00",
+  "generated_at": "2026-03-09T19:55:12.748944+00:00",
   "counts": {
     "everyayah_source_reciters": 79,
     "quran_com_source_reciters": 12,
     "quranicaudio_source_reciters": 110,
-    "configured_reciters": 198,
+    "configured_reciters": 201,
     "enabled_reciters": 3
   },
   "sources": {
@@ -18,16 +18,16 @@
       "slug": "abdul_basit_murattal_64kbps",
       "name": "AbdulBaset AbdulSamad",
       "enabled": false,
-      "check_type": "both",
+      "check_type": "word_by_word",
       "capabilities": {
-        "ayah_by_ayah": true,
+        "ayah_by_ayah": false,
         "word_by_word": true
       },
       "source": {
         "everyayah": {
-          "subfolder": "Abdul_Basit_Murattal_64kbps",
-          "reciter_key": 1,
-          "name": "Abdul Basit Murattal"
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
         },
         "quran_com": {
           "recitation_id": 2,
@@ -48,16 +48,16 @@
       "slug": "abdurrahmaan_as-sudays",
       "name": "Abdur-Rahman as-Sudais",
       "enabled": false,
-      "check_type": "both",
+      "check_type": "word_by_word",
       "capabilities": {
-        "ayah_by_ayah": true,
+        "ayah_by_ayah": false,
         "word_by_word": true
       },
       "source": {
         "everyayah": {
-          "subfolder": "Abdurrahmaan_As-Sudais_192kbps",
-          "reciter_key": 8,
-          "name": "Abdurrahmaan As-Sudais"
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
         },
         "quran_com": {
           "recitation_id": 3,
@@ -130,6 +130,36 @@
       },
       "endpoints": {
         "metadata": "/data/reciters/eya_abdul_basit_murattal_192kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_abdul_basit_murattal_64kbps",
+      "name": "Abdul Basit Murattal",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdul_Basit_Murattal_64kbps",
+          "reciter_key": 1,
+          "name": "Abdul Basit Murattal"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdul_basit_murattal_64kbps/metadata.json"
       },
       "surahs_available": [],
       "surah_count": 0
@@ -313,6 +343,39 @@
       },
       "surahs_available": [],
       "surah_count": 0
+    },
+    {
+      "slug": "eya_abdurrahmaan_as_sudais_192kbps",
+      "name": "Abdurrahmaan As-Sudais",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Abdurrahmaan_As-Sudais_192kbps",
+          "reciter_key": 8,
+          "name": "Abdurrahmaan As-Sudais"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_abdurrahmaan_as_sudais_192kbps/metadata.json"
+      },
+      "surahs_available": [
+        55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77,
+        78, 79, 80, 81, 82, 83, 84, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114
+      ],
+      "surah_count": 40
     },
     {
       "slug": "eya_abdurrahmaan_as_sudais_64kbps",
@@ -1755,6 +1818,40 @@
       "surah_count": 0
     },
     {
+      "slug": "eya_muhsin_al_qasim_192kbps",
+      "name": "Muhsin Al Qasim",
+      "enabled": true,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Muhsin_Al_Qasim_192kbps",
+          "reciter_key": 52,
+          "name": "Muhsin Al Qasim"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_muhsin_al_qasim_192kbps/metadata.json"
+      },
+      "surahs_available": [
+        65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87,
+        88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108,
+        109, 110, 111, 112, 113, 114
+      ],
+      "surah_count": 50
+    },
+    {
       "slug": "eya_multilanguage_basfar_walk_192kbps",
       "name": "MultiLanguage/Basfar Walk",
       "enabled": false,
@@ -1960,6 +2057,36 @@
       },
       "endpoints": {
         "metadata": "/data/reciters/eya_salah_al_budair_128kbps/metadata.json"
+      },
+      "surahs_available": [],
+      "surah_count": 0
+    },
+    {
+      "slug": "eya_saood_ash_shuraym_128kbps",
+      "name": "Saood bin Ibraaheem Ash-Shuraym",
+      "enabled": false,
+      "check_type": "ayah_by_ayah",
+      "capabilities": {
+        "ayah_by_ayah": true,
+        "word_by_word": false
+      },
+      "source": {
+        "everyayah": {
+          "subfolder": "Saood_ash-Shuraym_128kbps",
+          "reciter_key": 44,
+          "name": "Saood bin Ibraaheem Ash-Shuraym"
+        },
+        "quran_com": {
+          "recitation_id": null,
+          "name": null
+        },
+        "quranicaudio": {
+          "path": null,
+          "name": null
+        }
+      },
+      "endpoints": {
+        "metadata": "/data/reciters/eya_saood_ash_shuraym_128kbps/metadata.json"
       },
       "surahs_available": [],
       "surah_count": 0
@@ -2295,8 +2422,8 @@
       "surah_count": 0
     },
     {
-      "slug": "muhsin_al_qasim",
-      "name": "Muhsin Al Qasim",
+      "slug": "eya_yasser_ad_dussary_128kbps",
+      "name": "Yasser_Ad-Dussary",
       "enabled": true,
       "check_type": "ayah_by_ayah",
       "capabilities": {
@@ -2305,9 +2432,9 @@
       },
       "source": {
         "everyayah": {
-          "subfolder": "Muhsin_Al_Qasim_192kbps",
-          "reciter_key": 52,
-          "name": "Muhsin Al Qasim"
+          "subfolder": "Yasser_Ad-Dussary_128kbps",
+          "reciter_key": 67,
+          "name": "Yasser_Ad-Dussary"
         },
         "quran_com": {
           "recitation_id": null,
@@ -2319,10 +2446,14 @@
         }
       },
       "endpoints": {
-        "metadata": "/data/reciters/muhsin_al_qasim/metadata.json"
+        "metadata": "/data/reciters/eya_yasser_ad_dussary_128kbps/metadata.json"
       },
-      "surahs_available": [],
-      "surah_count": 0
+      "surahs_available": [
+        2, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86,
+        87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107,
+        108, 109, 110, 111, 112, 113, 114
+      ],
+      "surah_count": 51
     },
     {
       "slug": "qcom_abdulbaset_abdulsamad",
@@ -2381,8 +2512,11 @@
       "endpoints": {
         "metadata": "/data/reciters/qcom_abu_bakr_al_shatri/metadata.json"
       },
-      "surahs_available": [],
-      "surah_count": 0
+      "surahs_available": [
+        85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
+        106, 107, 108, 109, 110, 111, 112, 113, 114
+      ],
+      "surah_count": 30
     },
     {
       "slug": "qcom_hani_ar_rifai",
@@ -2411,8 +2545,11 @@
       "endpoints": {
         "metadata": "/data/reciters/qcom_hani_ar_rifai/metadata.json"
       },
-      "surahs_available": [],
-      "surah_count": 0
+      "surahs_available": [
+        85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
+        106, 107, 108, 109, 110, 111, 112, 113, 114
+      ],
+      "surah_count": 30
     },
     {
       "slug": "qcom_mahmoud_khalil_al_husary",
@@ -2531,8 +2668,11 @@
       "endpoints": {
         "metadata": "/data/reciters/qcom_mohamed_al_tablawi/metadata.json"
       },
-      "surahs_available": [],
-      "surah_count": 0
+      "surahs_available": [
+        85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
+        106, 107, 108, 109, 110, 111, 112, 113, 114
+      ],
+      "surah_count": 30
     },
     {
       "slug": "qcom_mohamed_siddiq_al_minshawi",
@@ -2831,8 +2971,8 @@
       "endpoints": {
         "metadata": "/data/reciters/quranicaudio_abdullaah_3awwaad_al_juhaynee/metadata.json"
       },
-      "surahs_available": [],
-      "surah_count": 0
+      "surahs_available": [105, 106, 107, 108, 109, 110, 111, 112, 113, 114],
+      "surah_count": 10
     },
     {
       "slug": "quranicaudio_abdullaah_alee_jaabir",
@@ -3041,8 +3181,8 @@
       "endpoints": {
         "metadata": "/data/reciters/quranicaudio_abdurrahmaan_as_sudays/metadata.json"
       },
-      "surahs_available": [],
-      "surah_count": 0
+      "surahs_available": [105, 106, 107, 108, 109, 110, 111, 112, 113, 114],
+      "surah_count": 10
     },
     {
       "slug": "quranicaudio_abdurrashid_sufi_khalaf_3an_7amza_recitation",
@@ -5441,8 +5581,8 @@
       "endpoints": {
         "metadata": "/data/reciters/quranicaudio_sa3ood_al_shuraym/metadata.json"
       },
-      "surahs_available": [],
-      "surah_count": 0
+      "surahs_available": [105, 106, 107, 108, 109, 110, 111, 112, 113, 114],
+      "surah_count": 10
     },
     {
       "slug": "quranicaudio_sa3ood_al_shuraym_older",
@@ -5898,16 +6038,16 @@
       "slug": "sa3ood_al-shuraym",
       "name": "Sa`ud ash-Shuraym",
       "enabled": false,
-      "check_type": "both",
+      "check_type": "word_by_word",
       "capabilities": {
-        "ayah_by_ayah": true,
+        "ayah_by_ayah": false,
         "word_by_word": true
       },
       "source": {
         "everyayah": {
-          "subfolder": "Saood_ash-Shuraym_128kbps",
-          "reciter_key": 44,
-          "name": "Saood bin Ibraaheem Ash-Shuraym"
+          "subfolder": null,
+          "reciter_key": null,
+          "name": null
         },
         "quran_com": {
           "recitation_id": 10,
@@ -5920,36 +6060,6 @@
       },
       "endpoints": {
         "metadata": "/data/reciters/sa3ood_al-shuraym/metadata.json"
-      },
-      "surahs_available": [],
-      "surah_count": 0
-    },
-    {
-      "slug": "yasser_ad-dussary",
-      "name": "Yasser_Ad-Dussary",
-      "enabled": true,
-      "check_type": "ayah_by_ayah",
-      "capabilities": {
-        "ayah_by_ayah": true,
-        "word_by_word": false
-      },
-      "source": {
-        "everyayah": {
-          "subfolder": "Yasser_Ad-Dussary_128kbps",
-          "reciter_key": 67,
-          "name": "Yasser_Ad-Dussary"
-        },
-        "quran_com": {
-          "recitation_id": null,
-          "name": null
-        },
-        "quranicaudio": {
-          "path": null,
-          "name": null
-        }
-      },
-      "endpoints": {
-        "metadata": "/data/reciters/yasser_ad-dussary/metadata.json"
       },
       "surahs_available": [],
       "surah_count": 0

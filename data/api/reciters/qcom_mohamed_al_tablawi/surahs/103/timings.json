@@ -1,0 +1,167 @@
+{
+  "schema_version": "v2",
+  "reciter_slug": "qcom_mohamed_al_tablawi",
+  "surah": 103,
+  "ayahs": [
+    {
+      "surah": 103,
+      "ayah": 1,
+      "start_s": 4.84,
+      "end_s": 5.565
+    },
+    {
+      "surah": 103,
+      "ayah": 2,
+      "start_s": 5.885,
+      "end_s": 9.32
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "start_s": 9.64,
+      "end_s": 18.44
+    }
+  ],
+  "words": [
+    {
+      "surah": 103,
+      "ayah": 1,
+      "word_index_global": 1,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "وَٱلۡعَصۡرِ",
+      "text_norm": "والعصر",
+      "start_s": 4.84,
+      "end_s": 5.565
+    },
+    {
+      "surah": 103,
+      "ayah": 2,
+      "word_index_global": 2,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِنَّ",
+      "text_norm": "ان",
+      "start_s": 5.885,
+      "end_s": 6.19
+    },
+    {
+      "surah": 103,
+      "ayah": 2,
+      "word_index_global": 3,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلۡإِنسَـٰنَ",
+      "text_norm": "الانسن",
+      "start_s": 6.855,
+      "end_s": 8.085
+    },
+    {
+      "surah": 103,
+      "ayah": 2,
+      "word_index_global": 4,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "لَفِی",
+      "text_norm": "لفي",
+      "start_s": 8.44,
+      "end_s": 8.485
+    },
+    {
+      "surah": 103,
+      "ayah": 2,
+      "word_index_global": 5,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "خُسۡرٍ",
+      "text_norm": "خسر",
+      "start_s": 8.925,
+      "end_s": 9.32
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 6,
+      "word_index_in_ayah": 1,
+      "text_uthmani": "إِلَّا",
+      "text_norm": "الا",
+      "start_s": 9.64,
+      "end_s": 9.765
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 7,
+      "word_index_in_ayah": 2,
+      "text_uthmani": "ٱلَّذِینَ",
+      "text_norm": "الذين",
+      "start_s": 10.285,
+      "end_s": 10.6
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 8,
+      "word_index_in_ayah": 3,
+      "text_uthmani": "ءَامَنُوا۟",
+      "text_norm": "ءامنوا",
+      "start_s": 11.205,
+      "end_s": 11.8
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 9,
+      "word_index_in_ayah": 4,
+      "text_uthmani": "وَعَمِلُوا۟",
+      "text_norm": "وعملوا",
+      "start_s": 12.05,
+      "end_s": 12.835
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 10,
+      "word_index_in_ayah": 5,
+      "text_uthmani": "ٱلصَّـٰلِحَـٰتِ",
+      "text_norm": "الصلحت",
+      "start_s": 13.025,
+      "end_s": 13.955
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 11,
+      "word_index_in_ayah": 6,
+      "text_uthmani": "وَتَوَاصَوۡا۟",
+      "text_norm": "وتواصوا",
+      "start_s": 14.36,
+      "end_s": 15.4
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 12,
+      "word_index_in_ayah": 7,
+      "text_uthmani": "بِٱلۡحَقِّ",
+      "text_norm": "بالحق",
+      "start_s": 15.41,
+      "end_s": 15.955
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 13,
+      "word_index_in_ayah": 8,
+      "text_uthmani": "وَتَوَاصَوۡا۟",
+      "text_norm": "وتواصوا",
+      "start_s": 16.6,
+      "end_s": 17.63
+    },
+    {
+      "surah": 103,
+      "ayah": 3,
+      "word_index_global": 14,
+      "word_index_in_ayah": 9,
+      "text_uthmani": "بِٱلصَّبۡرِ",
+      "text_norm": "بالصبر",
+      "start_s": 17.63,
+      "end_s": 18.44
+    }
+  ]
+}

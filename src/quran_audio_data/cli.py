@@ -18,6 +18,7 @@ from quran_audio_data.core.settings import get_settings
 from quran_audio_data.pipeline import run_alignment_pipeline
 from quran_audio_data.reciters import (
     DEFAULT_RECITERS_PATH,
+    format_reciter_name_with_source,
     get_reciter,
     list_reciters,
     normalize_reciter_id,
@@ -26,8 +27,12 @@ from quran_audio_data.reciters import (
 )
 from quran_audio_data.supervision import (
     DEFAULT_RECITER_CATALOG_PATH,
+    get_configured_reciter_entry,
     read_reciter_catalog,
     write_reciter_catalog,
+)
+from quran_audio_data.supervision.reciter_defaults import (
+    LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT,
 )
 from quran_audio_data.ui_sync import export_api_from_latest_runs
 
@@ -150,6 +155,7 @@ def _upsert_public_catalog_reciter(
     catalog_path: Path,
     reciter_id: str,
     reciter_name: str,
+    reciter_source: str | None = None,
 ) -> None:
     payload = read_reciter_catalog(catalog_path) or _default_catalog_payload()
     reciters = payload.get("reciters")
@@ -169,7 +175,7 @@ def _upsert_public_catalog_reciter(
     if row is None:
         row = {
             "slug": key,
-            "name": reciter_name or key,
+            "name": format_reciter_name_with_source(reciter_name or key, reciter_source),
             "enabled": True,
             "check_type": "model_only",
             "capabilities": {
@@ -187,8 +193,9 @@ def _upsert_public_catalog_reciter(
         }
         reciters.append(row)
     else:
+        next_name = format_reciter_name_with_source(reciter_name or key, reciter_source)
         if reciter_name and (not row.get("name") or str(row.get("name")).strip().lower() == key):
-            row["name"] = reciter_name
+            row["name"] = next_name
         row["enabled"] = True
         row["endpoints"] = {"metadata": f"/data/reciters/{key}/metadata.json"}
         if not isinstance(row.get("capabilities"), dict):
@@ -253,13 +260,7 @@ def _find_catalog_reciter(
     catalog_path: Path,
     reciter_id: str,
 ) -> dict[str, Any] | None:
-    key = _normalize_catalog_slug(reciter_id)
-    if not key:
-        return None
-    for item in _load_public_reciters(catalog_path):
-        if _normalize_catalog_slug(item.get("slug") or "") == key:
-            return item
-    return None
+    return get_configured_reciter_entry(reciter_id, catalog_path=catalog_path)
 
 
 def _prompt_detect_reciter(
@@ -471,7 +472,10 @@ def sync_reciters_cmd(
         existing = _load_public_reciters(out)
         if existing:
             enabled_set = {
-                _normalize_catalog_slug(item.get("slug") or "")
+                LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT.get(
+                    _normalize_catalog_slug(item.get("slug") or ""),
+                    _normalize_catalog_slug(item.get("slug") or ""),
+                )
                 for item in existing
                 if bool(item.get("enabled")) and item.get("slug")
             }
@@ -616,6 +620,7 @@ def detect_cmd(
         catalog_path=catalog,
         reciter_id=resolved_id,
         reciter_name=resolved_name,
+        reciter_source=resolved_source,
     )
 
     out_root.mkdir(parents=True, exist_ok=True)

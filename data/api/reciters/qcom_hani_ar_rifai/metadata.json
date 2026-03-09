@@ -1,10 +1,10 @@
 {
   "schema_version": "v2",
-  "updated_at": "2026-03-07T09:06:27.321809+00:00",
+  "updated_at": "2026-03-09T19:34:05.091641+00:00",
   "reciter": {
     "slug": "qcom_hani_ar_rifai",
     "name": "Hani ar-Rifai",
-    "enabled": true,
+    "enabled": false,
     "check_type": "word_by_word",
     "capabilities": {
       "ayah_by_ayah": false,
@@ -19,6 +19,10 @@
       "quran_com": {
         "recitation_id": 5,
         "name": "Hani ar-Rifai"
+      },
+      "quranicaudio": {
+        "path": null,
+        "name": null
       }
     },
     "endpoints": {

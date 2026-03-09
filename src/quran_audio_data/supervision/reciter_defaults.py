@@ -2,11 +2,20 @@ from __future__ import annotations
 
 # Manifest reciter id -> EveryAyah folder defaults.
 EVERYAYAH_SUBFOLDER_BY_RECITER_DEFAULT: dict[str, str] = {
-    "abdul_basit_murattal_64kbps": "Abdul_Basit_Murattal_64kbps",
-    "abdurrahmaan_as-sudays": "Abdurrahmaan_As-Sudais_192kbps",
-    "muhsin_al_qasim": "Muhsin_Al_Qasim_192kbps",
-    "sa3ood_al-shuraym": "Saood_ash-Shuraym_128kbps",
-    "yasser_ad-dussary": "Yasser_Ad-Dussary_128kbps",
+    "eya_abdul_basit_murattal_64kbps": "Abdul_Basit_Murattal_64kbps",
+    "eya_abdurrahmaan_as_sudais_192kbps": "Abdurrahmaan_As-Sudais_192kbps",
+    "eya_muhsin_al_qasim_192kbps": "Muhsin_Al_Qasim_192kbps",
+    "eya_saood_ash_shuraym_128kbps": "Saood_ash-Shuraym_128kbps",
+    "eya_yasser_ad_dussary_128kbps": "Yasser_Ad-Dussary_128kbps",
+}
+
+# Legacy plain EveryAyah ids that now resolve to source-prefixed catalog ids.
+LEGACY_EVERYAYAH_RECITER_ID_ALIASES_DEFAULT: dict[str, str] = {
+    "abdul_basit_murattal_64kbps": "eya_abdul_basit_murattal_64kbps",
+    "abdurrahmaan_as-sudays": "eya_abdurrahmaan_as_sudais_192kbps",
+    "muhsin_al_qasim": "eya_muhsin_al_qasim_192kbps",
+    "sa3ood_al-shuraym": "eya_saood_ash_shuraym_128kbps",
+    "yasser_ad-dussary": "eya_yasser_ad_dussary_128kbps",
 }
 
 # Manifest reciter id -> Quran.com recitation id defaults.
@@ -24,9 +33,9 @@ UNSUPPORTED_QCOM_WORD_SUPERVISION_DEFAULT: set[str] = {
 
 # Keep production enablement intentionally narrow by default.
 DEFAULT_ENABLED_RECITERS: set[str] = {
-    "abdul_basit_murattal_64kbps",
-    "abdurrahmaan_as-sudays",
-    "muhsin_al_qasim",
-    "sa3ood_al-shuraym",
-    "yasser_ad-dussary",
+    "eya_abdul_basit_murattal_64kbps",
+    "eya_abdurrahmaan_as_sudais_192kbps",
+    "eya_muhsin_al_qasim_192kbps",
+    "eya_saood_ash_shuraym_128kbps",
+    "eya_yasser_ad_dussary_128kbps",
 }

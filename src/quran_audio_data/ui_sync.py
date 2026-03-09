@@ -18,6 +18,7 @@ EVERYAYAH_AUDIO_URL_TEMPLATE = "https://everyayah.com/data/{subfolder}/{surah:03
 QCOM_CHAPTER_URL_TEMPLATE = (
     "https://api.quran.com/api/v4/chapter_recitations/{recitation_id}/{surah}"
 )
+NON_ACTIONABLE_QC_WARNINGS = {"boundary_refinement_applied", "boundary_refinement_rejected"}
 
 
 @dataclass(frozen=True, slots=True)
@@ -326,6 +327,65 @@ def _iso_from_mtime_ns(mtime_ns: int) -> str:
     return datetime.fromtimestamp(mtime_ns / 1_000_000_000, tz=timezone.utc).isoformat()
 
 
+def _compact_quality_payload(
+    qc: dict[str, Any],
+    *,
+    everyayah_stitch_eval: Any,
+) -> dict[str, Any]:
+    warnings = qc.get("warnings") if isinstance(qc.get("warnings"), list) else []
+    actionable_warnings = [
+        str(value)
+        for value in warnings
+        if str(value).strip() and str(value).strip() not in NON_ACTIONABLE_QC_WARNINGS
+    ]
+
+    quality = {
+        "coverage": qc.get("coverage"),
+        "monotonic": qc.get("monotonic"),
+        "duration_match": qc.get("duration_match"),
+        "warnings": actionable_warnings,
+        "reason_codes": qc.get("reason_codes") if isinstance(qc.get("reason_codes"), list) else [],
+        "zero_or_negative_ratio": qc.get("zero_or_negative_ratio"),
+        "median_confidence": qc.get("median_confidence"),
+        "interpolated_ratio": qc.get("interpolated_ratio"),
+        "lexical_match_ratio": qc.get("lexical_match_ratio"),
+        "speech_end_delta_ratio": qc.get("speech_end_delta_ratio"),
+        "quantization_step_ms": qc.get("quantization_step_ms"),
+    }
+
+    boundary_refine_method = qc.get("boundary_refine_method")
+    if isinstance(boundary_refine_method, str) and boundary_refine_method.strip():
+        if boundary_refine_method.strip().lower() != "none":
+            quality["boundary_refine_method"] = boundary_refine_method.strip()
+
+    if everyayah_stitch_eval is not None:
+        quality["everyayah_stitch_eval"] = everyayah_stitch_eval
+
+    return quality
+
+
+def _compact_public_word_payload(row: dict[str, Any]) -> dict[str, Any]:
+    payload = {
+        "surah": row.get("surah"),
+        "ayah": row.get("ayah"),
+        "word_index_global": row.get("word_index_global"),
+        "word_index_in_ayah": row.get("word_index_in_ayah"),
+        "text_uthmani": row.get("text_uthmani"),
+        "text_norm": row.get("text_norm"),
+        "start_s": row.get("start_s"),
+        "end_s": row.get("end_s"),
+    }
+
+    source_start_s = row.get("source_start_s")
+    source_end_s = row.get("source_end_s")
+    if isinstance(source_start_s, (int, float)) and isinstance(source_end_s, (int, float)):
+        if not (float(source_start_s) == 0.0 and float(source_end_s) == 0.0):
+            payload["source_start_s"] = source_start_s
+            payload["source_end_s"] = source_end_s
+
+    return payload
+
+
 def _build_surah_metadata_payload(
     *,
     reciter_id: str,
@@ -362,22 +422,10 @@ def _build_surah_metadata_payload(
             "sample_rate": audio.get("sample_rate"),
             "channels": audio.get("channels"),
         },
-        "quality": {
-            "coverage": qc.get("coverage"),
-            "monotonic": qc.get("monotonic"),
-            "duration_match": qc.get("duration_match"),
-            "warnings": qc.get("warnings") if isinstance(qc.get("warnings"), list) else [],
-            "reason_codes": qc.get("reason_codes")
-            if isinstance(qc.get("reason_codes"), list)
-            else [],
-            "zero_or_negative_ratio": qc.get("zero_or_negative_ratio"),
-            "median_confidence": qc.get("median_confidence"),
-            "interpolated_ratio": qc.get("interpolated_ratio"),
-            "lexical_match_ratio": qc.get("lexical_match_ratio"),
-            "speech_end_delta_ratio": qc.get("speech_end_delta_ratio"),
-            "quantization_step_ms": qc.get("quantization_step_ms"),
-            "everyayah_stitch_eval": full_payload.get("everyayah_stitch_eval"),
-        },
+        "quality": _compact_quality_payload(
+            qc,
+            everyayah_stitch_eval=full_payload.get("everyayah_stitch_eval"),
+        ),
         "provenance": {
             "engine": full_payload.get("engine"),
             "selected_candidate_engine": full_payload.get("selected_candidate_engine"),
@@ -410,14 +458,23 @@ def _build_surah_timings_payload(
             next_row["audio_asset"] = "everyayah_ayah"
             next_row["audio_key"] = f"{ayah_number:03d}"
             next_row["audio_url"] = audio_contract.ayah_audio_urls[ayah_number]
+        next_row.pop("source", None)
         ayahs_payload.append(next_row)
+
+    words_payload: list[Any] = []
+    words = full_payload.get("words") if isinstance(full_payload.get("words"), list) else []
+    for row in words:
+        if not isinstance(row, dict):
+            words_payload.append(row)
+            continue
+        words_payload.append(_compact_public_word_payload(row))
 
     return {
         "schema_version": "v2",
         "reciter_slug": reciter_id,
         "surah": surah,
         "ayahs": ayahs_payload,
-        "words": full_payload.get("words") if isinstance(full_payload.get("words"), list) else [],
+        "words": words_payload,
     }
 
 
@@ -600,24 +657,10 @@ def update_reciters_index(
     for artifact in artifacts:
         surahs_by_slug.setdefault(artifact.reciter_id, set()).add(artifact.surah)
 
-    added = 0
     for slug, surahs in surahs_by_slug.items():
         row = by_slug.get(slug)
         if row is None:
-            row = {
-                "slug": slug,
-                "name": slug,
-                "enabled": True,
-                "check_type": "model_only",
-                "capabilities": {"ayah_by_ayah": False, "word_by_word": False},
-                "source": {
-                    "everyayah": {"subfolder": None, "reciter_key": None, "name": None},
-                    "quran_com": {"recitation_id": None, "name": None},
-                },
-            }
-            reciters.append(row)
-            by_slug[slug] = row
-            added += 1
+            continue
 
         row["surahs_available"] = sorted(surahs)
         row["surah_count"] = len(surahs)
@@ -636,7 +679,7 @@ def update_reciters_index(
     payload["generated_at"] = datetime.now(timezone.utc).isoformat()
 
     changed = _write_json_if_changed(path=reciters_index_path, payload=payload, dry_run=dry_run)
-    return payload, changed, added
+    return payload, changed, 0
 
 
 def write_reciter_metadata_files(
@@ -845,6 +888,17 @@ def export_api_from_latest_runs(
         for item in reciters
         if isinstance(item, dict)
     }
+    indexed_reciters = set(reciter_row_by_id)
+    skipped_unindexed = sum(
+        1 for _, value in latest_candidates.items() if value.reciter_id not in indexed_reciters
+    )
+    latest_candidates = {
+        key: value
+        for key, value in latest_candidates.items()
+        if value.reciter_id in indexed_reciters
+    }
+    if not latest_candidates:
+        raise RuntimeError(f"No indexed *_full.json files found under {runs_root}")
 
     audio_copied = 0
     audio_unchanged = 0
@@ -899,6 +953,7 @@ def export_api_from_latest_runs(
     return {
         "dry_run": dry_run,
         "keys_selected": len(latest_candidates),
+        "keys_skipped_unindexed": skipped_unindexed,
         "api": {
             "surah_changed": surah_changed,
             "surah_unchanged": surah_unchanged,

@@ -1,0 +1,212 @@
+{
+  "schema_version": "v2",
+  "reciter": {
+    "slug": "eya_yasser_ad_dussary_128kbps",
+    "name": "Yasser_Ad-Dussary"
+  },
+  "surah": {
+    "number": 95,
+    "title": "Surah 95",
+    "ayah_count": 8,
+    "word_count": 34
+  },
+  "audio": {
+    "granularity": "ayah",
+    "primary_asset": "everyayah_ayah",
+    "fallback_order": [],
+    "assets": {
+      "everyayah_ayah": {
+        "provider": "everyayah",
+        "level": "ayah",
+        "kind": "template",
+        "template": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/095{ayah:03d}.mp3"
+      }
+    },
+    "duration_s": 36.40269841269841,
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "quality": {
+    "coverage": 1.0,
+    "monotonic": true,
+    "duration_match": true,
+    "warnings": [],
+    "reason_codes": [],
+    "zero_or_negative_ratio": 0.0,
+    "median_confidence": null,
+    "interpolated_ratio": 0.0,
+    "lexical_match_ratio": 1.0,
+    "speech_end_delta_ratio": 0.02766734734622538,
+    "quantization_step_ms": 554.9999999999998,
+    "boundary_refine_method": "librosa",
+    "everyayah_stitch_eval": {
+      "expected_ayahs": 8,
+      "predicted_ayahs": 8,
+      "matched_ayahs": 8,
+      "coverage_vs_reference": 1.0,
+      "start_error_median_ms": 125.249,
+      "end_error_median_ms": 519.658,
+      "boundary_error_median_ms": 253.281,
+      "boundary_error_p95_ms": 1179.407,
+      "boundary_hit_rate_20ms": 0.125,
+      "boundary_hit_rate_50ms": 0.125,
+      "boundary_hit_rate_80ms": 0.125,
+      "start_offset_s": 0.125249,
+      "offset_normalized_boundary_error_median_ms": 247.156,
+      "offset_normalized_boundary_error_p95_ms": 1304.657,
+      "offset_normalized_hit_rate_20ms": 0.125,
+      "offset_normalized_hit_rate_50ms": 0.1875,
+      "offset_normalized_hit_rate_80ms": 0.25,
+      "ayah_differences": [
+        {
+          "ayah": 1,
+          "pred_start_s": 0.245,
+          "pred_end_s": 1.855,
+          "ref_start_s": 0.0,
+          "ref_end_s": 2.228,
+          "delta_start_ms": 245.0,
+          "delta_end_ms": -373.438,
+          "abs_start_ms": 245.0,
+          "abs_end_ms": 373.438,
+          "norm_delta_start_ms": 119.751,
+          "norm_delta_end_ms": -498.687,
+          "norm_abs_start_ms": 119.751,
+          "norm_abs_end_ms": 498.687
+        },
+        {
+          "ayah": 2,
+          "pred_start_s": 2.49,
+          "pred_end_s": 3.78,
+          "ref_start_s": 2.228,
+          "ref_end_s": 4.013,
+          "delta_start_ms": 261.562,
+          "delta_end_ms": -232.751,
+          "abs_start_ms": 261.562,
+          "abs_end_ms": 232.751,
+          "norm_delta_start_ms": 136.313,
+          "norm_delta_end_ms": -358.0,
+          "norm_abs_start_ms": 136.313,
+          "norm_abs_end_ms": 358.0
+        },
+        {
+          "ayah": 3,
+          "pred_start_s": 4.12,
+          "pred_end_s": 6.34,
+          "ref_start_s": 4.013,
+          "ref_end_s": 6.816,
+          "delta_start_ms": 107.249,
+          "delta_end_ms": -475.876,
+          "abs_start_ms": 107.249,
+          "abs_end_ms": 475.876,
+          "norm_delta_start_ms": -18.0,
+          "norm_delta_end_ms": -601.125,
+          "norm_abs_start_ms": 18.0,
+          "norm_abs_end_ms": 601.125
+        },
+        {
+          "ayah": 4,
+          "pred_start_s": 6.805,
+          "pred_end_s": 12.915,
+          "ref_start_s": 6.816,
+          "ref_end_s": 13.407,
+          "delta_start_ms": -10.876,
+          "delta_end_ms": -491.751,
+          "abs_start_ms": 10.876,
+          "abs_end_ms": 491.751,
+          "norm_delta_start_ms": -136.125,
+          "norm_delta_end_ms": -617.0,
+          "norm_abs_start_ms": 136.125,
+          "norm_abs_end_ms": 617.0
+        },
+        {
+          "ayah": 5,
+          "pred_start_s": 13.55,
+          "pred_end_s": 17.32,
+          "ref_start_s": 13.407,
+          "ref_end_s": 18.3,
+          "delta_start_ms": 143.249,
+          "delta_end_ms": -979.626,
+          "abs_start_ms": 143.249,
+          "abs_end_ms": 979.626,
+          "norm_delta_start_ms": 18.0,
+          "norm_delta_end_ms": -1104.875,
+          "norm_abs_start_ms": 18.0,
+          "norm_abs_end_ms": 1104.875
+        },
+        {
+          "ayah": 6,
+          "pred_start_s": 18.295,
+          "pred_end_s": 25.59,
+          "ref_start_s": 18.3,
+          "ref_end_s": 26.51,
+          "delta_start_ms": -4.626,
+          "delta_end_ms": -920.064,
+          "abs_start_ms": 4.626,
+          "abs_end_ms": 920.064,
+          "norm_delta_start_ms": -129.875,
+          "norm_delta_end_ms": -1045.313,
+          "norm_abs_start_ms": 129.875,
+          "norm_abs_end_ms": 1045.313
+        },
+        {
+          "ayah": 7,
+          "pred_start_s": 26.605,
+          "pred_end_s": 29.915,
+          "ref_start_s": 26.51,
+          "ref_end_s": 30.463,
+          "delta_start_ms": 94.936,
+          "delta_end_ms": -547.564,
+          "abs_start_ms": 94.936,
+          "abs_end_ms": 547.564,
+          "norm_delta_start_ms": -30.313,
+          "norm_delta_end_ms": -672.813,
+          "norm_abs_start_ms": 30.313,
+          "norm_abs_end_ms": 672.813
+        },
+        {
+          "ayah": 8,
+          "pred_start_s": 30.665,
+          "pred_end_s": 34.7,
+          "ref_start_s": 30.463,
+          "ref_end_s": 36.479,
+          "delta_start_ms": 202.436,
+          "delta_end_ms": -1778.752,
+          "abs_start_ms": 202.436,
+          "abs_end_ms": 1778.752,
+          "norm_delta_start_ms": 77.187,
+          "norm_delta_end_ms": -1904.001,
+          "norm_abs_start_ms": 77.187,
+          "norm_abs_end_ms": 1904.001
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "engine": {
+      "name": "ensemble",
+      "model": "ayah-wise",
+      "device": "cpu",
+      "fallback_used": true,
+      "attempted": ["nemo", "whisperx", "mfa"]
+    },
+    "selected_candidate_engine": "ensemble",
+    "candidate_scores": {
+      "nemo": 174.70347727600983,
+      "mfa": 174.5913928203725
+    },
+    "pass_trace": [
+      "A_audio_normalization",
+      "B_ayah_anchors",
+      "C_word_candidates",
+      "D_candidate_fusion",
+      "E_boundary_refinement",
+      "F_qc_gates_and_rescue"
+    ],
+    "supervision_sources": [
+      "everyayah:subfolder=Yasser_Ad-Dussary_128kbps:surah=95:scope=full_surah"
+    ],
+    "segment_source_type": "none"
+  },
+  "timings_endpoint": "/data/reciters/eya_yasser_ad_dussary_128kbps/surahs/95/timings.json",
+  "updated_at": "2026-03-09T19:55:12.748944+00:00"
+}

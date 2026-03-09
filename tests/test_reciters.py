@@ -25,6 +25,7 @@ def test_upsert_reciter_normalizes_and_updates(tmp_path) -> None:
         path=reciters_path,
     )
     assert created["id"] == "abdullaah_3awwaad_al_juhaynee"
+    assert created["name"] == "Abdullaah 3Awwaad Al-Juhaynee (quranicaudio)"
 
     updated = upsert_reciter(
         reciter_id="abdullaah_3awwaad_al_juhaynee",
@@ -38,6 +39,7 @@ def test_upsert_reciter_normalizes_and_updates(tmp_path) -> None:
     assert len(rows) == 1
     assert updated["id"] == "abdullaah_3awwaad_al_juhaynee"
     assert updated["source"] == "custom"
+    assert updated["name"] == "Abdullaah 3Awwaad Al-Juhaynee (custom)"
     assert get_reciter("Abdullaah 3Awwaad Al-Juhaynee", reciters_path) is not None
 
 
